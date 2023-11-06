@@ -8,7 +8,7 @@ Iedereen zal om 09:00 aanwezig zijn op school om verder te werken aan het projec
 
  - Daily stand-up
 
-De stand-up houden we zodra we een beschikbaar hebben gevonden. Dit zal rond 09:05/09:10 zijn.
+De stand-up houden we zodra we een beschikbaar lokaal hebben gevonden. Dit zal rond 09:05/09:10 zijn.
 
  - Tijd(en) waarop je pauze houdt
 
