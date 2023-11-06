@@ -16,10 +16,12 @@ Wireframes al gegeven, zijn deze goed of moet er nog uitgebreid worden.
 
 ## Backlog
 
-Homepagina?
+Homepagina? Welke informatie moet hier te zien zijn?
 
-Persoonlijk profiel?
+Inloggen? Zijn er eisen aan hoe het inloggen moet werken?
 
-Database waar alle data word opgeslagen?
+Persoonlijk profiel? Wat moet er te zien zijn en welke acties moet de gebruiker kunnen doen?
+
+Database waar alle data wordt opgeslagen?
 
 Waar komt de boekdata vandaan?
