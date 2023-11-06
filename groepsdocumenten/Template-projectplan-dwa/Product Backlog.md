@@ -7,3 +7,10 @@
 > Geef ook aan welke backlog items je verwacht in welke sprint te plannen. Het is niet de bedoeling dat je nu al gedetailleerd vast gaat leggen wat je in elke sprint gaat doen, want dat verandert waarschijnlijk toch wel. Het is echter wel goed om alvast een globaal idee te hebben van prioriteiten per sprint.
 
 > Geef ook aan welke vragen, onduidelijkheden en moeilijkheden je verwacht bij de verschillende items. 
+
+- Als gebruiker wil ik een profielpagina waarop ik mijn boeken kan delen, zodat andere gebruikers kunnen zien welke boeken ik heb gedeeld.
+- Als gebruiker wil ik een plank met een titel kunnen toevoegen, zodat ik verschillende planken kan hebben.
+- Als gebruiker wil ik een nieuw boek kunnen toevoegen, zodat ik een boek kan toevoegen die nog niet in de catalogus bestaat.
+- Als gebruiker wil ik een boek kunnen toevoegen aan een plank, zodat andere gebruikers kunnen zien hoe ik de boeken heb gegroepeerd.
+- Als gebruiker wil ik de link van mijn profielpagina kunnen delen, zodat ik mijn profielpagina kan toevoegen aan een profielbeschrijving op een ander platform.
+- Als opdrachtgever wil ik graag een mobile-first web-applicatie, zodat de gebruikers de applicatie makkelijker kunnen gebruiken.
