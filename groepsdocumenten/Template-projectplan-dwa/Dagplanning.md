@@ -1,6 +1,6 @@
 # Dagplanning
 
-> In de dagplannign is te vinden wanneer wij als groep de dag starten an aflsuiten, watvoor pauzes we houden en wanneer we een daily standup en afsluiting houden
+> In de dagplanning is te vinden wanneer wij als groep de dag starten an aflsuiten, watvoor pauzes we houden en wanneer we een daily standup en afsluiting houden
 
  - Starttijd
 
