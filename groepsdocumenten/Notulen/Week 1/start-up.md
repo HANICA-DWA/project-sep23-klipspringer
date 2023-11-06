@@ -1,7 +1,8 @@
 # Notulen start-up opdrachtgever
-> 03-11-2023 14:00 
 
->Aanwezige: Jelle Schaafsma, Yannick van den Berg, Jorris van Lier, Niels van Ee, Roos Lodewijk
+> 03-11-2023 14:00
+
+> Aanwezige: Jelle Schaafsma, Yannick van den Berg, Jorris van Lier, Niels van Ee, Roos Lodewijk
 
 - BKS (Books) - Express yourself
 - Profielpagina voor je boeken
@@ -11,3 +12,5 @@
 - Vooral mobiel, web applicatie (een app, maar draait in de browser)
 - Zelf boeken kunnen toevoegen eventueel
 - Vragen kunnen we altijd mailen of via Fritz
+- eigen plank/shelf aanmaken
+- top 3 boeken op profielpagina
