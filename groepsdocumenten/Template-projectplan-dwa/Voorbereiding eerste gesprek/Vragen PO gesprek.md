@@ -25,3 +25,5 @@ Persoonlijk profiel? Wat moet er te zien zijn en welke acties moet de gebruiker 
 Database waar alle data wordt opgeslagen?
 
 Waar komt de boekdata vandaan?
+
+Zelf boeken toevoegen, wat moet gebruiker zelf invoeren?

@@ -7,13 +7,14 @@
 - Het item is in lijn met de ontwerpdocumentatie van dit item.
 - Gebruikers worden voorzien van foutmeldingen over de gemaakte fouten.
 - Alle functies en mogelijkheden van de applicatie moeten werken zoals beschreven in de userstories.
+- Ieder item is getest, en de uitkomst hiervan is gedocumenteerd en verwerkt.
 
 ## Acceptatie criteria
 
 - Het item is gereviewd door minimaal één ander teamlid en heeft het item goedgekeurd.
 - De Product Owner of de betrokken stakeholders moeten het item accepteren.
-- De gespendeerde tijd voor het item is ingevuld in het logboek.
+- De gespendeerde tijd voor het item is ingevuld in het logboek en op het scrumbord.
 
-## Opleverings criteria
+## Opleveringscriteria
 
-- Het item is beschikbaar in de productieomgeving.
+- Het product is beschikbaar voor productie.
