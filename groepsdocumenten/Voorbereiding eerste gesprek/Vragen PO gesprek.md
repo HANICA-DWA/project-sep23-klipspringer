@@ -14,7 +14,7 @@ Wat is je specifieke doelgroep (16 - 40 lezers op social media)
 
 Wireframes al gegeven, zijn deze goed of moet er nog uitgebreid worden.
 
-Wat voor features heeft de app allemaal?
+Wat voor features heeft de app allemaal? zijn er speciefieke eisen aan deze features?
 
 kan de app nog verder uitgebreid worden met andere ideeën?
 
