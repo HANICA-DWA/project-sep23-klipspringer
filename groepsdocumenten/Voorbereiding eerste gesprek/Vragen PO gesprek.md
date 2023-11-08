@@ -16,6 +16,8 @@ Wireframes al gegeven, zijn deze goed of moet er nog uitgebreid worden.
 
 Wat voor features heeft de app allemaal?
 
+kan de app nog verder uitgebreid worden met andere ideeën?
+
 ## Backlog
 
 Homepagina? Welke informatie moet hier te zien zijn?
