@@ -14,6 +14,11 @@ Wat is je specifieke doelgroep (16 - 40 lezers op social media)
 
 Wireframes al gegeven, zijn deze goed of moet er nog uitgebreid worden.
 
+Wat voor features heeft de app allemaal? zijn er speciefieke eisen aan deze features?
+Wat is de prioritering van de features? wat is het belangrijkst, wat is minder belangrijk
+
+kan de app nog verder uitgebreid worden met andere ideeën?
+
 ## Backlog
 
 Homepagina? Welke informatie moet hier te zien zijn?
