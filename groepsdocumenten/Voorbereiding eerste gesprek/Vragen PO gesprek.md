@@ -14,6 +14,8 @@ Wat is je specifieke doelgroep (16 - 40 lezers op social media)
 
 Wireframes al gegeven, zijn deze goed of moet er nog uitgebreid worden.
 
+Wat voor features heeft de app allemaal?
+
 ## Backlog
 
 Homepagina? Welke informatie moet hier te zien zijn?
