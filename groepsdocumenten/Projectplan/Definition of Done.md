@@ -1,4 +1,4 @@
-# Defintion of Done
+# Definition of Done
 
 ## Functionele criteria
 
