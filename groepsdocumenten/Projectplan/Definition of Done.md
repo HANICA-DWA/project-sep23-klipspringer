@@ -1,4 +1,4 @@
-# Defintion of Done
+# Definition of Done
 
 ## Functionele criteria
 
@@ -9,7 +9,7 @@
 - Alle functies en mogelijkheden van de applicatie moeten werken zoals beschreven in de userstories.
 - Ieder item is getest, en de uitkomst hiervan is gedocumenteerd en verwerkt.
 
-## Acceptatie criteria
+## Acceptatiecriteria
 
 - Het item is gereviewd door minimaal één ander teamlid en heeft het item goedgekeurd.
 - De Product Owner of de betrokken stakeholders moeten het item accepteren.
