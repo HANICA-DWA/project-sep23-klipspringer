@@ -1,6 +1,6 @@
 # Doelstelling en Aanleiding
 
-Met dit project wil de opdrachtgever een platform waarop mensen op een laagdrempelige manier boeken kunnen delen met anderen. De opdrachtgever heeft met meerdere mensen gesproken die geen eenvoudig platform kunnen vinden om hun leesinteresses te kunnen delen met anderen. Er is een gat in de markt die de opdrachtgever wil vullen met dit project.
+Met dit project wil de opdrachtgever een platform waarop mensen op een laagdrempelige manier boeken kunnen delen met anderen. De opdrachtgever heeft met meerdere mensen gesproken die geen eenvoudig platform kunnen vinden om hun leesinteresses te kunnen delen met anderen. Er is een gat in de markt dat de opdrachtgever wil vullen met dit project.
 
 # Opdracht
 
