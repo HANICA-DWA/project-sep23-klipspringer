@@ -18,7 +18,7 @@
   - Prioriteit: Hoog
   - Sprint: 1
 
-- Als gebruiker wil ik me kunnen registreren, zodat ik ook planken kan delen met anderen.
+- Als gebruiker wil ik me kunnen registreren, zodat ik een persoonlijke pagina kan maken.
 
   - Prioriteit: Hoog
   - Sprint: 1
