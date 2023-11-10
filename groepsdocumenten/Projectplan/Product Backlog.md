@@ -1,29 +1,21 @@
 # Product Backlog
 
-> _Maak deze lijst ter voorbereiding van het eerste gesprek met de product owner en pas het daarna aan_
-
-> Maak hier een geordende lijst van globaal beschrijven features. De lijst is geordend op prioriteit. De items worden later uitgewerkt tot user stories, maar dat hoef je nu nog niet te doen.
-
-> Geef ook aan welke backlog items je verwacht in welke sprint te plannen. Het is niet de bedoeling dat je nu al gedetailleerd vast gaat leggen wat je in elke sprint gaat doen, want dat verandert waarschijnlijk toch wel. Het is echter wel goed om alvast een globaal idee te hebben van prioriteiten per sprint.
-
-> Geef ook aan welke vragen, onduidelijkheden en moeilijkheden je verwacht bij de verschillende items.
-
-- Als opdrachtgever wil ik graag een mobile-first web-applicatie, zodat de gebruikers de applicatie makkelijker kunnen gebruiken.
+- Als gebruiker wil ik graag een mobile-first web-applicatie, zodat ik de applicatie eenvoudig kan gebruiken op mijn mobiel
 
   - Prioriteit: Hoog
   - Sprint: 1
 
-- Als opdrachtgever wil ik dat er een externe API gebruikt wordt voor het ophalen van boeken, zodat zoveel mogelijk boeken al beschikbaar zijn.
+- Als gebruiker wil ik me kunnen registreren via SSO, zodat ik een persoonlijke pagina kan maken.
 
   - Prioriteit: Hoog
   - Sprint: 1
 
-- Als gebruiker wil ik me kunnen registreren, zodat ik een persoonlijke pagina kan maken.
+- Als gebruiker wil ik zo weinig mogelijk zelf te hoeven invullen, zodat ik snel en met zo weing mogelijke stappen tot mijn eind doel kom.
 
   - Prioriteit: Hoog
   - Sprint: 1
 
-- Als opdrachtgever wil ik dat een gebruiker zo weinig mogelijk zelf hoeft in te vullen, zodat de gebruiker een gebruiksvriendelijke en positieve ervaring met de applicatie heeft.
+- Als gebruiker wil ik een boek kunnen zoeken, zodat ik die kan toevoegen aan mijn collectie/plank
 
   - Prioriteit: Hoog
   - Sprint: 1
@@ -33,7 +25,7 @@
   - Prioriteit: Hoog
   - Sprint: 1
 
-- Als gebruiker wil ik een plank kunnen toevoegen, zodat ik verschillende planken kan hebben.
+- Als gebruiker wil ik een plank kunnen toevoegen, zodat ik verschillende interesses in boeken kan delen.
 
   - Prioriteit: Hoog
   - Sprint: 1
