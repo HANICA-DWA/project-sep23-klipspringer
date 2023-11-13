@@ -6,7 +6,6 @@ const router = express.Router();
 
 router.get("/:username", (req, res) => {
     User.findOne({username: req.params.username}).then((user) => {
-        console.log(user)
         const userData = {
             name: user.name,
             top_three: user.top_three,
