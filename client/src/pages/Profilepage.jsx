@@ -1,3 +1,4 @@
+
 import { Typography, Card, Button, Avatar, Stack, CardMedia } from "@mui/material";
 
 function Profilepage() {
@@ -27,7 +28,6 @@ function Profilepage() {
         <Button variant="contained">Create your own shelf</Button>
       </Stack>
     </Stack>
-  );
+  )
 }
-
 export default Profilepage;
