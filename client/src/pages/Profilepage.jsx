@@ -25,7 +25,7 @@ function Profilepage() {
         <img style={{ width: "320px", height: "20px" }} src="..\images\boekenplank.jpg"></img>
       </Stack>
       <Stack direction="column" alignItems="center">
-        <Button variant="contained">Create your own shelf</Button>
+        <Button color="secondary" variant="contained" style={{fontSize: "12px"}}>Create your own shelf</Button>
       </Stack>
     </Stack>
   )
