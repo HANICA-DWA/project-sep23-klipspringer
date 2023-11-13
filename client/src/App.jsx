@@ -1,9 +1,12 @@
-import './App.css'
+import { Button } from 'semantic-ui-react'
 
 function App() {
 
   return (
-    <h1>hoi</h1>
+    <>
+      <h1>hoi</h1>
+      <Button>Yo</Button>
+    </>
   )
 }
 
