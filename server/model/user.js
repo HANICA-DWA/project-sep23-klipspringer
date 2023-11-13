@@ -10,10 +10,10 @@ const schema = new mongoose.Schema({
     sso_token: {type: String},
     name: {type: String},
     top_three: {type: [Book.schema]},
-    shelf: {type: {
+    shelf: {type: [{
         name: {type: String},
         books: {type: [Book.schema]}
-    }},
+    }]},
 });
 
 const model = mongoose.model(name, schema);
