@@ -38,6 +38,7 @@ const seed = async () => {
     await User.insertMany([{
         _id: "10239123",
         name: "Jan Willem",
+        username: "janwillem",
         top_three: [{
             _id: "1",
             name: "Encyclopedie I"
