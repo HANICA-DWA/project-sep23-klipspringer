@@ -14,10 +14,8 @@
 
 | Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
 |---|---|---|---|---|---|
-| 1 uur | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/16)| Jelle | We hebben gekeken of het compatibel is met react, gemakkelijk in gebruik is voor een mobile app, js gebruikt en overlegt met iedereen of ze het fijn lijkt
-
-na verder gebruik met de library zijn we eracter gekomen dat het gebruik van semantic toch erg moeilijk is en zijn we overgestapt op Material ui  | :smile: :unamused: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/16#issuecomment-1807765101) |
-| 2,5 uur | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/36) | alleen | IK heb hier gewerkt aan de frontend van de profielpagina met de library semantic, hierbij kwamen we  er toch achter dat het gebruik ervan best moeilijk is | :sob: | - |
+| 1 uur | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/16)| Jelle | We hebben gekeken of het compatibel is met react, gemakkelijk in gebruik is voor een mobile app, js gebruikt en overlegt met iedereen of ze het fijn lijkt | :smile: :unamused: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/16#issuecomment-1807765101) |
+| 2,5 uur | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/36) | alleen | Ik heb hier gewerkt aan de frontend van de profielpagina met de library semantic, hierbij kwamen we  er toch achter dat het gebruik ervan best moeilijk is | :sob: | - |
 
 
 ## Dinsdag 14 november
