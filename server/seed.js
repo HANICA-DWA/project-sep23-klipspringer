@@ -39,6 +39,7 @@ const seed = async () => {
         _id: "10239123",
         name: "Jan Willem",
         username: "janwillem",
+        profile_picture: "https://yt3.ggpht.com/yti/ADpuP3Pg_aDqzJqgvkj6wSF_s-1ERdm5tS9DEegXejKT=s88-c-k-c0x00ffffff-no-rj",
         top_three: [{
             _id: "1",
             name: "Encyclopedie I"

@@ -10,6 +10,7 @@ const schema = new mongoose.Schema({
     sso_token: {type: String},
     name: {type: String},
     username: {type: String},
+    profile_picture: {type: String},
     top_three: {type: [Book.schema]},
     shelf: {type: [{
         name: {type: String},
