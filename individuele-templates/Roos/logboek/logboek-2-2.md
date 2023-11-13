@@ -16,6 +16,7 @@
 |---|---|---|---|---|---|
 | 1 uur | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/16)| Jelle | We hebben gekeken of het compatibel is met react, gemakkelijk in gebruik is voor een mobile app, js gebruikt en overlegt met iedereen of ze het fijn lijkt | :smile: :unamused: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/16#issuecomment-1807765101) |
 | 2,5 uur | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/36) | alleen | Ik heb hier gewerkt aan de frontend van de profielpagina met de library semantic, hierbij kwamen we  er toch achter dat het gebruik ervan best moeilijk is | :sob: | - |
+| 30 min | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/36) | alleen | ik hier de frontend aangepast naar de nieuwe library | :partying_face: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/blob/main/client/src/pages/Profilepage.jsx) |
 
 
 ## Dinsdag 14 november
