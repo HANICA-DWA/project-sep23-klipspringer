@@ -1,36 +1,33 @@
-import { Header, Image, Grid, Card, Button } from "semantic-ui-react";
+
+import { Typography, Card, Button, Avatar, Stack, CardMedia } from "@mui/material";
 
 function Profilepage() {
   return (
-    <Grid style={{ height: "100vh" }}>
-      <Grid.Row verticalAlign="middle">
-        <Grid.Column textAlign="center">
-          <Image avatar src="https://react.semantic-ui.com/images/wireframe/square-image.png" />
-          <Header style={{ margin: "5px" }} as="h3">
-            Voornaam Achternaam
-          </Header>
-        </Grid.Column>
-      </Grid.Row>
+    <Stack justifyContent="space-around" style={{ height: "100vh" }}>
+      <Stack direction="column" alignItems="center">
+        <Avatar alt="Voornaam Achternaam" src="https://react.semantic-ui.com/images/wireframe/image.png" />
+        <Typography variant="body2">Voornaam Achternaam</Typography>
+      </Stack>
 
-      <Grid.Row verticalAlign="middle">
-        <Grid.Column textAlign="center">
-          <Header as="h2">My top 3 books</Header>
-          <Card.Group centered itemsPerRow={3}>
-            <Card style={{ width: "85px", height: "130px" }} image="https://react.semantic-ui.com/images/wireframe/square-image.png"></Card>
-            <Card style={{ width: "85px", height: "130px" }} image="https://react.semantic-ui.com/images/wireframe/square-image.png"></Card>
-            <Card style={{ width: "85px", height: "130px" }} image="https://react.semantic-ui.com/images/wireframe/square-image.png"></Card>
-          </Card.Group>
-          <Image centered style={{ width: "320px", height: "20px" }} src="..\images\boekenplank.jpg"></Image>
-        </Grid.Column>
-      </Grid.Row>
-
-      <Grid.Row verticalAlign="bottom">
-        <Grid.Column textAlign="center">
-          <Button>Create your own shelf</Button>
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
-  );
+      <Stack direction="column" alignItems="center">
+        <Typography variant="body1">My top 3 books</Typography>
+        <Stack direction="row" justifyContent="center" spacing={2}>
+          <Card style={{ width: "85px", height: "130px" }} >
+            <CardMedia component="img" image="https://react.semantic-ui.com/images/wireframe/image.png" alt="titel" />
+          </Card>
+          <Card style={{ width: "85px", height: "130px" }} >
+            <CardMedia component="img" image="https://react.semantic-ui.com/images/wireframe/image.png" alt="titel" />
+          </Card>
+          <Card style={{ width: "85px", height: "130px" }} >
+            <CardMedia component="img" image="https://react.semantic-ui.com/images/wireframe/image.png" alt="titel" />
+          </Card>
+        </Stack>
+        <img style={{ width: "320px", height: "20px" }} src="..\images\boekenplank.jpg"></img>
+      </Stack>
+      <Stack direction="column" alignItems="center">
+        <Button variant="contained">Create your own shelf</Button>
+      </Stack>
+    </Stack>
+  )
 }
-
 export default Profilepage;

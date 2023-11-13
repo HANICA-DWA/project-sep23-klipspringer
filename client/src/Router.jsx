@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import App from "./App";
+import App from "./pages/App";
 import Profilepage from "./pages/Profilepage";
 
 export default function Router() {
