@@ -8,7 +8,35 @@
 
 > [Hier is een lijstje met alle GitHub emojis](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md)
 
-## Maandag 15 november
+## Maandag 13 november
+
+> Eventueel informatieve algemene opmerkingen over deze dag.
+
+| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
+|---|---|---|---|---|---|
+| 1 uur | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/16)| Jelle | We hebben gekeken of het compatibel is met react, gemakkelijk in gebruik is voor een mobile app, js gebruikt en overlegt met iedereen of ze het fijn lijkt  | :smile: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/16#issuecomment-1807765101) |
+| | | | | | |
+
+
+## Dinsdag 14 november
+
+> Eventueel informatieve algemene opmerkingen over deze dag.
+
+| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
+|---|---|---|---|---|---|
+| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
+| | | | | | |
+
+## Woensdag 15 november
+
+> Eventueel informatieve algemene opmerkingen over deze dag.
+
+| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
+|---|---|---|---|---|---|
+| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
+| | | | | | |
+
+## Donderdag 16 november
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
@@ -18,36 +46,8 @@
 | | | | | | |
 
 
-## Dinsdag 16 november
 
-> Eventueel informatieve algemene opmerkingen over deze dag.
-
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
-
-## Woensdag 17 november
-
-> Eventueel informatieve algemene opmerkingen over deze dag.
-
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
-
-## Donderdag 18 november
-
-> Eventueel informatieve algemene opmerkingen over deze dag.
-
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
-
-
-
-## Vrijdag 19 november
+## Vrijdag 17 november
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
