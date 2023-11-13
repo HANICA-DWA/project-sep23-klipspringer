@@ -22,7 +22,7 @@ function Profilepage() {
             <CardMedia component="img" image="https://react.semantic-ui.com/images/wireframe/image.png" alt="titel" />
           </Card>
         </Stack>
-        <img style={{ width: "320px", height: "20px" }} src=".\public\images\bookshelf.jpg"></img>
+        <img style={{ width: "320px", height: "20px" }} src="/images/bookshelf.jpg"></img>
       </Stack>
 
       <Stack direction="column" alignItems="center">
