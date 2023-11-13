@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import App from "./pages/App";
 import Profilepage from "./pages/Profilepage";
+import App from "./pages/App";
+import Login from "./pages/Login";
 
 export default function Router() {
   return (
@@ -8,6 +9,7 @@ export default function Router() {
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/profile" element={<Profilepage />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );
