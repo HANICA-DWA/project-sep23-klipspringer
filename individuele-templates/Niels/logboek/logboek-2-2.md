@@ -14,6 +14,7 @@
 |------|---------------------------------------------------------------------------|---------|-------------------------------------------------------------------|--------------|------------------------------------------------------------------|---|
 | 2  | https://github.com/orgs/HANICA-DWA/projects/19?pane=issue&itemId=44263968 | Joris   | Vite frontend setup met react router en een basis express backend | :sunglasses: | https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/42 |   |
 | 2  | https://github.com/orgs/HANICA-DWA/projects/19/views/1?pane=issue&itemId=44258808 |    | Mongoose schema van users en een seeder | :sleeping: | https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/47 |   |
+| 2  | https://github.com/orgs/HANICA-DWA/projects/19/views/4?filterQuery=&pane=issue&itemId=44259434 |    | User data endpoint toegevoegd aan backend | :sleeping: | https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/51 |   |
 
 
 ## Dinsdag 16 november
