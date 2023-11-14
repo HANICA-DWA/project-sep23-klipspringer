@@ -25,8 +25,9 @@ router.post("/:username/shelf", (req, res) => {
             res.sendStatus(404);
         } else {
             console.log(req.body)
-            console.log(JSON.parse(req.body));
-            user.shelf.push()
+            user.shelf.push(req.body)
+            user.save();
+            res.sendStatus(200);
         }
     })
 })
