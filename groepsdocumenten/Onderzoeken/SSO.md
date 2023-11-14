@@ -52,3 +52,10 @@ Useful data for BKS:
 - picture
 
 ![Linkedin validation](<linkedin validate token.png>)
+
+# NPM Library
+
+https://www.npmjs.com/package/reactjs-social-login
+https://github.com/cuongdevjs/reactjs-social-login/tree/ae89f1cb931a338b8aed24f94064ff07bda48f9f
+
+https://www.npmjs.com/package/@react-oauth/google

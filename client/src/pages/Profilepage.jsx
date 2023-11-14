@@ -36,6 +36,6 @@ function Profilepage() {
         <Button color="secondary" variant="contained" style={{ fontSize: "12px" }}>Create your own shelf</Button>
       </Stack>
     </Stack>
-  )
+  );
 }
 export default Profilepage;
