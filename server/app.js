@@ -1,11 +1,15 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import cors from 'cors';
 import session from 'express-session';
 
 import userRouter from './routes/userRouter.js'
 import bookRouter from './routes/bookRouter.js'
 
 const app = express()
+app.use(cors())
+app.options("*", cors());
+
 
 const sessionParser = session({
     saveUninitialized: false,
