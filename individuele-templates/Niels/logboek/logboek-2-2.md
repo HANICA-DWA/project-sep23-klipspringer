@@ -21,10 +21,11 @@
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak                                                                              | Met Wie | Resultaten                                | Emotie            | Link                                                             |
-|------|-----------------------------------------------------------------------------------|---------|-------------------------------------------|-------------------|------------------------------------------------------------------|
-| 2    | https://github.com/orgs/HANICA-DWA/projects/19/views/4?pane=issue&itemId=44258651 |         | Leren over CORS en publieke API's         | :cowboy_hat_face: | https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/56 |
-| 1    | https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/41                |         | De REST API is nu duidelijk voor iedereen | :star_struck:     | https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/57 |
+| Uren | Taak                                                                              | Met Wie | Resultaten                                | Emotie            | Link                                                              |
+|------|-----------------------------------------------------------------------------------|---------|-------------------------------------------|-------------------|-------------------------------------------------------------------|
+| 2    | https://github.com/orgs/HANICA-DWA/projects/19/views/4?pane=issue&itemId=44258651 |         | Leren over CORS en publieke API's         | :cowboy_hat_face: | https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/56  |
+| 1    | https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/41                |         | De REST API is nu duidelijk voor iedereen | :star_struck:     | https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/57  |
+| 1    | https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/35                |         | Shelves kunnen worden toegevoegd          | :shipit:          | https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/62/ |
 
 ## Woensdag 17 november
 
