@@ -16,16 +16,19 @@ router.get("/:username", (req, res) => {
         }).catch((err) => {
             res.send(err)
         })
-    }
-    // User.findOne({username: req.params.username}).then((user) => {
-    //     const userData = {
-    //         name: user.name,
-    //         profile_picture: user.profile_picture,
-    //         top_three: user.top_three,
-    //         shelf: user.shelf
-    //     }
-    //     res.send(JSON.stringify(userData));
-    // })    
+    }  
+})
+
+router.post("/:username/shelf", (req, res) => {
+    User.findById(req.params.username).then((user) => {
+        if (user === null) {
+            res.sendStatus(404);
+        } else {
+            console.log(req.body)
+            console.log(JSON.parse(req.body));
+            user.shelf.push()
+        }
+    })
 })
 
 export default router;
