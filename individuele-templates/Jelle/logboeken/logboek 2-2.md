@@ -16,7 +16,7 @@
 |---|---|---|---|---|---|
 | 1.25 | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/16) | samen met Roos | Besuluiten welk framework we gaan gebruiken gebaseerd op groote nuttige componenten en duidelijke documentatie |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/16#issuecomment-1807765101) |
 | 2 | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/38) | N.V.T. | componenten uit wireframes identificeren | :smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/cb290831e1b66132146389397e541a7879fb76b5) |
-| 0.25 | [link naar de taak](https://github.com/orgs/HANICA-DWA/projects/19/views/4?pane=issue&itemId=44264003) | N.V.T. | gebruik maken en kennis opdoen van Material UI | :smiley: | [link naar de resultaten]([https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/aa607eae841cfa1282ce9af1b22094af9ca973be](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/d1ae5296582cd2e1c7a7f49ca084e9d42dd04d08)) |
+| 0.25 | [link naar de taak](https://github.com/orgs/HANICA-DWA/projects/19/views/4?pane=issue&itemId=44264003) | N.V.T. | gebruik maken en kennis opdoen van Material UI | :smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/aa607eae841cfa1282ce9af1b22094af9ca973be) |
 
 ## Dinsdag 14 november
 
@@ -24,7 +24,7 @@
 
 | Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
 |---|---|---|---|---|---|
-| 0.5 | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/36) | Met Roos | Reviewen op basis van de DoD en ook de wireframes  | :satisfied: | [link naar de resultaten](https://github.com/link-naar-de-commit) |
+| 0.5 | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/36) | Met Roos | Reviewen op basis van de DoD en ook de wireframes  | :satisfied: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/d1ae5296582cd2e1c7a7f49ca084e9d42dd04d08) |
 | | | | | | |
 
 ## Woensdag 15 november
