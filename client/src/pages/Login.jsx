@@ -36,6 +36,9 @@ export default function Login() {
       </Stack>
       <Stack alignItems="center" useFlexGap gap={2}>
         <GoogleLogin
+          shape="pill"
+          text="continue_with"
+          locale="en-US"
           onSuccess={(response) => {
             const idToken = response.credential;
             const decodedToken = jwtDecode(idToken);
