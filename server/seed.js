@@ -20,27 +20,15 @@ const main = async ($log) => {
 };
 
 const seed = async () => {
-    await Book.deleteMany();
-    await Book.insertMany([{
-        _id: "1",
-        name: "Encyclopedie I"
-    },
-    {
-        _id: "2",
-        name: "Encyclopedie II"
-    },
-    {
-        _id: "3",
-        name: "Encyclopedie III"
-    }]);
-
     await User.deleteMany();
     await User.insertMany([{
         _id: "10239123",
         name: "Jan Willem",
+        username: "janwillem",
+        profile_picture: "https://yt3.ggpht.com/yti/ADpuP3Pg_aDqzJqgvkj6wSF_s-1ERdm5tS9DEegXejKT=s88-c-k-c0x00ffffff-no-rj",
         top_three: [{
-            _id: "1",
-            name: "Encyclopedie I"
+            _id: "9780140328721",
+            cover_image: "https://covers.openlibrary.org/b/id/8739161-M.jpg"
         }]
     }]);
 }

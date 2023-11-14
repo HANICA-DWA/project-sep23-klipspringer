@@ -1,6 +1,9 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import session from 'express-session';
+
+import userRouter from './routes/userRouter.js'
+
 const app = express()
 
 const sessionParser = session({
@@ -10,10 +13,17 @@ const sessionParser = session({
     name: "BKSsession",
 });
 
-app.use(sessionParser);
+const host = process.env.HOST || "127.0.0.1";
+const port = process.env.PORT || 3001;
 
-const server = app.listen(async () => {
+app.use(sessionParser);
+app.use("/user", userRouter)
+
+const server = app.listen(port, host, async () => {
     console.log("> connecting");
     await mongoose.connect(`mongodb://127.0.0.1:27017/BKS`);
     console.log("> connected");
+
+    const { address, port } = server.address();
+    console.log(`Server started on http://${address}:${port}`)
 });
