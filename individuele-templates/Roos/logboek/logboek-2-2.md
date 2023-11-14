@@ -29,7 +29,7 @@
 | 1 uur | Lezing van Simon Brown | Jelle, Joris en Yannick | - | :sleeping: | - |
 | 15 min | Een component aanmaken voor code hergebruik | Alleen |  Tijdens de lezing van Simon Brown kwam ik erachter dat het veel handiger was om op de profielpagina een eigen component aan te maken voor de boekenplanken, deze heb ik toen snel in elkaar gezet | :cowboy_hat_face: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/ec91bc9017e85d9b918b4e3c2f6083edadc3a103) |
 | 3 uur | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/54) | Alleen | Omdat ik de frontend al had gemaakt vond ik het erg leuk om hierbij ook de backend te maken en dat mocht van mijn groepje, hierbij wilde hij eerst niet fetchen omdat er iets was met CORS na wat googlen was dit gefixt | :sunglasses: | [link naar resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/0910db11cab599b3c97af10691b2c2633cc4e139) |
-| 30 min | Gesprek met bart | Het hele groepje | We hebben besproken wat het sprintdoel was en over het projectplank gepraat | 	:slightly_smiling_face | - |
+| 30 min | Gesprek met bart | Het hele groepje | We hebben besproken wat het sprintdoel was en over het projectplank gepraat | 	:slightly_smiling_face: | - |
 
 ## Woensdag 15 november
 
