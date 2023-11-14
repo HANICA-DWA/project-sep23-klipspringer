@@ -1,7 +1,24 @@
 
-import { Typography, Card, Button, Avatar, Stack, CardMedia } from "@mui/material";
+import { Typography, Button, Avatar, Stack} from "@mui/material";
+import Bookshelf from "../components/Bookshelf";
 
 function Profilepage() {
+
+  const books = [
+    {
+      _id: 324324,
+      url: "https://react.semantic-ui.com/images/wireframe/image.png"
+    },
+    {
+      _id: 4546666,
+      url: "https://react.semantic-ui.com/images/wireframe/image.png"
+    },
+    {
+      _id: 8798000,
+      url: "https://react.semantic-ui.com/images/wireframe/image.png"
+    }
+]
+
   return (
     <Stack justifyContent="space-around" style={{ height: "100vh" }}>
       <Stack direction="column" alignItems="center">
@@ -9,21 +26,8 @@ function Profilepage() {
         <Typography variant="body2">Voornaam Achternaam</Typography>
       </Stack>
 
-      <Stack direction="column" alignItems="center">
-        <Typography variant="body1">My top 3 books</Typography>
-        <Stack direction="row" justifyContent="center" spacing={2}>
-          <Card style={{ width: "85px", height: "130px" }} >
-            <CardMedia component="img" image="https://react.semantic-ui.com/images/wireframe/image.png" alt="titel" />
-          </Card>
-          <Card style={{ width: "85px", height: "130px" }} >
-            <CardMedia component="img" image="https://react.semantic-ui.com/images/wireframe/image.png" alt="titel" />
-          </Card>
-          <Card style={{ width: "85px", height: "130px" }} >
-            <CardMedia component="img" image="https://react.semantic-ui.com/images/wireframe/image.png" alt="titel" />
-          </Card>
-        </Stack>
-        <img style={{ width: "320px", height: "20px" }} src="..\images\boekenplank.jpg"></img>
-      </Stack>
+      <Bookshelf title="My top 3 books" books={books}/>
+
       <Stack direction="column" alignItems="center">
         <Button variant="contained">Create your own shelf</Button>
       </Stack>
