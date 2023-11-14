@@ -1,6 +1,5 @@
 import { Box, Stack, Typography } from "@mui/material";
 import { GoogleLogin } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode";
 
 export default function Login() {
   return (
@@ -39,11 +38,17 @@ export default function Login() {
           shape="pill"
           text="continue_with"
           locale="en-US"
-          onSuccess={(response) => {
+          onSuccess={async (response) => {
             const idToken = response.credential;
-            const decodedToken = jwtDecode(idToken);
-            console.log(decodedToken);
-            //TODO send undecoded token to backend
+            fetch(`${import.meta.env.VITE_BACKEND_HOST}/sessions/google`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              credentials: "include",
+              mode: "cors",
+              body: JSON.stringify({ idToken }),
+            });
           }}
           onError={(response) => console.log(response)}
         />

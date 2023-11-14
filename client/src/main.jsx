@@ -7,7 +7,7 @@ import theme from "./theme.js";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <GoogleOAuthProvider clientId="1083937656173-bn3jdo40uoa2dit0ein0313c78mu5lsj.apps.googleusercontent.com">
+  <GoogleOAuthProvider clientId={import.meta.env.VITE_GG_APP_ID}>
     <React.StrictMode>
       <ThemeProvider theme={theme}>
         <Router />
