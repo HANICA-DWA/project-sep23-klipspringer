@@ -23,13 +23,13 @@ function Profilepage() {
     <Stack justifyContent="space-around" style={{ height: "100vh" }}>
       <Stack direction="column" alignItems="center">
         <Avatar alt="Voornaam Achternaam" src="https://react.semantic-ui.com/images/wireframe/image.png" />
-        <Typography variant="body2">Voornaam Achternaam</Typography>
+        <Typography variant="body2" fontWeight="600">Voornaam Achternaam</Typography>
       </Stack>
 
       <Bookshelf title="My top 3 books" books={books}/>
 
       <Stack direction="column" alignItems="center">
-        <Button variant="contained">Create your own shelf</Button>
+        <Button color="secondary" variant="contained" style={{fontSize: "12px"}}>Create your own shelf</Button>
       </Stack>
     </Stack>
   )
