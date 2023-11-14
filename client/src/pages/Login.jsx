@@ -1,10 +1,12 @@
-import { Box, Link, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
+import { GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
 
 export default function Login() {
   return (
     <Stack
       useFlexGap
-      gap={9}
+      gap={6}
       alignItems="center"
       sx={{
         mt: {
@@ -33,12 +35,15 @@ export default function Login() {
         </Typography>
       </Stack>
       <Stack alignItems="center" useFlexGap gap={2}>
-        <Link href="#" variant="h6" color="inherit">
-          Sign in with Google
-        </Link>
-        <Link href="#" variant="h6" color="inherit">
-          Sign in with LinkedIn
-        </Link>
+        <GoogleLogin
+          onSuccess={(response) => {
+            const idToken = response.credential;
+            const decodedToken = jwtDecode(idToken);
+            console.log(decodedToken);
+            //TODO send undecoded token to backend
+          }}
+          onError={(response) => console.log(response)}
+        />
       </Stack>
     </Stack>
   );

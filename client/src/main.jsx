@@ -4,11 +4,14 @@ import "./index.css";
 import Router from "./Router.jsx";
 import { ThemeProvider } from "@mui/material";
 import theme from "./theme.js";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <Router />
-    </ThemeProvider>
-  </React.StrictMode>
+  <GoogleOAuthProvider clientId="1083937656173-bn3jdo40uoa2dit0ein0313c78mu5lsj.apps.googleusercontent.com">
+    <React.StrictMode>
+      <ThemeProvider theme={theme}>
+        <Router />
+      </ThemeProvider>
+    </React.StrictMode>
+  </GoogleOAuthProvider>
 );
