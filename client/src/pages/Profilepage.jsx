@@ -4,20 +4,36 @@ import Bookshelf from "../components/Bookshelf";
 
 function Profilepage() {
 
-  const books = [
-    {
-      _id: 324324,
-      url: "https://react.semantic-ui.com/images/wireframe/image.png"
-    },
-    {
-      _id: 4546666,
-      url: "https://react.semantic-ui.com/images/wireframe/image.png"
-    },
-    {
-      _id: 8798000,
-      url: "https://react.semantic-ui.com/images/wireframe/image.png"
-    }
-]
+      let shelves = [{
+            name: "Myshelf",
+            books: [{
+                  _id: 324324,
+                  url: "https://react.semantic-ui.com/images/wireframe/image.png"
+            },
+                  {
+                        _id: 4546666,
+                        url: "https://react.semantic-ui.com/images/wireframe/image.png"
+                  },
+                  {
+                        _id: 8798000,
+                        url: "https://react.semantic-ui.com/images/wireframe/image.png"
+                  }]
+      }];
+
+//   const books = [
+//     {
+//       _id: 324324,
+//       url: "https://react.semantic-ui.com/images/wireframe/image.png"
+//     },
+//     {
+//       _id: 4546666,
+//       url: "https://react.semantic-ui.com/images/wireframe/image.png"
+//     },
+//     {
+//       _id: 8798000,
+//       url: "https://react.semantic-ui.com/images/wireframe/image.png"
+//     }
+// ]
 
   return (
     <Stack justifyContent="space-around" style={{ height: "100vh" }}>
