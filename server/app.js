@@ -5,6 +5,7 @@ import cors from "cors";
 
 import userRouter from "./routes/userRouter.js";
 import sessionsRouter from "./routes/sessionsRouter.js";
+import bookRouter from './routes/bookRouter.js'
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(cors({ credentials: true, origin: ["http://localhost:5173"] }));
 app.use(sessionParser);
 app.use(express.json());
 app.use("/user", userRouter);
+app.use("/book", bookRouter);
 app.use("/sessions", sessionsRouter);
 
 app.use((err, req, res, next) => {

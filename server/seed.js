@@ -23,8 +23,9 @@ const seed = async () => {
   await User.deleteMany();
   await User.insertMany([
     {
-      _id: "janwillem",
+      _id: "10239123",
       name: "Jan Willem",
+      username: "janwillem",
       profile_picture: "https://yt3.ggpht.com/yti/ADpuP3Pg_aDqzJqgvkj6wSF_s-1ERdm5tS9DEegXejKT=s88-c-k-c0x00ffffff-no-rj",
       top_three: [
         {
@@ -32,6 +33,31 @@ const seed = async () => {
           cover_image: "https://covers.openlibrary.org/b/id/8739161-M.jpg",
         },
       ],
+      shelf: {
+        books: [
+          {
+            _id: "9781338299205",
+            cover_image: "https://covers.openlibrary.org/b/id/14453897-M.jpg",
+          },
+          {
+            _id: "9781419748684",
+            cover_image: "https://covers.openlibrary.org/b/id/10630557-M.jpg",
+          },
+          {
+            _id: "9781897377758",
+            cover_image: "https://covers.openlibrary.org/b/id/10787655-M.jpg",
+          },
+          {
+            _id: "9781338299205",
+            cover_image: "https://covers.openlibrary.org/b/id/14453897-M.jpg",
+          },
+          {
+            _id: "9781419748684",
+            cover_image: "https://covers.openlibrary.org/b/id/10630557-M.jpg",
+          },
+        ],
+        name: "aan te raden",
+      },
     },
   ]);
 };
