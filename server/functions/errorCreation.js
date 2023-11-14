@@ -3,7 +3,3 @@ export function createError(errorMsg = "Something went wrong", status = 500) {
   error.status = status;
   return error;
 }
-
-export function throwError(error) {
-  throw error;
-}
