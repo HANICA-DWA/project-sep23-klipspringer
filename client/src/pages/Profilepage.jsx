@@ -26,7 +26,7 @@ function Profilepage() {
         <Typography variant="body2" fontWeight="600">Voornaam Achternaam</Typography>
       </Stack>
 
-      <Bookshelf title="My top 3 books" books={books}/>
+          {shelves.map(shelf=>(<Bookshelf title={shelf.name} books={shelf.books}/>))}
 
       <Stack direction="column" alignItems="center">
         <Button color="secondary" variant="contained" style={{fontSize: "12px"}}>Create your own shelf</Button>
