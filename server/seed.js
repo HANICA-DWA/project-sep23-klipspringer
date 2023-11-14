@@ -52,9 +52,10 @@ const seed = async () => {
               cover_image: "https://covers.openlibrary.org/b/id/10630557-M.jpg"
             },
         ],
-          name: "aan te raden"
-        }
-    }]);
-}
+        name: "aan te raden",
+      },
+    },
+  ]);
+};
 
 main(console.log);
