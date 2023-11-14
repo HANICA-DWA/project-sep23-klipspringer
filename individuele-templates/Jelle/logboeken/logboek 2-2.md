@@ -26,7 +26,7 @@
 |---|---|---|---|---|---|
 | 0.5 | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/36) | Met Roos | Reviewen op basis van de DoD en ook de wireframes | :satisfied: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/d1ae5296582cd2e1c7a7f49ca084e9d42dd04d08) |
 | 0.5 | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/26) | N.V.T | roos en ik werkten in het zelfde document daarom ben ik gestopt om merge conflicten te stoppen, ook heb ik toegevoegd dat een lijst aan shelves nu automatisch wordt toegevoegd op basis van wat er in de variable shelves zit | :weary: :confused: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/842bb28492bba6a3ff8742d3f60649e096439088) |
-| 0.5 | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/12) | N.V.T. | toevoegen van add book to shelf op de profielpagina | :satisfied: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/60/commits/660a67040c408180744f31c6ec67f01133bce72c) |
+| 1 | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/12) | N.V.T. | toevoegen van add book to shelf op de profielpagina | :satisfied: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/60/commits/660a67040c408180744f31c6ec67f01133bce72c) |
 
 
 
