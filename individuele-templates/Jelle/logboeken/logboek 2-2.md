@@ -38,7 +38,7 @@
 |------|---|-----------------------|-----------------------------------------------------------|--------------|---|
 | 1    | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/12) | N.V.T.                | fixen van de berekening voor het aantal placeholder cards | :smiley:     | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/64) |
 | 0.25 |[link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/15) | N.V.T                 | reviewen van de pull request                              | :statisfied: |[link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/65) |
-| 1    |[link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/39) | Met Roos en met Niels | c4-diagrammen maken                                       | :smiley:     |[link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/3421ec12766bfb4e07fbaa4acd6159d762e773df) |
+| 1.5  |[link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/39) | Met Roos en met Niels | c4-diagrammen maken                                       | :smiley:     |[link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/fc5713e64f425f2044a0d9346e2a2145e8129165) |
 
 ## Donderdag 16 november
 
