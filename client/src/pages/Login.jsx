@@ -1,9 +1,8 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
 import { GoogleLogin } from "@react-oauth/google";
-import { LoginSocialLinkedin } from "reactjs-social-login";
-import { LinkedInLoginButton } from "react-social-login-buttons";
 import { LinkedIn } from "react-linkedin-login-oauth2";
 import linkedin from "react-linkedin-login-oauth2/assets/linkedin.png";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 export default function Login() {
   const redirectURI = `${window.location.origin}/linkedin`;
@@ -77,7 +76,14 @@ export default function Login() {
           }}
         >
           {({ linkedInLogin }) => (
-            <img onClick={linkedInLogin} src={linkedin} alt="Sign in with Linked In" style={{ maxWidth: "180px", cursor: "pointer" }} />
+            <Button
+              variant="contained"
+              sx={{ backgroundColor: "#0077B5", color: "#fff", "&:hover": { backgroundColor: "#005885" }, borderRadius: "130px", py: "8px" }}
+              onClick={linkedInLogin}
+              startIcon={<LinkedInIcon />}
+            >
+              Continue with LinkedIn
+            </Button>
           )}
         </LinkedIn>
       </Stack>
