@@ -2,13 +2,13 @@ import { Typography, Card, Stack, CardMedia, ImageList, Link } from "@mui/materi
 import { useContext } from "react";
 import { LoggedInContext } from "../Contexts";
 
-export default function Bookshelf({ title, books }) {
+export default function Bookshelf({ title, books, hideAdding }) {
   const loggedIn = useContext(LoggedInContext).loggedIn;
 
   const placeholderBooks = [];
 
   //TODO na ontwerp Rik dit refactoren
-  if (books.length === 0 && !loggedIn) {
+  if (books.length === 0 && !loggedIn || hideAdding) {
     placeholderBooks.push(<div></div>);
     placeholderBooks.push(
       <Typography variant="h5" order="2">
@@ -45,7 +45,7 @@ export default function Bookshelf({ title, books }) {
           ))}
           {placeholderBooks.length !== 0 ? (
             placeholderBooks
-          ) : loggedIn ? (
+          ) : loggedIn && !hideAdding ? (
             <Card style={{ width: "85px", height: "130px" }}>
               <Link href={"/search"}>
                 <CardMedia height="130" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" />
