@@ -33,8 +33,9 @@
 
 | Uren | Taak                                                               | Met Wie     | Resultaten                                                                                       | Emotie     | Link                                                                                                     |
 |------|--------------------------------------------------------------------|-------------|--------------------------------------------------------------------------------------------------|------------|----------------------------------------------------------------------------------------------------------|
-| 1    | https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/27 |             | Front-end is gemaakt, nu wachten op back-end van search.                                         | :alien:    | TODO                                                                                                     |
+| 1    | https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/27 |             | Front-end is gemaakt, nu wachten op back-end van search.                                         | :alien:    | nvt                                                                                                      |
 | 2    | https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/39 | Roos, Jelle | C4 modellen zijn gemaakt waardoor we ons eigen systeem beter hebben vastgelegd voor consistentie | :relieved: | https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/3421ec12766bfb4e07fbaa4acd6159d762e773df |
+| 2    | https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/27 |             | Front-end is gerefined met front end search                                                      | :flushed:  | https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/69                                         |
 
 ## Donderdag 18 november
 
