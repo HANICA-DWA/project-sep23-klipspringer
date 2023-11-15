@@ -33,10 +33,18 @@ function Profilepage() {
   }, []);
 
   return (
-    <Stack justifyContent="space-around" style={{ height: "100vh" }}>
+    <Stack justifyContent="space-around" style={{ height: "100%" }} spacing={3}>
       <Stack direction="column" alignItems="center">
-        <Avatar alt={profileInfo.name} src={profileInfo.profile_picture} />
-        <Typography variant="body2" fontWeight="600">
+        <div style={{
+          marginTop: "50px",
+          marginBottom: "20px",
+          padding: "3px",
+          border: "1px solid grey",
+          borderRadius: "50px"
+          }}>
+        <Avatar sx={{ width: 56, height: 56 }} alt={profileInfo.name} src={profileInfo.profile_picture} />
+          </div>
+        <Typography variant="h6" fontWeight="700">
           {profileInfo.name}
         </Typography>
       </Stack>
@@ -49,7 +57,7 @@ function Profilepage() {
         : null}
 
       <Stack direction="column" alignItems="center">
-        <Button color="secondary" variant="contained" style={{ fontSize: "12px" }}>
+        <Button variant="contained" style={{ fontSize: "12px", marginBottom: "10px", backgroundColor: "#5B5B5B", color: "#FFFFFF" }}>
           Create your own shelf
         </Button>
       </Stack>

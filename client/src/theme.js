@@ -13,6 +13,15 @@ let theme = createTheme({
         main: "#000000"
       }
     },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: "35px"
+        }
+      }
+    }
+  }
 });
 
 theme = responsiveFontSizes(theme, { factor: 3.5 });

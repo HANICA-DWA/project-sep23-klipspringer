@@ -4,6 +4,7 @@ import App from "./pages/App";
 import Login from "./pages/Login";
 import SearchPage from "./pages/SearchPage";
 import ShelfPage from "./pages/ShelfPage";
+import { LinkedInCallback } from "react-linkedin-login-oauth2";
 
 export default function Router() {
   return (
@@ -14,6 +15,7 @@ export default function Router() {
         <Route path="/profile/:userName" element={<Profilepage />} />
         <Route path="/profile/:userName/shelf" element={<ShelfPage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/linkedin" element={<LinkedInCallback />} />
       </Routes>
     </BrowserRouter>
   );
