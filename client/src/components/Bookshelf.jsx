@@ -1,8 +1,9 @@
 import {Typography, Card, Stack, CardMedia, ImageList, Link} from "@mui/material";
-import {useEffect} from "react";
 
 export default function Bookshelf({ title, books }) {
       let loggedIn = true; // FIXME replace with actual login status
+
+      const placeholderBooks = [];
 
       for (let i = books.length; i < 3; i++) {
             placeholderBooks.push((
@@ -22,7 +23,7 @@ export default function Bookshelf({ title, books }) {
                         <Link href={"#"}><CardMedia height="130" component="img" image={item.cover_image} alt="titel" /></Link>
                     </Card>
                 ))}
-                        {placeholderBooks.length!==0?
+                        {loggedIn&&placeholderBooks.length!==0?
                               placeholderBooks:
                               (<Card style={{ width: "85px", height: "130px" }} >
                                     <Link href={"/search"}><CardMedia height="130" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" /></Link>
