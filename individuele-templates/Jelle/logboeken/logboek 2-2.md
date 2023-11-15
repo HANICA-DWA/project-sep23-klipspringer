@@ -34,11 +34,12 @@
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak  | Met Wie               | Resultaten                                                | Emotie       | Link |
-|------|---|-----------------------|-----------------------------------------------------------|--------------|---|
+| Uren | Taak                                                                                    | Met Wie               | Resultaten                                                | Emotie       | Link |
+|------|-----------------------------------------------------------------------------------------|-----------------------|-----------------------------------------------------------|--------------|---|
 | 1    | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/12) | N.V.T.                | fixen van de berekening voor het aantal placeholder cards | :smiley:     | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/64) |
-| 0.25 |[link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/15) | N.V.T                 | reviewen van de pull request                              | :statisfied: |[link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/65) |
-| 1.5  |[link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/39) | Met Roos en met Niels | c4-diagrammen maken                                       | :smiley:     |[link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/fc5713e64f425f2044a0d9346e2a2145e8129165) |
+| 0.25 | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/15) | N.V.T                 | reviewen van de pull request                              | :statisfied: |[link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/65) |
+| 1.5  | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/39) | Met Roos en met Niels | c4-diagrammen maken                                       | :smiley:     |[link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/fc5713e64f425f2044a0d9346e2a2145e8129165) |
+| 2    | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/12) | Met Yannick           | Zowel reviewen als refactoren van de add images           | :smiley:     |[link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/38e076cb076500f43d79ee1e50d92a75c3cd6ea4) |
 
 ## Donderdag 16 november
 

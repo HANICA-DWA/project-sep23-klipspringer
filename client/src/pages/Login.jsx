@@ -4,7 +4,7 @@ import { LinkedIn } from "react-linkedin-login-oauth2";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { useNavigate } from "react-router-dom";
 
-export default function Login() {
+export default function Login({ setLoggedIn }) {
   const navigate = useNavigate();
   const redirectURI = `${window.location.origin}/linkedin`;
   return (
@@ -56,6 +56,7 @@ export default function Login() {
             });
             const responseData = await restResponse.json();
             if (responseData.status === "LOGGED_IN") {
+              setLoggedIn({ loggedIn: true, username: responseData.username });
               navigate(`/profile/${responseData.username}`);
             }
           }}
@@ -77,6 +78,7 @@ export default function Login() {
             });
             const responseData = await response.json();
             if (responseData.status === "LOGGED_IN") {
+              setLoggedIn({ loggedIn: true, username: responseData.username });
               navigate(`/profile/${responseData.username}`);
             }
           }}

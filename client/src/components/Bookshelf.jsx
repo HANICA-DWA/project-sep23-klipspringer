@@ -1,7 +1,9 @@
 import { Typography, Card, Stack, CardMedia, ImageList, Link } from "@mui/material";
+import { useContext } from "react";
+import { LoggedInContext } from "../Contexts";
 
 export default function Bookshelf({ title, books, hideAdding }) {
-  let loggedIn = false; // FIXME replace with actual login status
+  const loggedIn = useContext(LoggedInContext).loggedIn;
 
   const placeholderBooks = [];
 
