@@ -19,7 +19,7 @@ export default function SearchBar() {
   async function getBookSearchResults() {
     const urlTitle = searchText.replace(/([\s])/g, "+");
     const result = await fetch(
-      `https://openlibrary.org/search.json?title=${urlTitle}&limit=10`
+      `https://openlibrary.org/search.json?q=${urlTitle}&limit=10`
     );
     const data = await result.json();
     setSearchResults(data.docs);
