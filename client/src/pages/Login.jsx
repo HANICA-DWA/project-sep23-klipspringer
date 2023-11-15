@@ -1,7 +1,12 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
 import { GoogleLogin } from "@react-oauth/google";
+import { LinkedIn } from "react-linkedin-login-oauth2";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate();
+  const redirectURI = `${window.location.origin}/linkedin`;
   return (
     <Stack
       useFlexGap
@@ -40,7 +45,7 @@ export default function Login() {
           locale="en-US"
           onSuccess={async (response) => {
             const idToken = response.credential;
-            fetch(`${import.meta.env.VITE_BACKEND_HOST}/sessions/google`, {
+            const restResponse = await fetch(`${import.meta.env.VITE_BACKEND_HOST}/sessions/google`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -49,9 +54,47 @@ export default function Login() {
               mode: "cors",
               body: JSON.stringify({ idToken }),
             });
+            const responseData = await restResponse.json();
+            if (responseData.status === "LOGGED_IN") {
+              navigate(`/profile/${responseData.username}`);
+            }
           }}
           onError={(response) => console.log(response)}
         />
+        <LinkedIn
+          clientId={import.meta.env.VITE_LINKEDIN_APP_ID}
+          redirectUri={redirectURI}
+          scope="openid email profile"
+          onSuccess={async (code) => {
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_HOST}/sessions/linkedin`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              credentials: "include",
+              mode: "cors",
+              body: JSON.stringify({ authorizationCode: code }),
+            });
+            const responseData = await response.json();
+            if (responseData.status === "LOGGED_IN") {
+              navigate(`/profile/${responseData.username}`);
+            }
+          }}
+          onError={(error) => {
+            console.log(error);
+          }}
+        >
+          {({ linkedInLogin }) => (
+            <Button
+              variant="contained"
+              sx={{ backgroundColor: "#0077B5", color: "#fff", "&:hover": { backgroundColor: "#005885" }, borderRadius: "130px", py: "8px" }}
+              onClick={linkedInLogin}
+              startIcon={<LinkedInIcon />}
+            >
+              Continue with LinkedIn
+            </Button>
+          )}
+        </LinkedIn>
       </Stack>
     </Stack>
   );

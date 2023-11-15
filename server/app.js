@@ -2,10 +2,12 @@ import express from "express";
 import mongoose from "mongoose";
 import session from "express-session";
 import cors from "cors";
+import dotenv from "dotenv";
+dotenv.config();
 
 import userRouter from "./routes/userRouter.js";
 import sessionsRouter from "./routes/sessionsRouter.js";
-import bookRouter from './routes/bookRouter.js'
+import bookRouter from "./routes/bookRouter.js";
 
 const app = express();
 
