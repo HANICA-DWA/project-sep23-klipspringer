@@ -11,7 +11,7 @@ const schema = new mongoose.Schema({
   sso_provider: { type: String, enum: ["Google", "LinkedIn"] },
   name: { type: String, required: true },
   profile_picture: { type: String, required: true, default: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" },
-  top_three: { type: [Book.schema] },
+  top_three: { type: [Book.schema], required: true, default: [] },
   shelf: {
     type: [
       {
