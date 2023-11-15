@@ -1,8 +1,8 @@
-import { Box, Button, Container, Stack, TextField, Typography } from "@mui/material";
+import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import SearchBar from "../components/SearchBar";
 import Bookshelf from "../components/Bookshelf";
 import { useState } from "react";
-import { InputRounded, Title } from "@mui/icons-material";
+import { Title } from "@mui/icons-material";
 
 
 export default function ShelfPage() {
@@ -26,7 +26,7 @@ export default function ShelfPage() {
           </Stack>
 
           <Stack gap={2} direction="column" alignItems="center">
-            <Bookshelf books={books} showAdding={false} />
+            <Bookshelf books={books} hideAdding />
             <Box sx={{ display: "flex", alignItems: "flex-end" }}>
               <Title sx={{ color: "action.active", mr: 1, my: 0.5 }} />
               <TextField
