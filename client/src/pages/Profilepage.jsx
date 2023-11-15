@@ -33,7 +33,7 @@ function Profilepage() {
   }, []);
 
   return (
-    <Stack justifyContent="space-around" style={{ height: "100%" }} spacing={3}>
+    <Stack justifyContent="space-between" style={{height: "100vh"}} spacing={3}>
       <Stack direction="column" alignItems="center">
         <div style={{
           marginTop: "50px",
@@ -49,7 +49,7 @@ function Profilepage() {
         </Typography>
       </Stack>
 
-      {profileInfo.top_three && profileInfo.top_three.length > 0 ? (
+      {profileInfo.top_three ? (
         <Bookshelf title="My top 3 books" books={profileInfo.top_three} />
       ) : null}
       {profileInfo.shelf != undefined && profileInfo.shelf.length > 0
