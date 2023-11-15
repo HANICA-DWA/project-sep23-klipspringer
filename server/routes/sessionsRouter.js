@@ -12,14 +12,17 @@ router.post("/google", async (req, res, next) => {
     const googleUser = await googleVerifyIdToken(idToken);
     const { name, sub, picture } = googleUser;
     const user = await getUserBySSOId(sub);
+    let username;
     if (!user) {
-      const username = await getUniqueId(name.replace(/\s+/g, ""));
+      username = await getUniqueId(name.replace(/\s+/g, ""));
       picture
         ? await User.create({ _id: username, sso_id: sub, sso_provider: "Google", name, profile_picture: picture })
         : await User.create({ _id: username, sso_id: sub, sso_provider: "Google", name });
+    } else {
+      username = user._id;
     }
     req.session.loggedIn = true;
-    res.status(201).json({ status: "LOGGED_IN" });
+    res.status(201).json({ status: "LOGGED_IN", username });
   } catch (err) {
     const error = createError("Signing in failed", 400);
     next(error);
@@ -42,14 +45,17 @@ router.post("/linkedin", async (req, res, next) => {
     const verifiedData = await linkedInVerifyIdToken(responseData.id_token);
     const { name, sub, picture } = verifiedData;
     const user = await getUserBySSOId(sub);
+    let username;
     if (!user) {
-      const username = await getUniqueId(name.replace(/\s+/g, ""));
+      username = await getUniqueId(name.replace(/\s+/g, ""));
       picture
         ? await User.create({ _id: username, sso_id: sub, sso_provider: "LinkedIn", name, profile_picture: picture })
         : await User.create({ _id: username, sso_id: sub, sso_provider: "LinkedIn", name });
+    } else {
+      username = user._id;
     }
     req.session.loggedIn = true;
-    res.status(201).json({ status: "LOGGED_IN" });
+    res.status(201).json({ status: "LOGGED_IN", username });
   } catch (err) {
     next(err);
   }
