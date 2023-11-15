@@ -11,18 +11,18 @@ export default function SearchResult({ book }) {
     setShow("block");
   }
 
-  if (book.author_name.length > 5) {
-    authors = book.author_name.slice(0, 5).map((e, i) => {
-      if (i == 4) {
-        return e + " ...";
-      } else {
-        return e + ", ";
-      }
-    });
-  } else {
-    authors = book.author_name.map((e) => {
-      return e + ", ";
-    });
+  if (book.author_name) {
+    if (book.author_name.length > 1) {
+      authors = book.author_name.slice(0, 5).map((e, i) => {
+        if (i == 4) {
+          return e + " ...";
+        } else {
+          return e + ", ";
+        }
+      });
+    } else {
+      authors = book.author_name[0];
+    }
   }
 
   return (
@@ -40,17 +40,7 @@ export default function SearchResult({ book }) {
       }}
     >
       <div style={{ display: "flex", alignItems: "center" }}>
-        {loading ? (
-          <Skeleton
-            animation="wave"
-            variant="rectangular"
-            width={50}
-            height={85}
-            sx={{ marginRight: "10px" }}
-          />
-        ) : (
-          <></>
-        )}
+        {loading ? <Skeleton animation="wave" variant="rectangular" width={50} height={85} sx={{ marginRight: "10px" }} /> : <></>}
         <img
           style={{
             width: "50px",
@@ -69,7 +59,15 @@ export default function SearchResult({ book }) {
           <Typography variant="caption">{authors}</Typography>
         </div>
       </div>
-      <Button onClick={{/*TODO toevoegen boek*/}} sx={{ marginRight: "10px" }} variant="contained">
+      <Button
+        onClick={
+          {
+            /*TODO toevoegen boek*/
+          }
+        }
+        sx={{ marginRight: "10px" }}
+        variant="contained"
+      >
         <Typography variant="button">Add</Typography>
       </Button>
     </Paper>

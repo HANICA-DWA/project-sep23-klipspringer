@@ -1,13 +1,4 @@
-import {
-  FormControl,
-  InputAdornment,
-  IconButton,
-  TextField,
-  Popper,
-  Box,
-  Paper,
-  Button,
-} from "@mui/material";
+import { FormControl, InputAdornment, IconButton, TextField, Popper, Box, Paper, Button } from "@mui/material";
 import SearchResult from "./SearchResult";
 import { useRef, useState } from "react";
 import { Search } from "@mui/icons-material";
@@ -18,9 +9,7 @@ export default function SearchBar() {
 
   async function getBookSearchResults() {
     const urlTitle = searchText.replace(/([\s])/g, "+");
-    const result = await fetch(
-      `https://openlibrary.org/search.json?q=${urlTitle}&limit=10`
-    );
+    const result = await fetch(`https://openlibrary.org/search.json?q=${urlTitle}&limit=10`);
     const data = await result.json();
     setSearchResults(data.docs);
   }
@@ -44,7 +33,7 @@ export default function SearchBar() {
           getBookSearchResults();
           openpopper();
         }}
-        style={{marginBottom: "25px"}}
+        style={{ marginBottom: "25px" }}
       >
         <FormControl ref={spanRef} fullWidth>
           <TextField
@@ -73,12 +62,7 @@ export default function SearchBar() {
           />
         </FormControl>
       </form>
-      <Popper
-        sx={{ maxWidth: "600px" }}
-        id={id}
-        open={open}
-        anchorEl={anchorEl}
-      >
+      <Popper sx={{ maxWidth: "600px" }} id={id} open={open} anchorEl={anchorEl}>
         <Paper elevation={2} sx={{ padding: "4px 4px 4px 4px" }}>
           {searchResults.map((book) => {
             return <SearchResult book={book} key={book.key} />;
