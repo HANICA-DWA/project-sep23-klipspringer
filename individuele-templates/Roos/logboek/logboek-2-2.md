@@ -37,7 +37,7 @@
 
 | Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
 |---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
+| 15 min | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/40) | Alleen | Er waren niet veel overwegingen en andere dingen, ik heb de bedachte schema's netjes in de software guidebook gezet met waar nodig uitleg  | :shipit: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/f9ed2c4a15450823f787c155c366f3f1b3c48aa3) |
 | | | | | | |
 
 ## Donderdag 16 november
