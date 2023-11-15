@@ -6,7 +6,7 @@ export default function Bookshelf({ title, books }) {
 
     return (
         <Stack direction="column" alignItems="center">
-            <Typography variant="body1" fontWeight="600">{title}</Typography>
+            <Typography gutterBottom variant="h5" fontWeight="800">{title}</Typography>
             <Stack direction="row" justifyContent="center" spacing={2}>
                   <ImageList cols={3}>
                 {books.map(item =>
