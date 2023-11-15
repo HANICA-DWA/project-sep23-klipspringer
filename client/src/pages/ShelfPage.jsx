@@ -2,10 +2,13 @@ import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import SearchBar from "../components/SearchBar";
 import Bookshelf from "../components/Bookshelf";
 import { useState } from "react";
-import { Title } from "@mui/icons-material";
+import { ArrowBackIos, Title } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 
 export default function ShelfPage() {
+
+    const navigate = useNavigate();
 
     const [books, setBooks] = useState([]);
     const [title, setTitle] = useState("");
@@ -18,10 +21,14 @@ export default function ShelfPage() {
           justifyContent="space-between"
           height="90vh"
         >
-          <Stack direction="column" alignItems="center">
-            <Typography variant="h4" sx={{ my: 1 }}>
-              A shelf contains at least 3 books!
-            </Typography>
+          <Stack direction="column" alignItems="center" sx={{width: "100%"}}>
+            <Stack direction="row" alignItems="center" justifyContent="center" sx={{width: "100%"}}>
+                <ArrowBackIos sx={{ left: "0", width: "32px", position:"absolute"}} onClick={() => navigate(-1)}/>
+                <Typography variant="h5" sx={{ my: 1 }}>
+                A shelf contains at least 3 books!
+                </Typography>
+
+            </Stack>
             <SearchBar />
           </Stack>
 
