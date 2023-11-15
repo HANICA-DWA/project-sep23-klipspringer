@@ -1,4 +1,4 @@
-import { FormControl, InputAdornment, IconButton, TextField, Popper, Box, Paper, Button } from "@mui/material";
+import { FormControl, InputAdornment, IconButton, TextField, Popper, Box, Paper, Button, Typography } from "@mui/material";
 import SearchResult from "./SearchResult";
 import { useRef, useState } from "react";
 import { Search } from "@mui/icons-material";
@@ -64,9 +64,11 @@ export default function SearchBar() {
       </form>
       <Popper sx={{ maxWidth: "600px" }} id={id} open={open} anchorEl={anchorEl}>
         <Paper elevation={2} sx={{ padding: "4px 4px 4px 4px" }}>
-          {searchResults.map((book) => {
-            return <SearchResult book={book} key={book.key} />;
-          })}
+          {
+          searchResults && searchResults.length >= 1 ? 
+          searchResults.map((book) => {return <SearchResult book={book} key={book.key} />;}) :
+          <Typography variant="body1">No results found.</Typography>
+          }
         </Paper>
       </Popper>
     </>
