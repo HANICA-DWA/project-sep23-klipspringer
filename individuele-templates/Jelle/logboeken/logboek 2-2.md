@@ -34,10 +34,10 @@
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak  | Met Wie | Resultaten                                                | Emotie | Link |
-|-----|---|---------|-----------------------------------------------------------|---|---|
-| 1   | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/12) | N.V.T.  | fixen van de berekening voor het aantal placeholder cards |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/64) |
-| 1   |[link naar de taak](https://github.com/link-naar-de-taak) |         |                                                           | |[link naar de resultaten](https://github.com/link-naar-de-commit) |
+| Uren  | Taak  | Met Wie | Resultaten                                                | Emotie       | Link |
+|-------|---|---------|-----------------------------------------------------------|--------------|---|
+| 1     | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/12) | N.V.T.  | fixen van de berekening voor het aantal placeholder cards | :smiley:     | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/64) |
+| 10.25 |[link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/15) | N.V.T   | reviewen van de pull request                              | :statisfied: |[link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/65) |
 
 ## Donderdag 16 november
 
