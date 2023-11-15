@@ -21,7 +21,7 @@ _Beschrijf wat je -tot nu toe- hebt gedaan om te werken aan je persoonlijke leer
 
 
 ### Wat heeft het opgeleverd voor jou?
-
+Ik heb meer het gevoel gehad dat ik echt een aandeel had in het maken van keuzes.
 
 
 ### Wat heeft het opgeleverd voor je team?

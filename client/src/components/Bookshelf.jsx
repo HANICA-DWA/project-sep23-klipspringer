@@ -1,4 +1,5 @@
 import {Typography, Card, Stack, CardMedia, ImageList, Link} from "@mui/material";
+import {useEffect} from "react";
 
 export default function Bookshelf({ title, books, showAdding = true }) {
       let loggedIn = true; // FIXME replace with actual login status
@@ -24,7 +25,7 @@ export default function Bookshelf({ title, books, showAdding = true }) {
                               </Card>
                         </>
                   ):""}
-                  {loggedIn&&showAdding?(
+                  {loggedIn&&books.length>1&&showAdding?(
                         <Card style={{ width: "85px", height: "130px" }} >
                               <Link href={"/search"}><CardMedia height="130" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" /></Link>
                         </Card>

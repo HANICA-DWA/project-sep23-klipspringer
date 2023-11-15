@@ -37,8 +37,9 @@
 
 | Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
 |---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
+| 15 min | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/40) | Alleen | Er waren niet veel overwegingen en andere dingen, ik heb de bedachte schema's netjes in de software guidebook gezet met waar nodig uitleg  | :shipit: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/f9ed2c4a15450823f787c155c366f3f1b3c48aa3) |
+| 30 min | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/15) | Alleen | Doordat er al 2 andere router waren gemaakt (waarvan 1 een soort gelijke functionaliteit heeft) was het voor mij erg gemakkelijk om de endpoint te maken | :upside_down_face: :star_struck: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/c53d54331991f78033d7542c90196d562cdbccf6) |
+| 1 uur | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/39) | Niels en Jelle | We hebben de modellen gemakkelijk kunnen maken aan de hand van de powerpint van de workshop en onze eerste schetsen van de modellen | :neutral_face: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/3421ec12766bfb4e07fbaa4acd6159d762e773df) |
 
 ## Donderdag 16 november
 
