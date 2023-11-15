@@ -44,4 +44,28 @@ router.post("/:username/shelf", (req, res, next) => {
     });
 });
 
+router.put("/:username/book", (req, res, next) => {
+  if(req.body.book != undefined && req.body.shelf != undefined){
+    User.findById(req.params.username).then((user) => {
+      if (user === null) {
+        const error = createError("User not found", 404);
+        throw error;
+      } else {
+        user.shelf.findById(req.body.shelf).then((shelf) => {
+          shelf.push(req.body.book);
+          return user.save();
+        })
+      }
+    }).then(() => {
+      res.statusCode = 200;
+      res.send();
+    }).catch((err) => {
+      next(err);
+    })
+  } else {
+    const error = createError("Specify bosy with book or shelf", 400);
+    next(error);
+  }
+})
+
 export default router;
