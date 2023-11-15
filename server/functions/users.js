@@ -15,7 +15,6 @@ export async function getUniqueId(username) {
   let number = 0;
   while (await User.findById(usernameSuggestion)) {
     number++;
-    console.log(number);
     usernameSuggestion = `${username}${number}`;
   }
   return usernameSuggestion;

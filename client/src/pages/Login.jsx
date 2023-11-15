@@ -1,7 +1,12 @@
 import { Box, Stack, Typography } from "@mui/material";
 import { GoogleLogin } from "@react-oauth/google";
+import { LoginSocialLinkedin } from "reactjs-social-login";
+import { LinkedInLoginButton } from "react-social-login-buttons";
+import { LinkedIn } from "react-linkedin-login-oauth2";
+import linkedin from "react-linkedin-login-oauth2/assets/linkedin.png";
 
 export default function Login() {
+  const redirectURI = `${window.location.origin}/linkedin`;
   return (
     <Stack
       useFlexGap
@@ -52,6 +57,29 @@ export default function Login() {
           }}
           onError={(response) => console.log(response)}
         />
+        <LinkedIn
+          clientId={import.meta.env.VITE_LINKEDIN_APP_ID}
+          redirectUri={redirectURI}
+          scope="openid email profile"
+          onSuccess={(code) => {
+            fetch(`${import.meta.env.VITE_BACKEND_HOST}/sessions/linkedin`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              credentials: "include",
+              mode: "cors",
+              body: JSON.stringify({ authorizationCode: code }),
+            });
+          }}
+          onError={(error) => {
+            console.log(error);
+          }}
+        >
+          {({ linkedInLogin }) => (
+            <img onClick={linkedInLogin} src={linkedin} alt="Sign in with Linked In" style={{ maxWidth: "180px", cursor: "pointer" }} />
+          )}
+        </LinkedIn>
       </Stack>
     </Stack>
   );
