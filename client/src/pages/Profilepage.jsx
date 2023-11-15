@@ -57,7 +57,7 @@ function Profilepage() {
         : null}
 
       <Stack direction="column" alignItems="center">
-        <Button color="secondary" variant="contained" style={{ fontSize: "12px", marginBottom: "10px" }}>
+        <Button variant="contained" style={{ fontSize: "12px", marginBottom: "10px", backgroundColor: "#5B5B5B", color: "#FFFFFF" }}>
           Create your own shelf
         </Button>
       </Stack>
