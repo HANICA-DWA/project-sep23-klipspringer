@@ -33,7 +33,7 @@ function Profilepage() {
   }, []);
 
   return (
-    <Stack justifyContent="space-around" style={{ height: "100%" }} spacing={3}>
+    <Stack justifyContent="space-between" style={{height: "100vh"}} spacing={3}>
       <Stack direction="column" alignItems="center">
         <div style={{
           marginTop: "50px",
