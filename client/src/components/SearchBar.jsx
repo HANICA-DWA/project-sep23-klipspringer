@@ -1,26 +1,41 @@
-import {
-  FormControl,
-  InputAdornment,
-  IconButton,
-  TextField,
-  Paper,
-} from "@mui/material";
+import { FormControl, InputAdornment, IconButton, TextField, Popper, Box, Paper, Button, Typography } from "@mui/material";
 import SearchResult from "./SearchResult";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Search } from "@mui/icons-material";
 
 export default function SearchBar() {
-  const [searchText, setSearchText] = useState("");
-  const results = [1, 2, 3];
+  const [searchText, setSearchText] = useState(null);
+  const [searchResults, setSearchResults] = useState([]);
+
+  async function getBookSearchResults() {
+    const urlTitle = searchText.replace(/([\s])/g, "+");
+    const result = await fetch(`https://openlibrary.org/search.json?q=${urlTitle}&limit=10`);
+    const data = await result.json();
+    setSearchResults(data.docs);
+  }
+
+  const [anchorEl, setAnchorEl] = useState(null);
+  const spanRef = useRef();
+  function openpopper() {
+    setAnchorEl(spanRef.current);
+  }
+  function closepopper() {
+    setAnchorEl(null);
+  }
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popper" : undefined;
+
   return (
-    <Paper elevation={2} sx={{ padding: "4px 4px 4px 4px" }}>
+    <>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          console.log("Searching...");
+          getBookSearchResults();
+          openpopper();
         }}
+        style={{ marginBottom: "25px" }}
       >
-        <FormControl fullWidth>
+        <FormControl ref={spanRef} fullWidth>
           <TextField
             onChange={(e) => setSearchText(e.target.value)}
             placeholder="Search books..."
@@ -33,7 +48,9 @@ export default function SearchBar() {
                 </InputAdornment>
               ),
               endAdornment: (
-                <InputAdornment position="end">cancel</InputAdornment>
+                <InputAdornment position="end">
+                  <Button onClick={() => closepopper()}>cancel</Button>
+                </InputAdornment>
               ),
               sx: {
                 borderRadius: "8px",
@@ -45,9 +62,15 @@ export default function SearchBar() {
           />
         </FormControl>
       </form>
-      {results.map((e) => {
-        return <SearchResult key={e} />;
-      })}
-    </Paper>
+      <Popper sx={{ maxWidth: "600px" }} id={id} open={open} anchorEl={anchorEl}>
+        <Paper elevation={2} sx={{ padding: "4px 4px 4px 4px" }}>
+          {
+          searchResults && searchResults.length >= 1 ? 
+          searchResults.map((book) => {return <SearchResult book={book} key={book.key} />;}) :
+          <Typography variant="body1">No results found.</Typography>
+          }
+        </Paper>
+      </Popper>
+    </>
   );
 }

@@ -49,7 +49,7 @@ function Profilepage() {
         </Typography>
       </Stack>
 
-      {profileInfo.top_three && profileInfo.top_three.length > 0 ? (
+      {profileInfo.top_three ? (
         <Bookshelf title="My top 3 books" books={profileInfo.top_three} />
       ) : null}
       {profileInfo.shelf != undefined && profileInfo.shelf.length > 0
