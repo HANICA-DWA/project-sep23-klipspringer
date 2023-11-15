@@ -4,17 +4,22 @@ import App from "./pages/App";
 import Login from "./pages/Login";
 import SearchPage from "./pages/SearchPage";
 import { LinkedInCallback } from "react-linkedin-login-oauth2";
+import { useState } from "react";
+import { LoggedInContext } from "./Contexts";
 
 export default function Router() {
+  const [loggedIn, setLoggedIn] = useState({ loggedIn: false, username: "" });
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/search" element={<SearchPage />} />
-        <Route path="/profile/:userName" element={<Profilepage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/linkedin" element={<LinkedInCallback />} />
-      </Routes>
-    </BrowserRouter>
+    <LoggedInContext.Provider value={loggedIn}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="/profile/:userName" element={<Profilepage />} />
+          <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
+          <Route path="/linkedin" element={<LinkedInCallback />} />
+        </Routes>
+      </BrowserRouter>
+    </LoggedInContext.Provider>
   );
 }
