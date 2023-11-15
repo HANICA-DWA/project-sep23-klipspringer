@@ -4,11 +4,6 @@ import {useEffect} from "react";
 export default function Bookshelf({ title, books }) {
       let loggedIn = true; // FIXME replace with actual login status
 
-      useEffect(() => {
-            console.log(books.length)
-      }, [books])
-
-
     return (
         <Stack direction="column" alignItems="center">
             <Typography variant="body1" fontWeight="600">{title}</Typography>
