@@ -20,6 +20,7 @@ const schema = new mongoose.Schema({
       },
     ],
   },
+  bookcase: {type: [Book.schema]}
 });
 
 const model = mongoose.model(name, schema);

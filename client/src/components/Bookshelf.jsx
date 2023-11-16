@@ -2,6 +2,7 @@ import { Typography, Card, Stack, CardMedia, ImageList } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { LoggedInContext } from "../Contexts";
+import { Edit } from "@mui/icons-material";
 
 export default function Bookshelf({ title, books, hideAdding }) {
   const loggedIn = useContext(LoggedInContext).loggedIn;
@@ -57,7 +58,10 @@ export default function Bookshelf({ title, books, hideAdding }) {
           )}
         </ImageList>
       </Stack>
-      <img style={{ width: "320px", height: "20px" }} src="/images/bookshelf.jpg" alt="bookshelf"></img>
+      <Stack direction="row">
+        <img style={{ width: "320px", height: "20px" }} src="/images/bookshelf.jpg" alt="bookshelf"></img>
+        <Edit/>
+      </Stack>
     </Stack>
   );
 }
