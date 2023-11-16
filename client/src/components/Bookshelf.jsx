@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { LoggedInContext } from "../Contexts";
 import { Edit } from "@mui/icons-material";
 
-export default function Bookshelf({ name, title, books, hideAdding, user }) {
+export default function Bookshelf({ name, title, books = [], hideAdding, user }) {
   const { loggedIn, username } = useContext(LoggedInContext);
 
   const placeholderBooks = [];
@@ -47,7 +47,7 @@ export default function Bookshelf({ name, title, books, hideAdding, user }) {
           ))}
           {placeholderBooks.length !== 0 ? (
             placeholderBooks
-          ) : loggedIn && username === user && !hideAdding ? (
+          ) : loggedIn && username === user && !hideAdding && name !== "top_three" ? (
             <Card style={{ width: "85px", height: "130px" }}>
               <Link to={"/search/" + name}>
                 <CardMedia shelf={name} height="130" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" />
