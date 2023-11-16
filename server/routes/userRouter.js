@@ -57,10 +57,12 @@ router.put("/:username/book", (req, res, next) => {
         } else if (shelf === "top_three") {
           const topThree = user.top_three;
           topThree.push(book);
+          user.addToBookcase([book]);
           return user.save();
         } else {
           const userShelf = user.shelf.id(shelf);
           userShelf.books.push(book);
+          user.addToBookcase([book]);
           return user.save();
         }
       })
