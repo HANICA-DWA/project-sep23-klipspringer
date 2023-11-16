@@ -7,12 +7,12 @@ import {LoggedInContext} from "../Contexts.jsx";
 
 export default function SearchPage() {
     const navigate = useNavigate();
+
     const shelf = useParams().shelf;
     const username = useContext(LoggedInContext).username
 
     const handleAdd = (book) => {
-        console.log(book);
-        fetch(import.meta.env.VITE_BACKEND_HOST + '/' + username + "/book", {
+        fetch(import.meta.env.VITE_BACKEND_HOST + '/user/' + username + "/book", {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"

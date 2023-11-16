@@ -23,7 +23,7 @@ export default function Bookshelf({ name, title, books, hideAdding }) {
     if (loggedIn) {
       placeholderBooks.push(
         <Card style={{ width: "85px", height: "130px" }}>
-          <Link to={"/search?"+name}>
+          <Link to={"/search/"+name}>
             <CardMedia shelf={name} height="130" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" />
           </Link>
         </Card>
@@ -49,7 +49,7 @@ export default function Bookshelf({ name, title, books, hideAdding }) {
             placeholderBooks
           ) : loggedIn && !hideAdding ? (
             <Card style={{ width: "85px", height: "130px" }}>
-              <Link to={"/search?"+name}>
+              <Link to={"/search/"+name}>
                 <CardMedia shelf={name} height="130" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" />
               </Link>
             </Card>
