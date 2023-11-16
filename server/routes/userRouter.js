@@ -33,6 +33,7 @@ router.post("/:username/shelf", (req, res, next) => {
         throw error;
       } else {
         user.shelf.push(req.body);
+        user.addToBookcase(req.body.books);
         return user.save();
       }
     })
@@ -56,10 +57,12 @@ router.put("/:username/book", (req, res, next) => {
         } else if (shelf === "top_three") {
           const topThree = user.top_three;
           topThree.push(book);
+          user.addToBookcase([book]);
           return user.save();
         } else {
           const userShelf = user.shelf.id(shelf);
           userShelf.books.push(book);
+          user.addToBookcase([book]);
           return user.save();
         }
       })
