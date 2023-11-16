@@ -60,7 +60,7 @@ export default function Bookshelf({ title, books, hideAdding }) {
       </Stack>
       <Stack direction="row">
         <img style={{ width: "320px", height: "20px" }} src="/images/bookshelf.jpg" alt="bookshelf"></img>
-       {document.URL.includes("shelf")? null : <Edit/>}
+        {document.URL.includes("shelf") ? null : <Edit />}
       </Stack>
     </Stack>
   );

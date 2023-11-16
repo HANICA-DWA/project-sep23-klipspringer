@@ -49,8 +49,8 @@
 
 | Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
 |---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
+| 1 uur | PvA assessment met Pim | Yannick, Jelle, Joris en Niels | -  | :slightly_smiling_face: | - |
+| 30 min | verfijnen frontend van de shelf pagina | Alleen | Ik vond dat er nog een aantal dingen miste dus dat heb ik veranderd | :relaxed: | - |
 
 
 
