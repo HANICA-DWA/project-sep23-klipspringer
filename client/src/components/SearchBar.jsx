@@ -3,7 +3,7 @@ import SearchResult from "./SearchResult";
 import { useRef, useState } from "react";
 import { Search } from "@mui/icons-material";
 
-export default function SearchBar() {
+export default function SearchBar( { onAdd }) {
   const [searchText, setSearchText] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
 
@@ -66,7 +66,7 @@ export default function SearchBar() {
         <Paper elevation={2} sx={{ padding: "4px 4px 4px 4px" }}>
           {
           searchResults && searchResults.length >= 1 ? 
-          searchResults.map((book) => {return <SearchResult book={book} key={book.key} />;}) :
+          searchResults.map((book) => {return <SearchResult book={book} onAdd={onAdd} key={book.key} />;}) :
           <Typography variant="body1">No results found.</Typography>
           }
         </Paper>

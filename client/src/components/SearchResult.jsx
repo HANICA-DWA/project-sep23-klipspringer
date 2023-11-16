@@ -1,7 +1,7 @@
 import { Button, Paper, Typography, Skeleton, Stack } from "@mui/material";
 import { useState } from "react";
 
-export default function SearchResult({ book }) {
+export default function SearchResult({ book, onAdd }) {
   const [loading, setLoading] = useState(true);
   const [show, setShow] = useState("none");
   let authors = [];
@@ -60,11 +60,10 @@ export default function SearchResult({ book }) {
         </div>
       </div>
       <Button
-        onClick={
-          {
-            /*TODO toevoegen boek*/
-          }
-        }
+        onClick={() => {
+          console.log(book)
+          onAdd({cover_image: `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`, _id: book.isbn[0]})
+        }}
         sx={{ marginRight: "10px" }}
         variant="contained"
       >
