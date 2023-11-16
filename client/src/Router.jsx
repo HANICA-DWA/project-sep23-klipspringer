@@ -13,7 +13,7 @@ export default function Router() {
 
   useEffect(() => {
     const setLoggedInStatus = async () => {
-      const response = await fetch(import.meta.env.VITE_BACKEND_HOST + "/sessions", {
+      const response = await fetch(import.meta.env.VITE_BACKEND_HOST + "/sessions/current", {
         credentials: "include",
         mode: "cors",
       });

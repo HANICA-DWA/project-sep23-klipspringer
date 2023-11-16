@@ -69,7 +69,7 @@ router.delete("/", (req, res, next) => {
   res.status(200).json({ status: "LOGGED_OUT" });
 });
 
-router.get("/", (req, res, next) => {
+router.get("/current", (req, res, next) => {
   res.status(200).json({ loggedIn: req.session.loggedIn ? true : false, username: req.session.user });
 });
 
