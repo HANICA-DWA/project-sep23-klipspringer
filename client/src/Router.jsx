@@ -5,17 +5,32 @@ import Login from "./pages/Login";
 import SearchPage from "./pages/SearchPage";
 import ShelfPage from "./pages/ShelfPage";
 import { LinkedInCallback } from "react-linkedin-login-oauth2";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LoggedInContext } from "./Contexts";
 
 export default function Router() {
-  const [loggedIn, setLoggedIn] = useState({ loggedIn: false, username: "" });
+  const [loggedIn, setLoggedIn] = useState({ loggedIn: false, username: undefined });
+
+  useEffect(() => {
+    const setLoggedInStatus = async () => {
+      const response = await fetch(import.meta.env.VITE_BACKEND_HOST + "/sessions/current", {
+        credentials: "include",
+        mode: "cors",
+      });
+      const result = await response.json();
+      setLoggedIn(result);
+      return result;
+    };
+    setLoggedInStatus();
+  }, []);
+
   return (
     <LoggedInContext.Provider value={loggedIn}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/search/:shelf" element={<SearchPage />} />
           <Route path="/profile/:userName" element={<Profilepage />} />
           <Route path="/profile/:userName/shelf" element={<ShelfPage />} />
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />

@@ -13,6 +13,7 @@ export default function ShelfPage() {
 
     const [books, setBooks] = useState([]);
     const [title, setTitle] = useState("");
+    const [errMessage, setErrMessage] = useState("");
 
     const handleAdd = (book) => {
       setBooks([...books, book]);
@@ -29,6 +30,8 @@ export default function ShelfPage() {
         }).then(res => {
           navigate(-1);
         })
+      } else {
+        setErrMessage("You need to add min 3 books");
       }
     }
 
@@ -53,6 +56,7 @@ export default function ShelfPage() {
 
           <Stack gap={2} direction="column" alignItems="center">
             <Bookshelf books={books} hideAdding />
+            <Typography variant="body1" style={{color: "red"}}>{errMessage}</Typography>
             <Box sx={{ display: "flex", alignItems: "flex-end" }}>
               <Title sx={{ color: "action.active", mr: 1, my: 0.5 }} />
               <TextField

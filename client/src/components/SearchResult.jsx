@@ -62,7 +62,7 @@ export default function SearchResult({ book, onAdd }) {
       <Button
         onClick={() => {
           console.log(book)
-          onAdd({cover_image: `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`, _id: book.isbn[0]})
+          onAdd({cover_image: `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg?default=false`, _id: book.isbn[0]??book.isbn})
         }}
         sx={{ marginRight: "10px" }}
         variant="contained"

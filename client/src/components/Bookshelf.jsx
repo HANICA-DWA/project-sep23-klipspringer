@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { LoggedInContext } from "../Contexts";
 import { Edit } from "@mui/icons-material";
 
-export default function Bookshelf({ title, books, hideAdding }) {
+export default function Bookshelf({ name, title, books, hideAdding }) {
   const loggedIn = useContext(LoggedInContext).loggedIn;
 
   const placeholderBooks = [];
@@ -20,11 +20,11 @@ export default function Bookshelf({ title, books, hideAdding }) {
   }
 
   for (let i = books.length; i < 3; i++) {
-    if (loggedIn) {
+    if (loggedIn && !hideAdding) {
       placeholderBooks.push(
         <Card style={{ width: "85px", height: "130px" }}>
-          <Link to={"/search"}>
-            <CardMedia height="130" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" />
+          <Link to={"/search/"+name}>
+            <CardMedia shelf={name} height="130" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" />
           </Link>
         </Card>
       );
@@ -41,7 +41,7 @@ export default function Bookshelf({ title, books, hideAdding }) {
           {books.map((item) => (
             <Card key={item._id} style={{ width: "85px", height: "130px" }}>
               <Link to={"#"}>
-                <CardMedia height="130" component="img" image={item.cover_image} alt="titel" />
+                <CardMedia shelf={name} height="130" component="img" image={item.cover_image} alt="titel" />
               </Link>
             </Card>
           ))}
@@ -49,8 +49,8 @@ export default function Bookshelf({ title, books, hideAdding }) {
             placeholderBooks
           ) : loggedIn && !hideAdding ? (
             <Card style={{ width: "85px", height: "130px" }}>
-              <Link to={"/search"}>
-                <CardMedia height="130" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" />
+              <Link to={"/search/"+name}>
+                <CardMedia shelf={name} height="130" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" />
               </Link>
             </Card>
           ) : (
@@ -60,7 +60,7 @@ export default function Bookshelf({ title, books, hideAdding }) {
       </Stack>
       <Stack direction="row">
         <img style={{ width: "320px", height: "20px" }} src="/images/bookshelf.jpg" alt="bookshelf"></img>
-        <Edit/>
+        {document.URL.includes("shelf") ? null : <Edit />}
       </Stack>
     </Stack>
   );
