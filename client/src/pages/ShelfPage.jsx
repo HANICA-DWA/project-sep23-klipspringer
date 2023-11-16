@@ -3,15 +3,34 @@ import SearchBar from "../components/SearchBar";
 import Bookshelf from "../components/Bookshelf";
 import { useState } from "react";
 import { ArrowBackIos, Title } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 
 export default function ShelfPage() {
 
     const navigate = useNavigate();
+    const userName = useParams().userName;
 
     const [books, setBooks] = useState([]);
     const [title, setTitle] = useState("");
+
+    const handleAdd = (book) => {
+      setBooks([...books, book]);
+    }
+
+    const handleCreate = () => {
+      if (books.length >= 3) {
+        fetch(import.meta.env.VITE_BACKEND_HOST + '/user/' + userName + '/shelf', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({name: title, books: books})
+        }).then(res => {
+          navigate(-1);
+        })
+      }
+    }
 
     return (
       <>
@@ -29,7 +48,7 @@ export default function ShelfPage() {
                 </Typography>
 
             </Stack>
-            <SearchBar />
+            <SearchBar onAdd={handleAdd}/>
           </Stack>
 
           <Stack gap={2} direction="column" alignItems="center">
@@ -43,7 +62,7 @@ export default function ShelfPage() {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
-              <Button sx={{ ml: 1 }} variant="contained" >Create Shelf</Button>
+              <Button sx={{ ml: 1 }} variant="contained" onClick={handleCreate}>Create Shelf</Button>
             </Box>
           </Stack>
         </Stack>

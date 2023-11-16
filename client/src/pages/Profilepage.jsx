@@ -1,9 +1,10 @@
 import { Typography, Button, Avatar, Stack } from "@mui/material";
 import Bookshelf from "../components/Bookshelf";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function Profilepage() {
+  const navigate = useNavigate();
   const userName = useParams().userName;
 
   const [profileInfo, setProfileInfo] = useState([]);
@@ -57,7 +58,10 @@ function Profilepage() {
         : null}
 
       <Stack direction="column" alignItems="center">
-        <Button variant="contained" style={{ fontSize: "12px", marginBottom: "10px", backgroundColor: "#5B5B5B", color: "#FFFFFF" }}>
+        <Button
+         variant="contained"
+         style={{ fontSize: "12px", marginBottom: "10px", backgroundColor: "#5B5B5B", color: "#FFFFFF" }}
+         onClick={() => navigate('/profile/' + userName + '/shelf')}>
           Create your own shelf
         </Button>
       </Stack>
