@@ -1,9 +1,10 @@
-import { Container, Typography, ImageList, ImageListItem } from "@mui/material";
+import { Container, Stack } from "@mui/material";
 import SearchBar from "../components/SearchBar";
 import Suggestions from "../components/Suggestions";
 import {useNavigate, useParams} from "react-router-dom";
 import {useContext} from "react";
 import {LoggedInContext} from "../Contexts.jsx";
+import { ArrowBackIos } from "@mui/icons-material";
 
 export default function SearchPage() {
     const navigate = useNavigate();
@@ -41,7 +42,10 @@ export default function SearchPage() {
         paddingTop: "50px",
       }}
     >
-      <SearchBar onAdd={handleAdd} />
+      <Stack direction="row" alignItems="center" style={{marginBottom: "25px"}}>
+        <ArrowBackIos onClick={() => navigate(-1)}/>
+        <SearchBar onAdd={handleAdd} />
+      </Stack>
       <Suggestions />
     </Container>
   );
