@@ -12,16 +12,19 @@ import bookRouter from "./routes/bookRouter.js";
 const app = express();
 
 const sessionParser = session({
-  saveUninitialized: false,
+  saveUninitialized: true,
   secret: "supergeheimecode",
   resave: false,
   name: "BKSsession",
+  cookie: {
+    sameSite: "Lax",
+  },
 });
 
-const host = process.env.HOST || "127.0.0.1";
+const host = process.env.HOST || "localhost";
 const port = process.env.PORT || 3001;
 
-app.use(cors({ credentials: true, origin: ["http://localhost:5173"] }));
+app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
 app.use(sessionParser);
 app.use(express.json());
 app.use("/user", userRouter);
