@@ -11,7 +11,7 @@ router.post("/google", async (req, res, next) => {
   try {
     const googleUser = await googleVerifyIdToken(idToken);
     const { name, sub, picture } = googleUser;
-    const user = await getUserBySSOId(sub);
+    const user = await getUserBySSOId(sub, "Google");
     let username;
     if (!user) {
       username = await getUniqueId(name.replace(/\s+/g, ""));
@@ -45,7 +45,7 @@ router.post("/linkedin", async (req, res, next) => {
     const responseData = await response.json();
     const verifiedData = await linkedInVerifyIdToken(responseData.id_token);
     const { name, sub, picture } = verifiedData;
-    const user = await getUserBySSOId(sub);
+    const user = await getUserBySSOId(sub, "LinkedIn");
     let username;
     if (!user) {
       username = await getUniqueId(name.replace(/\s+/g, ""));

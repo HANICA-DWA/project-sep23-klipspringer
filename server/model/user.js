@@ -16,7 +16,7 @@ const schema = new mongoose.Schema({
     type: [
       {
         name: { type: String },
-        books: { type: [Book.schema] },
+        books: { type: [Book.schema], validate: [(val) => val.length >= 3, "Must have a minimum of 3 books"] },
       },
     ],
   },
