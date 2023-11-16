@@ -34,6 +34,7 @@ export default function SearchBar( { onAdd }) {
   }
   function closepopper() {
     setAnchorEl(null);
+    setSearchText("")
   }
   const open = Boolean(anchorEl);
   const id = open ? "simple-popper" : undefined;
@@ -50,6 +51,7 @@ export default function SearchBar( { onAdd }) {
       >
         <FormControl ref={spanRef} fullWidth>
           <TextField
+            value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
             placeholder="Search books..."
             InputProps={{
