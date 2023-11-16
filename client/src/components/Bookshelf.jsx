@@ -4,8 +4,8 @@ import { useContext } from "react";
 import { LoggedInContext } from "../Contexts";
 import { Edit } from "@mui/icons-material";
 
-export default function Bookshelf({ name, title, books, hideAdding }) {
-  const loggedIn = useContext(LoggedInContext).loggedIn;
+export default function Bookshelf({ name, title, books, hideAdding, user }) {
+  const { loggedIn, username } = useContext(LoggedInContext);
 
   const placeholderBooks = [];
 
@@ -20,10 +20,10 @@ export default function Bookshelf({ name, title, books, hideAdding }) {
   }
 
   for (let i = books.length; i < 3; i++) {
-    if (loggedIn && !hideAdding) {
+    if (loggedIn && username === user && !hideAdding) {
       placeholderBooks.push(
         <Card style={{ width: "85px", height: "130px" }}>
-          <Link to={"/search/"+name}>
+          <Link to={"/search/" + name}>
             <CardMedia shelf={name} height="130" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" />
           </Link>
         </Card>
@@ -47,9 +47,9 @@ export default function Bookshelf({ name, title, books, hideAdding }) {
           ))}
           {placeholderBooks.length !== 0 ? (
             placeholderBooks
-          ) : loggedIn && !hideAdding ? (
+          ) : loggedIn && username === user && !hideAdding ? (
             <Card style={{ width: "85px", height: "130px" }}>
-              <Link to={"/search/"+name}>
+              <Link to={"/search/" + name}>
                 <CardMedia shelf={name} height="130" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" />
               </Link>
             </Card>
