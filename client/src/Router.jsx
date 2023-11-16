@@ -30,6 +30,7 @@ export default function Router() {
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/search/:shelf" element={<SearchPage />} />
           <Route path="/profile/:userName" element={<Profilepage />} />
           <Route path="/profile/:userName/shelf" element={<ShelfPage />} />
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
