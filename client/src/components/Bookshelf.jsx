@@ -14,7 +14,7 @@ export default function Bookshelf({ name, title, books, hideAdding, user }) {
     placeholderBooks.push(<div></div>);
     placeholderBooks.push(
       <Typography variant="h5" order="2">
-        No books in this shelf
+        No books on this shelf
       </Typography>
     );
   }
