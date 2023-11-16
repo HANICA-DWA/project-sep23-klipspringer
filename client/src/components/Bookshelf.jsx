@@ -20,7 +20,7 @@ export default function Bookshelf({ name, title, books, hideAdding }) {
   }
 
   for (let i = books.length; i < 3; i++) {
-    if (loggedIn) {
+    if (loggedIn && !hideAdding) {
       placeholderBooks.push(
         <Card style={{ width: "85px", height: "130px" }}>
           <Link to={"/search/"+name}>
