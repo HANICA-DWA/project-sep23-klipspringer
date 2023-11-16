@@ -1,4 +1,5 @@
-import { Typography, Card, Stack, CardMedia, ImageList, Link } from "@mui/material";
+import { Typography, Card, Stack, CardMedia, ImageList } from "@mui/material";
+import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { LoggedInContext } from "../Contexts";
 
@@ -8,7 +9,7 @@ export default function Bookshelf({ title, books, hideAdding }) {
   const placeholderBooks = [];
 
   //TODO na ontwerp Rik dit refactoren
-  if (books.length === 0 && !loggedIn || hideAdding) {
+  if ((books.length === 0 && !loggedIn) || hideAdding) {
     placeholderBooks.push(<div></div>);
     placeholderBooks.push(
       <Typography variant="h5" order="2">
@@ -21,7 +22,7 @@ export default function Bookshelf({ title, books, hideAdding }) {
     if (loggedIn) {
       placeholderBooks.push(
         <Card style={{ width: "85px", height: "130px" }}>
-          <Link href={"/search"}>
+          <Link to={"/search"}>
             <CardMedia height="130" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" />
           </Link>
         </Card>
@@ -38,7 +39,7 @@ export default function Bookshelf({ title, books, hideAdding }) {
         <ImageList cols={3}>
           {books.map((item) => (
             <Card key={item._id} style={{ width: "85px", height: "130px" }}>
-              <Link href={"#"}>
+              <Link to={"#"}>
                 <CardMedia height="130" component="img" image={item.cover_image} alt="titel" />
               </Link>
             </Card>
@@ -47,7 +48,7 @@ export default function Bookshelf({ title, books, hideAdding }) {
             placeholderBooks
           ) : loggedIn && !hideAdding ? (
             <Card style={{ width: "85px", height: "130px" }}>
-              <Link href={"/search"}>
+              <Link to={"/search"}>
                 <CardMedia height="130" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" />
               </Link>
             </Card>
