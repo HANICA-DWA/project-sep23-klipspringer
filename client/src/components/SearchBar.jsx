@@ -46,7 +46,7 @@ export default function SearchBar( { onAdd }) {
           getBookSearchResults();
           openpopper();
         }}
-        style={{ marginBottom: "25px" }}
+        style={{ marginBottom: "0px" }}
       >
         <FormControl ref={spanRef} fullWidth>
           <TextField
