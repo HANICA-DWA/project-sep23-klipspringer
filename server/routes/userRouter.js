@@ -45,32 +45,40 @@ router.post("/:username/shelf", (req, res, next) => {
 });
 
 router.put("/:username/book", (req, res, next) => {
-  console.log(req.body);
-  console.log(req.params);
-  req.params.username = "JelleSchaafsma"
-  req.body.book = "2738658466"
-  req.body.shelf = "6555de643f3a395c85d9c755"
-  if(req.body.book != undefined && req.body.shelf != undefined){
-    User.findById(req.params.username).then((user) => {
-      if (user === null) {
-        const error = createError("User not found", 404);
-        throw error;
-      } else {
-        user.shelf.findById(req.body.shelf).then((shelf) => {
-          shelf.push(req.body.book);
+  // console.log(req.body);
+  // console.log(req.params);
+  // req.params.username = "JelleSchaafsma"
+  // req.body.book = "2738658466";
+  // req.body.shelf = "6555de643f3a395c85d9c755";
+  const { book, shelf } = req.body;
+  const { username } = req.params;
+  if (book != undefined && shelf != undefined) {
+    User.findById(username)
+      .then((user) => {
+        if (user === null) {
+          const error = createError("User not found", 404);
+          throw error;
+        } else if (shelf === "top_three") {
+          const topThree = user.top_three;
+          topThree.push(book);
           return user.save();
-        })
-      }
-    }).then(() => {
-      res.statusCode = 200;
-      res.send();
-    }).catch((err) => {
-      next(err);
-    })
+        } else {
+          const userShelf = user.shelf.id(shelf);
+          userShelf.books.push(book);
+          return user.save();
+        }
+      })
+      .then(() => {
+        res.statusCode = 200;
+        res.send();
+      })
+      .catch((err) => {
+        next(err);
+      });
   } else {
     const error = createError("Specify bosy with book or shelf", 400);
     next(error);
   }
-})
+});
 
 export default router;
