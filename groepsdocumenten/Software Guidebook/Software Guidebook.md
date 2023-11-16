@@ -14,6 +14,9 @@
   - [User](#user)
   - [Book](#book)
   - [Sessions](#sessions)
+- [Database schemas](#database-schemas)
+  - [User schema](#user-schema)
+  - [Book schema](#book-schema)
 
 # Software Guidebook BKS
 
@@ -183,4 +186,35 @@ _returns_
     "loggedIn": Boolean,
     "username": String,
 }
+```
+
+# Database schemas
+
+## User schema
+
+```js
+_id: { type: String, required: true },
+sso_id: { type: String },
+sso_provider: { type: String, enum: ["Google", "LinkedIn"] },
+name: { type: String, required: true },
+profile_picture: { type: String, required: true, default: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" },
+top_three: { type: [Book.schema] },
+shelf: {
+  type: [
+    {
+      name: { type: String },
+      books: { type: [Book.schema] },
+    },
+  ],
+},
+bookcase: { type: [Book.schema] },
+```
+
+## Book schema
+
+Images of saved books of a user are saved in our database (from the external API), so the images are loaded easily and faster.
+
+```js
+_id: { type: String, required: true },
+cover_image: { type: String },
 ```
