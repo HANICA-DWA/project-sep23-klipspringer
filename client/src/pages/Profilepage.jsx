@@ -9,6 +9,7 @@ function Profilepage() {
 
   const [profileInfo, setProfileInfo] = useState([]);
 
+
   useEffect(() => {
     fetch(
       import.meta.env.VITE_BACKEND_HOST +
@@ -51,10 +52,10 @@ function Profilepage() {
       </Stack>
 
       {profileInfo.top_three ? (
-        <Bookshelf title="My top 3 books" books={profileInfo.top_three} />
+        <Bookshelf key={"top_three"} name={"top_three"} title="My top 3 books" books={profileInfo.top_three} />
       ) : null}
       {profileInfo.shelf != undefined && profileInfo.shelf.length > 0
-        ? profileInfo.shelf.map((shelf) => <Bookshelf key={shelf.name} title={shelf.name} books={shelf.books} />)
+        ? profileInfo.shelf.map((shelf) => <Bookshelf key={shelf.name} name={"top_three"} title={shelf.name} books={shelf.books} />)
         : null}
 
       <Stack direction="column" alignItems="center">

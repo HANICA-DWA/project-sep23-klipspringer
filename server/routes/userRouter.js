@@ -45,6 +45,11 @@ router.post("/:username/shelf", (req, res, next) => {
 });
 
 router.put("/:username/book", (req, res, next) => {
+  console.log(req.body);
+  console.log(req.params);
+  req.params.username = "JelleSchaafsma"
+  req.body.book = "2738658466"
+  req.body.shelf = "6555de643f3a395c85d9c755"
   if(req.body.book != undefined && req.body.shelf != undefined){
     User.findById(req.params.username).then((user) => {
       if (user === null) {
