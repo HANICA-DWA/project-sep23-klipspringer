@@ -22,6 +22,7 @@ router.post("/google", async (req, res, next) => {
       username = user._id;
     }
     req.session.loggedIn = true;
+    req.session.user = username;
     res.status(201).json({ status: "LOGGED_IN", username });
   } catch (err) {
     const error = createError("Signing in failed", 400);
@@ -55,10 +56,21 @@ router.post("/linkedin", async (req, res, next) => {
       username = user._id;
     }
     req.session.loggedIn = true;
+    req.session.user = username;
     res.status(201).json({ status: "LOGGED_IN", username });
   } catch (err) {
     next(err);
   }
+});
+
+router.delete("/", (req, res, next) => {
+  req.session.loggedIn = false;
+  req.session.user = undefined;
+  res.status(200).json({ status: "LOGGED_OUT" });
+});
+
+router.get("/", (req, res, next) => {
+  res.status(200).json({ loggedIn: req.session.loggedIn ? true : false, username: req.session.user });
 });
 
 export default router;
