@@ -5,8 +5,8 @@ export async function getUserByUsername(username) {
   return user;
 }
 
-export async function getUserBySSOId(id) {
-  const user = User.findOne({ sso_id: id });
+export async function getUserBySSOId(id, provider) {
+  const user = User.findOne({ sso_id: id, sso_provider: provider });
   return user;
 }
 

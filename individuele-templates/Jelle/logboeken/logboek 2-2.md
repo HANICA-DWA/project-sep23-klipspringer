@@ -47,7 +47,7 @@
 
 | Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
 |------|---|---|---|---|---|
-| 4.5  | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/12) | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/11a38e55fc4bf03853bfe4ad9b687323c97861a0) |
+| 4.5  | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/12) | Met Yannick | duurde lang maar is eindelijk opgelost  |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/11a38e55fc4bf03853bfe4ad9b687323c97861a0) |
 |      | | | | | |
 
 
