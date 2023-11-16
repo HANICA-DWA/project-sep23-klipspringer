@@ -33,6 +33,7 @@ router.post("/:username/shelf", (req, res, next) => {
         throw error;
       } else {
         user.shelf.push(req.body);
+        user.addToBookcase(req.body.books);
         return user.save();
       }
     })

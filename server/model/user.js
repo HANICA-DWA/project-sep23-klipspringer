@@ -21,6 +21,15 @@ const schema = new mongoose.Schema({
     ],
   },
   bookcase: {type: [Book.schema]}
+}, {
+  methods: {
+    addToBookcase(books) {
+      books.forEach((book) => {
+        if (!this.bookcase.contains(book))
+          this.bookcase.push(book);
+      })
+    }
+  }
 });
 
 const model = mongoose.model(name, schema);
