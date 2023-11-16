@@ -28,7 +28,7 @@ export default function Router() {
     <LoggedInContext.Provider value={loggedIn}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<App />} />
+          <Route path="/" element={<App setLoggedIn={setLoggedIn} />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/search/:shelf" element={<SearchPage />} />
           <Route path="/profile/:userName" element={<Profilepage />} />
