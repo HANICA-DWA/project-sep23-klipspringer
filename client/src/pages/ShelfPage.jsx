@@ -1,4 +1,4 @@
-import { Box, Button, Stack, TextField, Typography } from "@mui/material";
+import { Box, Button, Container, Stack, TextField, Typography } from "@mui/material";
 import SearchBar from "../components/SearchBar";
 import Bookshelf from "../components/Bookshelf";
 import { useState } from "react";
@@ -22,8 +22,6 @@ export default function ShelfPage() {
     }
   };
 
-  console.log(books);
-
   const handleCreate = () => {
     //TODO check if logged in as a user before adding, instead of url parameter
     if (books.length >= 3) {
@@ -44,31 +42,40 @@ export default function ShelfPage() {
 
   return (
     <>
-      <Stack direction="column" alignItems="center" justifyContent="space-between" height="90vh">
-        <Stack direction="column" alignItems="center" sx={{ width: "100%" }}>
-          <Stack direction="row" alignItems="center" justifyContent="center" sx={{ width: "100%" }}>
-            <ArrowBackIos sx={{ left: "0", width: "32px", position: "absolute" }} onClick={() => navigate(-1)} />
-            <Typography variant="h5" sx={{ my: 1 }}>
-              A shelf contains at least 3 books!
-            </Typography>
+      <Container
+        maxWidth="sm"
+        sx={{
+          paddingTop: "50px",
+        }}
+      >
+        <Stack direction="column" alignItems="center" justifyContent="space-between" height="90vh">
+          <Stack direction="column" alignItems="center" sx={{ width: "100%" }}>
+            <Stack direction="row" alignItems="center" justifyContent="center" sx={{ width: "100%" }}>
+              <Typography variant="h5" sx={{ my: 1 }}>
+                A shelf contains at least 3 books!
+              </Typography>
+            </Stack>
+            <Stack direction="row" alignItems="center" width="100%">
+              <ArrowBackIos onClick={() => navigate(-1)} />
+              <SearchBar onAdd={handleAdd} />
+            </Stack>
           </Stack>
-          <SearchBar onAdd={handleAdd} />
-        </Stack>
 
-        <Stack gap={2} direction="column" alignItems="center">
-          <Bookshelf books={books} hideAdding />
-          <Typography variant="body1" style={{ color: "red" }}>
-            {errMessage}
-          </Typography>
-          <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-            <Title sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-            <TextField id="input-with-sx" label="Title" variant="standard" value={title} onChange={(e) => setTitle(e.target.value)} />
-            <Button sx={{ ml: 1 }} variant="contained" onClick={handleCreate}>
-              Create Shelf
-            </Button>
-          </Box>
+          <Stack gap={2} direction="column" alignItems="center" width="100%">
+            <Bookshelf books={books} hideAdding />
+            <Typography variant="body1" style={{ color: "red" }}>
+              {errMessage}
+            </Typography>
+            <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+              <Title sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+              <TextField id="input-with-sx" label="Title" variant="standard" value={title} onChange={(e) => setTitle(e.target.value)} />
+              <Button sx={{ ml: 1 }} variant="contained" onClick={handleCreate}>
+                Create Shelf
+              </Button>
+            </Box>
+          </Stack>
         </Stack>
-      </Stack>
+      </Container>
     </>
   );
 }
