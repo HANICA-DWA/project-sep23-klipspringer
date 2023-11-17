@@ -34,7 +34,7 @@ function Profilepage() {
   }, []);
 
   return (
-    <Stack justifyContent="space-between" style={{ height: "100vh" }} spacing={3}>
+    <Stack justifyContent="flex-start" style={{ minHeight: "100vh" }} spacing={3} useFlexGap>
       <Stack direction="column" alignItems="center">
         <div
           style={{
@@ -61,7 +61,7 @@ function Profilepage() {
           ))
         : null}
 
-      <Stack direction="column" alignItems="center">
+      <Stack direction="column" alignItems="center" mt="auto">
         <Button
           variant="contained"
           style={{ fontSize: "12px", marginBottom: "10px", backgroundColor: "#5B5B5B", color: "#FFFFFF" }}
