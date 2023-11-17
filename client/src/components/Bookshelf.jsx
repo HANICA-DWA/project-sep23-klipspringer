@@ -1,8 +1,9 @@
-import { Typography, Card, Stack, CardMedia, ImageList } from "@mui/material";
+import { Typography, Card, Stack, CardMedia, ImageList, Icon, Box } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { LoggedInContext } from "../Contexts";
 import { Edit } from "@mui/icons-material";
+import {ImageNotSupported} from '@mui/icons-material';
 
 export default function Bookshelf({ name, title, books = [], hideAdding, user }) {
   const { loggedIn, username } = useContext(LoggedInContext);
@@ -40,8 +41,15 @@ export default function Bookshelf({ name, title, books = [], hideAdding, user })
         <ImageList cols={3}>
           {books.map((item) => (
             <Card key={item._id} style={{ width: "85px", height: "130px" }}>
-              <Link to={"#"}>
-                <CardMedia shelf={name} height="130" component="img" image={item.cover_image} alt={item._id} />
+              <Link to={"#"} style={{textDecoration: "none", color: "black"}}>
+                {item.cover_image !== undefined ? 
+                <CardMedia shelf={name} height="130" component="img" image={item.cover_image} alt={item._id} /> 
+                : 
+                <Stack sx={{alignItems: "center"}}>
+                  <ImageNotSupported sx={{ fontSize: 80}}/>
+                  <Typography variant="caption">No image found</Typography>
+                </Stack>
+                }
               </Link>
             </Card>
           ))}
