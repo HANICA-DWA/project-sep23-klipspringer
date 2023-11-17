@@ -8,15 +8,13 @@ export default function SearchBar({ onAdd }) {
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  function popperContents() {
-    if (isLoading) {
-      return <LinearProgress sx={{ width: "400px" }} />;
-    } else if (searchResults && searchResults.length >= 1 && !isLoading) {
-      return searchResults.map((book) => {
-        return <SearchResult book={book} onAdd={onAdd} key={book.key} />;
-      });
-    } else if (searchResults.length < 1 && !isLoading) {
-      return <Typography variant="body1">No results found.</Typography>;
+  function popperContents(){
+    if(isLoading){
+      return <LinearProgress sx={{width: "400px"}}/>
+    } else if(searchResults && searchResults.length >= 1 && !isLoading) {
+      return searchResults.map((book) => {return <SearchResult closePopper={closepopper} book={book} onAdd={onAdd} key={book.key} />;}) 
+    } else if(searchResults.length < 1 && !isLoading){
+      return <Typography variant="body1">No results found.</Typography>
     }
   }
 
@@ -36,6 +34,7 @@ export default function SearchBar({ onAdd }) {
   }
   function closepopper() {
     setAnchorEl(null);
+    setSearchText("")
   }
   const open = Boolean(anchorEl);
   const id = open ? "simple-popper" : undefined;
@@ -52,6 +51,7 @@ export default function SearchBar({ onAdd }) {
       >
         <FormControl ref={spanRef} fullWidth>
           <TextField
+            value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
             placeholder="Search books..."
             InputProps={{
