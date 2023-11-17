@@ -12,7 +12,7 @@ export default function SearchBar( { onAdd }) {
     if(isLoading){
       return <LinearProgress sx={{width: "400px"}}/>
     } else if(searchResults && searchResults.length >= 1 && !isLoading) {
-      return searchResults.map((book) => {return <SearchResult book={book} onAdd={onAdd} key={book.key} />;}) 
+      return searchResults.map((book) => {return <SearchResult closePopper={closepopper} book={book} onAdd={onAdd} key={book.key} />;}) 
     } else if(searchResults.length < 1 && !isLoading){
       return <Typography variant="body1">No results found.</Typography>
     }
