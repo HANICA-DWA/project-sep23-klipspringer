@@ -49,7 +49,7 @@ export default function SearchPage() {
     <Container
       maxWidth="sm"
       sx={{
-        paddingTop: "50px",
+        paddingTop: "20px",
       }}
     >
       <Stack direction="row" alignItems="center" style={{ marginBottom: "25px" }}>
