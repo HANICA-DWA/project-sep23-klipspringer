@@ -45,9 +45,9 @@ router.post("/:username/shelf", (req, res, next) => {
     });
 });
 
-router.put("/:username/book", (req, res, next) => {
-  const { book, shelf } = req.body;
-  const { username } = req.params;
+router.put("/:username/shelves/:shelf", (req, res, next) => {
+  const { book } = req.body;
+  const { username, shelf } = req.params;
   if (book != undefined && shelf != undefined) {
     User.findById(username)
       .then((user) => {
@@ -77,6 +77,6 @@ router.put("/:username/book", (req, res, next) => {
     const error = createError("Specify bosy with book or shelf", 400);
     next(error);
   }
-})
+});
 
 export default router;
