@@ -10,7 +10,7 @@ export default function Bookshelf({ name, title, books, hideAdding, user }) {
   const placeholderBooks = [];
 
   //TODO na ontwerp Rik dit refactoren
-  if ((books.length === 0 && !loggedIn) || hideAdding) {
+  if ((books.length === 0 && !loggedIn) || (books.length === 0 && hideAdding)) {
     placeholderBooks.push(<div></div>);
     placeholderBooks.push(
       <Typography variant="h5" order="2">
