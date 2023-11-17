@@ -56,12 +56,10 @@ function Profilepage() {
       </Stack>
 
       {profileInfo.top_three ? (
-        <Bookshelf key={"top_three"} name={"top_three"} title="My top 3 books" books={profileInfo.top_three} user={profileInfo._id} />
+        <Bookshelf key={"top_three"} id={"top_three"} title="My top 3 books" books={profileInfo.top_three} user={profileInfo._id} />
       ) : null}
       {profileInfo.shelf != undefined && profileInfo.shelf.length > 0
-        ? profileInfo.shelf.map((shelf) => (
-            <Bookshelf key={shelf.name} name={shelf._id} title={shelf.name} books={shelf.books} user={profileInfo._id} />
-          ))
+        ? profileInfo.shelf.map((shelf) => <Bookshelf key={shelf._id} id={shelf._id} title={shelf.name} books={shelf.books} user={profileInfo._id} />)
         : null}
 
       <Stack direction="column" alignItems="center" mt="auto">

@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { LoggedInContext } from "../Contexts";
 import { Edit } from "@mui/icons-material";
-import {ImageNotSupported} from '@mui/icons-material';
+import { ImageNotSupported } from "@mui/icons-material";
 
-export default function Bookshelf({ name, title, books = [], hideAdding, user }) {
+export default function Bookshelf({ id, title, books = [], hideAdding, user }) {
   const { loggedIn, username } = useContext(LoggedInContext);
 
   const placeholderBooks = [];
@@ -23,9 +23,9 @@ export default function Bookshelf({ name, title, books = [], hideAdding, user })
   for (let i = books.length; i < 3; i++) {
     if (loggedIn && username === user && !hideAdding) {
       placeholderBooks.push(
-        <Card style={{ width: "85px", height: "130px" }}>
-          <Link to={"/search/" + name}>
-            <CardMedia shelf={name} height="130" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" />
+        <Card key={i} style={{ width: "85px", height: "130px" }}>
+          <Link to={"/search/" + id}>
+            <CardMedia shelf={id} height="130" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" />
           </Link>
         </Card>
       );
@@ -41,24 +41,24 @@ export default function Bookshelf({ name, title, books = [], hideAdding, user })
         <ImageList cols={3}>
           {books.map((item) => (
             <Card key={item._id} style={{ width: "85px", height: "130px" }}>
-              <Link to={"#"} style={{textDecoration: "none", color: "black"}}>
-                {item.cover_image !== undefined ? 
-                <CardMedia shelf={name} height="130" component="img" image={item.cover_image} alt={item._id} /> 
-                : 
-                <Stack sx={{alignItems: "center"}}>
-                  <ImageNotSupported sx={{ fontSize: 80}}/>
-                  <Typography variant="caption">No image found</Typography>
-                </Stack>
-                }
+              <Link to={"#"} style={{ textDecoration: "none", color: "black" }}>
+                {item.cover_image !== undefined ? (
+                  <CardMedia shelf={id} height="130" component="img" image={item.cover_image} alt={item._id} />
+                ) : (
+                  <Stack sx={{ alignItems: "center" }}>
+                    <ImageNotSupported sx={{ fontSize: 80 }} />
+                    <Typography variant="caption">No image found</Typography>
+                  </Stack>
+                )}
               </Link>
             </Card>
           ))}
           {placeholderBooks.length !== 0 ? (
             placeholderBooks
-          ) : loggedIn && username === user && !hideAdding && name !== "top_three" ? (
-            <Card style={{ width: "85px", height: "130px" }}>
-              <Link to={"/search/" + name}>
-                <CardMedia shelf={name} height="130" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" />
+          ) : loggedIn && username === user && !hideAdding && id !== "top_three" ? (
+            <Card key={id} style={{ width: "85px", height: "130px" }}>
+              <Link to={"/search/" + id}>
+                <CardMedia shelf={id} height="130" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" />
               </Link>
             </Card>
           ) : (
@@ -68,7 +68,7 @@ export default function Bookshelf({ name, title, books = [], hideAdding, user })
       </Stack>
       <Stack direction="row">
         <img style={{ width: "320px", height: "20px" }} src="/images/bookshelf.jpg" alt="bookshelf"></img>
-        {document.URL.includes("shelf") ? null : loggedIn && username === user? <Edit /> : null}
+        {document.URL.includes("shelf") ? null : loggedIn && username === user ? <Edit /> : null}
       </Stack>
     </Stack>
   );
