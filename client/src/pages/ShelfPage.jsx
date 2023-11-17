@@ -16,11 +16,19 @@ export default function ShelfPage() {
     const [errMessage, setErrMessage] = useState("");
 
     const handleAdd = (book) => {
-      setBooks([...books, book]);
+      if(books.find((item) => item._id === book._id)){
+        setErrMessage("This book is already on the shelf")
+      } else {
+        setBooks([...books, book]);
+        setErrMessage("")
+      }
     }
+
+    console.log(books)
 
     const handleCreate = () => {
       if (books.length >= 3) {
+        setErrMessage("")
         fetch(import.meta.env.VITE_BACKEND_HOST + '/user/' + userName + '/shelf', {
           method: "POST",
           headers: {
