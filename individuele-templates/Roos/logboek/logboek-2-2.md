@@ -60,4 +60,5 @@
 
 | Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
 |---|---|---|---|---|---|
-| 1,5 uur | Geen dubbele boeken op een plank regelen | Alleen | Met wat vragen en googlen is het mij uiteindelijk gelukt | :face_exhaling: | [link naar resulaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/01f71ec61c123f9733a39f8e739e82e80d7444b3) [link naar resultaten]()|
+| 1,5 uur | Geen dubbele boeken op een plank regelen | Alleen | Met wat vragen en googlen is het mij uiteindelijk gelukt | :face_exhaling: | [link naar resulaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/01f71ec61c123f9733a39f8e739e82e80d7444b3) [link naar resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/b0daa9afde78098a5e00e1cee817066b1dc46eee)|
+| 15 min | webiste controleren op console errors | Alleen | Het was vrij gemakkelijk om langs alle pagina's te gaan om te kijken watvoor error er waren, deze heb ik daarna doorgespeeld met de groep | :relaxed: | - |

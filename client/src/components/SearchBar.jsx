@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { Search } from "@mui/icons-material";
 
 export default function SearchBar({ onAdd }) {
-  const [searchText, setSearchText] = useState(null);
+  const [searchText, setSearchText] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
