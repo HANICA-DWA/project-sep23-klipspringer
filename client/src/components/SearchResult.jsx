@@ -1,7 +1,7 @@
 import { Button, Paper, Typography, Skeleton, Stack } from "@mui/material";
 import { useState } from "react";
 
-export default function SearchResult({ book, onAdd }) {
+export default function SearchResult({ book, onAdd, closePopper }) {
   const [loading, setLoading] = useState(true);
   const [show, setShow] = useState("none");
   let authors = [];
