@@ -41,7 +41,7 @@ export default function Bookshelf({ name, title, books, hideAdding, user }) {
           {books.map((item) => (
             <Card key={item._id} style={{ width: "85px", height: "130px" }}>
               <Link to={"#"}>
-                <CardMedia shelf={name} height="130" component="img" image={item.cover_image} alt="titel" />
+                <CardMedia shelf={name} height="130" component="img" image={item.cover_image} alt={item._id} />
               </Link>
             </Card>
           ))}
