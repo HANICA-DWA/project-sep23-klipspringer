@@ -15,31 +15,35 @@ export default function SearchPage() {
   const [errMessage, setErrMessage] = useState("");
 
   const handleAdd = (book) => {
-    fetch(import.meta.env.VITE_BACKEND_HOST + '/user/' + username + "/book", {
+    fetch(import.meta.env.VITE_BACKEND_HOST + "/user/" + username + "/shelves/" + shelf, {
       method: "PUT",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ book: book, shelf: shelf })
-    }).then((res) => {
-      if(res.status == 200){
-       navigate(-1);
-      } else {
-        res.json().then(message => setErrMessage(message.error))
-      }
-      console.log("succes", res);
-    }
-    ).catch((err) => {
-      console.log("failure", err);
-      console.log("failure2", JSON.stringify(import.meta.env.VITE_BACKEND_HOST + '/' + username + "/book", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ book: book, shelf: shelf })
-      }));
+      body: JSON.stringify({ book: book }),
     })
-  }
+      .then((res) => {
+        if (res.status == 200) {
+          navigate(-1);
+        } else {
+          res.json().then((message) => setErrMessage(message.error));
+        }
+        console.log("succes", res);
+      })
+      .catch((err) => {
+        console.log("failure", err);
+        console.log(
+          "failure2",
+          JSON.stringify(import.meta.env.VITE_BACKEND_HOST + "/" + username + "/book", {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ book: book, shelf: shelf }),
+          })
+        );
+      });
+  };
 
   return (
     <Container
@@ -52,7 +56,9 @@ export default function SearchPage() {
         <ArrowBackIos onClick={() => navigate(-1)} />
         <SearchBar onAdd={handleAdd} />
       </Stack>
-      <Typography align="center" variant="body1" style={{color: "red"}}>{errMessage}</Typography>
+      <Typography align="center" variant="body1" style={{ color: "red" }}>
+        {errMessage}
+      </Typography>
       <Suggestions />
     </Container>
   );
