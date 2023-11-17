@@ -41,10 +41,11 @@
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
+| Uren | Taak                                                               | Met Wie | Resultaten                                        | Emotie           | Link                                                             |
+|------|--------------------------------------------------------------------|---------|---------------------------------------------------|------------------|------------------------------------------------------------------|
+| 1.5  | https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/27 |         | Shelves kunnen nu toegevoegd worden               | :face_exhaling:  | https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/72 |
+| 1    | https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/14 |         | bookcase van user wordt nu automatisch bijgewerkt | :exploding_head: | https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/78 |
+| 2    | https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/27 |         | Shelf's toevoegen is nu gefixt                    | :shipit:         | https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/72 |
 
 
 
