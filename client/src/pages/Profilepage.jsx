@@ -1,13 +1,16 @@
 import { Typography, Button, Avatar, Stack } from "@mui/material";
 import Bookshelf from "../components/Bookshelf";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { LoggedInContext } from "../Contexts";
 
 function Profilepage() {
   const navigate = useNavigate();
   const userName = useParams().userName;
-
+  const { loggedIn, username } = useContext(LoggedInContext);
   const [profileInfo, setProfileInfo] = useState([]);
+
+  const shelfClickHandler = loggedIn ? () => navigate("/profile/" + username + "/shelf") : () => navigate("/login");
 
   useEffect(() => {
     fetch(
@@ -65,9 +68,9 @@ function Profilepage() {
         <Button
           variant="contained"
           style={{ fontSize: "12px", marginBottom: "10px", backgroundColor: "#5B5B5B", color: "#FFFFFF" }}
-          onClick={() => navigate("/profile/" + userName + "/shelf")}
+          onClick={shelfClickHandler}
         >
-          Create your own shelf
+          {loggedIn && userName === username ? "Create another shelf" : "Create your own shelf"}
         </Button>
       </Stack>
     </Stack>
