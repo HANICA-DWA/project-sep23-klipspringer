@@ -61,8 +61,9 @@ export default function SearchResult({ book, onAdd }) {
       </div>
       <Button
         onClick={() => {
-          console.log(book)
-          onAdd({cover_image: `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg?default=false`, _id: book.isbn[0]??book.isbn})
+          const cover_image = book.cover_i === undefined ? undefined : `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg?default=false`
+          onAdd({cover_image: cover_image, _id: book.isbn[0]??book.isbn})
+          closePopper()
         }}
         sx={{ marginRight: "10px" }}
         variant="contained"
