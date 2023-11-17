@@ -4,27 +4,27 @@ import { useContext } from "react";
 import { LoggedInContext } from "../Contexts";
 import { Edit } from "@mui/icons-material";
 
-export default function Bookshelf({ title, books, hideAdding }) {
-  const loggedIn = useContext(LoggedInContext).loggedIn;
+export default function Bookshelf({ name, title, books = [], hideAdding, user }) {
+  const { loggedIn, username } = useContext(LoggedInContext);
 
   const placeholderBooks = [];
 
   //TODO na ontwerp Rik dit refactoren
-  if ((books.length === 0 && !loggedIn) || hideAdding) {
+  if ((books.length === 0 && !loggedIn) || (books.length === 0 && hideAdding)) {
     placeholderBooks.push(<div></div>);
     placeholderBooks.push(
       <Typography variant="h5" order="2">
-        No books in this shelf
+        No books on this shelf
       </Typography>
     );
   }
 
   for (let i = books.length; i < 3; i++) {
-    if (loggedIn) {
+    if (loggedIn && username === user && !hideAdding) {
       placeholderBooks.push(
         <Card style={{ width: "85px", height: "130px" }}>
-          <Link to={"/search"}>
-            <CardMedia height="130" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" />
+          <Link to={"/search/" + name}>
+            <CardMedia shelf={name} height="130" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" />
           </Link>
         </Card>
       );
@@ -41,16 +41,16 @@ export default function Bookshelf({ title, books, hideAdding }) {
           {books.map((item) => (
             <Card key={item._id} style={{ width: "85px", height: "130px" }}>
               <Link to={"#"}>
-                <CardMedia height="130" component="img" image={item.cover_image} alt="titel" />
+                <CardMedia shelf={name} height="130" component="img" image={item.cover_image} alt={item._id} />
               </Link>
             </Card>
           ))}
           {placeholderBooks.length !== 0 ? (
             placeholderBooks
-          ) : loggedIn && !hideAdding ? (
+          ) : loggedIn && username === user && !hideAdding && name !== "top_three" ? (
             <Card style={{ width: "85px", height: "130px" }}>
-              <Link to={"/search"}>
-                <CardMedia height="130" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" />
+              <Link to={"/search/" + name}>
+                <CardMedia shelf={name} height="130" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" />
               </Link>
             </Card>
           ) : (
@@ -60,7 +60,7 @@ export default function Bookshelf({ title, books, hideAdding }) {
       </Stack>
       <Stack direction="row">
         <img style={{ width: "320px", height: "20px" }} src="/images/bookshelf.jpg" alt="bookshelf"></img>
-        <Edit/>
+        {document.URL.includes("shelf") ? null : loggedIn && username === user? <Edit /> : null}
       </Stack>
     </Stack>
   );
