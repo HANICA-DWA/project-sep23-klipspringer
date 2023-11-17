@@ -17,6 +17,7 @@
 - [Database schemas](#database-schemas)
   - [User schema](#user-schema)
   - [Book schema](#book-schema)
+- [Domain terms](#domain-terms)
 
 # Software Guidebook BKS
 
@@ -218,3 +219,16 @@ Images of saved books of a user are saved in our database (from the external API
 _id: { type: String, required: true },
 cover_image: { type: String },
 ```
+
+# Domain terms
+
+| **Term (NL)** | **Term (EN)** | **Betekenis**                                                           | **Synoniemen**       |
+| ------------- | ------------- | ----------------------------------------------------------------------- | -------------------- |
+| Boekenplank   | Shelf         | Een verzameling van boeken, samengesteld door de gebruiker              | Collectie, categorie |
+| Boekenkast    | Bookcase      | Een overzicht van alle boeken die een gebruiker in zijn account heeft   |                      |
+| ISBN          | ISBN          | Uniek id nummer van een boek                                            |                      |
+| Auteur        | Author        | Persoon die een boek heeft geschreven                                   |                      |
+| Titel         | Title         | De naam van een boek                                                    | Naam                 |
+| Favorieten    | Favorites     | Een speciale collectie met de favoriete boeken van een gebruiker        | Voorkeuren           |
+| Suggestie     | Suggestions   | Suggesties voor boeken op basis van de opgeslagen boeken in een account | Aanbeveling, advies  |
+| Delen         | Share         | Het kopiëren van een link naar een profielpagina                        |                      |
