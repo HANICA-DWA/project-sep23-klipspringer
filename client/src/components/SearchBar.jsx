@@ -1,30 +1,32 @@
-import { FormControl, InputAdornment, IconButton, TextField, Popper, Box, Paper, Button, Typography, LinearProgress} from "@mui/material";
+import { FormControl, InputAdornment, IconButton, TextField, Popper, Box, Paper, Button, Typography, LinearProgress } from "@mui/material";
 import SearchResult from "./SearchResult";
 import { useRef, useState } from "react";
 import { Search } from "@mui/icons-material";
 
-export default function SearchBar( { onAdd }) {
+export default function SearchBar({ onAdd }) {
   const [searchText, setSearchText] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  
-  function popperContents(){
-    if(isLoading){
-      return <LinearProgress sx={{width: "400px"}}/>
-    } else if(searchResults && searchResults.length >= 1 && !isLoading) {
-      return searchResults.map((book) => {return <SearchResult book={book} onAdd={onAdd} key={book.key} />;}) 
-    } else if(searchResults.length < 1 && !isLoading){
-      return <Typography variant="body1">No results found.</Typography>
+
+  function popperContents() {
+    if (isLoading) {
+      return <LinearProgress sx={{ width: "400px" }} />;
+    } else if (searchResults && searchResults.length >= 1 && !isLoading) {
+      return searchResults.map((book) => {
+        return <SearchResult book={book} onAdd={onAdd} key={book.key} />;
+      });
+    } else if (searchResults.length < 1 && !isLoading) {
+      return <Typography variant="body1">No results found.</Typography>;
     }
   }
 
   async function getBookSearchResults() {
-    setIsLoading(true)
+    setIsLoading(true);
     const urlTitle = searchText.replace(/([\s])/g, "+");
     const result = await fetch(`https://openlibrary.org/search.json?q=${urlTitle}&limit=10`);
     const data = await result.json();
-    setSearchResults(data.docs);
-    setIsLoading(false)
+    setSearchResults(data.docs.filter((book) => book.isbn));
+    setIsLoading(false);
   }
 
   const [anchorEl, setAnchorEl] = useState(null);
