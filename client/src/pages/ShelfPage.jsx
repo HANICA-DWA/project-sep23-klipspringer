@@ -45,7 +45,7 @@ export default function ShelfPage() {
       <Container
         maxWidth="sm"
         sx={{
-          paddingTop: "50px",
+          paddingTop: "20px",
         }}
       >
         <Stack direction="column" alignItems="center" justifyContent="space-between" height="90vh">
