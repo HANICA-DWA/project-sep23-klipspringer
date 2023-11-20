@@ -1,10 +1,11 @@
-import { Button, Paper, Typography, Skeleton, Stack } from "@mui/material";
+import { Button, Paper, Typography, Skeleton } from "@mui/material";
 import { useState } from "react";
 
 export default function SearchResult({ book, onAdd, closePopper }) {
   const [loading, setLoading] = useState(true);
   const [show, setShow] = useState("none");
-  let authors = [];
+  let authors = "";
+  let title = "";
 
   function showImage() {
     setLoading(false);
@@ -12,17 +13,16 @@ export default function SearchResult({ book, onAdd, closePopper }) {
   }
 
   if (book.author_name) {
-    if (book.author_name.length > 1) {
-      authors = book.author_name.slice(0, 5).map((e, i) => {
-        if (i == 4) {
-          return e + " ...";
-        } else {
-          return e + ", ";
-        }
-      });
-    } else {
-      authors = book.author_name[0];
-    }
+    authors = book.author_name.reduce((prev, curr) => curr + ", " + prev);
+    if (authors.length > 50)
+      authors = authors.substring(0, 47) + "...";
+  }
+
+  if (book.title) {
+    if (book.title.length > 50)
+      title = book.title.substring(0, 47) + "...";
+    else
+      title = book.title;
   }
 
   return (
@@ -54,7 +54,7 @@ export default function SearchResult({ book, onAdd, closePopper }) {
         />
         <div>
           <Typography variant="body1" sx={{ fontWeight: "700" }}>
-            {book.title}
+            {title}
           </Typography>
           <Typography variant="caption">{authors}</Typography>
         </div>
