@@ -24,15 +24,8 @@ export default function Unauthorized() {
           <img src="/images/bookicon.png" alt="Logo" style={{ maxHeight: "25vh", marginBottom: "20px" }} />
         </Grid>
         <Grid item xs={12}>
-          <Button
-            component={Link}
-            to="/login"
-            variant="contained"
-            size="large"
-            startIcon={<Login style={{ transform: "scale(1.2)" }} />}
-            sx={{ fontSize: "1rem" }}
-          >
-            Get me out of here!
+          <Button component={Link} to="/login" variant="contained" size="large" startIcon={<Login style={{ transform: "scale(1.2)" }} />}>
+            <Typography variant="h6">Get me out of here!</Typography>
           </Button>
         </Grid>
       </Grid>

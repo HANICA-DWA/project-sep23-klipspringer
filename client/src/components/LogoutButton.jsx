@@ -1,5 +1,5 @@
 import { Logout } from "@mui/icons-material";
-import { IconButton } from "@mui/material";
+import { Button, IconButton, Typography } from "@mui/material";
 
 export default function LogoutButton({ setLoggedIn }) {
   const clickHandler = async () => {
@@ -11,8 +11,8 @@ export default function LogoutButton({ setLoggedIn }) {
     setLoggedIn({ loggedIn: false, username: undefined });
   };
   return (
-    <IconButton sx={{margin: "5px"}} onClick={clickHandler}>
-      <Logout/>
-    </IconButton>
+    <Button variant="text" onClick={clickHandler} endIcon={<Logout style={{ transform: "scale(1.2)" }} />}>
+      <Typography variant="body1">Logout</Typography>
+    </Button>
   );
 }

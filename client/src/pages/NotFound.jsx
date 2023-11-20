@@ -23,15 +23,8 @@ export default function NotFound() {
           <img src="/images/bookicon.png" alt="Logo" style={{ maxHeight: "25vh", marginBottom: "20px" }} />
         </Grid>
         <Grid item xs={12}>
-          <Button
-            size="large"
-            component={Link}
-            to="/"
-            variant="contained"
-            startIcon={<HomeIcon style={{ transform: "scale(1.3)" }} />}
-            sx={{ fontSize: "1rem" }}
-          >
-            Take me Home
+          <Button size="large" component={Link} to="/" variant="contained" startIcon={<HomeIcon style={{ transform: "scale(1.3)" }} />}>
+            <Typography variant="h6">Take me Home</Typography>
           </Button>
         </Grid>
       </Grid>
