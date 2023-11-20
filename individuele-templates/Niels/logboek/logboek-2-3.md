@@ -12,9 +12,10 @@
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak     | Met Wie | Resultaten       | Emotie      | Link                                                             |
-|------|----------|---------|------------------|-------------|------------------------------------------------------------------|
-| 1    | Bugfixes |         | Fixes bij zoeken | :cold_face: | https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/86 |
+| Uren | Taak                                                               | Met Wie     | Resultaten                            | Emotie      | Link                                                             |
+|------|--------------------------------------------------------------------|-------------|---------------------------------------|-------------|------------------------------------------------------------------|
+| 1    | Bugfixes                                                           |             | Fixes bij zoeken                      | :cold_face: | https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/86 |
+| 3    | https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/87 | Jelle, Roos | Er zijn nu unit tests voor de backend | :zzz:       | https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/97 |
 
 
 ## Dinsdag 23 november
