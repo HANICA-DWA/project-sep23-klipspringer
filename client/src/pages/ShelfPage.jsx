@@ -1,13 +1,15 @@
 import { Box, Button, Container, Stack, TextField, Typography } from "@mui/material";
 import SearchBar from "../components/SearchBar";
 import Bookshelf from "../components/Bookshelf";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { ArrowBackIos, Title } from "@mui/icons-material";
 import { useNavigate, useParams } from "react-router-dom";
+import { LoggedInContext } from "../Contexts";
 
 export default function ShelfPage() {
   const navigate = useNavigate();
-  const userName = useParams().userName;
+  const usernameParams = useParams().userName;
+  const { loggedIn, username } = useContext(LoggedInContext);
 
   const [books, setBooks] = useState([]);
   const [title, setTitle] = useState("");
@@ -23,20 +25,27 @@ export default function ShelfPage() {
   };
 
   const handleCreate = () => {
-    //TODO check if logged in as a user before adding, instead of url parameter
-    if (books.length >= 3) {
-      setErrMessage("");
-      fetch(import.meta.env.VITE_BACKEND_HOST + "/user/" + userName + "/shelf", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name: title, books: books }),
-      }).then((res) => {
-        navigate(-1);
-      });
+    if (loggedIn && username === usernameParams) {
+      if (books.length >= 3) {
+        setErrMessage("");
+        fetch(import.meta.env.VITE_BACKEND_HOST + "/user/" + username + "/shelf", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name: title, books: books }),
+        }).then((res) => {
+          if (res.ok) {
+            navigate(-1);
+          } else {
+            res.json().then((message) => setErrMessage(message.error));
+          }
+        });
+      } else {
+        setErrMessage("You need to add min 3 books");
+      }
     } else {
-      setErrMessage("You need to add min 3 books");
+      setErrMessage("Not allowed to add a shelf");
     }
   };
 

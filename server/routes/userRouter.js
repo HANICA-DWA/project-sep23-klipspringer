@@ -41,7 +41,9 @@ router.post("/:username/shelf", (req, res, next) => {
       res.status(201).send(req.body);
     })
     .catch((err) => {
-      next(err);
+      let error = err;
+      if (err.errors) error = createError(err.errors[Object.keys(err.errors)[0]].message, 400);
+      next(error);
     });
 });
 

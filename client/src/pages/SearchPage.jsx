@@ -10,7 +10,7 @@ export default function SearchPage() {
   const navigate = useNavigate();
 
   const shelf = useParams().shelf;
-  const username = useContext(LoggedInContext).username;
+  const { loggedIn, username } = useContext(LoggedInContext);
 
   const [errMessage, setErrMessage] = useState("");
 
@@ -23,7 +23,7 @@ export default function SearchPage() {
       body: JSON.stringify({ book: book }),
     })
       .then((res) => {
-        if (res.status == 200) {
+        if (res.ok) {
           navigate(-1);
         } else {
           res.json().then((message) => setErrMessage(message.error));

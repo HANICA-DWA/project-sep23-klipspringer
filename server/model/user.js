@@ -36,7 +36,7 @@ const schema = new mongoose.Schema(
             type: [Book.schema],
             validate: [
               { validator: (val) => val.length >= 3, message: "Must have a minimum of 3 books" },
-              { validator: validatorUniqueBooks, message: "This book is already on the shelf" },
+              { validator: validatorUniqueBooks, message: "Can't have duplicates on a bookshelf" },
             ],
           },
         },
