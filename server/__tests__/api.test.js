@@ -6,16 +6,13 @@ import mongoose from 'mongoose'
 import User from '../model/user.js'
 import Book from '../model/book.js'
 
-//makes connection with test database
-describe("connection", () => {
-    before(async () => {
-        await mongoose.disconnect();
-        await mongoose.connect(`mongodb://127.0.0.1:27017/TestBKS`);
-    })
+before(async () => {
+    await mongoose.connect(`mongodb://127.0.0.1:27017/TestBKS`)
+})
 
-    after(async () => {
-        await mongoose.disconnect();
-    })
+after(async () => {
+    await mongoose.disconnect();
+})
 
     // TODO fetch("/book/:id")
     describe('GET /book/:id', () => {
@@ -28,13 +25,13 @@ describe("connection", () => {
         })
 
         it('status 200 with cover from book via isbn', async () => {
-            request(app)
+            const res = await request(app)
                 .get('/book/1234567890123')
                 .expect(200)
-                .end(function (err, res) {
-                    const obj = res.json()
-                    assert.deepEqual(obj, { _id: 1234567890123, cover_image: "https://covers.openlibrary.org/b/id/9561870-M.jpg", __v: 0 })
-                });
+
+            console.log(res.body);
+            const obj = res.body
+            assert.deepEqual(obj, { __v: 0, _id: 1234567890123, cover_image: "https://covers.openlibrary.org/b/id/9561870-M.jpg"});
         })
     })
 
@@ -50,20 +47,19 @@ describe("connection", () => {
         })
 
         it('status 200 with profile data from user', async () => {
-            request(app)
+            const res = await request(app)
                 .get('/user/janwillem?' + new URLSearchParams({ fields: ["_id", "profile_picture", "name", "top_three", "shelf"], }))
                 .expect(200)
-                .end(function (err, res) {
-                    const obj = res.json()
-                    assert.deepEqual(obj, {
-                        _id: "janwillem",
-                        profile_picture: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
-                        name: "Jan Willem",
-                        top_three: [],
-                        shelf: []
-                    })
-                });
-        })
+
+            const obj = res.body;
+            assert.deepEqual(obj, {
+                _id: "janwillem",
+                profile_picture: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+                name: "Jan Willem",
+                top_three: [],
+                shelf: []
+            })
+        });
     })
 
 
@@ -79,7 +75,7 @@ describe("connection", () => {
             );
         })
 
-        it('should add a book to the user\'s shelf and return 201 status', (done) => {
+        it('should add a book to the user\'s shelf and return 201 status', async () => {
             const username = "janwillem";
             const bookData = {
                 name: "test",
@@ -98,18 +94,17 @@ describe("connection", () => {
                     }]
             };
 
-            request(app)
-                .post(`/${username}/shelf`)
+            const res = await request(app)
+                .post(`/user/${username}/shelf`)
                 .send(bookData)
-                .expect(201)
-                .end((err, res) => {
-                    if (err) return done(err);
-                    assert.deepStrictEqual(res.body, bookData);
-                    done();
-                });
+                .expect(201);
+
+            assert.deepStrictEqual(res.body, bookData);
+
+
         });
 
-        it('should return a 404 status if the user is not found', (done) => {
+        it('should return a 404 status if the user is not found', async () => {
             const username = 'nonexistentuser';
             const bookData = {
                 name: "test",
@@ -128,13 +123,13 @@ describe("connection", () => {
                     }]
             };
 
-            request(app)
-                .post(`/${username}/shelf`)
+            await request(app)
+                .post(`/user/${username}/shelf`)
                 .send(bookData)
-                .expect(404, done);
+                .expect(404);
         });
 
-        it('should handle validation errors and return a 400 status', (done) => {
+        it('should handle validation errors and return a 400 status', async () => {
             // Simulate a validation error scenario
             const username = 'janwillem';
             const bookData = {
@@ -151,10 +146,10 @@ describe("connection", () => {
                     }]
             };
 
-            request(app)
-                .post(`/${username}/shelf`)
+            await request(app)
+                .post(`/user/${username}/shelf`)
                 .send(bookData)
-                .expect(400, done);
+                .expect(400);
         });
     });
 
@@ -167,7 +162,6 @@ describe("connection", () => {
                 _id: "janwillem",
                 name: "Jan Willem",
                 shelf: [{
-                    //_id: "hallotest",
                     name: "hallo",
                     books: [{
                         _id: 123,
@@ -180,35 +174,20 @@ describe("connection", () => {
                         cover_image: "url"
                     }]
                 }]
-            }
-            );
+            });
         })
 
-        test('Regular PUT on shelf', (done) => {
+        test('Regular PUT on shelf', async () => {
             const username = "janwillem";
-            const shelfname = "test";
+            const shelfname = "hallo";
 
-            request(app)
+            const res = await request(app)
                 .put(`/user/${username}/shelves/${shelfname}`)
-                .send(JSON.stringify({ _id: "4321", cover_image: "myimage" }))
+                .send({ _id: "4321", cover_image: "myimage" })
                 .expect('Content-Type', /json/)
                 .expect(200)
-                .then(res => {
-                    assert.equal(res.body, { _id: "4321", cover_image: "myimage" })
-                    done();
-                })
+
+            console.log(res.body);
+            assert.deepEqual(res.body, { _id: "4321", cover_image: "myimage" })
         })
     })
-
-
-    // TODO fetch("/sessions/google")
-
-
-    // TODO fetch("/sessions/linkedin")
-
-
-    // TODO fetch("/sessions/current")
-
-
-    // TODO fetch("/sessions/")
-})

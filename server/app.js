@@ -36,6 +36,8 @@ app.use((err, req, res, next) => {
   res.status(err.status).json({ error: err.message });
 });
 
+export default app;
+
 const server = app.listen(port, host, async () => {
   console.log("> connecting");
   await mongoose.connect(`mongodb://127.0.0.1:27017/BKS`);
@@ -44,5 +46,3 @@ const server = app.listen(port, host, async () => {
   const { address, port } = server.address();
   console.log(`Server started on http://${address}:${port}`);
 });
-
-export default app;

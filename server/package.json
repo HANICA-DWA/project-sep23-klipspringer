@@ -1,7 +1,7 @@
 {
   "type": "module",
   "scripts": {
-    "test": "node --test --experimental-test-coverage"
+    "test": "node --test --experimental-test-coverage ./__tests__/"
   },
   "dependencies": {
     "cors": "^2.8.5",
