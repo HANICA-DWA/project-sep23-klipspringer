@@ -14,7 +14,7 @@
 
 | Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
 |---|---|---|---|---|---|
-| 30 min  | logout/login button in header zetten | Alleen | Het ging allemaal vrij gemakkelijk | :slightly_smiling_face: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/aff38e60cb585576549026c90e4def85d9cfb6ac) |
+| 30 min  | logout/login button in header zetten | Alleen | Het ging allemaal vrij gemakkelijk | :slightly_smiling_face: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/aff38e60cb585576549026c90e4def85d9cfb6ac) [linl naar resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/28af2c370e7f04da973eb27255758511f6a142a7) |
 
 
 ## Dinsdag 23 november

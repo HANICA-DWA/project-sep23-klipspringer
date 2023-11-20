@@ -12,10 +12,10 @@
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak  | Met Wie | Resultaten                                                | Emotie | Link |
-|------|---|---------|-----------------------------------------------------------|---|---|
+| Uren | Taak  | Met Wie | Resultaten                                                | Emotie | Link                                                                                                                                |
+|------|---|---------|-----------------------------------------------------------|---|-------------------------------------------------------------------------------------------------------------------------------------|
 | 1    | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/87) | N.V.T.  | toevoegen van todo's voor testen die moeten gedaan worden |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/28ffc38a236d4b5ae47fd2d5add70722f28fb2ab) |
-|      | |         |                                                           | | |
+| 2    | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/87) | N.V.T.  | toevoegen van unit test in database.test.js voor bookcase |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/63f44f3145f941406413d60faf4c41ca36158958) |
 
 
 ## Dinsdag 23 november
