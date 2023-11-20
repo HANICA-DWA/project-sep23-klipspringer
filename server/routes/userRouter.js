@@ -56,32 +56,24 @@ router.put("/:username/shelves/:shelf", (req, res, next) => {
           throw error;
         } else if (shelf === "top_three") {
           const topThree = user.top_three;
-          if(topThree.find((item) => item._id === book._id)){
-            const error = createError("This book is already on the shelf", 400);
-            throw error;
-          } else {
-            topThree.push(book);
-            user.addToBookcase([book]);
-            return user.save();
-          }
+          topThree.push(book);
+          user.addToBookcase([book]);
+          return user.save();
         } else {
           const userShelf = user.shelf.id(shelf);
-          if(userShelf.books.find((item) => item._id === book._id)){
-            const error = createError("This book is already on the shelf", 400);
-            throw error;
-          } else {
-            userShelf.books.push(book);
-            user.addToBookcase([book]);
-            return user.save();
-          }
+          userShelf.books.push(book);
+          user.addToBookcase([book]);
+          return user.save();
         }
       })
       .then(() => {
         res.statusCode = 200;
-        res.send();
+        res.send(book);
       })
       .catch((err) => {
-        next(err);
+        let error = err;
+        if (err.errors) error = createError(err.errors[Object.keys(err.errors)[0]].message, 400);
+        next(error);
       });
   } else {
     const error = createError("Specify body with book or shelf", 400);

@@ -12,9 +12,10 @@
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak     | Met Wie | Resultaten       | Emotie      | Link                                                             |
-|------|----------|---------|------------------|-------------|------------------------------------------------------------------|
-| 1    | Bugfixes |         | Fixes bij zoeken | :cold_face: | https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/86 |
+| Uren | Taak  | Met Wie | Resultaten                                                | Emotie | Link |
+|------|---|---------|-----------------------------------------------------------|---|---|
+| 1    | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/87) | N.V.T.  | toevoegen van todo's voor testen die moeten gedaan worden |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/28ffc38a236d4b5ae47fd2d5add70722f28fb2ab) |
+|      | |         |                                                           | | |
 
 
 ## Dinsdag 23 november

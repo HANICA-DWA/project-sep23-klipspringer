@@ -25,6 +25,7 @@ describe('Bookcase Tests', () => {
         );
     })
 
+    // book is correctly added to bookcase
     test('AddingToBookcase', async () => {
         let user = await User.findById('janwillem');
         await user.addToBookcase([{_id: '123', cover_image: "image_url"}]);
