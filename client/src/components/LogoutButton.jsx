@@ -1,3 +1,4 @@
+import { Logout } from "@mui/icons-material";
 import { Button } from "@mui/material";
 
 export default function LogoutButton({ setLoggedIn }) {
@@ -10,8 +11,8 @@ export default function LogoutButton({ setLoggedIn }) {
     setLoggedIn({ loggedIn: false, username: undefined });
   };
   return (
-    <Button variant="contained" onClick={clickHandler}>
-      Log out
+    <Button sx={{margin: "5px"}} size="small" variant="contained" onClick={clickHandler}>
+      <Logout/>
     </Button>
   );
 }

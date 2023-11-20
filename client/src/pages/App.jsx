@@ -1,4 +1,3 @@
-import { Button, Typography } from "@mui/material";
 import { useContext } from "react";
 import { LoggedInContext } from "../Contexts";
 import LoginButton from "../components/LoginButton";
