@@ -48,7 +48,12 @@ function Profilepage() {
             borderRadius: "50px",
           }}
         >
-          <Avatar sx={{ width: 56, height: 56 }} alt={profileInfo.name} src={profileInfo.profile_picture} />
+          <Avatar
+            sx={{ width: 56, height: 56 }}
+            alt={profileInfo.name}
+            src={profileInfo.profile_picture}
+            imgProps={{ referrerPolicy: "no-referrer" }}
+          />
         </div>
         <Typography variant="h6" fontWeight="700" sx={{ overflowWrap: "anywhere", maxWidth: "100%", textAlign: "center" }}>
           {profileInfo.name}
