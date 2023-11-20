@@ -1,14 +1,21 @@
 import { useContext, useEffect } from "react";
 import { LoggedInContext } from "../Contexts";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-export default function ProtectedRoute(props) {
-  const { loggedIn } = useContext(LoggedInContext);
+export default function ProtectedRoute({ children, loading }) {
+  const { loggedIn, username } = useContext(LoggedInContext);
   const navigate = useNavigate();
+  const usernameParams = useParams().userName;
 
   useEffect(() => {
-    if (!loggedIn) navigate("/unauthorized");
-  }, [loggedIn]);
+    if (!loading) {
+      if (!loggedIn) {
+        navigate("/unauthorized");
+      } else if (usernameParams && usernameParams !== username) {
+        navigate("/");
+      }
+    }
+  }, [loggedIn, username, usernameParams]);
 
-  return loggedIn ? props.children : null;
+  return loading ? null : loggedIn ? children : null;
 }
