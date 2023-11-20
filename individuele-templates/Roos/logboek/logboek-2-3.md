@@ -15,6 +15,7 @@
 | Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
 |---|---|---|---|---|---|
 | 30 min  | logout/login button in header zetten | Alleen | Het ging allemaal vrij gemakkelijk | :slightly_smiling_face: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/aff38e60cb585576549026c90e4def85d9cfb6ac) [linl naar resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/28af2c370e7f04da973eb27255758511f6a142a7) |
+| 2,5 uur | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/87) [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/92)| Met Joris en Niels | Het schrijven van de testen was vrij gemakkelijk, alleen wilde de testen niet goed connecten met de testdatabase, waardoor die de echte gebruikte. Dit heb ik uiteindelijk kunen oplossen | :face_exhaling: | [link naar de resultaten]() |
 
 
 ## Dinsdag 23 november
