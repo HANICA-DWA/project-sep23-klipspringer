@@ -1,13 +1,11 @@
 import { Login } from "@mui/icons-material";
-import { IconButton } from "@mui/material";
+import { Button, IconButton, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 export default function LoginButton() {
   return (
-    <Link to={"/login"}>
-      <IconButton sx={{margin: "5px"}} >
-        <Login/>
-      </IconButton>
-    </Link>
+    <Button variant="text" component={Link} to={"/login"} endIcon={<Login style={{ transform: "scale(1.2)" }} />}>
+      <Typography variant="body1">Login</Typography>
+    </Button>
   );
 }

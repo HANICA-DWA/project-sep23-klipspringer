@@ -39,8 +39,8 @@ function Profilepage({ setLoggedIn }) {
 
   return (
     <>
-      <Header setLoggedIn={setLoggedIn} />
       <Stack justifyContent="flex-start" sx={{ minHeight: "90vh" }} mx="10px" spacing={3} useFlexGap>
+        <Header setLoggedIn={setLoggedIn} />
         <Stack direction="column" alignItems="center">
           <div
             style={{
