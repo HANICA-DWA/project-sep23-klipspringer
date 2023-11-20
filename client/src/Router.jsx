@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet, useParams } from "react-router-dom";
 import Profilepage from "./pages/Profilepage";
 import App from "./pages/App";
 import Login from "./pages/Login";
@@ -8,24 +8,33 @@ import { LinkedInCallback } from "react-linkedin-login-oauth2";
 import { useEffect, useState } from "react";
 import { LoggedInContext } from "./Contexts";
 import NotFound from "./pages/NotFound";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Unauthorized from "./pages/Unauthorized";
+import { CircularProgress, Stack } from "@mui/material";
 
 export default function Router() {
   const [loggedIn, setLoggedIn] = useState({ loggedIn: false, username: undefined });
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const setLoggedInStatus = async () => {
-      const response = await fetch(import.meta.env.VITE_BACKEND_HOST + "/sessions/current", {
-        credentials: "include",
-        mode: "cors",
-      });
-      const result = await response.json();
-      setLoggedIn(result);
-      return result;
+      try {
+        const response = await fetch(import.meta.env.VITE_BACKEND_HOST + "/sessions/current", {
+          credentials: "include",
+          mode: "cors",
+        });
+        if (!response.ok) throw new Error("Fetch failed");
+        const result = await response.json();
+        setLoggedIn(result);
+        setLoading(false);
+        return result;
+      } catch (err) {
+        setLoading(false);
+        return false;
+      }
     };
     setLoggedInStatus();
   }, []);
-
-  console.log(loggedIn);
 
   return (
     <LoggedInContext.Provider value={loggedIn}>
@@ -33,14 +42,62 @@ export default function Router() {
         <Routes>
           {/* <Route path="/" element={<App setLoggedIn={setLoggedIn} />} /> */}
           <Route path="/search" element={<SearchPage />} />
-          <Route path="/search/:shelf" element={<SearchPage />} />
-          <Route path="/profile/:userName" element={<Profilepage setLoggedIn={setLoggedIn} loggedIn={loggedIn} />} />
-          <Route path="/profile/:userName/shelf" element={<ShelfPage />} />
+          <Route path="/profile/:userName" element={<ProfileContainer />}>
+            <Route path="" element={<Profilepage setLoggedIn={setLoggedIn} loggedIn={loggedIn} />} />
+            <Route
+              path="shelf"
+              element={
+                <ProtectedRoute loading={loading}>
+                  <ShelfPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path=":shelf/add"
+              element={
+                <ProtectedRoute loading={loading}>
+                  <SearchPage />
+                </ProtectedRoute>
+              }
+            />
+          </Route>
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
           <Route path="/linkedin" element={<LinkedInCallback />} />
+          <Route path="/unauthorized" element={<Unauthorized />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </LoggedInContext.Provider>
   );
+}
+
+function ProfileContainer() {
+  const { userName } = useParams();
+  const [userExist, setUserExist] = useState(null);
+
+  useEffect(() => {
+    const fetchUserExists = async (user) => {
+      const response = await fetch(
+        import.meta.env.VITE_BACKEND_HOST +
+          "/user/" +
+          user +
+          "?" +
+          new URLSearchParams({
+            fields: ["_id"],
+          })
+      );
+      setUserExist(response.ok);
+    };
+    fetchUserExists(userName);
+  }, [userName]);
+
+  if (userExist === null) {
+    return (
+      <Stack height="100vh" alignItems="center" justifyContent="center">
+        <CircularProgress style={{ width: "15vh", height: "auto" }} />
+      </Stack>
+    );
+  }
+
+  return userExist ? <Outlet /> : <NotFound />;
 }

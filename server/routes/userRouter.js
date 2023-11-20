@@ -10,6 +10,10 @@ router.get("/:username", (req, res, next) => {
     const fieldsArray = req.query.fields.split(",");
     User.findById(req.params.username)
       .then((user) => {
+        if (user === null) {
+          const error = createError("User not found", 404);
+          throw error;
+        }
         const fields = {};
         for (var i = 0; i < fieldsArray.length; i++) {
           fields[fieldsArray[i]] = user[fieldsArray[i]];
