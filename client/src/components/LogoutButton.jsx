@@ -1,5 +1,5 @@
 import { Logout } from "@mui/icons-material";
-import { Button } from "@mui/material";
+import { IconButton } from "@mui/material";
 
 export default function LogoutButton({ setLoggedIn }) {
   const clickHandler = async () => {
@@ -11,8 +11,8 @@ export default function LogoutButton({ setLoggedIn }) {
     setLoggedIn({ loggedIn: false, username: undefined });
   };
   return (
-    <Button sx={{margin: "5px"}} size="small" variant="contained" onClick={clickHandler}>
+    <IconButton sx={{margin: "5px"}} onClick={clickHandler}>
       <Logout/>
-    </Button>
+    </IconButton>
   );
 }

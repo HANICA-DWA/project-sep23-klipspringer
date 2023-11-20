@@ -44,7 +44,7 @@ function Profilepage({setLoggedIn}) {
         <Stack direction="column" alignItems="center">
           <div
             style={{
-              marginTop: "50px",
+              marginTop: "40px",
               marginBottom: "20px",
               padding: "3px",
               border: "1px solid grey",
