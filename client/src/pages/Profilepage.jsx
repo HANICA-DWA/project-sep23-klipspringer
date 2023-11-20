@@ -37,7 +37,7 @@ function Profilepage() {
   }, []);
 
   return (
-    <Stack justifyContent="flex-start" style={{ minHeight: "100vh" }} spacing={3} useFlexGap>
+    <Stack justifyContent="flex-start" sx={{ minHeight: "100vh" }} mx="10px" spacing={3} useFlexGap>
       <Stack direction="column" alignItems="center">
         <div
           style={{
@@ -50,7 +50,7 @@ function Profilepage() {
         >
           <Avatar sx={{ width: 56, height: 56 }} alt={profileInfo.name} src={profileInfo.profile_picture} />
         </div>
-        <Typography variant="h6" fontWeight="700">
+        <Typography variant="h6" fontWeight="700" sx={{ overflowWrap: "anywhere", maxWidth: "100%", textAlign: "center" }}>
           {profileInfo.name}
         </Typography>
       </Stack>

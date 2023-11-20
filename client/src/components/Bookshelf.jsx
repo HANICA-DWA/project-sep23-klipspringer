@@ -34,7 +34,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user }) {
 
   return (
     <Stack direction="column" alignItems="center">
-      <Typography gutterBottom variant="h5" fontWeight="800">
+      <Typography gutterBottom variant="h5" fontWeight="800" sx={{ overflowWrap: "anywhere", maxWidth: "100%", textAlign: "center" }}>
         {title}
       </Typography>
       <Stack direction="row" justifyContent="center" spacing={2}>
