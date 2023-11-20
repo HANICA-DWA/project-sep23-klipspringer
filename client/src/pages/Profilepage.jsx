@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { LoggedInContext } from "../Contexts";
 import Header from "../components/Header";
 
-function Profilepage({setLoggedIn}) {
+function Profilepage({ setLoggedIn }) {
   const navigate = useNavigate();
   const userName = useParams().userName;
   const { loggedIn, username } = useContext(LoggedInContext);
@@ -16,12 +16,12 @@ function Profilepage({setLoggedIn}) {
   useEffect(() => {
     fetch(
       import.meta.env.VITE_BACKEND_HOST +
-      "/user/" +
-      userName +
-      "?" +
-      new URLSearchParams({
-        fields: ["_id", "profile_picture", "name", "top_three", "shelf"],
-      }),
+        "/user/" +
+        userName +
+        "?" +
+        new URLSearchParams({
+          fields: ["_id", "profile_picture", "name", "top_three", "shelf"],
+        }),
       {
         method: "GET",
       }
@@ -40,7 +40,7 @@ function Profilepage({setLoggedIn}) {
   return (
     <>
       <Header setLoggedIn={setLoggedIn} />
-      <Stack justifyContent="flex-start" sx={{ minHeight: "100vh" }} mx="10px" spacing={3} useFlexGap>
+      <Stack justifyContent="flex-start" sx={{ minHeight: "90vh" }} mx="10px" spacing={3} useFlexGap>
         <Stack direction="column" alignItems="center">
           <div
             style={{
@@ -52,11 +52,11 @@ function Profilepage({setLoggedIn}) {
             }}
           >
             <Avatar
-            sx={{ width: 56, height: 56 }}
-            alt={profileInfo.name}
-            src={profileInfo.profile_picture}
-            imgProps={{ referrerPolicy: "no-referrer" }}
-          />
+              sx={{ width: 56, height: 56 }}
+              alt={profileInfo.name}
+              src={profileInfo.profile_picture}
+              imgProps={{ referrerPolicy: "no-referrer" }}
+            />
           </div>
           <Typography variant="h6" fontWeight="700" sx={{ overflowWrap: "anywhere", maxWidth: "100%", textAlign: "center" }}>
             {profileInfo.name}
@@ -67,7 +67,9 @@ function Profilepage({setLoggedIn}) {
           <Bookshelf key={"top_three"} id={"top_three"} title="My top 3 books" books={profileInfo.top_three} user={profileInfo._id} />
         ) : null}
         {profileInfo.shelf != undefined && profileInfo.shelf.length > 0
-          ? profileInfo.shelf.map((shelf) => <Bookshelf key={shelf._id} id={shelf._id} title={shelf.name} books={shelf.books} user={profileInfo._id} />)
+          ? profileInfo.shelf.map((shelf) => (
+              <Bookshelf key={shelf._id} id={shelf._id} title={shelf.name} books={shelf.books} user={profileInfo._id} />
+            ))
           : null}
 
         <Stack direction="column" alignItems="center" mt="auto">

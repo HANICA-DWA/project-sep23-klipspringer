@@ -7,6 +7,7 @@ import ShelfPage from "./pages/ShelfPage";
 import { LinkedInCallback } from "react-linkedin-login-oauth2";
 import { useEffect, useState } from "react";
 import { LoggedInContext } from "./Contexts";
+import NotFound from "./pages/NotFound";
 
 export default function Router() {
   const [loggedIn, setLoggedIn] = useState({ loggedIn: false, username: undefined });
@@ -24,7 +25,7 @@ export default function Router() {
     setLoggedInStatus();
   }, []);
 
-  console.log(loggedIn)
+  console.log(loggedIn);
 
   return (
     <LoggedInContext.Provider value={loggedIn}>
@@ -33,10 +34,11 @@ export default function Router() {
           {/* <Route path="/" element={<App setLoggedIn={setLoggedIn} />} /> */}
           <Route path="/search" element={<SearchPage />} />
           <Route path="/search/:shelf" element={<SearchPage />} />
-          <Route path="/profile/:userName" element={<Profilepage setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>} />
+          <Route path="/profile/:userName" element={<Profilepage setLoggedIn={setLoggedIn} loggedIn={loggedIn} />} />
           <Route path="/profile/:userName/shelf" element={<ShelfPage />} />
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
           <Route path="/linkedin" element={<LinkedInCallback />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </LoggedInContext.Provider>
