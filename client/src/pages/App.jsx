@@ -10,8 +10,6 @@ function App({ setLoggedIn }) {
   return (
     <>
       {loggedIn ? <LogoutButton setLoggedIn={setLoggedIn} /> : <LoginButton />}
-      <Typography variant="h1">hoi</Typography>
-      <Button>Yo</Button>
     </>
   );
 }
