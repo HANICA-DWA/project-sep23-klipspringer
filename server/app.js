@@ -44,3 +44,5 @@ const server = app.listen(port, host, async () => {
   const { address, port } = server.address();
   console.log(`Server started on http://${address}:${port}`);
 });
+
+export default app;
