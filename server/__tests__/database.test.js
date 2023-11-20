@@ -33,4 +33,18 @@ describe('Bookcase Tests', () => {
         let test_user = await User.findById('janwillem').lean();
         assert.deepEqual(test_user.bookcase, [{_id: '123', cover_image: "image_url"}]);
     })
+
+    // book is not added to bookcase if it is already in the bookcase
+    test('AddingToBookcaseDuplicate', async () => {
+        let user = await User.findById('janwillem');
+        await user.addToBookcase([{_id: '123', cover_image: "image_url"}]);
+        await user.save()
+
+
+        await user.addToBookcase([{_id: '123', cover_image: "image_url"}]);
+        await user.save()
+
+        let test_user = await User.findById('janwillem').lean();
+        assert.deepEqual(test_user.bookcase, [{_id: '123', cover_image: "image_url"}]);
+    })
 })
