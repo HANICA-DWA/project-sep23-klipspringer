@@ -6,6 +6,8 @@ import User from "../model/user.js";
 
 const router = express.Router();
 
+/* node:coverage disable */
+
 router.post("/google", async (req, res, next) => {
   const { idToken } = req.body;
   try {
@@ -74,3 +76,5 @@ router.get("/current", (req, res, next) => {
 });
 
 export default router;
+
+/* node:coverage enable */

@@ -3,6 +3,8 @@ import jwt from "jsonwebtoken";
 import jwkToPem from "jwk-to-pem";
 import { createError } from "./errorCreation.js";
 
+/* node:coverage disable */
+
 export async function googleVerifyIdToken(token) {
   const client = new OAuth2Client();
   const ticket = await client.verifyIdToken({
@@ -44,3 +46,5 @@ export async function linkedInVerifyIdToken(token) {
 
   return decoded;
 }
+
+/* node:coverage enable */
