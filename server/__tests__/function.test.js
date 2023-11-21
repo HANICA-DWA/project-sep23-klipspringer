@@ -1,7 +1,7 @@
 import { it, test, before, after, beforeEach, describe, afterEach } from 'node:test'
 import assert from 'node:assert';
 import { createError } from "../functions/errorCreation.js";
-import { getUserByUsername } from '../functions/users.js';
+import { getUserByUsername, getUserBySSOId } from '../functions/users.js';
 import mongoose from 'mongoose'
 import User from '../model/user.js'
 import request from 'supertest';
@@ -64,7 +64,34 @@ describe("connection", () => {
 
 
     // TODO getUserBySSOId
+    describe('getUserBySSOId function', () => {
+        beforeEach(async () => {
+            await User.deleteMany();
+            await User.create({
+                _id: "janwillem",
+                name: "Jan Willem",
+                sso_id: "115465550426303570299",
+                sso_provider: "Google"
+            });
+        })
 
+        it("should get the user information", async () => {
+            const username = "janwillem";
+            const sso_id = "115465550426303570299";
+            const sso_provider = "Google";
+
+            const userInfo = await getUserBySSOId(sso_id, sso_provider)
+            assert.strictEqual(userInfo._id, username)
+        })
+
+        it("should get null", async () => {
+            const sso_id = "4654789087007805546758";
+            const sso_provider = "Google";
+
+            const userInfo = await getUserBySSOId(sso_id, sso_provider)
+            assert.strictEqual(userInfo, null)
+        })
+    })
 
     // TODO getUniqueId
 
