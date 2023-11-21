@@ -7,7 +7,7 @@ import User from '../model/user.js'
 
 describe("connection", () => {
     before(async () => {
-        //await mongoose.connect(`mongodb://127.0.0.1:27017/TestBKS`);
+        await mongoose.connect(`mongodb://127.0.0.1:27017/TestBKS`);
     })
 
     after(async () => {
@@ -48,4 +48,6 @@ describe("connection", () => {
         let test_user = await User.findById('janwillem').lean();
         assert.deepEqual(test_user.bookcase, [{_id: '123', cover_image: "image_url"}]);
     })
+
+    
 })

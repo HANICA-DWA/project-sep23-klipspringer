@@ -66,9 +66,9 @@ router.put("/:username/shelves/:shelf", (req, res, next) => {
           user.addToBookcase(book);
           return user.save();
         } else {
-          const userShelf = user.shelf.find((item) => item.name === shelf);
+          const userShelf = user.shelf.id(shelf);
           userShelf.books.push(book);
-          user.addToBookcase(book);
+          user.addToBookcase([book]);
           return user.save();
         }
       })

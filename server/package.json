@@ -1,10 +1,11 @@
 {
   "type": "module",
   "scripts": {
-    "test": "node --test --experimental-test-coverage ./__tests__/"
+    "test": "cross-env NODE_ENV=test node --test --experimental-test-coverage ./__tests__/"
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-session": "^1.17.3",

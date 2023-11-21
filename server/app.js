@@ -38,9 +38,16 @@ app.use((err, req, res, next) => {
 
 export default app;
 
-const server = app.listen(port, host, async () => {
+export const server = app.listen(port, host, async () => {
   console.log("> connecting");
-  await mongoose.connect(`mongodb://127.0.0.1:27017/BKS`);
+  if (process.env.NODE_ENV === 'test') {
+    console.log("Connecting to test db")
+    await mongoose.connect(`mongodb://127.0.0.1:27017/TestBKS`);
+  }
+  else {
+    console.log("Connecting to dev db")
+    await mongoose.connect(`mongodb://127.0.0.1:27017/BKS`);
+  }
   console.log("> connected");
 
   const { address, port } = server.address();

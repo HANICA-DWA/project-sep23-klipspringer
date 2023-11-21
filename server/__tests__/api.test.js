@@ -1,18 +1,23 @@
 import { it, test, before, after, beforeEach, describe } from 'node:test'
 import assert from 'node:assert';
 import request from 'supertest';
-import app from '../app.js';
+import app, {server} from '../app.js';
 import mongoose from 'mongoose'
 import User from '../model/user.js'
 import Book from '../model/book.js'
 
-before(async () => {
-    await mongoose.connect(`mongodb://127.0.0.1:27017/TestBKS`)
-})
 
-after(async () => {
-    await mongoose.disconnect();
-})
+
+describe("connection", () => {
+    before(async () => {
+        //await mongoose.connect(`mongodb://127.0.0.1:27017/TestBKS`)
+    })
+
+    after(async () => {
+        await server.close()
+        await mongoose.disconnect();
+    })
+
 
     // TODO fetch("/book/:id")
     describe('GET /book/:id', () => {
@@ -29,9 +34,8 @@ after(async () => {
                 .get('/book/1234567890123')
                 .expect(200)
 
-            console.log(res.body);
             const obj = res.body
-            assert.deepEqual(obj, { __v: 0, _id: 1234567890123, cover_image: "https://covers.openlibrary.org/b/id/9561870-M.jpg"});
+            assert.deepEqual(obj, { __v: 0, _id: 1234567890123, cover_image: "https://covers.openlibrary.org/b/id/9561870-M.jpg" });
         })
     })
 
@@ -162,6 +166,7 @@ after(async () => {
                 _id: "janwillem",
                 name: "Jan Willem",
                 shelf: [{
+                    _id: '655b323165c31f3c397b6753',
                     name: "hallo",
                     books: [{
                         _id: 123,
@@ -177,17 +182,18 @@ after(async () => {
             });
         })
 
-        test('Regular PUT on shelf', async () => {
+        it('Regular PUT on shelf', async () => {
             const username = "janwillem";
-            const shelfname = "hallo";
+            const shelfId = '655b323165c31f3c397b6753';
 
             const res = await request(app)
-                .put(`/user/${username}/shelves/${shelfname}`)
-                .send({ _id: "4321", cover_image: "myimage" })
-                .expect('Content-Type', /json/)
+                .put(`/user/${username}/shelves/${shelfId}`)
+                .send({ book: { _id: "4321", cover_image: "myimage" } })
+                .set('Content-Type', 'application/json')
                 .expect(200)
 
-            console.log(res.body);
             assert.deepEqual(res.body, { _id: "4321", cover_image: "myimage" })
+            console.log("test");
         })
     })
+})
