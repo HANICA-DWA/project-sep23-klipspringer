@@ -12,6 +12,7 @@ describe("connection", () => {
   });
 
   after(async () => {
+    await User.deleteMany();
     await server.close();
     await mongoose.disconnect();
   });

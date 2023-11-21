@@ -23,15 +23,11 @@ router.use("/:username", async (req, res, next) => {
 router.get("/:username", (req, res, next) => {
   if (req.query.fields != undefined) {
     const fieldsArray = req.query.fields.split(",");
-    try {
-      const fields = {};
-      for (var i = 0; i < fieldsArray.length; i++) {
-        fields[fieldsArray[i]] = req.user[fieldsArray[i]];
-      }
-      res.send(fields);
-    } catch (err) {
-      next(err);
+    const fields = {};
+    for (var i = 0; i < fieldsArray.length; i++) {
+      fields[fieldsArray[i]] = req.user[fieldsArray[i]];
     }
+    res.send(fields);
   } else {
     const error = createError("Specify fields", 400);
     next(error);

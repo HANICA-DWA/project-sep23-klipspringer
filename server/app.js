@@ -40,17 +40,16 @@ export default app;
 
 export const server = app.listen(port, host, async () => {
   console.log("> connecting");
-  if (process.env.NODE_ENV === 'test') {
-    console.log("Connecting to test db")
+  if (process.env.NODE_ENV === "test") {
+    console.log("Connecting to test db");
     await mongoose.connect(`mongodb://127.0.0.1:27017/TestBKS`);
-  }
-  /* node:coverage ignore next 4 */
-  else {
-    console.log("Connecting to dev db")
+    /* node:coverage disable */
+  } else {
+    console.log("Connecting to dev db");
     await mongoose.connect(`mongodb://127.0.0.1:27017/BKS`);
   }
   console.log("> connected");
-
+  /* node:coverage enable */
   const { address, port } = server.address();
   console.log(`Server started on http://${address}:${port}`);
 });
