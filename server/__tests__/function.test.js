@@ -1,16 +1,12 @@
-import { it, test, before, after, beforeEach, describe, afterEach } from 'node:test'
+import { it, before, after, beforeEach, describe } from 'node:test'
 import assert from 'node:assert';
 import { createError } from "../functions/errorCreation.js";
-import { getUserByUsername, getUserBySSOId } from '../functions/users.js';
+import { getUserByUsername, getUserBySSOId, getUniqueId } from '../functions/users.js';
 import mongoose from 'mongoose'
 import User from '../model/user.js'
-import request from 'supertest';
-import app from '../app.js';
 
 
 describe("connection", () => {
-
-
     before(async () => {
         await mongoose.connect(`mongodb://127.0.0.1:27017/TestBKS`)
 
@@ -21,7 +17,7 @@ describe("connection", () => {
     })
 
     // TODO createError
-    describe('createError function', () => {
+    describe('createError function',  () => {
         it('should create an error with default message and status', () => {
             const defaultError = createError();
             assert.strictEqual(defaultError.message, 'Something went wrong');
@@ -94,5 +90,27 @@ describe("connection", () => {
     })
 
     // TODO getUniqueId
+    describe('getUniqueId function', () => {
+        beforeEach(async () => {
+            await User.deleteMany();
+            await User.create({
+                _id: "janwillem",
+                name: "Jan Willem",
+            });
+        })
 
+        it('should get the username + 1', async () => {
+            const username = "janwillem"
+
+            const userInfo = await getUniqueId(username)
+            assert.strictEqual(userInfo, "janwillem1")
+        })
+
+        it('should get the username without 1', async () => {
+            const username = "doesnotExist"
+
+            const userInfo = await getUniqueId(username)
+            assert.strictEqual(userInfo, "doesnotExist")
+        })
+    })
 })
