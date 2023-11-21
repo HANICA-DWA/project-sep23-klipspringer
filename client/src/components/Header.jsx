@@ -9,7 +9,7 @@ export default function Header({ setLoggedIn }) {
 
   return (
     <>
-      <Stack direction="row" justifyContent="flex-end">
+      <Stack direction="row" justifyContent="flex-end" mx="10px">
         {loggedIn ? <LogoutButton setLoggedIn={setLoggedIn} /> : <LoginButton />}
       </Stack>
     </>

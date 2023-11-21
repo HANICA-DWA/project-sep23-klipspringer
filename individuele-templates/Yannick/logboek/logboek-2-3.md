@@ -8,50 +8,46 @@
 
 > [Hier is een lijstje met alle GitHub emojis](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md)
 
-## Maandag 22 november
+## Maandag 20 november
+
+| **Uren** | **Taak**                                                                                                               | **Met Wie**   | **Resultaten**                                                                                                                                  | **Emotie**         | **Link**                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| -------- | ---------------------------------------------------------------------------------------------------------------------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1h       | [link naar taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/95)<br>Een 404 page aangemaakt        | Alleen ikzelf | Een 404 page voor urls die niet bestaan in de app, voor een gebruiksvriendelijkere ervaring                                                     | :smiley:           | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/032a3415f9c5462ae9e96b87ef17c961fad9ad11)                                                                                                                                                                                                                                                                                                                                               |
+| 1.5h     | Aantal validators aan mongoose schema toegevoegd en error handling miste bij een endpoint                              | Alleen ikzelf | Validators voor unieke boeken in shelf of top_three. Was even kijken hoe je custom validators aan mongoose toevoegt                             | :thinking:         | [link naar resultaat 1](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/7e9b2fe7b8736f38beb02bc76707e037ff56da73#diff-1b14040334645a28e301f79780e54647b5f9d37af2603ce388f9c6a52fdb8300)<br>[link naar resultaat 2](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/53e39170d9320dc7d5d2641ad4e163a55ef8cf1b)<br>[link naar resultaat 3](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/9b5cd863889568925b746e74d7c7fad303f41eba) |
+| 2h       | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/96)<br>Authorisatie op de frontend | Alleen ikzelf | Autorisatie op de frontend toegevoegd, checken of gebruiker toegang heeft tot een pagina. Hierbij ook 404 en unauthorized pagina's bij gebruikt | :upside_down_face: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/94)                                                                                                                                                                                                                                                                                                                                                                                       |
+
+## Dinsdag 21 november
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
+| Uren                           | Taak                                                                      | Met Wie                       | Resultaten                                                                                           | Emotie                                                                                                                  | Link                                                              |
+| ------------------------------ | ------------------------------------------------------------------------- | ----------------------------- | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc. | bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
+|                                |                                                                           |                               |                                                                                                      |                                                                                                                         |                                                                   |
 
-
-## Dinsdag 23 november
-
-> Eventueel informatieve algemene opmerkingen over deze dag.
-
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
-
-## Woensdag 24 november
+## Woensdag 22 november
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
+| Uren                           | Taak                                                                      | Met Wie                       | Resultaten                                                                                           | Emotie                                                                                                                  | Link                                                              |
+| ------------------------------ | ------------------------------------------------------------------------- | ----------------------------- | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc. | bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
+|                                |                                                                           |                               |                                                                                                      |                                                                                                                         |                                                                   |
 
-## Donderdag 25 november
-
-> Eventueel informatieve algemene opmerkingen over deze dag.
-
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
-
-
-
-## Vrijdag 26 november
+## Donderdag 23 november
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
+| Uren                           | Taak                                                                      | Met Wie                       | Resultaten                                                                                           | Emotie                                                                                                                  | Link                                                              |
+| ------------------------------ | ------------------------------------------------------------------------- | ----------------------------- | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc. | bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
+|                                |                                                                           |                               |                                                                                                      |                                                                                                                         |                                                                   |
+
+## Vrijdag 24 november
+
+> Eventueel informatieve algemene opmerkingen over deze dag.
+
+| Uren                           | Taak                                                                      | Met Wie                       | Resultaten                                                                                           | Emotie                                                                                                                  | Link                                                              |
+| ------------------------------ | ------------------------------------------------------------------------- | ----------------------------- | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc. | bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
+|                                |                                                                           |                               |                                                                                                      |                                                                                                                         |                                                                   |
