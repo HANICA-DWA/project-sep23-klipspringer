@@ -8,7 +8,7 @@
 
 > [Hier is een lijstje met alle GitHub emojis](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md)
 
-## Maandag 22 november
+## Maandag 20 november
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
@@ -19,24 +19,16 @@
 | 2,5 uur | Test bugs fixen | Met Niels | De test wilde op wonderbaarlijke wijze niet werken dus waren we daar super druk meebezig | :face_with_spiral_eyes: | [link naar resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/99/commits/01b1a83f9a7fb6263e0af690221dd89e69792a1a) |
 
 
-## Dinsdag 23 november
+## Dinsdag 21 november
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
 | Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
 |---|---|---|---|---|---|
 | 1 uur | zorgen dat de test weer gaan werken | Met Niels, Jelle, Yannick | Het mocht even duren maar het werkt eindelijk, wat het probleem was? Joost mag het weten | :exploding_head: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/99/commits/6943ea4a72f36d85dc020788cb2e413062ffd3a6) |
+| 2,5 uur | meer tests schrijven en zorgen dat het werkt | met Yannick en Niels | Nadat ik de laatste test had geschreven, wilde hij het opeens niet meer doen, na lang zoeken is het eindelijke gefixt | :tired_face: | [link naar resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/d64f03ec435a6eed8b1d6127d354f344ba6c7d15#diff-6ab519b2dace291d62a2917978221d2e2ec9c70dba04b6ca94cb107bedaea544) |
 
-## Woensdag 24 november
-
-> Eventueel informatieve algemene opmerkingen over deze dag.
-
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
-
-## Donderdag 25 november
+## Woensdag 22 november
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
@@ -45,9 +37,18 @@
 | rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
 | | | | | | |
 
+## Donderdag 23 november
+
+> Eventueel informatieve algemene opmerkingen over deze dag.
+
+| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
+|---|---|---|---|---|---|
+| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
+| | | | | | |
 
 
-## Vrijdag 26 november
+
+## Vrijdag 24 november
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
