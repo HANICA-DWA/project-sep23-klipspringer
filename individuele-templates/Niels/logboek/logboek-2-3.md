@@ -22,9 +22,10 @@
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak                                                               | Met Wie  | Resultaten                            | Emotie  | Link                                                             |
-|------|--------------------------------------------------------------------|----------|---------------------------------------|---------|------------------------------------------------------------------|
-| 1    | https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/87 | Iedereen | Er zijn nu unit tests voor de backend | :skull: | https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/97 |
+| Uren | Taak                                                               | Met Wie       | Resultaten                            | Emotie  | Link                                                                                                     |
+|------|--------------------------------------------------------------------|---------------|---------------------------------------|---------|----------------------------------------------------------------------------------------------------------|
+| 3    | https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/87 | Iedereen      | Er zijn nu unit tests voor de backend | :skull: | https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/97                                         |
+| 1.5  | https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/87 | Roos, Yannick | Unit tests werken nu eindelijk        | :rage:  | https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/d64f03ec435a6eed8b1d6127d354f344ba6c7d15 |
 
 ## Woensdag 24 november
 
