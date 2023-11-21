@@ -3,10 +3,18 @@ import { GoogleLogin } from "@react-oauth/google";
 import { LinkedIn } from "react-linkedin-login-oauth2";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { useNavigate } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { LoggedInContext } from "../Contexts";
 
 export default function Login({ setLoggedIn }) {
   const navigate = useNavigate();
+  const { loggedIn, username } = useContext(LoggedInContext);
   const redirectURI = `${window.location.origin}/linkedin`;
+
+  useEffect(() => {
+    if (loggedIn) navigate(`/profile/${username}`);
+  }, [loggedIn, username]);
+
   return (
     <Stack
       useFlexGap

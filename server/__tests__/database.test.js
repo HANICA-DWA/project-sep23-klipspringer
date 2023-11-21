@@ -1,50 +1,48 @@
-'use strict'
+"use strict";
 
-import { test, before, after, beforeEach, describe } from 'node:test'
-import assert from 'node:assert'
+import { it, test, before, after, beforeEach, afterEach, describe } from "node:test";
+import assert from "node:assert";
+import mongoose from "mongoose";
+import User from "../model/user.js";
 
-import mongoose from 'mongoose'
-
-import User from '../model/user.js'
-
-before(async () => {
+describe("connection", () => {
+  before(async () => {
     await mongoose.connect(`mongodb://127.0.0.1:27017/TestBKS`);
-})
+  });
 
-after(async () => {
+  after(async () => {
+    await User.deleteMany();
     await mongoose.disconnect();
-})
+  });
 
-describe('Bookcase Tests', () => {
+  describe("Bookcase Tests", () => {
     beforeEach(async () => {
-        await User.deleteMany();
-        await User.create({
-            _id: "janwillem",
-            name: "Jan Willem",
-        }
-        );
-    })
+      await User.deleteMany();
+      await User.create({
+        _id: "jan",
+        name: "Jan",
+      });
+    });
 
     // book is correctly added to bookcase
-    test('AddingToBookcase', async () => {
-        let user = await User.findById('janwillem');
-        await user.addToBookcase([{_id: '123', cover_image: "image_url"}]);
-        await user.save()
-        let test_user = await User.findById('janwillem').lean();
-        assert.deepEqual(test_user.bookcase, [{_id: '123', cover_image: "image_url"}]);
-    })
-
+    it("AddingToBookcase", async () => {
+      let user = await User.findById("jan");
+      user.addToBookcase([{ _id: "123", cover_image: "image_url" }]);
+      await user.save();
+      let test_user = await User.findById("jan").lean();
+      assert.deepEqual(test_user.bookcase, [{ _id: "123", cover_image: "image_url" }]);
+    });
     // book is not added to bookcase if it is already in the bookcase
-    test('AddingToBookcaseDuplicate', async () => {
-        let user = await User.findById('janwillem');
-        await user.addToBookcase([{_id: '123', cover_image: "image_url"}]);
-        await user.save()
+    it("AddingToBookcaseDuplicate", async () => {
+      let user = await User.findById("jan");
+      user.addToBookcase([{ _id: "123", cover_image: "image_url" }]);
+      await user.save();
 
+      user.addToBookcase([{ _id: "123", cover_image: "image_url" }]);
+      await user.save();
 
-        await user.addToBookcase([{_id: '123', cover_image: "image_url"}]);
-        await user.save()
-
-        let test_user = await User.findById('janwillem').lean();
-        assert.deepEqual(test_user.bookcase, [{_id: '123', cover_image: "image_url"}]);
-    })
-})
+      let test_user = await User.findById("jan").lean();
+      assert.deepEqual(test_user.bookcase, [{ _id: "123", cover_image: "image_url" }]);
+    });
+  });
+});

@@ -1,6 +1,7 @@
 import express from "express";
 
 import Book from "../model/book.js";
+import { createError } from "../functions/errorCreation.js";
 
 const apiUrl = "https://openlibrary.org";
 
@@ -17,14 +18,14 @@ router.get("/:id", (req, res, next) => {
           const cover_url = `https://covers.openlibrary.org/b/id/${data.covers[0]}-M.jpg`;
           const newBook = { _id: req.params.id, cover_image: cover_url };
           Book.create(newBook);
-          res.send(JSON.stringify(newBook));
+          res.send(newBook);
         })
-        .catch((e) => {
-          console.log(e);
-          next(e);
+        .catch((err) => {
+          const error = createError("Book not in external API", 400);
+          next(error);
         });
     } else {
-      res.send(JSON.stringify(book));
+      res.send(book);
     }
   });
 });
