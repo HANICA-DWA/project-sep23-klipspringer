@@ -11,13 +11,13 @@ describe("connection", () => {
   });
 
   after(async () => {
-    await User.deleteMany();
+    await User.deleteOne({ _id: "henk" });
     await mongoose.disconnect();
   });
 
   describe("Bookcase Tests", () => {
     beforeEach(async () => {
-      await User.deleteMany();
+      await User.deleteOne({ _id: "jan" });
       await User.create({
         _id: "jan",
         name: "Jan",

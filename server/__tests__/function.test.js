@@ -11,7 +11,7 @@ describe("connection", () => {
   });
 
   after(async () => {
-    await User.deleteMany();
+    await User.deleteOne({ _id: "henk" });
     await mongoose.disconnect();
   });
 
@@ -34,8 +34,6 @@ describe("connection", () => {
   describe("getUserByUsername function", () => {
     beforeEach(async () => {
       await User.deleteOne({ _id: "henk" });
-      const result = await User.find({});
-      console.log(result);
       await User.create({
         _id: "henk",
         name: "Henkie Penkie",
