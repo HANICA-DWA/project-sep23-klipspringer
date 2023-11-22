@@ -12,7 +12,7 @@ describe("connection", () => {
   });
 
   after(async () => {
-    await User.deleteMany();
+    await User.deleteOne({ _id: "janwillem" });
     await server.close();
     await mongoose.disconnect();
   });
@@ -54,7 +54,7 @@ describe("connection", () => {
   // TODO fetch("/user/:username")
   describe("GET /user/:username", () => {
     beforeEach(async () => {
-      await User.deleteMany();
+      await User.deleteOne({ _id: "janwillem" });
       await User.create({
         _id: "janwillem",
         name: "Jan Willem",
@@ -100,7 +100,7 @@ describe("connection", () => {
   // TODO fetch("/user/:username/shelf")
   describe("POST /user/:username/shelf", () => {
     beforeEach(async () => {
-      await User.deleteMany();
+      await User.deleteOne({ _id: "janwillem" });
       await User.create({
         _id: "janwillem",
         name: "Jan Willem",
@@ -227,7 +227,7 @@ describe("connection", () => {
   // TODO fetch("/user/:username/shelves/:shelf")
   describe("PUT /user/:username/shelves/:shelf", () => {
     beforeEach(async () => {
-      await User.deleteMany();
+      await User.deleteOne({ _id: "janwillem" });
       await User.create({
         _id: "janwillem",
         name: "Jan Willem",

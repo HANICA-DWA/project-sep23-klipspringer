@@ -11,7 +11,7 @@ describe("connection", () => {
   });
 
   after(async () => {
-    await User.deleteOne({ _id: "henk" });
+    await User.deleteOne({ _id: "jan" });
     await mongoose.disconnect();
   });
 
