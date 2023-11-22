@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Outlet, useParams } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet, useParams, Navigate } from "react-router-dom";
 import Profilepage from "./pages/Profilepage";
 import App from "./pages/App";
 import Login from "./pages/Login";
@@ -40,7 +40,7 @@ export default function Router() {
     <LoggedInContext.Provider value={loggedIn}>
       <BrowserRouter>
         <Routes>
-          {/* <Route path="/" element={<App setLoggedIn={setLoggedIn} />} /> */}
+          <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/profile/:userName" element={<ProfileContainer />}>
             <Route path="" element={<Profilepage setLoggedIn={setLoggedIn} loggedIn={loggedIn} />} />
