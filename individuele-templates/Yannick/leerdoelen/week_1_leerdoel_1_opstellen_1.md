@@ -18,15 +18,14 @@ Het team krijgt beter en meer inzicht in moeilijkheden in het project. Ze krijge
 
 ### Ik ga op de volgende manier(en) werken aan mijn leerdoel:
 
-Ik zal proberen een actief bewustzijn te creëren, zodra ik ergens op vastloop, noteer ik dat in een logboek.
+Ik zal proberen een actief bewustzijn te creëren, zodra ik ergens op vastloop, noteer ik dit in het logboek.
 Ik bespreek problemen die ik ben tegengekomen sowieso tijdens de daily standup of tijdens de gezamenlijke afsluiting aan het einde van de dag.
 Ik ga proberen mijn communicatie te verbeteren, door te noteren waar ik precies op vastloop, voordat ik hulp vraag.
 
 ### Om mijn leerdoel te bereiken ga ik de volgende acties op de volgende momenten uitvoeren:
 
-Als ik tegen een probleem aanloop, meldt ik dit aan mijn team.
+Als ik tegen een probleem aanloop, meld ik dit aan mijn team.
 Als ik langer dan 20 minuten vastloop op een probleem, of meer dan 3 bronnen heb geraadpleegd, zal ik mezelf verplichten om hulp te vragen aan mijn groep.
-Ik noteer de momenten waarop ik tegen een probleem aanloop. Ik noteer hier bij of ik al dan niet om hulp heb gevraagd en reflecteer kort op de situatie.
 Tijdens de sprint retrospectives vraag ik feedback over mijn voortgang m.b.t. dit leerdoel. Ik vraag of mijn groepsgenoten of zij vinden dat ik genoeg laat weten wanneer ik vastloop en of ik genoeg en op tijd genoeg om hulp vraag.
 
 ### Om mijn leerdoel te bereiken ga ik hulp vragen aan de volgende personen:
