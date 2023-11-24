@@ -1,0 +1,47 @@
+- er ontbreken nog een aantal pagina, dat is nog voor rik aan zet.
+- hoe gaan we meerdere boken op een plank laten zien.
+- tumbnails kleiner.
+- responsive voor desktop.
+- signup wireframe had rik veranderd, meer vanuit de gedachte van komen vanuit linkendin of instagram.
+
+
+*************************
+- registreren, zonder SSO, daardoor zelf je inlog gegevens bedenken, zonder email en password, handle is voornaam en achternaam, en ook gebruikersnaam.
+*************************
+
+
+- naam kunnen veranderen.
+- link naam/ handle.
+
+rik is tevreden. op naar de volgende sprint.
+
+- in shelf aanmaken plusjes behouden.
+- hierna komt de detailpagina.
+- een pagina om een boek toe te voegen aan een specifieke plank of er een plank voor aanmaken.
+
+- laten zoeken na de eerste 3 charackters en dan een live search.
+- de boek thumbnails hebben de zelfde ratio als in de API.
+- doe de handle zoals instagram ook heeft.
+- vanwege de handle kunnen we dat gebruiken voor de shorturl.
+- verwijderknop plank zal rik ontwerpen.
+- editknop plank zal rik ook ontwerpen.
+- rik vind profielfoto en profielnaam wijzigen geen hoge prioriteit dat beter naar sprint 3 kan gaan.
+- in de app rond kijken zonder in te loggen. zal niet heel veel toepassing meer hebben alleen boeken zoeken en andere profielen zoeken. alleen wel besluiten wanneer een gebruiker dan moet inloggen.
+
+
+- boek uit boekenkast kunnen verwijderen, inniedergeval naar de detailpagina en daar 3 puntjes en daar kunnen verwijderen. of een confirmatie in de boekenkast wanneer je verwijderd in de boekkast. zal rik ook nog naar kijken.
+- boek uit een plank verwijderen verwijderd ook uit boekenkast.
+- en als je uit je boekenkast een boek verwijderd wordt het niet ui de plank verwijderd.
+- zoeken moet onderscheid maken tussen profielen en boeken door een titel.
+- suggesties door welke boeken op de meeste profielen staan.
+- geen navigatiebalk!
+- hamburger menutje links onderin....(niet nodig voor nu)
+- rik wil dat je voor inspiratie naar een ander profiel gaan.
+- als je op een thumbnail klikt van een boek dan ga je naar de detailpagina en kan dan het boek kopen. of toevoegen aan je plank.
+- 3 icoontjes, bekijk boek, voeg toe aan plank, koop boek......
+- rik zegt doe maar via detailpagina.
+
+- rik zegt laat userstorie er maar in rik zal daar nog wel een ontwerp van maken.
+- rik zal nog komen met een amazon affiliate link.
+
+- onderzoek beginnen met onderzoek van barcode scannen als er tijd over is in deze sprint.
