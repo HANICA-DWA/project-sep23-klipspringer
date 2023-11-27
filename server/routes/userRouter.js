@@ -75,4 +75,25 @@ router.put("/:username/shelves/:shelf", async (req, res, next) => {
   }
 });
 
+router.delete("/:username/bookcase/:book", async (req, res, next) => {
+  const { book } = req.params;
+  if (book != undefined) {
+    try {
+        const bookcaseBook = req.user.bookcase.find((bookcaseBook) => bookcaseBook._id === book);
+        if (index > -1) {
+          req.user.removeFromBookcase([bookcaseBook]);
+          await req.user.save();
+        }
+        res.status(200).json(book);
+    } catch (err) {
+      let error = err;
+      if (err.errors) error = createError(err.errors[Object.keys(err.errors)[0]].message, 400);
+      next(error);
+    }
+  } else {
+    const error = createError("Specify body with book or shelf", 400);
+    next(error);
+  }
+});
+
 export default router;
