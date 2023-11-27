@@ -3,12 +3,13 @@ import { GoogleLogin } from "@react-oauth/google";
 import { LinkedIn } from "react-linkedin-login-oauth2";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { Link, useNavigate } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { LoggedInContext } from "../Contexts";
 
 export default function Login({ setLoggedIn }) {
   const navigate = useNavigate();
   const { loggedIn, username } = useContext(LoggedInContext);
+  const [fetchError, setFetchError] = useState(null);
   const redirectURI = `${window.location.origin}/linkedin`;
 
   useEffect(() => {
@@ -47,6 +48,7 @@ export default function Login({ setLoggedIn }) {
         </Typography>
       </Stack>
       <Stack alignItems="center" useFlexGap gap={2}>
+        {fetchError ? <Typography color="red">{fetchError}</Typography> : ""}
         <GoogleLogin
           shape="pill"
           text="signin_with"
@@ -63,9 +65,13 @@ export default function Login({ setLoggedIn }) {
               body: JSON.stringify({ idToken }),
             });
             const responseData = await restResponse.json();
-            if (responseData.status === "LOGGED_IN") {
-              setLoggedIn({ loggedIn: true, username: responseData.username });
-              navigate(`/profile/${responseData.username}`);
+            if (restResponse.ok) {
+              if (responseData.status === "LOGGED_IN") {
+                setLoggedIn({ loggedIn: true, username: responseData.username });
+                navigate(`/profile/${responseData.username}`);
+              }
+            } else {
+              setFetchError(responseData.error);
             }
           }}
           onError={(response) => console.log(response)}
@@ -85,9 +91,13 @@ export default function Login({ setLoggedIn }) {
               body: JSON.stringify({ authorizationCode: code }),
             });
             const responseData = await response.json();
-            if (responseData.status === "LOGGED_IN") {
-              setLoggedIn({ loggedIn: true, username: responseData.username });
-              navigate(`/profile/${responseData.username}`);
+            if (response.ok) {
+              if (responseData.status === "LOGGED_IN") {
+                setLoggedIn({ loggedIn: true, username: responseData.username });
+                navigate(`/profile/${responseData.username}`);
+              }
+            } else {
+              setFetchError(responseData.error);
             }
           }}
           onError={(error) => {

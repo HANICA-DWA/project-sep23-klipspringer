@@ -1,4 +1,6 @@
-import { Box, Button, FormControl, InputAdornment, Stack, TextField, Typography } from "@mui/material";
+import { Box, Button, FormControl, IconButton, InputAdornment, Stack, TextField, Typography } from "@mui/material";
+import { AlternateEmail } from "@mui/icons-material";
+import { ArrowBackIos } from "@mui/icons-material";
 import { GoogleLogin } from "@react-oauth/google";
 import { LinkedIn } from "react-linkedin-login-oauth2";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -11,15 +13,20 @@ export default function Register({ setLoggedIn }) {
   const { loggedIn, username } = useContext(LoggedInContext);
   const [usernameInput, setUsernameInput] = useState("");
   const [inputError, setInputError] = useState(null);
+  const [fetchError, setFetchError] = useState(null);
   const [submitted, setSubmitted] = useState(false);
   const [existingUsers, setExistingUsers] = useState([]);
   const redirectURI = `${window.location.origin}/linkedin`;
 
   const onChange = (e) => {
-    const value = e.target.value;
+    const value = e.target.value.trim();
     setUsernameInput(value);
+    const regex = /^[\w.]{1,30}$/;
+    if (value && !regex.test(value)) {
+      setInputError("Username can only contain letters, numbers, dots and underscores");
+      return;
+    }
     const duplicate = existingUsers.find((user) => user == value);
-    //TODO check if valid characters, no spaces
     if (duplicate) {
       setInputError("This user already exists");
     } else {
@@ -30,7 +37,6 @@ export default function Register({ setLoggedIn }) {
   const onSubmit = (e) => {
     e.preventDefault();
     if (!inputError) {
-      console.log("Submitted");
       setSubmitted(true);
     }
   };
@@ -117,17 +123,32 @@ export default function Register({ setLoggedIn }) {
         </>
       ) : (
         <Stack useFlexGap gap={2} alignItems="center">
-          <Typography variant="h1" fontWeight="800">
-            Create your shelf
-          </Typography>
+          <Stack direction="row" alignItems="center" useFlexGap gap={2}>
+            <ArrowBackIos
+              onClick={() => {
+                setSubmitted(false);
+                setFetchError(null);
+              }}
+            />
+            <Typography variant="h1" fontWeight="800">
+              Create your shelf
+            </Typography>
+          </Stack>
           <Typography textAlign="center" variant="h6" sx={{ opacity: 0.5 }}>
             Free to share your inspirational books, quotes and authors{" "}
           </Typography>
           <TextField
-            value={`@${usernameInput}`}
+            value={usernameInput}
             size="small"
+            error={fetchError ? true : false}
+            helperText={fetchError}
             InputProps={{
               readOnly: true,
+              startAdornment: (
+                <InputAdornment position="start">
+                  <AlternateEmail />
+                </InputAdornment>
+              ),
             }}
           />
           <Stack alignItems="center" useFlexGap gap={2}>
@@ -144,12 +165,16 @@ export default function Register({ setLoggedIn }) {
                   },
                   credentials: "include",
                   mode: "cors",
-                  body: JSON.stringify({ idToken }),
+                  body: JSON.stringify({ idToken, username: usernameInput }),
                 });
                 const responseData = await restResponse.json();
-                if (responseData.status === "LOGGED_IN") {
-                  setLoggedIn({ loggedIn: true, username: responseData.username });
-                  navigate(`/profile/${responseData.username}`);
+                if (restResponse.ok) {
+                  if (responseData.status === "LOGGED_IN") {
+                    setLoggedIn({ loggedIn: true, username: responseData.username });
+                    navigate(`/profile/${responseData.username}`);
+                  }
+                } else {
+                  setFetchError(`${responseData.error}. Go back to change it.`);
                 }
               }}
               onError={(response) => console.log(response)}
@@ -166,12 +191,16 @@ export default function Register({ setLoggedIn }) {
                   },
                   credentials: "include",
                   mode: "cors",
-                  body: JSON.stringify({ authorizationCode: code }),
+                  body: JSON.stringify({ authorizationCode: code, username: usernameInput }),
                 });
                 const responseData = await response.json();
-                if (responseData.status === "LOGGED_IN") {
-                  setLoggedIn({ loggedIn: true, username: responseData.username });
-                  navigate(`/profile/${responseData.username}`);
+                if (response.ok) {
+                  if (responseData.status === "LOGGED_IN") {
+                    setLoggedIn({ loggedIn: true, username: responseData.username });
+                    navigate(`/profile/${responseData.username}`);
+                  }
+                } else {
+                  setFetchError(`${responseData.error}. Go back to change it.`);
                 }
               }}
               onError={(error) => {
