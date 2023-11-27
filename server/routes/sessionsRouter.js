@@ -1,7 +1,7 @@
 import express from "express";
 import { googleVerifyIdToken, linkedInVerifyIdToken } from "../functions/authorization.js";
 import { createError } from "../functions/errorCreation.js";
-import { getUniqueId, getUserBySSOId } from "../functions/users.js";
+import { getUniqueId, getUserBySSOId, getUserByUsername } from "../functions/users.js";
 import User from "../model/user.js";
 
 const router = express.Router();
@@ -9,31 +9,36 @@ const router = express.Router();
 /* node:coverage disable */
 
 router.post("/google", async (req, res, next) => {
-  const { idToken } = req.body;
+  const { idToken, username } = req.body;
   try {
     const googleUser = await googleVerifyIdToken(idToken);
     const { name, sub, picture } = googleUser;
     const user = await getUserBySSOId(sub, "Google");
-    let username;
+    let usernameAccount = username;
     if (!user) {
-      username = await getUniqueId(name.replace(/\s+/g, ""));
+      if (!usernameAccount) throw new Error("No account found");
+      const duplicateUser = await getUserByUsername(usernameAccount);
+      if (duplicateUser) throw new Error("Username already exists");
+
       picture
-        ? await User.create({ _id: username, sso_id: sub, sso_provider: "Google", name, profile_picture: picture })
-        : await User.create({ _id: username, sso_id: sub, sso_provider: "Google", name });
+        ? await User.create({ _id: usernameAccount, sso_id: sub, sso_provider: "Google", name, profile_picture: picture })
+        : await User.create({ _id: usernameAccount, sso_id: sub, sso_provider: "Google", name });
     } else {
-      username = user._id;
+      usernameAccount = user._id;
     }
     req.session.loggedIn = true;
-    req.session.user = username;
-    res.status(201).json({ status: "LOGGED_IN", username });
+    req.session.user = usernameAccount;
+    res.status(201).json({ status: "LOGGED_IN", username: usernameAccount });
   } catch (err) {
-    const error = createError("Signing in failed", 400);
+    let error = createError("Signing in failed", 400);
+    if (err) error = createError(err.message, 400);
+    if (err.errors) error = createError(err.errors[Object.keys(err.errors)[0]].message, 400);
     next(error);
   }
 });
 
 router.post("/linkedin", async (req, res, next) => {
-  const { authorizationCode } = req.body;
+  const { authorizationCode, username } = req.body;
   try {
     const response = await fetch(
       `https://www.linkedin.com/oauth/v2/accessToken?code=${authorizationCode}&grant_type=authorization_code&client_id=${
@@ -48,20 +53,26 @@ router.post("/linkedin", async (req, res, next) => {
     const verifiedData = await linkedInVerifyIdToken(responseData.id_token);
     const { name, sub, picture } = verifiedData;
     const user = await getUserBySSOId(sub, "LinkedIn");
-    let username;
+    let usernameAccount = username;
     if (!user) {
-      username = await getUniqueId(name.replace(/\s+/g, ""));
+      if (!usernameAccount) throw new Error("No account found");
+      const duplicateUser = await getUserByUsername(usernameAccount);
+      if (duplicateUser) throw new Error("Username already exists");
+
       picture
-        ? await User.create({ _id: username, sso_id: sub, sso_provider: "LinkedIn", name, profile_picture: picture })
-        : await User.create({ _id: username, sso_id: sub, sso_provider: "LinkedIn", name });
+        ? await User.create({ _id: usernameAccount, sso_id: sub, sso_provider: "LinkedIn", name, profile_picture: picture })
+        : await User.create({ _id: usernameAccount, sso_id: sub, sso_provider: "LinkedIn", name });
     } else {
-      username = user._id;
+      usernameAccount = user._id;
     }
     req.session.loggedIn = true;
-    req.session.user = username;
-    res.status(201).json({ status: "LOGGED_IN", username });
+    req.session.user = usernameAccount;
+    res.status(201).json({ status: "LOGGED_IN", username: usernameAccount });
   } catch (err) {
-    next(err);
+    let error = createError("Signing in failed", 400);
+    if (err) error = createError(err.message, 400);
+    if (err.errors) error = createError(err.errors[Object.keys(err.errors)[0]].message, 400);
+    next(error);
   }
 });
 
