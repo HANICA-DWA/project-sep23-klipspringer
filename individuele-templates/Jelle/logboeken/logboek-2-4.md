@@ -14,7 +14,7 @@
 
 | Uren | Taak  | Met Wie | Resultaten                                                                                        | Emotie | Link |
 |------|---|---|---------------------------------------------------------------------------------------------------|---|---|
-| 2    | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/127) |  | ik zat een kwartier iets proberen op te lossen en toen merkte ik dat ik in de verkeerde link zat. |:smiley:| [link naar de resultaten](https://github.com/link-naar-de-commit) |
+| 2    | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/127) |  | ik zat een kwartier iets proberen op te lossen en toen merkte ik dat ik in de verkeerde link zat. |:smiley:| [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/756d36e3c35e1a484ff2f4eb104ac017c7c03da9) |
 |      | | |                                                                                                   | | |
 
 
