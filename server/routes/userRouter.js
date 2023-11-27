@@ -20,6 +20,16 @@ router.use("/:username", async (req, res, next) => {
   }
 });
 
+router.get("/", async (req, res, next) => {
+  try {
+    const users = await User.find({}).select("_id");
+    const usernameArray = users.map((user) => user._id);
+    res.status(200).json(usernameArray);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.get("/:username", (req, res, next) => {
   if (req.query.fields != undefined) {
     const fieldsArray = req.query.fields.split(",");

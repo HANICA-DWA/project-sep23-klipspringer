@@ -1,24 +1,57 @@
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { Box, Button, FormControl, InputAdornment, Stack, TextField, Typography } from "@mui/material";
 import { GoogleLogin } from "@react-oauth/google";
 import { LinkedIn } from "react-linkedin-login-oauth2";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { Link, useNavigate } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { LoggedInContext } from "../Contexts";
 
-export default function Login({ setLoggedIn }) {
+export default function Register({ setLoggedIn }) {
   const navigate = useNavigate();
   const { loggedIn, username } = useContext(LoggedInContext);
+  const [usernameInput, setUsernameInput] = useState("");
+  const [inputError, setInputError] = useState(null);
+  const [submitted, setSubmitted] = useState(false);
+  const [existingUsers, setExistingUsers] = useState([]);
   const redirectURI = `${window.location.origin}/linkedin`;
+
+  const onChange = (e) => {
+    const value = e.target.value;
+    setUsernameInput(value);
+    const duplicate = existingUsers.find((user) => user == value);
+    //TODO check if valid characters, no spaces
+    if (duplicate) {
+      setInputError("This user already exists");
+    } else {
+      setInputError(null);
+    }
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (!inputError) {
+      console.log("Submitted");
+      setSubmitted(true);
+    }
+  };
 
   useEffect(() => {
     if (loggedIn) navigate(`/profile/${username}`);
+
+    const fetchExistingUsers = async () => {
+      const response = await fetch(import.meta.env.VITE_BACKEND_HOST + "/user");
+      if (response.ok) {
+        const data = await response.json();
+        setExistingUsers(data);
+      }
+    };
+    fetchExistingUsers();
   }, [loggedIn, username]);
 
   return (
     <Stack
       useFlexGap
-      gap={3}
+      gap={4}
       alignItems="center"
       sx={{
         mt: {
@@ -46,7 +79,40 @@ export default function Login({ setLoggedIn }) {
           Start sharing the things you've learned from great writers and inspire others!
         </Typography>
       </Stack>
-      <Stack alignItems="center" useFlexGap gap={2}>
+      <Stack>
+        <form onSubmit={onSubmit}>
+          <FormControl>
+            <TextField
+              variant="outlined"
+              color="secondary"
+              id="username"
+              name="username"
+              placeholder="yourname"
+              value={usernameInput}
+              onChange={onChange}
+              autoFocus
+              required
+              error={inputError ? true : false}
+              helperText={inputError}
+              size="small"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Typography color="secondary" fontSize="1rem" fontWeight="medium">
+                      BKS.com/
+                    </Typography>
+                  </InputAdornment>
+                ),
+                style: { fontSize: "1rem" },
+              }}
+            />
+            <Button variant="contained" color="secondary" type="submit" sx={{ p: 1, fontSize: "0.9rem", mt: 2 }}>
+              Claim your shelf
+            </Button>
+          </FormControl>
+        </form>
+      </Stack>
+      {/* <Stack alignItems="center" useFlexGap gap={2}>
         <GoogleLogin
           shape="pill"
           text="continue_with"
@@ -104,12 +170,12 @@ export default function Login({ setLoggedIn }) {
               Continue with LinkedIn
             </Button>
           )}
-        </LinkedIn>
-      </Stack>
+        </LinkedIn> */}
+      {/* </Stack> */}
       <Stack direction="row" useFlexGap gap={0.5}>
-        <Typography sx={{ opacity: 0.5 }}>No account yet?</Typography>
-        <Typography component={Link} to="/register" sx={{ textDecoration: "none", color: "black" }}>
-          Sign Up
+        <Typography sx={{ opacity: 0.5 }}>Already on BKS?</Typography>
+        <Typography component={Link} to="/login" sx={{ textDecoration: "none", color: "black" }}>
+          Sign In
         </Typography>
       </Stack>
     </Stack>
