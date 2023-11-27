@@ -34,7 +34,7 @@ export default function SearchBar({ onAdd }) {
       }
     }
 
-    return () => clearTimeout(timeoutId)
+    //return () => clearTimeout(timeoutId)
 
   }, [isOnCooldown, searchText])
 
