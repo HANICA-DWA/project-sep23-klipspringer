@@ -49,7 +49,7 @@ export default function Login({ setLoggedIn }) {
       <Stack alignItems="center" useFlexGap gap={2}>
         <GoogleLogin
           shape="pill"
-          text="continue_with"
+          text="signin_with"
           locale="en-US"
           onSuccess={async (response) => {
             const idToken = response.credential;
@@ -101,7 +101,7 @@ export default function Login({ setLoggedIn }) {
               onClick={linkedInLogin}
               startIcon={<LinkedInIcon />}
             >
-              Continue with LinkedIn
+              Sign in with LinkedIn
             </Button>
           )}
         </LinkedIn>
