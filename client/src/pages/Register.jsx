@@ -42,7 +42,7 @@ export default function Register({ setLoggedIn }) {
   };
 
   useEffect(() => {
-    if (loggedIn) navigate(`/profile/${username}`);
+    if (loggedIn) navigate(`/${username}`);
 
     const fetchExistingUsers = async () => {
       const response = await fetch(import.meta.env.VITE_BACKEND_HOST + "/user");
