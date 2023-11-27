@@ -1,11 +1,12 @@
-import { Typography, Card, Stack, CardMedia, ImageList, Icon, Box } from "@mui/material";
+import {Typography, Card, Stack, CardMedia, ImageList, Icon, Box, CardHeader, IconButton} from "@mui/material";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { LoggedInContext } from "../Contexts";
 import { Edit } from "@mui/icons-material";
 import { ImageNotSupported } from "@mui/icons-material";
+import DeleteIcon from '@mui/icons-material/Delete';
 
-export default function Bookshelf({ id, title, books = [], hideAdding, user }) {
+export default function Bookshelf({ id, title, books = [], hideAdding, user, deleteBookHandler}) {
   const { loggedIn, username } = useContext(LoggedInContext);
 
   const placeholderBooks = [];
@@ -41,6 +42,12 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user }) {
         <ImageList cols={3}>
           {books.map((item) => (
             <Card key={item._id} style={{ width: "85px", height: "130px" }}>
+                <CardHeader action={
+                    <IconButton aria-label="settings" onClick={()=>deleteBookHandler(id,item._id)} >
+                        <DeleteIcon />
+                    </IconButton>
+                }/>
+
               <Link to={"#"} style={{ textDecoration: "none", color: "black" }}>
                 {item.cover_image !== undefined ? (
                   <CardMedia shelf={id} height="130" component="img" image={item.cover_image} alt={item._id} />

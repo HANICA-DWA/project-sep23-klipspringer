@@ -13,6 +13,28 @@ function Profilepage({ setLoggedIn }) {
 
   const shelfClickHandler = loggedIn ? () => navigate("/" + username + "/shelf") : () => navigate("/login");
 
+    function deleteBookHandler(shelfId, bookId) {
+        fetch(import.meta.env.VITE_BACKEND_HOST +
+            "/user/" +
+            userName +
+            "/shelves/" +
+            shelfId +
+            "/book/" +
+            bookId,
+            {
+                method: "DELETE",
+            }).then((res) => {
+            if (res.ok) {
+                console.log("ok");
+            }
+            else {
+                console.log("not ok");
+            }
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
+
   useEffect(() => {
     fetch(
       import.meta.env.VITE_BACKEND_HOST +
@@ -64,11 +86,11 @@ function Profilepage({ setLoggedIn }) {
         </Stack>
 
         {profileInfo.top_three ? (
-          <Bookshelf key={"top_three"} id={"top_three"} title="My top 3 books" books={profileInfo.top_three} user={profileInfo._id} />
+          <Bookshelf key={"top_three"} id={"top_three"} title="My top 3 books" books={profileInfo.top_three} user={profileInfo._id} deleteBookHandler={deleteBookHandler}/>
         ) : null}
         {profileInfo.shelf != undefined && profileInfo.shelf.length > 0
           ? profileInfo.shelf.map((shelf) => (
-              <Bookshelf key={shelf._id} id={shelf._id} title={shelf.name} books={shelf.books} user={profileInfo._id} />
+              <Bookshelf key={shelf._id} id={shelf._id} title={shelf.name} books={shelf.books} user={profileInfo._id} deleteBookHandler={deleteBookHandler}/>
             ))
           : null}
 
