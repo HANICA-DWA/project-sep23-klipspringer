@@ -13,7 +13,7 @@ export default function Header({ setLoggedIn }) {
 
   return (
     <>
-      <Stack direction="row" justifyContent="space-between">
+      <Stack direction="row" justifyContent="space-between" alignItems="center">
         {loggedIn ? <ProfileLink alert={setShareLinkAlertOn}/> : <div></ div>}
         {loggedIn ? <LogoutButton setLoggedIn={setLoggedIn} /> : <LoginButton />}
       </Stack>
