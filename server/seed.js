@@ -46,6 +46,7 @@ const seed = async () => {
         ],
         name: "Aan te raden",
       },
+        bookcase: [],
     },
   ]);
 };

@@ -13,7 +13,7 @@ export default function Login({ setLoggedIn }) {
   const redirectURI = `${window.location.origin}/linkedin`;
 
   useEffect(() => {
-    if (loggedIn) navigate(`/profile/${username}`);
+    if (loggedIn) navigate(`/${username}`);
   }, [loggedIn, username]);
 
   return (
@@ -68,7 +68,7 @@ export default function Login({ setLoggedIn }) {
             if (restResponse.ok) {
               if (responseData.status === "LOGGED_IN") {
                 setLoggedIn({ loggedIn: true, username: responseData.username });
-                navigate(`/profile/${responseData.username}`);
+                navigate(`/${responseData.username}`);
               }
             } else {
               setFetchError(responseData.error);
@@ -94,7 +94,7 @@ export default function Login({ setLoggedIn }) {
             if (response.ok) {
               if (responseData.status === "LOGGED_IN") {
                 setLoggedIn({ loggedIn: true, username: responseData.username });
-                navigate(`/profile/${responseData.username}`);
+                navigate(`/${responseData.username}`);
               }
             } else {
               setFetchError(responseData.error);
