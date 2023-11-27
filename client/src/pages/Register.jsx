@@ -15,10 +15,9 @@ export default function Register({ setLoggedIn }) {
   const [inputError, setInputError] = useState(null);
   const [fetchError, setFetchError] = useState(null);
   const [submitted, setSubmitted] = useState(false);
-  const [existingUsers, setExistingUsers] = useState([]);
   const redirectURI = `${window.location.origin}/linkedin`;
 
-  const onChange = (e) => {
+  const onChange = async (e) => {
     const value = e.target.value.trim();
     setUsernameInput(value);
     const regex = /^[\w.]{1,30}$/;
@@ -26,8 +25,9 @@ export default function Register({ setLoggedIn }) {
       setInputError("Username can only contain letters, numbers, dots and underscores");
       return;
     }
-    const duplicate = existingUsers.find((user) => user == value);
-    if (duplicate) {
+
+    const response = await fetch(import.meta.env.VITE_BACKEND_HOST + `/user/${value}`, { method: "HEAD" });
+    if (response.ok) {
       setInputError("This user already exists");
     } else {
       setInputError(null);
@@ -43,15 +43,6 @@ export default function Register({ setLoggedIn }) {
 
   useEffect(() => {
     if (loggedIn) navigate(`/${username}`);
-
-    const fetchExistingUsers = async () => {
-      const response = await fetch(import.meta.env.VITE_BACKEND_HOST + "/user");
-      if (response.ok) {
-        const data = await response.json();
-        setExistingUsers(data);
-      }
-    };
-    fetchExistingUsers();
   }, [loggedIn, username]);
 
   return (
