@@ -75,4 +75,16 @@ router.put("/:username/shelves/:shelf", async (req, res, next) => {
   }
 });
 
+router.delete("/:username/shelves/:shelf", async (req, res, next) => {
+  try{
+    const { shelf } = req.params;
+    const userShelf = req.user.shelf.id(shelf);
+    req.user.deleteShelf(userShelf._id);
+    await req.user.save();
+    res.status(200).json("shelf deleted succesfuly");
+  } catch (err){
+    next(err)
+  }
+})
+
 export default router;

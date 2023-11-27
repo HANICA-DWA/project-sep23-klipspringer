@@ -1,14 +1,17 @@
-import { Typography, Card, Stack, CardMedia, ImageList, Icon, Box } from "@mui/material";
+import { Typography, Card, Stack, CardMedia, ImageList, IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { LoggedInContext } from "../Contexts";
-import { Edit } from "@mui/icons-material";
+import { Edit, Delete } from "@mui/icons-material";
 import { ImageNotSupported } from "@mui/icons-material";
+import { useDialog } from "../hooks/useDialog"
 
-export default function Bookshelf({ id, title, books = [], hideAdding, user }) {
+export default function Bookshelf({ id, title, books = [], hideAdding, user, onDelete }) {
   const { loggedIn, username } = useContext(LoggedInContext);
 
   const placeholderBooks = [];
+
+  const [setDialogOpen, dialog] = useDialog(null, "Are you sure that you want to delete this shelf?", "No", "Yes", onDelete, id)
 
   //TODO na ontwerp Rik dit refactoren
   if ((books.length === 0 && !loggedIn) || (books.length === 0 && hideAdding)) {
@@ -34,6 +37,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user }) {
 
   return (
     <Stack direction="column" alignItems="center">
+      {dialog}
       <Typography gutterBottom variant="h5" fontWeight="800" sx={{ overflowWrap: "anywhere", maxWidth: "100%", textAlign: "center" }}>
         {title}
       </Typography>
@@ -68,8 +72,18 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user }) {
       </Stack>
       <Stack direction="row">
         <img style={{ width: "320px", height: "20px" }} src="/images/bookshelf.jpg" alt="bookshelf"></img>
-        {document.URL.includes("shelf") ? null : loggedIn && username === user ? <Edit /> : null}
       </Stack>
+      {document.URL.includes("shelf") ? null : loggedIn && username === user 
+        ? 
+        <>
+          <IconButton>
+            <Edit /> 
+          </IconButton>
+          <IconButton onClick={() => {setDialogOpen()}}>
+            <Delete />
+          </IconButton>
+        </>
+        : null}
     </Stack>
   );
 }

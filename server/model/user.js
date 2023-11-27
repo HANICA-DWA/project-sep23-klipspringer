@@ -59,6 +59,9 @@ const schema = new mongoose.Schema(
           if (!this.bookcase.find((element) => element._id === book._id)) this.bookcase.push(book);
         });
       },
+      deleteShelf(shelf) {
+        this.shelf = this.shelf.filter(s => s._id !== shelf)
+      },
     },
   }
 );
