@@ -7,7 +7,8 @@ export default function ProfileLink({ alert }) {
     }
 
     return (
-        <IosShare onClick={() => {
+        <IosShare style={{margin: "10px"}}
+        onClick={() => {
             handleClick();
             alert();
         }}></IosShare>
