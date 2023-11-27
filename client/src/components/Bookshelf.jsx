@@ -41,7 +41,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user }) {
         <ImageList cols={3}>
           {books.map((item) => (
             <Card key={item._id} style={{ width: "85px", height: "130px" }}>
-              <Link to={"#"} style={{ textDecoration: "none", color: "black" }}>
+              <Link to={`/detailpage/${item._id}`} style={{ textDecoration: "none", color: "black" }}>
                 {item.cover_image !== undefined ? (
                   <CardMedia shelf={id} height="130" component="img" image={item.cover_image} alt={item._id} />
                 ) : (
