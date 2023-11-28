@@ -74,7 +74,7 @@ export default function Detailpage({ setLoggedIn }) {
                         <Typography align="center" variant="h2" fontWeight="700" gutterBottom>
                             {book.title}
                         </Typography>
-                        {book.subtitle != undefined ? <Typography gutterBottom>{book.subtitle}</Typography> : null}
+                        {book.subtitle != undefined ? <Typography align="center" gutterBottom>{book.subtitle}</Typography> : null}
                         {book.authors != undefined ? book.authors.map((author) => {
                             const name = author.name.split(" ")
                             { return <Typography key={name[1]} variant="h6" color="#6A9D8A">{name[1] + ", " + name[0]}</Typography> }
