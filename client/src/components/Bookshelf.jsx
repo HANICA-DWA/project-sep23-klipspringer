@@ -28,7 +28,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user}) {
                     return res.json()})
                 .then((res) => {
                     if(!res.error){
-                        setBookshelfBooks(...bookshelfBooks.splice(bookshelfBooks.findIndex(book => book._id === bookId),1));
+                        setBookshelfBooks(bookshelfBooks.filter(book => book._id !== bookId));
                     }
                     else{
                         console.log(res.error);
@@ -49,7 +49,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user}) {
     );
   }
 
-  for (let i = books.length; i < 3; i++) {
+  for (let i = bookshelfBooks.length; i < 3; i++) {
     if (loggedIn && username === user && !hideAdding) {
       placeholderBooks.push(
         <Card key={i} style={{ width: "85px", height: "130px" }}>
@@ -68,7 +68,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user}) {
       </Typography>
       <Stack direction="row" justifyContent="center" spacing={2}>
         <ImageList cols={3}>
-          {books.map((item) => (
+          {bookshelfBooks.map((item) => (
             <Card key={item._id} style={{ width: "85px", height: "130px" }}>
                 {loggedIn && username === user ?(
                     <IconButton aria-label="settings" onClick={()=>deleteBookHandler(item._id)} >
