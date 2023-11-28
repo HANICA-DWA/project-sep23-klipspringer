@@ -28,12 +28,17 @@ export default function SearchBar({ onClick, fullSearch }) {
   }
 
   useEffect(() => {
-    if (!isOnCooldown && searchText.length >= 3) {
+    if ((!isOnCooldown && searchText.length >= 3 && !searchText.startsWith('@')) || (!isOnCooldown && searchText.length >= 2) && searchText.startsWith('@')) {
       if (lastSearched !== searchText) {
         updateSearch()
         setIsOnCooldown(true);
         setTimeout(() => setIsOnCooldown(false), 1000)
       }
+    } 
+    if ((searchText.length <= 2 && !searchText.startsWith('@')) || (searchText.length <= 1 && searchText.startsWith('@'))) {
+      setSearchResults([]);
+      setIsLoading(false);
+      closepopper()
     }
   }, [isOnCooldown, searchText])
 
@@ -75,7 +80,6 @@ export default function SearchBar({ onClick, fullSearch }) {
 
   function closepopper() {
     setAnchorEl(null);
-    setSearchText("");
   }
   const open = Boolean(anchorEl);
   const id = open ? "simple-popper" : undefined;
@@ -93,7 +97,7 @@ export default function SearchBar({ onClick, fullSearch }) {
         <FormControl ref={spanRef} fullWidth>
           <TextField
             value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
+            onChange={(e) => setSearchText(e.target.value ? e.target.value : "")}
             placeholder="Search books..."
             InputProps={{
               startAdornment: (
@@ -105,7 +109,10 @@ export default function SearchBar({ onClick, fullSearch }) {
               ),
               endAdornment: (
                 <InputAdornment position="end">
-                  <Button onClick={() => closepopper()}>cancel</Button>
+                  <Button onClick={() => {
+                    closepopper();
+                    setSearchText("");
+                  }}>cancel</Button>
                 </InputAdornment>
               ),
               sx: {
