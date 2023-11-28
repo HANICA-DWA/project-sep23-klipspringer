@@ -12,6 +12,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Unauthorized from "./pages/Unauthorized";
 import { CircularProgress, Stack } from "@mui/material";
 import Detailpage from "./pages/Detailpage";
+import Search from "./pages/Search";
 
 export default function Router() {
   const [loggedIn, setLoggedIn] = useState({ loggedIn: false, username: undefined });
@@ -43,10 +44,11 @@ export default function Router() {
         <Routes>
           <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/find" element={<Search />} />
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
           <Route path="/linkedin" element={<LinkedInCallback />} />
           <Route path="/unauthorized" element={<Unauthorized />} />
-          <Route path="/detailpage/:isbn" element={<Detailpage setLoggedIn={setLoggedIn} />} />
+          <Route path="/book/:isbn" element={<Detailpage setLoggedIn={setLoggedIn} />} />
           <Route exact path="/:userName" element={<ProfileContainer />}>
             {
             <Route path="" element={<Profilepage setLoggedIn={setLoggedIn} />} />

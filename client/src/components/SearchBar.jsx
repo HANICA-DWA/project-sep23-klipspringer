@@ -2,8 +2,9 @@ import { FormControl, InputAdornment, IconButton, TextField, Popper, Box, Paper,
 import SearchResult from "./SearchResult";
 import { useEffect, useRef, useState } from "react";
 import { Search } from "@mui/icons-material";
+import SearchResultPerson from "./SearchResultPerson";
 
-export default function SearchBar({ onAdd }) {
+export default function SearchBar({ onClick, fullSearch }) {
   const [searchText, setSearchText] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -13,9 +14,13 @@ export default function SearchBar({ onAdd }) {
   function popperContents() {
     if (isLoading) {
       return <LinearProgress sx={{ width: "400px" }} />;
+    } else if (searchResults && searchResults.length >= 1 && searchText.startsWith("@") && fullSearch && !isLoading) {
+      return searchResults.map((person) => {
+        return <SearchResultPerson closePopper={closepopper} person={person} onClick={onClick} key={person._id} />
+      });
     } else if (searchResults && searchResults.length >= 1 && !isLoading) {
       return searchResults.map((book) => {
-        return <SearchResult closePopper={closepopper} book={book} onAdd={onAdd} key={book.key} />;
+        return <SearchResult closePopper={closepopper} book={book} onAdd={onClick} key={book.key} fullSearch={fullSearch}/>;
       });
     } else if (searchResults.length < 1 && !isLoading) {
       return <Typography variant="body1">No results found.</Typography>;
@@ -39,10 +44,23 @@ export default function SearchBar({ onAdd }) {
   }, [isOnCooldown, searchText])
 
   const updateSearch = () => {
-    console.log(searchText)
+    if (searchText.startsWith('@') && fullSearch)
+      getPersonSearchResults()
+    else
+      getBookSearchResults()
+
     setLastSearched(searchText)
-    getBookSearchResults()
     openpopper()
+  }
+
+  async function getPersonSearchResults() {
+    setIsLoading(true);
+    const toSearch = searchText.slice(1);
+    const result = await fetch(`http://localhost:3001/user/?q=${toSearch}`);
+    const data = await result.json();
+    await new Promise(resolve => setTimeout(resolve(), 500))
+    setSearchResults(data);
+    setIsLoading(false);
   }
   
   async function getBookSearchResults() {
@@ -56,9 +74,11 @@ export default function SearchBar({ onAdd }) {
 
   const [anchorEl, setAnchorEl] = useState(null);
   const spanRef = useRef();
+
   function openpopper() {
     setAnchorEl(spanRef.current);
   }
+
   function closepopper() {
     setAnchorEl(null);
     setSearchText("");
