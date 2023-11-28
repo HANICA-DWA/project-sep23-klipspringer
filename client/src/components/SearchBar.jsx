@@ -28,19 +28,13 @@ export default function SearchBar({ onClick, fullSearch }) {
   }
 
   useEffect(() => {
-    console.log(searchText)
-    let timeoutId;
-
     if (!isOnCooldown && searchText.length >= 3) {
       if (lastSearched !== searchText) {
         updateSearch()
         setIsOnCooldown(true);
-        timeoutId = setTimeout(() => setIsOnCooldown(false), 1000)
+        setTimeout(() => setIsOnCooldown(false), 1000)
       }
     }
-
-    //return () => clearTimeout(timeoutId)
-
   }, [isOnCooldown, searchText])
 
   const updateSearch = () => {
@@ -56,7 +50,7 @@ export default function SearchBar({ onClick, fullSearch }) {
   async function getPersonSearchResults() {
     setIsLoading(true);
     const toSearch = searchText.slice(1);
-    const result = await fetch(`http://localhost:3001/user/?q=${toSearch}`);
+    const result = await fetch(`${import.meta.env.VITE_BACKEND_HOST}/user/?q=${toSearch}`);
     const data = await result.json();
     await new Promise(resolve => setTimeout(resolve(), 500))
     setSearchResults(data);
