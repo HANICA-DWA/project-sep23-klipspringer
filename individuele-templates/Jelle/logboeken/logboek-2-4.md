@@ -22,11 +22,12 @@
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak                                                                                     | Met Wie | Resultaten           | Emotie      | Link |
-|------|------------------------------------------------------------------------------------------|---|----------------------|-------------|---|
-| 1    | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/126) | N.V.T. | frontend aanpassen   | :satisfied: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/6db4910966aeb9c1f1e03c9ddbd4361a9dd789f9) |
-| 1.5  | leerdoelen                                                                               | N.V.T. | leerdoelen aangepast | :smiley:    | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/e1f1cd2ab9d8d9106f329d1a2ec5726373c1685e) |
-|      |                                                                                          | |                      |             | |
+| Uren | Taak                                                                                     | Met Wie     | Resultaten                                   | Emotie      | Link |
+|------|------------------------------------------------------------------------------------------|-------------|----------------------------------------------|-------------|---|
+| 1    | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/126) | N.V.T.      | frontend aanpassen                           | :satisfied: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/6db4910966aeb9c1f1e03c9ddbd4361a9dd789f9) |
+| 1.5  | leerdoelen                                                                               | N.V.T.      | leerdoelen aangepast                         | :smiley:    | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/e1f1cd2ab9d8d9106f329d1a2ec5726373c1685e) |
+| 0.5  | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/115) | Met Yannick | Reviewen van de pull request van de bookcase | :smiley:    | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/366d56a917628f6e957c8d72bd11e7a0a32fdddf) |
+|      |                                                                                          |             |                                              |             | |
 
 ## Woensdag 29 december
 
