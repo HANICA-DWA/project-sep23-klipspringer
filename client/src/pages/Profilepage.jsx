@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { LoggedInContext } from "../Contexts";
 import Header from "../components/Header";
+import { useAlert } from "../hooks/useAlert";
 
 function Profilepage({ setLoggedIn }) {
   const navigate = useNavigate();
@@ -13,6 +14,8 @@ function Profilepage({ setLoggedIn }) {
   const [deleteShelfID, setDeleteShelfID] = useState(null)
 
   const shelfClickHandler = loggedIn ? () => navigate("/" + username + "/shelf") : () => navigate("/login");
+
+  const [setDeleteShelfAlertOn, deleteShelfAlert] = useAlert("Shelf deleted!");
 
   useEffect(() => {
     getProfileData()
@@ -54,11 +57,13 @@ function Profilepage({ setLoggedIn }) {
       console.log(err)
     }
     getProfileData()
+    setDeleteShelfAlertOn()
   }
 
 
   return (
     <>
+      {deleteShelfAlert}
       <Stack justifyContent="flex-start" sx={{ minHeight: "100vh" }} spacing={3} useFlexGap>
         <Header setLoggedIn={setLoggedIn} />
         <Stack direction="column" alignItems="center">
