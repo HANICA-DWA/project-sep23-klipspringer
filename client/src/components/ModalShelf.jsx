@@ -2,12 +2,14 @@ import { useNavigate } from "react-router-dom";
 import { LoggedInContext } from "../Contexts";
 import { useContext, useState } from "react";
 import { Modal, Typography, Stack, Box } from "@mui/material";
-import { Add, ArrowForward } from "@mui/icons-material";
+import { Add, ArrowForward, Close } from "@mui/icons-material";
+import { useAlert } from "../hooks/useAlert";
 
 export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
     const { loggedIn, username } = useContext(LoggedInContext);
     const navigate = useNavigate();
     const [errMessage, setErrMessage] = useState("")
+    const [showAlert, alertComponent] = useAlert(errMessage, 3000, "warning")
 
     const styleModal = {
         position: 'absolute',
@@ -19,7 +21,12 @@ export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
     };
 
     function newShelf() {
-        navigate(`/profile/${username}/shelf`)
+        const data = {
+            _id: book._id,
+            cover_image: book.cover_image
+        }
+        localStorage.setItem("book", JSON.stringify(data))
+        loggedIn ? navigate(`/${username}/shelf`) : navigate("/login")
     }
 
     function addToShelf(shelfName) {
@@ -34,6 +41,7 @@ export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
                 navigate(`/book/${book._id}`);
             } else {
                 res.json().then((message) => setErrMessage(message.error));
+                showAlert()
                 console.log(errMessage)
             }
             console.log("succes", res);
@@ -43,14 +51,19 @@ export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
     }
 
     return (
+        <>
+        {alertComponent}
         <Modal
             open={open}
             onClose={handleClose}
         >
             <Box sx={styleModal}>
-                <Typography fontWeight="600" color="#8D8D8D" align="center" sx={{ padding: "15px", bgcolor: "#F3F3F3", borderRadius: '10px 10px 0px 0px' }}>
+                <Stack direction="row" justifyContent="center" alignItems="center" sx={{ padding: "15px", bgcolor: "#F3F3F3", borderRadius: '10px 10px 0px 0px' }}>
+                <Typography fontWeight="600" color="#8D8D8D" align="center" >
                     Choose a shelf
                 </Typography>
+                <Close onClick={handleClose} sx={{position: "absolute", right: "10px", transform: "scale(0.8)" }}/>
+                </Stack>
                 {shelfInfo.top_three != undefined ?
                     <Stack direction="row" justifyContent="space-between" sx={{ padding: "10px", borderBottom: "2px solid #F3F3F3" }} onClick={() => addToShelf("top_three")}>
                         <Stack direction="row">
@@ -83,5 +96,6 @@ export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
                 </Stack>
             </Box>
         </Modal>
+        </>
     )
 }
