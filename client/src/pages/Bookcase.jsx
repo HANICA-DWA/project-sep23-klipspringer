@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import { ImageList, ImageListItem, Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { ImageNotSupported } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import Bookcover from "../components/Bookcover";
 
 export default function Bookcase({ setLoggedIn }) {
   const userName = useParams().userName;
@@ -45,20 +46,13 @@ export default function Bookcase({ setLoggedIn }) {
           My bookcase
         </Typography>
         <ImageList cols={matchDownMd ? 3 : 10} gap={8} sx={{ px: 5 }}>
-          {profileInfo.bookcase.map((book) => (
-            <ImageListItem component={Link} to={`/detailpage/${book._id}`} sx={{ textDecoration: "none", color: "inherit" }} key={book._id}>
-              {book.cover_image ? (
-                <img style={{ borderRadius: "5px" }} src={`https://covers.openlibrary.org/b/isbn/${book._id}-M.jpg`} alt={book._id} />
-              ) : (
-                <Stack height="100%" justifyContent="center" alignItems="center" sx={{ border: "1px solid black", borderRadius: "5px" }}>
-                  <Stack alignItems="center" justifyContent="center">
-                    <ImageNotSupported sx={{ fontSize: 80 }} />
-                    <Typography variant="caption">No image found</Typography>
-                  </Stack>
-                </Stack>
-              )}
-            </ImageListItem>
-          ))}
+          {profileInfo.bookcase.map((book) => {
+            return (
+              <ImageListItem component={Link} to={`/detailpage/${book._id}`} sx={{ textDecoration: "none", color: "inherit" }} key={book._id}>
+                <Bookcover isbn={book._id} cover_image={book.cover_image} />
+              </ImageListItem>
+            );
+          })}
         </ImageList>
       </Stack>
     </Stack>
