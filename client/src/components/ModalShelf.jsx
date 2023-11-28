@@ -31,7 +31,7 @@ export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
             body: JSON.stringify({ book: book }),
         }).then((res) => {
             if (res.ok) {
-                navigate(-1);
+                navigate(`/book/${book._id}`);
             } else {
                 res.json().then((message) => setErrMessage(message.error));
                 console.log(errMessage)

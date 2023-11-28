@@ -81,7 +81,7 @@ export default function Detailpage({ setLoggedIn }) {
                         }) : <Typography variant="h6" color="#6A9D8A">No authors found</Typography>}
                     </Stack>
                 </Box>
-                <Chip onClick={handleOpen} sx={{ margin: "10px", fontSize: "14px" }} color="secondary" icon={<Add style={{ transform: "scale(0.7)" }} />} label="Add to shelf" />
+                <Chip onClick={handleOpen} sx={{ margin: "10px", fontSize: "14px", bgcolor: "#000000", color: "#FFFFFF"}} icon={<Add style={{ transform: "scale(0.7)", color: "#FFFFFF" }} />} label="Add to shelf" />
                     
                 <ModalShelf shelfInfo={shelfInfo} open={open} handleClose={handleClose} book={{_id: isbn, cover_image: book.cover != undefined ? book.cover.medium : null}}/>
 
