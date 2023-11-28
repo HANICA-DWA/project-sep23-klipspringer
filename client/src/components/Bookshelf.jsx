@@ -14,27 +14,29 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user}) {
   const placeholderBooks = [];
 
     function deleteBookHandler(bookId) {
-        fetch(import.meta.env.VITE_BACKEND_HOST +
-            "/user/" +
-            username +
-            "/shelves/" +
-            id +
-            "/book/" +
-            bookId,
-            {
-                method: "DELETE",
-            }).then((res) => {
-                return res.json()})
-            .then((res) => {
-                if(!res.error){
-                    setBookshelfBooks(...bookshelfBooks.splice(bookshelfBooks.findIndex(book => book._id === bookId),1));
-                }
-                else{
-                    console.log(res.error);
-                }
-            }).catch((err) => {
-            console.log(err);
-        });
+        if(loggedIn && username === user){
+            fetch(import.meta.env.VITE_BACKEND_HOST +
+                "/user/" +
+                username +
+                "/shelves/" +
+                id +
+                "/book/" +
+                bookId,
+                {
+                    method: "DELETE",
+                }).then((res) => {
+                    return res.json()})
+                .then((res) => {
+                    if(!res.error){
+                        setBookshelfBooks(...bookshelfBooks.splice(bookshelfBooks.findIndex(book => book._id === bookId),1));
+                    }
+                    else{
+                        console.log(res.error);
+                    }
+                }).catch((err) => {
+                console.log(err);
+            });
+        }
     }
 
   //TODO na ontwerp Rik dit refactoren
@@ -68,7 +70,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user}) {
         <ImageList cols={3}>
           {books.map((item) => (
             <Card key={item._id} style={{ width: "85px", height: "130px" }}>
-                {loggedIn?(
+                {loggedIn && username === user ?(
                     <IconButton aria-label="settings" onClick={()=>deleteBookHandler(item._id)} >
                         <DeleteIcon />
                     </IconButton>
