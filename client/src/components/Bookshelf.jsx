@@ -5,9 +5,12 @@ import { LoggedInContext } from "../Contexts";
 import { Edit } from "@mui/icons-material";
 import { ImageNotSupported } from "@mui/icons-material";
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useAlert } from "../hooks/useAlert";
 
 export default function Bookshelf({ id, title, books = [], hideAdding, user}) {
   const { loggedIn, username } = useContext(LoggedInContext);
+  const [errMessage, setErrMessage] = useState("")
+  const [showAlert, alertComponent] = useAlert(errMessage, 3000, "warning")
 
   const [bookshelfBooks, setBookshelfBooks] = useState(books);
 
@@ -31,7 +34,8 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user}) {
                         setBookshelfBooks(bookshelfBooks.filter(book => book._id !== bookId));
                     }
                     else{
-                        console.log(res.error);
+                      setErrMessage(res.error);
+                      showAlert()
                     }
                 }).catch((err) => {
                 console.log(err);
@@ -63,6 +67,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user}) {
 
   return (
     <Stack direction="column" alignItems="center">
+      {alertComponent}
       <Typography gutterBottom variant="h5" fontWeight="800" sx={{ overflowWrap: "anywhere", maxWidth: "100%", textAlign: "center" }}>
         {title}
       </Typography>
