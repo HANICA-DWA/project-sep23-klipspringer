@@ -1,5 +1,5 @@
-import { Box, Button, FormControl, IconButton, InputAdornment, Stack, TextField, Typography } from "@mui/material";
-import { AlternateEmail } from "@mui/icons-material";
+import { Box, Button, FormControl, FormHelperText, IconButton, InputAdornment, Stack, TextField, Typography } from "@mui/material";
+import { AlternateEmail, Cancel, CheckCircleOutline } from "@mui/icons-material";
 import { ArrowBackIos } from "@mui/icons-material";
 import { GoogleLogin } from "@react-oauth/google";
 import { LinkedIn } from "react-linkedin-login-oauth2";
@@ -83,7 +83,7 @@ export default function Register({ setLoggedIn }) {
               <FormControl>
                 <TextField
                   variant="outlined"
-                  color="secondary"
+                  color={usernameInput && !inputError ? "success" : "secondary"}
                   id="username"
                   name="username"
                   placeholder="yourname"
@@ -102,9 +102,33 @@ export default function Register({ setLoggedIn }) {
                         </Typography>
                       </InputAdornment>
                     ),
+                    endAdornment:
+                      usernameInput && !inputError ? (
+                        <InputAdornment position="end">
+                          <CheckCircleOutline sx={{ color: "success.main" }} />
+                        </InputAdornment>
+                      ) : (
+                        <InputAdornment position="end">
+                          <Cancel
+                            color={inputError ? "error" : "inherit"}
+                            sx={{ cursor: "pointer" }}
+                            onClick={() => {
+                              setUsernameInput("");
+                              setInputError(null);
+                            }}
+                          />
+                        </InputAdornment>
+                      ),
                     style: { fontSize: "1rem" },
                   }}
                 />
+                {usernameInput && !inputError ? (
+                  <FormHelperText id="username-success" filled sx={{ color: "success.main" }}>
+                    Available!
+                  </FormHelperText>
+                ) : (
+                  ""
+                )}
                 <Button variant="contained" color="secondary" type="submit" sx={{ p: 1, fontSize: "0.9rem", mt: 2 }}>
                   Claim your shelf
                 </Button>
