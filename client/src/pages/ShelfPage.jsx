@@ -1,10 +1,11 @@
 import { Box, Button, Container, Stack, TextField, Typography } from "@mui/material";
 import SearchBar from "../components/SearchBar";
 import Bookshelf from "../components/Bookshelf";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { ArrowBackIos, Title } from "@mui/icons-material";
 import { useNavigate, useParams } from "react-router-dom";
 import { LoggedInContext } from "../Contexts";
+import { useAlert } from "../hooks/useAlert";
 
 export default function ShelfPage() {
   const navigate = useNavigate();
@@ -12,10 +13,10 @@ export default function ShelfPage() {
   const { loggedIn, username } = useContext(LoggedInContext);
 
   const localStorageBook = localStorage.getItem("book") != undefined ? [JSON.parse(localStorage.getItem("book"))] : []
-  console.log(localStorageBook)
   const [books, setBooks] = useState(localStorageBook);
   const [title, setTitle] = useState("");
   const [errMessage, setErrMessage] = useState("");
+  const [showAlert, alertComponent] = useAlert(errMessage, 3000, "warning")
 
   const handleAdd = (toAdd) => {
     const book = toAdd.book
@@ -26,6 +27,8 @@ export default function ShelfPage() {
       setErrMessage("");
     }
   };
+
+  useEffect(() => console.log(books), [books])
 
   const handleCreate = () => {
     if (loggedIn && username === usernameParams) {
@@ -39,21 +42,25 @@ export default function ShelfPage() {
           body: JSON.stringify({ name: title, books: books }),
         }).then((res) => {
           if (res.ok) {
-            navigate(-1);
+            navigate(`/${username}`);
           } else {
             res.json().then((message) => setErrMessage(message.error));
           }
         });
       } else {
         setErrMessage("You need to add min 3 books");
+        showAlert()
+
       }
     } else {
       setErrMessage("Not allowed to add a shelf");
+      showAlert()
     }
   };
 
   return (
     <>
+    {alertComponent}
       <Container
         maxWidth="sm"
         sx={{
@@ -75,9 +82,6 @@ export default function ShelfPage() {
 
           <Stack gap={2} direction="column" alignItems="center" width="100%">
             <Bookshelf books={books} hideAdding />
-            <Typography variant="body1" style={{ color: "red" }}>
-              {errMessage}
-            </Typography>
             <Box sx={{ display: "flex", alignItems: "flex-end" }}>
               <Title sx={{ color: "action.active", mr: 1, my: 0.5 }} />
               <TextField id="input-with-sx" label="Title" variant="standard" value={title} onChange={(e) => setTitle(e.target.value)} />

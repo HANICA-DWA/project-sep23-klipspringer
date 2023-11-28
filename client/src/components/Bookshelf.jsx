@@ -1,17 +1,24 @@
 import {Typography, Card, Stack, CardMedia, ImageList, Icon, Box, CardHeader, IconButton} from "@mui/material";
 import { Link } from "react-router-dom";
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import { LoggedInContext } from "../Contexts";
 import { Edit } from "@mui/icons-material";
 import { ImageNotSupported } from "@mui/icons-material";
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useAlert } from "../hooks/useAlert";
 
 export default function Bookshelf({ id, title, books = [], hideAdding, user}) {
   const { loggedIn, username } = useContext(LoggedInContext);
+  const [errMessage, setErrMessage] = useState("")
+  const [showAlert, alertComponent] = useAlert(errMessage, 3000, "warning")
 
   const [bookshelfBooks, setBookshelfBooks] = useState(books);
 
   const placeholderBooks = [];
+
+  useEffect(() => {
+    setBookshelfBooks(books)
+  }, [books])
 
     function deleteBookHandler(bookId) {
         if(loggedIn && username === user){
@@ -31,7 +38,8 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user}) {
                         setBookshelfBooks(bookshelfBooks.filter(book => book._id !== bookId));
                     }
                     else{
-                        console.log(res.error);
+                      setErrMessage(res.error);
+                      showAlert()
                     }
                 }).catch((err) => {
                 console.log(err);
@@ -63,6 +71,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user}) {
 
   return (
     <Stack direction="column" alignItems="center">
+      {alertComponent}
       <Typography gutterBottom variant="h5" fontWeight="800" sx={{ overflowWrap: "anywhere", maxWidth: "100%", textAlign: "center" }}>
         {title}
       </Typography>
