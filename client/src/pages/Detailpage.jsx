@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../components/Header";
-import { Add, ArrowBackIosNew, ArrowForward, ArrowOutward, ImageNotSupported } from "@mui/icons-material";
+import { Add, ArrowBackIosNew, ArrowOutward, ImageNotSupported } from "@mui/icons-material";
 import { Box, Chip, Stack, Typography} from "@mui/material";
 import { LoggedInContext } from "../Contexts";
 import { useContext, useEffect, useState } from "react";
@@ -82,8 +82,8 @@ export default function Detailpage({ setLoggedIn }) {
                     </Stack>
                 </Box>
                 <Chip onClick={handleOpen} sx={{ margin: "10px", fontSize: "14px" }} color="secondary" icon={<Add style={{ transform: "scale(0.7)" }} />} label="Add to shelf" />
-
-                <ModalShelf shelfInfo={shelfInfo} open={open} handleClose={handleClose}/>
+                    
+                <ModalShelf shelfInfo={shelfInfo} open={open} handleClose={handleClose} book={{_id: isbn, cover_image: book.cover != undefined ? book.cover.medium : null}}/>
 
                 <Chip sx={{ margin: "10px", fontSize: "14px" }} color="primary" icon={<ArrowOutward style={{ transform: "scale(0.7)" }} />} label="Buy" />
             </Stack>
