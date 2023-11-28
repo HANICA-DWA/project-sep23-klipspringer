@@ -1,6 +1,6 @@
 import {Typography, Card, Stack, CardMedia, ImageList, Icon, Box, CardHeader, IconButton} from "@mui/material";
 import { Link } from "react-router-dom";
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import { LoggedInContext } from "../Contexts";
 import { Edit } from "@mui/icons-material";
 import { ImageNotSupported } from "@mui/icons-material";
@@ -15,6 +15,10 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user}) {
   const [bookshelfBooks, setBookshelfBooks] = useState(books);
 
   const placeholderBooks = [];
+
+  useEffect(() => {
+    setBookshelfBooks(books)
+  }, [books])
 
     function deleteBookHandler(bookId) {
         if(loggedIn && username === user){

@@ -1,7 +1,7 @@
 import { Box, Button, Container, Stack, TextField, Typography } from "@mui/material";
 import SearchBar from "../components/SearchBar";
 import Bookshelf from "../components/Bookshelf";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { ArrowBackIos, Title } from "@mui/icons-material";
 import { useNavigate, useParams } from "react-router-dom";
 import { LoggedInContext } from "../Contexts";
@@ -13,7 +13,6 @@ export default function ShelfPage() {
   const { loggedIn, username } = useContext(LoggedInContext);
 
   const localStorageBook = localStorage.getItem("book") != undefined ? [JSON.parse(localStorage.getItem("book"))] : []
-  console.log(localStorageBook)
   const [books, setBooks] = useState(localStorageBook);
   const [title, setTitle] = useState("");
   const [errMessage, setErrMessage] = useState("");
@@ -28,6 +27,8 @@ export default function ShelfPage() {
     }
   };
 
+  useEffect(() => console.log(books), [books])
+
   const handleCreate = () => {
     if (loggedIn && username === usernameParams) {
       if (books.length >= 3) {
@@ -40,7 +41,7 @@ export default function ShelfPage() {
           body: JSON.stringify({ name: title, books: books }),
         }).then((res) => {
           if (res.ok) {
-            navigate(-1);
+            navigate(`/${username}`);
           } else {
             res.json().then((message) => setErrMessage(message.error));
           }
