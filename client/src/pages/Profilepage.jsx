@@ -11,7 +11,7 @@ function Profilepage({ setLoggedIn }) {
   const { loggedIn, username } = useContext(LoggedInContext);
   const [profileInfo, setProfileInfo] = useState([]);
 
-  const shelfClickHandler = loggedIn ? () => navigate("/profile/" + username + "/shelf") : () => navigate("/login");
+  const shelfClickHandler = loggedIn ? () => navigate("/" + username + "/shelf") : () => navigate("/login");
 
   useEffect(() => {
     fetch(
