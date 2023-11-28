@@ -12,7 +12,7 @@ function Profilepage({ setLoggedIn }) {
   const [profileInfo, setProfileInfo] = useState([]);
   const [deleteShelfID, setDeleteShelfID] = useState(null)
 
-  const shelfClickHandler = loggedIn ? () => navigate("/profile/" + username + "/shelf") : () => navigate("/login");
+  const shelfClickHandler = loggedIn ? () => navigate("/" + username + "/shelf") : () => navigate("/login");
 
   useEffect(() => {
     getProfileData()

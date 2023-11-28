@@ -11,7 +11,7 @@ export default function LogoutButton({ setLoggedIn }) {
     setLoggedIn({ loggedIn: false, username: undefined });
   };
   return (
-    <Button variant="text" onClick={clickHandler} endIcon={<Logout style={{ transform: "scale(1.2)" }} />}>
+    <Button sx={{margin: "10px"}} variant="text" onClick={clickHandler} endIcon={<Logout style={{ transform: "scale(1.2)" }} />}>
       <Typography variant="body1">Logout</Typography>
     </Button>
   );

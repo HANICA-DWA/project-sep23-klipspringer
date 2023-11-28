@@ -6,22 +6,22 @@ let theme = createTheme({
     fontSize: 12,
   },
   palette: {
-      primary: {
-        main: "#FFA501",
-      },
-      secondary: {
-        main: "#000000"
-      }
+    primary: {
+      main: "#FFA501",
     },
+    secondary: {
+      main: "#238892",
+    },
+  },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: "35px"
-        }
-      }
-    }
-  }
+          borderRadius: "35px",
+        },
+      },
+    },
+  },
 });
 
 theme = responsiveFontSizes(theme, { factor: 3.5 });
