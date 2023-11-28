@@ -31,17 +31,7 @@ export default function SearchPage() {
         console.log("succes", res);
       })
       .catch((err) => {
-        console.log("failure", err);
-        console.log(
-          "failure2",
-          JSON.stringify(import.meta.env.VITE_BACKEND_HOST + "/" + username + "/book", {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ book: book, shelf: shelf }),
-          })
-        );
+          console.log("error", err);
       });
   };
 
