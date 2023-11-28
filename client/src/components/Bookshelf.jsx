@@ -1,17 +1,46 @@
-import { Typography, Card, Stack, CardMedia, ImageList, Icon, Box } from "@mui/material";
+import {Typography, Card, Stack, CardMedia, ImageList, Icon, Box, CardHeader, IconButton} from "@mui/material";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import {useContext, useState} from "react";
 import { LoggedInContext } from "../Contexts";
 import { Edit } from "@mui/icons-material";
 import { ImageNotSupported } from "@mui/icons-material";
+import DeleteIcon from '@mui/icons-material/Delete';
 
-export default function Bookshelf({ id, title, books = [], hideAdding, user }) {
+export default function Bookshelf({ id, title, books = [], hideAdding, user}) {
   const { loggedIn, username } = useContext(LoggedInContext);
+
+  const [bookshelfBooks, setBookshelfBooks] = useState(books);
 
   const placeholderBooks = [];
 
+    function deleteBookHandler(bookId) {
+        if(loggedIn && username === user){
+            fetch(import.meta.env.VITE_BACKEND_HOST +
+                "/user/" +
+                username +
+                "/shelves/" +
+                id +
+                "/book/" +
+                bookId,
+                {
+                    method: "DELETE",
+                }).then((res) => {
+                    return res.json()})
+                .then((res) => {
+                    if(!res.error){
+                        setBookshelfBooks(bookshelfBooks.filter(book => book._id !== bookId));
+                    }
+                    else{
+                        console.log(res.error);
+                    }
+                }).catch((err) => {
+                console.log(err);
+            });
+        }
+    }
+
   //TODO na ontwerp Rik dit refactoren
-  if ((books.length === 0 && !loggedIn) || (books.length === 0 && hideAdding)) {
+  if ((bookshelfBooks.length === 0 && !loggedIn) || (bookshelfBooks.length === 0 && hideAdding)) {
     placeholderBooks.push(<div></div>);
     placeholderBooks.push(
       <Typography variant="h5" order="2">
@@ -20,7 +49,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user }) {
     );
   }
 
-  for (let i = books.length; i < 3; i++) {
+  for (let i = bookshelfBooks.length; i < 3; i++) {
     if (loggedIn && username === user && !hideAdding) {
       placeholderBooks.push(
         <Card key={i} style={{ width: "85px", height: "130px" }}>
@@ -39,9 +68,14 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user }) {
       </Typography>
       <Stack direction="row" justifyContent="center" spacing={2}>
         <ImageList cols={3}>
-          {books.map((item) => (
+          {bookshelfBooks.map((item) => (
             <Card key={item._id} style={{ width: "85px", height: "130px" }}>
-              <Link to={"#"} style={{ textDecoration: "none", color: "black" }}>
+                {loggedIn && username === user ?(
+                    <IconButton aria-label="settings" onClick={()=>deleteBookHandler(item._id)} >
+                        <DeleteIcon />
+                    </IconButton>
+                ):null}
+              <Link to={`/book/${item._id}`} style={{ textDecoration: "none", color: "black" }}>
                 {item.cover_image !== undefined ? (
                   <CardMedia shelf={id} height="130" component="img" image={item.cover_image} alt={item._id} />
                 ) : (

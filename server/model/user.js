@@ -18,11 +18,16 @@ function validatorUniqueBooks(val) {
   return true;
 }
 
+function validatorUsername(val) {
+  const regex = /^[\w.]{1,30}$/;
+  return regex.test(val);
+}
+
 const name = "User";
 
 const schema = new mongoose.Schema(
   {
-    _id: { type: String, required: true },
+    _id: { type: String, required: true, validate: [validatorUsername, "Username can only contain letters, numbers, dots and underscores "] },
     sso_id: { type: String },
     sso_provider: { type: String, enum: ["Google", "LinkedIn"] },
     name: { type: String, required: true },

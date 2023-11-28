@@ -11,7 +11,7 @@ function Profilepage({ setLoggedIn }) {
   const { loggedIn, username } = useContext(LoggedInContext);
   const [profileInfo, setProfileInfo] = useState([]);
 
-  const shelfClickHandler = loggedIn ? () => navigate("/" + username + "/shelf") : () => navigate("/login");
+  const shelfClickHandler = loggedIn ? () => {localStorage.removeItem("book"); navigate("/" + username + "/shelf")} : () => navigate("/login");
 
   useEffect(() => {
     fetch(
@@ -64,11 +64,11 @@ function Profilepage({ setLoggedIn }) {
         </Stack>
 
         {profileInfo.top_three ? (
-          <Bookshelf key={"top_three"} id={"top_three"} title="My top 3 books" books={profileInfo.top_three} user={profileInfo._id} />
+          <Bookshelf key={"top_three"} id={"top_three"} title="My top 3 books" books={profileInfo.top_three} user={profileInfo._id}/>
         ) : null}
         {profileInfo.shelf != undefined && profileInfo.shelf.length > 0
           ? profileInfo.shelf.map((shelf) => (
-              <Bookshelf key={shelf._id} id={shelf._id} title={shelf.name} books={shelf.books} user={profileInfo._id} />
+              <Bookshelf key={shelf._id} id={shelf._id} title={shelf.name} books={shelf.books} user={profileInfo._id}/>
             ))
           : null}
 

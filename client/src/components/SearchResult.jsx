@@ -48,7 +48,7 @@ export default function SearchResult({ book, onAdd, closePopper, fullSearch }) {
             marginRight: "10px",
             display: show,
           }}
-          src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg?default=false`}
+          src={`https://covers.openlibrary.org/b/isbn/${book.isbn[0]}-M.jpg?default=false`}
           alt={`cover image for ${book.title}`}
           onLoad={() => showImage()}
         />
@@ -61,7 +61,7 @@ export default function SearchResult({ book, onAdd, closePopper, fullSearch }) {
       </div>
       <Button
         onClick={() => {
-          const cover_image = book.cover_i === undefined ? undefined : `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg?default=false`
+          const cover_image = book.cover_i === undefined ? undefined : `https://covers.openlibrary.org/b/isbn/${book.isbn[0]}-M.jpg?default=false`
           onAdd({type: "book", book: {cover_image: cover_image, _id: book.isbn[0]??book.isbn}})
           closePopper()
         }}
