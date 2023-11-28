@@ -75,7 +75,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user}) {
                         <DeleteIcon />
                     </IconButton>
                 ):null}
-              <Link to={"#"} style={{ textDecoration: "none", color: "black" }}>
+              <Link to={`/book/${item._id}`} style={{ textDecoration: "none", color: "black" }}>
                 {item.cover_image !== undefined ? (
                   <CardMedia shelf={id} height="130" component="img" image={item.cover_image} alt={item._id} />
                 ) : (
