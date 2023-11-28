@@ -11,7 +11,9 @@ export default function ShelfPage() {
   const usernameParams = useParams().userName;
   const { loggedIn, username } = useContext(LoggedInContext);
 
-  const [books, setBooks] = useState([]);
+  const localStorageBook = localStorage.getItem("book") != undefined ? [JSON.parse(localStorage.getItem("book"))] : []
+  console.log(localStorageBook)
+  const [books, setBooks] = useState(localStorageBook);
   const [title, setTitle] = useState("");
   const [errMessage, setErrMessage] = useState("");
 
