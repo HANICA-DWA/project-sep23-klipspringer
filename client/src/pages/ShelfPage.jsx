@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import { ArrowBackIos, Title } from "@mui/icons-material";
 import { useNavigate, useParams } from "react-router-dom";
 import { LoggedInContext } from "../Contexts";
+import { useAlert } from "../hooks/useAlert";
 
 export default function ShelfPage() {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ export default function ShelfPage() {
   const [books, setBooks] = useState(localStorageBook);
   const [title, setTitle] = useState("");
   const [errMessage, setErrMessage] = useState("");
+  const [showAlert, alertComponent] = useAlert(errMessage, 3000, "warning")
 
   const handleAdd = (book) => {
     if (books.find((item) => item._id === book._id)) {
@@ -45,14 +47,18 @@ export default function ShelfPage() {
         });
       } else {
         setErrMessage("You need to add min 3 books");
+        showAlert()
+
       }
     } else {
       setErrMessage("Not allowed to add a shelf");
+      showAlert()
     }
   };
 
   return (
     <>
+    {alertComponent}
       <Container
         maxWidth="sm"
         sx={{
@@ -74,9 +80,6 @@ export default function ShelfPage() {
 
           <Stack gap={2} direction="column" alignItems="center" width="100%">
             <Bookshelf books={books} hideAdding />
-            <Typography variant="body1" style={{ color: "red" }}>
-              {errMessage}
-            </Typography>
             <Box sx={{ display: "flex", alignItems: "flex-end" }}>
               <Title sx={{ color: "action.active", mr: 1, my: 0.5 }} />
               <TextField id="input-with-sx" label="Title" variant="standard" value={title} onChange={(e) => setTitle(e.target.value)} />
