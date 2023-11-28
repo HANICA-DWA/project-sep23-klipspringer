@@ -48,7 +48,7 @@ export default function Router() {
           <Route path="/register" element={<Register setLoggedIn={setLoggedIn} />} />
           <Route path="/linkedin" element={<LinkedInCallback />} />
           <Route path="/unauthorized" element={<Unauthorized />} />
-          <Route path="/detailpage/:isbn" element={<Detailpage setLoggedIn={setLoggedIn} />} />
+          <Route path="/book/:isbn" element={<Detailpage setLoggedIn={setLoggedIn} />} />
           <Route exact path="/:userName" element={<ProfileContainer />}>
             {
             <Route path="" element={<Profilepage setLoggedIn={setLoggedIn} />} />
