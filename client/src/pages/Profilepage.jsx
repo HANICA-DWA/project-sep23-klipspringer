@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { LoggedInContext } from "../Contexts";
 import Header from "../components/Header";
+import ProfileInfo from "../components/ProfileInfo";
 
 function Profilepage({ setLoggedIn }) {
   const navigate = useNavigate();
@@ -40,28 +41,8 @@ function Profilepage({ setLoggedIn }) {
   return (
     <>
       <Stack justifyContent="flex-start" sx={{ minHeight: "100vh" }} spacing={3} useFlexGap>
-        <Header setLoggedIn={setLoggedIn} />
-        <Stack direction="column" alignItems="center">
-          <div
-            style={{
-              marginTop: "40px",
-              marginBottom: "20px",
-              padding: "3px",
-              border: "1px solid grey",
-              borderRadius: "50px",
-            }}
-          >
-            <Avatar
-              sx={{ width: 56, height: 56 }}
-              alt={profileInfo.name}
-              src={profileInfo.profile_picture}
-              imgProps={{ referrerPolicy: "no-referrer" }}
-            />
-          </div>
-          <Typography variant="h6" fontWeight="700" sx={{ overflowWrap: "anywhere", maxWidth: "100%", textAlign: "center" }}>
-            {profileInfo.name}
-          </Typography>
-        </Stack>
+        <Header setLoggedIn={setLoggedIn} shareButton={true} />
+        <ProfileInfo name={profileInfo.name} avatar={profileInfo.profile_picture} handle={profileInfo._id} />
 
         {profileInfo.top_three ? (
           <Bookshelf key={"top_three"} id={"top_three"} title="My top 3 books" books={profileInfo.top_three} user={profileInfo._id} />
