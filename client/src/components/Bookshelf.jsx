@@ -41,6 +41,17 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, onD
       <Typography gutterBottom variant="h5" fontWeight="800" sx={{ overflowWrap: "anywhere", maxWidth: "100%", textAlign: "center" }}>
         {title}
       </Typography>
+      {document.URL.includes("shelf") ? null : loggedIn && username === user 
+        ? 
+        <>
+          <IconButton>
+            <Edit /> 
+          </IconButton>
+          <IconButton onClick={() => {setDialogOpen()}}>
+            <Delete />
+          </IconButton>
+        </>
+        : null}
       <Stack direction="row" justifyContent="center" spacing={2}>
         <ImageList cols={3}>
           {books.map((item) => (
@@ -73,17 +84,6 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, onD
       <Stack direction="row">
         <img style={{ width: "320px", height: "20px" }} src="/images/bookshelf.jpg" alt="bookshelf"></img>
       </Stack>
-      {document.URL.includes("shelf") ? null : loggedIn && username === user 
-        ? 
-        <>
-          <IconButton>
-            <Edit /> 
-          </IconButton>
-          <IconButton onClick={() => {setDialogOpen()}}>
-            <Delete />
-          </IconButton>
-        </>
-        : null}
     </Stack>
   );
 }
