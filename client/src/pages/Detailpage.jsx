@@ -1,28 +1,21 @@
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../components/Header";
-import { Add, ArrowBackIosNew, ArrowOutward, ImageNotSupported } from "@mui/icons-material";
-import { Box, Chip, Stack, Typography, Modal } from "@mui/material";
-import { useEffect, useState } from "react";
+import { Add, ArrowBackIosNew, ArrowForward, ArrowOutward, ImageNotSupported } from "@mui/icons-material";
+import { Box, Chip, Stack, Typography} from "@mui/material";
+import { LoggedInContext } from "../Contexts";
+import { useContext, useEffect, useState } from "react";
+import ModalShelf from "../components/ModalShelf";
 
 export default function Detailpage({ setLoggedIn }) {
+    const { loggedIn, username } = useContext(LoggedInContext);
     const navigate = useNavigate();
     const isbn = useParams().isbn;
     const [book, setBook] = useState({});
     const [open, setOpen] = useState(false);
+    const [shelfInfo, setShelfInfo] = useState([]);
+
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-
-    const styleDialog = {
-        position: 'absolute',
-        bottom: '0',
-        left: '0',
-        //transform: 'translate(0, 0)',
-        width: "100vw",
-        bgcolor: 'white',
-        //border: '2px solid #000',
-        boxShadow: 24,
-        p: 4,
-    };
 
     useEffect(() => {
         fetch(`https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`)
@@ -34,6 +27,30 @@ export default function Detailpage({ setLoggedIn }) {
                 console.log(err)
             })
     }, []);
+
+    useEffect(() => {
+        fetch(
+            import.meta.env.VITE_BACKEND_HOST +
+            "/user/" +
+            username +
+            "?" +
+            new URLSearchParams({
+                fields: ["top_three", "shelf"],
+            }),
+            {
+                method: "GET",
+            }
+        )
+            .then((res) => {
+                return res.json();
+            })
+            .then((res) => {
+                setShelfInfo(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, [])
 
     return (
         <>
@@ -66,19 +83,7 @@ export default function Detailpage({ setLoggedIn }) {
                 </Box>
                 <Chip onClick={handleOpen} sx={{ margin: "10px", fontSize: "14px" }} color="secondary" icon={<Add style={{ transform: "scale(0.7)" }} />} label="Add to shelf" />
 
-                <Modal
-                    open={open}
-                    onClose={handleClose}
-                >
-                    <Box sx={styleDialog}>
-                        <Typography>
-                            My shelfs
-                        </Typography>
-                        <Typography>
-                            Naam van shelf
-                        </Typography>
-                    </Box>
-                </Modal>
+                <ModalShelf shelfInfo={shelfInfo} open={open} handleClose={handleClose}/>
 
                 <Chip sx={{ margin: "10px", fontSize: "14px" }} color="primary" icon={<ArrowOutward style={{ transform: "scale(0.7)" }} />} label="Buy" />
             </Stack>
