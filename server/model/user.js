@@ -19,7 +19,7 @@ function validatorUniqueBooks(val) {
 }
 
 function validatorUsername(val) {
-  const regex = /^[\w.]{1,30}$/;
+  const regex = /^[\w]{1,30}$/;
   return regex.test(val);
 }
 

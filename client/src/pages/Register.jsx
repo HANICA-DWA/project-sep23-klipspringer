@@ -20,17 +20,17 @@ export default function Register({ setLoggedIn }) {
   const onChange = async (e) => {
     const value = e.target.value.trim();
     setUsernameInput(value);
-    const regex = /^[\w.]{1,30}$/;
+    const regex = /^[\w]{1,30}$/;
     if (value && !regex.test(value)) {
       setInputError("Username can only contain letters, numbers, dots and underscores");
       return;
     }
 
-    const response = await fetch(import.meta.env.VITE_BACKEND_HOST + `/user/${value}`, { method: "HEAD" });
+    const response = await fetch(import.meta.env.VITE_BACKEND_HOST + `/user/check/${value}`, { method: "HEAD" });
     if (response.ok) {
-      setInputError("This user already exists");
-    } else {
       setInputError(null);
+    } else {
+      setInputError("This user already exists");
     }
   };
 
@@ -150,7 +150,7 @@ export default function Register({ setLoggedIn }) {
             </Typography>
           </Stack>
           <Typography textAlign="center" variant="h6" sx={{ opacity: 0.5 }}>
-            Free to share your inspirational books, quotes and authors{" "}
+            Free to share your inspirational books, quotes and authors
           </Typography>
           <TextField
             value={usernameInput}

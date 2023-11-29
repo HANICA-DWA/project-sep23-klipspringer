@@ -8,9 +8,13 @@ const router = express.Router();
 
 /* node:coverage disable */
 
+const forbiddenNames = ["register", "login", "search", "find", "linkedin", "unauthorized"]
+
 router.post("/google", async (req, res, next) => {
   const { idToken, username } = req.body;
   try {
+    if (forbiddenNames.includes(username))
+      throw createError("Illegal username", 403);
     const googleUser = await googleVerifyIdToken(idToken);
     const { name, sub, picture } = googleUser;
     const user = await getUserBySSOId(sub, "Google");
@@ -40,6 +44,8 @@ router.post("/google", async (req, res, next) => {
 router.post("/linkedin", async (req, res, next) => {
   const { authorizationCode, username } = req.body;
   try {
+    if (forbiddenNames.includes(username))
+      throw createError("Illegal username", 403);
     const response = await fetch(
       `https://www.linkedin.com/oauth/v2/accessToken?code=${authorizationCode}&grant_type=authorization_code&client_id=${
         process.env.LINKEDIN_APP_ID
