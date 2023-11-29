@@ -135,4 +135,8 @@ router.delete("/:username/bookcase/:book", async (req, res, next) => {
   }
 });
 
+router.put("/:username/bookcase", async (res, req, next) => {
+
+})
+
 export default router;
