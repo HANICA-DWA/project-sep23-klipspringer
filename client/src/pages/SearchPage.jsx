@@ -20,7 +20,7 @@ export default function SearchPage() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ book: book.book }),
+      body: JSON.stringify({ book: book }),
     })
       .then((res) => {
         if (res.ok) {
@@ -31,7 +31,7 @@ export default function SearchPage() {
         console.log("succes", res);
       })
       .catch((err) => {
-          console.log("error", err);
+        console.log("error", err);
       });
   };
 

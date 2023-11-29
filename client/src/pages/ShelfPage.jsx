@@ -12,14 +12,14 @@ export default function ShelfPage() {
   const usernameParams = useParams().userName;
   const { loggedIn, username } = useContext(LoggedInContext);
 
-  const localStorageBook = localStorage.getItem("book") != undefined ? [JSON.parse(localStorage.getItem("book"))] : []
+  const localStorageBook = localStorage.getItem("book") != undefined ? [JSON.parse(localStorage.getItem("book"))] : [];
   const [books, setBooks] = useState(localStorageBook);
   const [title, setTitle] = useState("");
   const [errMessage, setErrMessage] = useState("");
-  const [showAlert, alertComponent] = useAlert(errMessage, 3000, "warning")
+  const [showAlert, alertComponent] = useAlert(errMessage, 3000, "warning");
 
   const handleAdd = (toAdd) => {
-    const book = toAdd.book
+    const book = toAdd;
     if (books.find((item) => item._id === book._id)) {
       setErrMessage("This book is already on the shelf");
     } else {
@@ -28,7 +28,7 @@ export default function ShelfPage() {
     }
   };
 
-  useEffect(() => console.log(books), [books])
+  useEffect(() => console.log(books), [books]);
 
   const handleCreate = () => {
     if (loggedIn && username === usernameParams) {
@@ -49,18 +49,17 @@ export default function ShelfPage() {
         });
       } else {
         setErrMessage("You need to add min 3 books");
-        showAlert()
-
+        showAlert();
       }
     } else {
       setErrMessage("Not allowed to add a shelf");
-      showAlert()
+      showAlert();
     }
   };
 
   return (
     <>
-    {alertComponent}
+      {alertComponent}
       <Container
         maxWidth="sm"
         sx={{
