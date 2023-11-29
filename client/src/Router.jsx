@@ -13,6 +13,7 @@ import Unauthorized from "./pages/Unauthorized";
 import { CircularProgress, Stack } from "@mui/material";
 import Register from "./pages/Register";
 import Detailpage from "./pages/Detailpage";
+import Search from "./pages/Search";
 import Bookcase from "./pages/Bookcase";
 
 export default function Router() {
@@ -45,6 +46,7 @@ export default function Router() {
         <Routes>
           <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/find" element={<Search />} />
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
           <Route path="/register" element={<Register setLoggedIn={setLoggedIn} />} />
           <Route path="/linkedin" element={<LinkedInCallback />} />
