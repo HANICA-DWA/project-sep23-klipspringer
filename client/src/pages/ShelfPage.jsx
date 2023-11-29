@@ -2,10 +2,11 @@ import { Box, Button, Container, Stack, TextField, Typography } from "@mui/mater
 import SearchBar from "../components/SearchBar";
 import Bookshelf from "../components/Bookshelf";
 import { useContext, useState, useEffect } from "react";
-import { ArrowBackIos, Title } from "@mui/icons-material";
+import { ArrowBackIos, Title, Add } from "@mui/icons-material";
 import { useNavigate, useParams } from "react-router-dom";
 import { LoggedInContext } from "../Contexts";
 import { useAlert } from "../hooks/useAlert";
+import ModalBookcase from "../components/ModalBookcase";
 
 export default function ShelfPage() {
   const navigate = useNavigate();
@@ -17,6 +18,12 @@ export default function ShelfPage() {
   const [title, setTitle] = useState("");
   const [errMessage, setErrMessage] = useState("");
   const [showAlert, alertComponent] = useAlert(errMessage, 3000, "warning")
+  const [open, setOpen] = useState(false);
+  const [bookcase, setBookcase] = useState([]);
+
+  const handleOpen = () => setOpen(true);
+  
+  const handleClose = () => setOpen(false);
 
   const handleAdd = (toAdd) => {
     const book = toAdd.book
@@ -27,8 +34,6 @@ export default function ShelfPage() {
       setErrMessage("");
     }
   };
-
-  useEffect(() => console.log(books), [books])
 
   const handleCreate = () => {
     if (loggedIn && username === usernameParams) {
@@ -58,9 +63,23 @@ export default function ShelfPage() {
     }
   };
 
+  useEffect(() => {
+    fetch(import.meta.env.VITE_BACKEND_HOST + `/user/${username}?` + new URLSearchParams({
+      fields: ["bookcase"],
+    }), {
+      method: "GET"
+    }).then((res) => {
+      return res.json();
+    }).then((res) => {
+      setBookcase(res.bookcase)
+    }).catch((err) => {
+      console.log(err);
+    })
+  }, [])
+
   return (
     <>
-    {alertComponent}
+      {alertComponent}
       <Container
         maxWidth="sm"
         sx={{
@@ -78,7 +97,16 @@ export default function ShelfPage() {
               <ArrowBackIos onClick={() => navigate(-1)} />
               <SearchBar onClick={handleAdd} />
             </Stack>
+            <Stack direction="row" sx={{ margin: "5px" }} onClick={handleOpen}>
+              <Add />
+              <Typography>Choose from bookcase</Typography>
+            </Stack>
           </Stack>
+          <ModalBookcase
+            open={open}
+            handleClose={handleClose}
+            bookcase={bookcase}
+          />
 
           <Stack gap={2} direction="column" alignItems="center" width="100%">
             <Bookshelf books={books} hideAdding unclickable />
