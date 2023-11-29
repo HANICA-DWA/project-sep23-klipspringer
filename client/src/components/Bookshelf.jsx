@@ -7,7 +7,7 @@ import { ImageNotSupported } from "@mui/icons-material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useAlert } from "../hooks/useAlert";
 
-export default function Bookshelf({ id, title, books = [], hideAdding, user}) {
+export default function Bookshelf({ id, title, books = [], hideAdding, user, unclickable}) {
   const { loggedIn, username } = useContext(LoggedInContext);
   const [errMessage, setErrMessage] = useState("")
   const [showAlert, alertComponent] = useAlert(errMessage, 3000, "warning")
@@ -84,7 +84,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user}) {
                         <DeleteIcon />
                     </IconButton>
                 ):null}
-              <Link to={`/book/${item._id}`} style={{ textDecoration: "none", color: "black" }}>
+              <Link to={unclickable ? null : `/book/${item._id}`} style={{ textDecoration: "none", color: "black" }}>
                 {item.cover_image !== undefined ? (
                   <CardMedia shelf={id} height="130" component="img" image={item.cover_image} alt={item._id} />
                 ) : (
@@ -111,7 +111,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user}) {
       </Stack>
       <Stack direction="row">
         <img style={{ width: "320px", height: "20px" }} src="/images/bookshelf.jpg" alt="bookshelf"></img>
-        {document.URL.includes("shelf") ? null : loggedIn && username === user ? <Edit /> : null}
+        {unclickable ? null : loggedIn && username === user ? <Edit /> : null}
       </Stack>
     </Stack>
   );

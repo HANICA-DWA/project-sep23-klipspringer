@@ -1,7 +1,7 @@
 import { Button, Paper, Typography, Skeleton } from "@mui/material";
 import { useState } from "react";
 
-export default function SearchResult({ book, onAdd, closePopper }) {
+export default function SearchResult({ book, onAdd, closePopper, fullSearch }) {
   const [loading, setLoading] = useState(true);
   const [show, setShow] = useState("none");
   let authors = "";
@@ -62,13 +62,14 @@ export default function SearchResult({ book, onAdd, closePopper }) {
       <Button
         onClick={() => {
           const cover_image = book.cover_i === undefined ? undefined : `https://covers.openlibrary.org/b/isbn/${book.isbn[0]}-M.jpg?default=false`
-          onAdd({cover_image: cover_image, _id: book.isbn[0]??book.isbn})
+          onAdd({type: "book", book: {cover_image: cover_image, _id: book.isbn[0]??book.isbn}})
           closePopper()
         }}
         sx={{ marginRight: "10px" }}
         variant="contained"
       >
-        <Typography variant="button">Add</Typography>
+
+        <Typography variant="button">{fullSearch ? 'View' : 'Add'}</Typography>
       </Button>
     </Paper>
   );

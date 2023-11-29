@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../components/Header";
 import { Add, ArrowBackIosNew, ArrowOutward, ImageNotSupported } from "@mui/icons-material";
-import { Box, Chip, Stack, Typography} from "@mui/material";
+import { Box, Button, Chip, Stack, Typography} from "@mui/material";
 import { LoggedInContext } from "../Contexts";
 import { useContext, useEffect, useState } from "react";
 import ModalShelf from "../components/ModalShelf";
@@ -52,6 +52,10 @@ export default function Detailpage({ setLoggedIn }) {
             });
     }, [])
 
+    function addToBookcase(){
+        
+    }
+
     return (
         <>
             <Stack direction="row" alignItems="center" justifyContent="space-between">
@@ -59,6 +63,7 @@ export default function Detailpage({ setLoggedIn }) {
                 <Header setLoggedIn={setLoggedIn} />
             </Stack>
             <Stack alignItems="center">
+                <Button onClick={addToBookcase}>Add to bookcase</Button>
                 {book.cover !== undefined ? (
                     <img src={book.cover.medium} alt={book.title} style={{ margin: "10px", border: "1px solid #C3C0BB" }} height="280px" />
                 ) : (
