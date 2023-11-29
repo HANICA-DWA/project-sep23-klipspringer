@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../components/Header";
 import { Add, ArrowBackIosNew, ArrowOutward, ImageNotSupported } from "@mui/icons-material";
-import { Box, Button, Chip, Stack, Typography } from "@mui/material";
+import {Box, Button, Chip, IconButton, Stack, Typography} from "@mui/material";
 import { LoggedInContext } from "../Contexts";
 import { useContext, useEffect, useState } from "react";
 import ModalShelf from "../components/ModalShelf";
@@ -23,6 +23,7 @@ export default function Detailpage({ setLoggedIn }) {
     3000,
     removeError ? "error" : "success"
   );
+
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -87,6 +88,7 @@ export default function Detailpage({ setLoggedIn }) {
     showAddAlert();
   }
 
+
   async function removeFromBookcase(isbn) {
     const response = await fetch(import.meta.env.VITE_BACKEND_HOST + `/user/${username}/bookcase/${isbn}`, {
       method: "DELETE",
@@ -105,10 +107,13 @@ export default function Detailpage({ setLoggedIn }) {
   return (
     <>
       {addAlertComponent}
-      {removeAlertComponent}
+      {removeAlertComponent}  
       <Stack direction="row" alignItems="center" justifyContent="space-between">
         <ArrowBackIosNew sx={{ margin: "20px" }} onClick={() => navigate(-1)} />
         <Header setLoggedIn={setLoggedIn} />
+        {loggedIn && username && bookcaseInfo.filter((book) => book._id === isbn).length > 0 ?(<IconButton aria-label="settings" onClick={() => deleteBookHandler(isbn)}>
+          <DeleteIcon />
+        </IconButton>):null}
       </Stack>
       <Stack alignItems="center">
         {loggedIn && username ? (

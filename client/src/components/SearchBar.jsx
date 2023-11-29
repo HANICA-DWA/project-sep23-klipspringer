@@ -16,11 +16,11 @@ export default function SearchBar({ onClick, fullSearch }) {
       return <LinearProgress sx={{ width: "400px" }} />;
     } else if (searchResults && searchResults.length >= 1 && searchText.startsWith("@") && fullSearch && !isLoading) {
       return searchResults.map((person) => {
-        return <SearchResultPerson closePopper={closepopper} person={person} onClick={onClick} key={person._id} />
+        return <SearchResultPerson closePopper={closepopper} person={person} onClick={onClick} key={person._id} />;
       });
     } else if (searchResults && searchResults.length >= 1 && !isLoading) {
       return searchResults.map((book) => {
-        return <SearchResult closePopper={closepopper} book={book} onAdd={onClick} key={book.key} fullSearch={fullSearch}/>;
+        return <SearchResult closePopper={closepopper} book={book} onClick={onClick} key={book.key} fullSearch={fullSearch} />;
       });
     } else if (searchResults.length < 1 && !isLoading) {
       return <Typography variant="body1">No results found.</Typography>;
@@ -28,40 +28,40 @@ export default function SearchBar({ onClick, fullSearch }) {
   }
 
   useEffect(() => {
-    if ((!isOnCooldown && searchText.length >= 3 && !searchText.startsWith('@')) || (!isOnCooldown && searchText.length >= 2) && searchText.startsWith('@')) {
+    if (
+      (!isOnCooldown && searchText.length >= 3 && !searchText.startsWith("@")) ||
+      (!isOnCooldown && searchText.length >= 2 && searchText.startsWith("@"))
+    ) {
       if (lastSearched !== searchText) {
-        updateSearch()
+        updateSearch();
         setIsOnCooldown(true);
-        setTimeout(() => setIsOnCooldown(false), 1000)
+        setTimeout(() => setIsOnCooldown(false), 1000);
       }
-    } 
-    if ((searchText.length <= 2 && !searchText.startsWith('@')) || (searchText.length <= 1 && searchText.startsWith('@'))) {
+    }
+    if ((searchText.length <= 2 && !searchText.startsWith("@")) || (searchText.length <= 1 && searchText.startsWith("@"))) {
       setSearchResults([]);
       setIsLoading(false);
-      closepopper()
+      closepopper();
     }
-  }, [isOnCooldown, searchText])
+  }, [isOnCooldown, searchText]);
 
   const updateSearch = () => {
-    if (searchText.startsWith('@') && fullSearch)
-      getPersonSearchResults()
-    else
-      getBookSearchResults()
+    if (searchText.startsWith("@") && fullSearch) getPersonSearchResults();
+    else getBookSearchResults();
 
-    setLastSearched(searchText)
-    openpopper()
-  }
+    setLastSearched(searchText);
+    openpopper();
+  };
 
   async function getPersonSearchResults() {
     setIsLoading(true);
     const toSearch = searchText.slice(1);
     const result = await fetch(`${import.meta.env.VITE_BACKEND_HOST}/user/?q=${toSearch}`);
     const data = await result.json();
-    await new Promise(resolve => setTimeout(resolve(), 500))
     setSearchResults(data);
     setIsLoading(false);
   }
-  
+
   async function getBookSearchResults() {
     setIsLoading(true);
     const urlTitle = searchText.replace(/([\s])/g, "+");
@@ -73,6 +73,7 @@ export default function SearchBar({ onClick, fullSearch }) {
 
   const [anchorEl, setAnchorEl] = useState(null);
   const spanRef = useRef();
+  const containerRef = useRef();
 
   function openpopper() {
     setAnchorEl(spanRef.current);
@@ -109,10 +110,14 @@ export default function SearchBar({ onClick, fullSearch }) {
               ),
               endAdornment: (
                 <InputAdornment position="end">
-                  <Button onClick={() => {
-                    closepopper();
-                    setSearchText("");
-                  }}>cancel</Button>
+                  <Button
+                    onClick={() => {
+                      closepopper();
+                      setSearchText("");
+                    }}
+                  >
+                    cancel
+                  </Button>
                 </InputAdornment>
               ),
               sx: {
@@ -125,11 +130,13 @@ export default function SearchBar({ onClick, fullSearch }) {
           />
         </FormControl>
       </form>
-      <Popper sx={{ maxWidth: "600px" }} id={id} open={open} anchorEl={anchorEl}>
-        <Paper elevation={2} sx={{ padding: "4px 4px 4px 4px" }}>
-          {popperContents()}
-        </Paper>
-      </Popper>
+      <div ref={containerRef} style={{ zIndex: 1, width: "auto" }}>
+        <Popper sx={{ maxWidth: "600px", width: "100%" }} id={id} open={open} anchorEl={anchorEl} container={containerRef.current}>
+          <Paper elevation={2} sx={{ padding: "4px 4px 4px 4px" }}>
+            {popperContents()}
+          </Paper>
+        </Popper>
+      </div>
     </>
   );
 }
