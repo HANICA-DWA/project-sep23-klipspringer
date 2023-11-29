@@ -80,7 +80,7 @@ export default function ShelfPage() {
           </Stack>
 
           <Stack gap={2} direction="column" alignItems="center" width="100%">
-            <Bookshelf books={books} hideAdding />
+            <Bookshelf books={books} hideAdding unclickable />
             <Box sx={{ display: "flex", alignItems: "flex-end" }}>
               <Title sx={{ color: "action.active", mr: 1, my: 0.5 }} />
               <TextField id="input-with-sx" label="Title" variant="standard" value={title} onChange={(e) => setTitle(e.target.value)} />
