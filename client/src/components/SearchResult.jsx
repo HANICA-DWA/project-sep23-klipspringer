@@ -4,8 +4,17 @@ import { useState } from "react";
 export default function SearchResult({ book, onAdd, closePopper }) {
   const [loading, setLoading] = useState(true);
   const [show, setShow] = useState("none");
+  const [coverImage, setCoverImage] = useState(`https://covers.openlibrary.org/b/isbn/${book.isbn[0]}-M.jpg?default=false`);
   let authors = "";
   let title = "";
+
+  function onImageError() {
+    if (book.cover_i) {
+      setCoverImage(`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg?default=false`);
+    } else {
+      setCoverImage(undefined);
+    }
+  }
 
   function showImage() {
     setLoading(false);
@@ -14,15 +23,12 @@ export default function SearchResult({ book, onAdd, closePopper }) {
 
   if (book.author_name) {
     authors = book.author_name.reduce((prev, curr) => curr + ", " + prev);
-    if (authors.length > 50)
-      authors = authors.substring(0, 47) + "...";
+    if (authors.length > 50) authors = authors.substring(0, 47) + "...";
   }
 
   if (book.title) {
-    if (book.title.length > 50)
-      title = book.title.substring(0, 47) + "...";
-    else
-      title = book.title;
+    if (book.title.length > 50) title = book.title.substring(0, 47) + "...";
+    else title = book.title;
   }
 
   return (
@@ -48,7 +54,8 @@ export default function SearchResult({ book, onAdd, closePopper }) {
             marginRight: "10px",
             display: show,
           }}
-          src={`https://covers.openlibrary.org/b/isbn/${book.isbn[0]}-M.jpg?default=false`}
+          src={coverImage}
+          onError={onImageError}
           alt={`cover image for ${book.title}`}
           onLoad={() => showImage()}
         />
@@ -61,9 +68,8 @@ export default function SearchResult({ book, onAdd, closePopper }) {
       </div>
       <Button
         onClick={() => {
-          const cover_image = book.cover_i === undefined ? undefined : `https://covers.openlibrary.org/b/isbn/${book.isbn[0]}-M.jpg?default=false`
-          onAdd({cover_image: cover_image, _id: book.isbn[0]??book.isbn})
-          closePopper()
+          onAdd({ cover_image: coverImage, _id: book.isbn[0] ?? book.isbn });
+          closePopper();
         }}
         sx={{ marginRight: "10px" }}
         variant="contained"
