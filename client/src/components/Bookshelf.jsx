@@ -2,13 +2,14 @@ import { Typography, Card, Stack, CardMedia, ImageList, Icon, Box, CardHeader, I
 import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { LoggedInContext } from "../Contexts";
-import { Edit } from "@mui/icons-material";
+import { Edit, Delete } from "@mui/icons-material";
 import { ImageNotSupported } from "@mui/icons-material";
+import { useDialog } from "../hooks/useDialog"
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useAlert } from "../hooks/useAlert";
 import Bookcover from "./Bookcover";
 
-export default function Bookshelf({ id, title, books = [], hideAdding, user, unclickable}) {
+export default function Bookshelf({ id, title, books = [], hideAdding, user, unclickable, onDelete}) {
   const { loggedIn, username } = useContext(LoggedInContext);
   const [errMessage, setErrMessage] = useState("");
   const [showAlert, alertComponent] = useAlert(errMessage, 3000, "warning");
@@ -17,6 +18,8 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
 
   const placeholderBooks = [];
 
+  const [setDialogOpen, dialog] = useDialog(null, "Are you sure that you want to delete this shelf?", "No", "Yes", onDelete, id)
+  
   useEffect(() => {
     setBookshelfBooks(books);
   }, [books]);
@@ -67,10 +70,22 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
 
   return (
     <Stack direction="column" alignItems="center">
+      {dialog}
       {alertComponent}
       <Typography gutterBottom variant="h5" fontWeight="800" sx={{ overflowWrap: "anywhere", maxWidth: "100%", textAlign: "center" }}>
         {title}
       </Typography>
+      {document.URL.includes("shelf") ? null : loggedIn && username === user 
+        ? 
+        <>
+          <IconButton>
+            <Edit /> 
+          </IconButton>
+          <IconButton onClick={() => {setDialogOpen()}}>
+            <Delete />
+          </IconButton>
+        </>
+        : null}
       <Stack direction="row" justifyContent="center" spacing={2}>
         <ImageList cols={3}>
           {bookshelfBooks.map((item) => (
