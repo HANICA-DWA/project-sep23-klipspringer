@@ -58,7 +58,6 @@ export default function SearchBar({ onClick, fullSearch }) {
     const toSearch = searchText.slice(1);
     const result = await fetch(`${import.meta.env.VITE_BACKEND_HOST}/user/?q=${toSearch}`);
     const data = await result.json();
-    await new Promise((resolve) => setTimeout(resolve(), 500));
     setSearchResults(data);
     setIsLoading(false);
   }
