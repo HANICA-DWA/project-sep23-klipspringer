@@ -12,6 +12,18 @@ router.get("/", async (req, res) => {
   res.send(users);
 });
 
+const forbiddenNames = ["register", "login", "search", "find", "linkedin", "unauthorized"]
+
+router.head("/check/:username", async (req, res, next) => {
+  const { username } = req.params;
+  if (forbiddenNames.includes(username))
+    next(createError("Illegal username", 403));
+  const user = await User.findById(username);
+  if (user)
+    next(createError("User already exists", 403));
+  res.status(200).send();
+});
+
 router.use("/:username", async (req, res, next) => {
   const { username } = req.params;
   try {
@@ -25,10 +37,6 @@ router.use("/:username", async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-});
-
-router.head("/:username", async (req, res, next) => {
-  res.status(200).send();
 });
 
 router.get("/:username", (req, res, next) => {

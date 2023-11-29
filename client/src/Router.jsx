@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route, Outlet, useParams, Navigate } from "react-router-dom";
 import Profilepage from "./pages/Profilepage";
-import App from "./pages/App";
 import Login from "./pages/Login";
 import SearchPage from "./pages/SearchPage";
 import ShelfPage from "./pages/ShelfPage";
