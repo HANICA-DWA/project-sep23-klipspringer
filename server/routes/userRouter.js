@@ -140,7 +140,7 @@ router.delete("/:username/bookcase/:book", async (req, res, next) => {
   if (book != undefined) {
     try {
       const bookcaseBook = req.user.bookcase.find((bookcaseBook) => bookcaseBook._id === book);
-      if (index > -1) {
+      if (bookcaseBook != undefined) {
         req.user.removeFromBookcase([bookcaseBook]);
         await req.user.save();
       }
