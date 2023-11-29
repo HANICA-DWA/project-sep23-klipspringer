@@ -89,16 +89,16 @@ router.put("/:username/shelves/:shelf", async (req, res, next) => {
 });
 
 router.delete("/:username/shelves/:shelf", async (req, res, next) => {
-  try{
+  try {
     const { shelf } = req.params;
     const userShelf = req.user.shelf.id(shelf);
     req.user.deleteShelf(userShelf._id);
     await req.user.save();
     res.status(200).json("shelf deleted succesfuly");
-  } catch (err){
-    next(err)
+  } catch (err) {
+    next(err);
   }
-})
+});
 
 router.delete("/:username/shelves/:shelf/book/:book", async (req, res, next) => {
   const { shelf, book } = req.params;
@@ -140,7 +140,7 @@ router.delete("/:username/bookcase/:book", async (req, res, next) => {
   if (book != undefined) {
     try {
       const bookcaseBook = req.user.bookcase.find((bookcaseBook) => bookcaseBook._id === book);
-      if (index > -1) {
+      if (bookcaseBook != undefined) {
         req.user.removeFromBookcase([bookcaseBook]);
         await req.user.save();
       }
@@ -156,11 +156,11 @@ router.delete("/:username/bookcase/:book", async (req, res, next) => {
   }
 });
 
-router.put("/:username/bookcase", async (res, req, next) => {
+router.put("/:username/bookcase", async (req, res, next) => {
   const { book } = req.body;
   if (book != undefined) {
     try {
-      req.user.addToBookcase(book);
+      req.user.addToBookcase([book]);
       await req.user.save();
       res.status(200).json(book);
     } catch (err) {
