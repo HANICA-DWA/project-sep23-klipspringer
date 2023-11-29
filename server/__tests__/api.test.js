@@ -51,6 +51,25 @@ describe("connection", () => {
     });
   });
 
+  describe("GET /user/", () => {
+    beforeEach(async () => {
+      await User.deleteOne({ _id: "janwillem" });
+      await User.create({
+        _id: "janwillem",
+        name: "Jan Willem",
+        profile_picture: "hallo",
+      });
+    })
+
+    it("Status 200 with list of usernames", async () => {
+      const res = await request(app)
+        .get("/user/?" + new URLSearchParams({q: "janw"}))
+        .expect(200);
+
+      assert.deepEqual(res.body, [{_id: "janwillem", profile_picture: "hallo"}])
+    })
+  })
+
   // TODO fetch("/user/:username")
   describe("GET /user/:username", () => {
     beforeEach(async () => {
