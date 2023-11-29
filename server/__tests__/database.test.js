@@ -44,5 +44,61 @@ describe("connection", () => {
       let test_user = await User.findById("jan").lean();
       assert.deepEqual(test_user.bookcase, [{ _id: "123", cover_image: "image_url" }]);
     });
+
+    it("Removes from bookshelf", async () => {
+      let user = await User.findById("jan");
+      user.addToBookcase([{ _id: "123", cover_image: "image_url" }]);
+      user.addToBookcase([{ _id: "124", cover_image: "image_url" }]);
+      user.removeFromBookcase([{ _id: "123", cover_image: "image_url" }]);
+      await user.save();
+      
+      let test_user = await User.findById("jan").lean();
+      assert.deepEqual(test_user.bookcase, [{ _id: "124", cover_image: "image_url" }]);
+    })
   });
+
+  describe("Shelf tests", async () => {
+    beforeEach(async () => {
+      await User.deleteOne({ _id: "jan" });
+      await User.create({
+        _id: "jan",
+        name: "Jan",
+        shelf: [
+          {
+            name: "shelf1",
+            books: [
+              { _id: "123", cover_image: "image_url" },
+              { _id: "124", cover_image: "image_url" },
+              { _id: "125", cover_image: "image_url" },
+            ]
+          },
+          {
+            name: "shelf2",
+            books: [
+              { _id: "123", cover_image: "image_url" },
+              { _id: "124", cover_image: "image_url" },
+              { _id: "125", cover_image: "image_url" },
+            ]
+          }
+        ]
+      });
+    });
+
+    it("Should remove shelf 1", async () => {
+      let user = await User.findById("jan");
+      user.deleteShelf(user.shelf[0]._id);
+      await user.save();
+
+      let test_user = await User.findById("jan").lean();
+      assert.deepEqual(test_user.shelf, [{
+        _id: {}, 
+        name: "shelf2",
+        books: [
+          { _id: "123", cover_image: "image_url" },
+          { _id: "124", cover_image: "image_url" },
+          { _id: "125", cover_image: "image_url" },
+        ]
+      }]);
+    });
+  })
 });
