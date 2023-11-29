@@ -18,7 +18,8 @@ export default function ShelfPage() {
   const [errMessage, setErrMessage] = useState("");
   const [showAlert, alertComponent] = useAlert(errMessage, 3000, "warning")
 
-  const handleAdd = (book) => {
+  const handleAdd = (toAdd) => {
+    const book = toAdd.book
     if (books.find((item) => item._id === book._id)) {
       setErrMessage("This book is already on the shelf");
     } else {
@@ -75,12 +76,12 @@ export default function ShelfPage() {
             </Stack>
             <Stack direction="row" alignItems="center" width="100%">
               <ArrowBackIos onClick={() => navigate(-1)} />
-              <SearchBar onAdd={handleAdd} />
+              <SearchBar onClick={handleAdd} />
             </Stack>
           </Stack>
 
           <Stack gap={2} direction="column" alignItems="center" width="100%">
-            <Bookshelf books={books} hideAdding />
+            <Bookshelf books={books} hideAdding unclickable />
             <Box sx={{ display: "flex", alignItems: "flex-end" }}>
               <Title sx={{ color: "action.active", mr: 1, my: 0.5 }} />
               <TextField id="input-with-sx" label="Title" variant="standard" value={title} onChange={(e) => setTitle(e.target.value)} />

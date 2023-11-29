@@ -1,25 +1,67 @@
 import { FormControl, InputAdornment, IconButton, TextField, Popper, Box, Paper, Button, Typography, LinearProgress } from "@mui/material";
 import SearchResult from "./SearchResult";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Search } from "@mui/icons-material";
+import SearchResultPerson from "./SearchResultPerson";
 
-export default function SearchBar({ onAdd }) {
+export default function SearchBar({ onClick, fullSearch }) {
   const [searchText, setSearchText] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isOnCooldown, setIsOnCooldown] = useState(false);
+  const [lastSearched, setLastSearched] = useState("");
 
   function popperContents() {
     if (isLoading) {
       return <LinearProgress sx={{ width: "400px" }} />;
+    } else if (searchResults && searchResults.length >= 1 && searchText.startsWith("@") && fullSearch && !isLoading) {
+      return searchResults.map((person) => {
+        return <SearchResultPerson closePopper={closepopper} person={person} onClick={onClick} key={person._id} />
+      });
     } else if (searchResults && searchResults.length >= 1 && !isLoading) {
       return searchResults.map((book) => {
-        return <SearchResult closePopper={closepopper} book={book} onAdd={onAdd} key={book.key} />;
+        return <SearchResult closePopper={closepopper} book={book} onAdd={onClick} key={book.key} fullSearch={fullSearch}/>;
       });
     } else if (searchResults.length < 1 && !isLoading) {
       return <Typography variant="body1">No results found.</Typography>;
     }
   }
 
+  useEffect(() => {
+    if ((!isOnCooldown && searchText.length >= 3 && !searchText.startsWith('@')) || (!isOnCooldown && searchText.length >= 2) && searchText.startsWith('@')) {
+      if (lastSearched !== searchText) {
+        updateSearch()
+        setIsOnCooldown(true);
+        setTimeout(() => setIsOnCooldown(false), 1000)
+      }
+    } 
+    if ((searchText.length <= 2 && !searchText.startsWith('@')) || (searchText.length <= 1 && searchText.startsWith('@'))) {
+      setSearchResults([]);
+      setIsLoading(false);
+      closepopper()
+    }
+  }, [isOnCooldown, searchText])
+
+  const updateSearch = () => {
+    if (searchText.startsWith('@') && fullSearch)
+      getPersonSearchResults()
+    else
+      getBookSearchResults()
+
+    setLastSearched(searchText)
+    openpopper()
+  }
+
+  async function getPersonSearchResults() {
+    setIsLoading(true);
+    const toSearch = searchText.slice(1);
+    const result = await fetch(`${import.meta.env.VITE_BACKEND_HOST}/user/?q=${toSearch}`);
+    const data = await result.json();
+    await new Promise(resolve => setTimeout(resolve(), 500))
+    setSearchResults(data);
+    setIsLoading(false);
+  }
+  
   async function getBookSearchResults() {
     setIsLoading(true);
     const urlTitle = searchText.replace(/([\s])/g, "+");
@@ -31,12 +73,13 @@ export default function SearchBar({ onAdd }) {
 
   const [anchorEl, setAnchorEl] = useState(null);
   const spanRef = useRef();
+
   function openpopper() {
     setAnchorEl(spanRef.current);
   }
+
   function closepopper() {
     setAnchorEl(null);
-    setSearchText("");
   }
   const open = Boolean(anchorEl);
   const id = open ? "simple-popper" : undefined;
@@ -54,7 +97,7 @@ export default function SearchBar({ onAdd }) {
         <FormControl ref={spanRef} fullWidth>
           <TextField
             value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
+            onChange={(e) => setSearchText(e.target.value ? e.target.value : "")}
             placeholder="Search books..."
             InputProps={{
               startAdornment: (
@@ -66,7 +109,10 @@ export default function SearchBar({ onAdd }) {
               ),
               endAdornment: (
                 <InputAdornment position="end">
-                  <Button onClick={() => closepopper()}>cancel</Button>
+                  <Button onClick={() => {
+                    closepopper();
+                    setSearchText("");
+                  }}>cancel</Button>
                 </InputAdornment>
               ),
               sx: {
