@@ -28,8 +28,6 @@ export default function ShelfPage() {
     }
   };
 
-  useEffect(() => console.log(books), [books]);
-
   const handleCreate = () => {
     if (loggedIn && username === usernameParams) {
       if (books.length >= 3) {
