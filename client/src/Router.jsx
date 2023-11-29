@@ -13,6 +13,8 @@ import Unauthorized from "./pages/Unauthorized";
 import { CircularProgress, Stack } from "@mui/material";
 import Register from "./pages/Register";
 import Detailpage from "./pages/Detailpage";
+import Search from "./pages/Search";
+import Bookcase from "./pages/Bookcase";
 
 export default function Router() {
   const [loggedIn, setLoggedIn] = useState({ loggedIn: false, username: undefined });
@@ -44,15 +46,14 @@ export default function Router() {
         <Routes>
           <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/find" element={<Search />} />
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
           <Route path="/register" element={<Register setLoggedIn={setLoggedIn} />} />
           <Route path="/linkedin" element={<LinkedInCallback />} />
           <Route path="/unauthorized" element={<Unauthorized />} />
-          <Route path="/detailpage/:isbn" element={<Detailpage setLoggedIn={setLoggedIn} />} />
+          <Route path="/book/:isbn" element={<Detailpage setLoggedIn={setLoggedIn} />} />
           <Route exact path="/:userName" element={<ProfileContainer />}>
-            {
-            <Route path="" element={<Profilepage setLoggedIn={setLoggedIn} />} />
-            }
+            {<Route path="" element={<Profilepage setLoggedIn={setLoggedIn} />} />}
             <Route
               path="shelf"
               element={
@@ -66,6 +67,14 @@ export default function Router() {
               element={
                 <ProtectedRoute loading={loading}>
                   <SearchPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="bookcase"
+              element={
+                <ProtectedRoute loading={loading}>
+                  <Bookcase setLoggedIn={setLoggedIn} />
                 </ProtectedRoute>
               }
             />

@@ -5,6 +5,13 @@ import { createError } from "../functions/errorCreation.js";
 
 const router = express.Router();
 
+router.get("/", async (req, res) => {
+  const search = req.query.q ? req.query.q : "";
+  const users = await User.find({_id: {$regex: search, $options: 'i'}}, '_id profile_picture').limit(10).exec();
+  console.log(users);
+  res.send(users);
+});
+
 router.use("/:username", async (req, res, next) => {
   const { username } = req.params;
   try {
@@ -146,5 +153,9 @@ router.delete("/:username/bookcase/:book", async (req, res, next) => {
     next(error);
   }
 });
+
+router.put("/:username/bookcase", async (res, req, next) => {
+
+})
 
 export default router;

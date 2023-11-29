@@ -20,7 +20,7 @@ export default function SearchPage() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ book: book }),
+      body: JSON.stringify({ book: book.book }),
     })
       .then((res) => {
         if (res.ok) {
@@ -31,17 +31,7 @@ export default function SearchPage() {
         console.log("succes", res);
       })
       .catch((err) => {
-        console.log("failure", err);
-        console.log(
-          "failure2",
-          JSON.stringify(import.meta.env.VITE_BACKEND_HOST + "/" + username + "/book", {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ book: book, shelf: shelf }),
-          })
-        );
+          console.log("error", err);
       });
   };
 
@@ -54,7 +44,7 @@ export default function SearchPage() {
     >
       <Stack direction="row" alignItems="center" style={{ marginBottom: "25px" }}>
         <ArrowBackIos onClick={() => navigate(-1)} />
-        <SearchBar onAdd={handleAdd} />
+        <SearchBar onClick={handleAdd} />
       </Stack>
       <Typography align="center" variant="body1" style={{ color: "red" }}>
         {errMessage}

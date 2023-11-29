@@ -12,20 +12,24 @@
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak                                                                                     | Met Wie | Resultaten                                                                                        | Emotie   | Link                                                                                                                                |
-|------|------------------------------------------------------------------------------------------|---------|---------------------------------------------------------------------------------------------------|----------|-------------------------------------------------------------------------------------------------------------------------------------|
+| Uren | Taak                                                                                     | Met Wie | Resultaten                                                                                        | Emotie  | Link                                                                                                                                |
+|------|------------------------------------------------------------------------------------------|---------|---------------------------------------------------------------------------------------------------|---------|-------------------------------------------------------------------------------------------------------------------------------------|
 | 2    | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/127) | N.V.T.  | ik zat een kwartier iets proberen op te lossen en toen merkte ik dat ik in de verkeerde link zat. | :smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/756d36e3c35e1a484ff2f4eb104ac017c7c03da9) |
 | 1    | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/122) | N.V.T.  | dit was snel op te lossen vanwege mn hiervoor gemaakte code                                       | :smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/57597d971d93984d85fac214968e96dc356853be)                                                                                                         |
 | 0.5  | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/108) | N.V.T.  | Reviewen van de pull request van Niels                                                            |:satisfied: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/3310d38c7c37fcf3387b8ff5fb1882ca2c638045) |
+| 1    | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/126) | N.V.T.  | frontend en backend koppelen                                                                      |:scream: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/49530dfdfed6baeaf47d526f9f305768801f2afd) |
 
 ## Dinsdag 28 november
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak  | Met Wie | Resultaten         | Emotie | Link |
-|---|---|---|--------------------|---|---|
-| 1 | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/126) | N.V.T. | frontend aanpassen |:satisfied: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/6db4910966aeb9c1f1e03c9ddbd4361a9dd789f9) |
-| | | |                    | | |
+| Uren | Taak                                                                                     | Met Wie     | Resultaten                                                 | Emotie      | Link |
+|------|------------------------------------------------------------------------------------------|-------------|------------------------------------------------------------|-------------|---|
+| 1    | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/126) | N.V.T.      | frontend aanpassen                                         | :satisfied: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/6db4910966aeb9c1f1e03c9ddbd4361a9dd789f9) |
+| 1.5  | leerdoelen                                                                               | N.V.T.      | leerdoelen aangepast                                       | :smiley:    | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/e1f1cd2ab9d8d9106f329d1a2ec5726373c1685e) |
+| 0.5  | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/115) | Met Yannick | Reviewen van de pull request van de bookcase               | :smiley:    | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/366d56a917628f6e957c8d72bd11e7a0a32fdddf) |
+| 1    | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/126) | Met Niels   | fixen van unapproved review van frontend delete shelf book | :smiley:    | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/7d58fa1bb0d85878b797303189e96a6d1aaff72a) |
+|      |                                                                                          |             |                                                            |             | |
 
 ## Woensdag 29 december
 

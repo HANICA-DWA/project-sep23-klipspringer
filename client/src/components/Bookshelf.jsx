@@ -1,20 +1,57 @@
-import { Typography, Card, Stack, CardMedia, ImageList, IconButton } from "@mui/material";
+import {Typography, Card, Stack, CardMedia, ImageList, Icon, Box, CardHeader, IconButton} from "@mui/material";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import {useContext, useEffect, useState} from "react";
 import { LoggedInContext } from "../Contexts";
 import { Edit, Delete } from "@mui/icons-material";
 import { ImageNotSupported } from "@mui/icons-material";
 import { useDialog } from "../hooks/useDialog"
+import DeleteIcon from '@mui/icons-material/Delete';
+import { useAlert } from "../hooks/useAlert";
 
-export default function Bookshelf({ id, title, books = [], hideAdding, user, onDelete }) {
+export default function Bookshelf({ id, title, books = [], hideAdding, user, unclickable, onDelete}) {
   const { loggedIn, username } = useContext(LoggedInContext);
+  const [errMessage, setErrMessage] = useState("")
+  const [showAlert, alertComponent] = useAlert(errMessage, 3000, "warning")
+
+  const [bookshelfBooks, setBookshelfBooks] = useState(books);
 
   const placeholderBooks = [];
 
   const [setDialogOpen, dialog] = useDialog(null, "Are you sure that you want to delete this shelf?", "No", "Yes", onDelete, id)
+  
+  useEffect(() => {
+    setBookshelfBooks(books)
+  }, [books])
+
+    function deleteBookHandler(bookId) {
+        if(loggedIn && username === user){
+            fetch(import.meta.env.VITE_BACKEND_HOST +
+                "/user/" +
+                username +
+                "/shelves/" +
+                id +
+                "/book/" +
+                bookId,
+                {
+                    method: "DELETE",
+                }).then((res) => {
+                    return res.json()})
+                .then((res) => {
+                    if(!res.error){
+                        setBookshelfBooks(bookshelfBooks.filter(book => book._id !== bookId));
+                    }
+                    else{
+                      setErrMessage(res.error);
+                      showAlert()
+                    }
+                }).catch((err) => {
+                console.log(err);
+            });
+        }
+    }
 
   //TODO na ontwerp Rik dit refactoren
-  if ((books.length === 0 && !loggedIn) || (books.length === 0 && hideAdding)) {
+  if ((bookshelfBooks.length === 0 && !loggedIn) || (bookshelfBooks.length === 0 && hideAdding)) {
     placeholderBooks.push(<div></div>);
     placeholderBooks.push(
       <Typography variant="h5" order="2">
@@ -23,7 +60,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, onD
     );
   }
 
-  for (let i = books.length; i < 3; i++) {
+  for (let i = bookshelfBooks.length; i < 3; i++) {
     if (loggedIn && username === user && !hideAdding) {
       placeholderBooks.push(
         <Card key={i} style={{ width: "85px", height: "130px" }}>
@@ -38,6 +75,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, onD
   return (
     <Stack direction="column" alignItems="center">
       {dialog}
+      {alertComponent}
       <Typography gutterBottom variant="h5" fontWeight="800" sx={{ overflowWrap: "anywhere", maxWidth: "100%", textAlign: "center" }}>
         {title}
       </Typography>
@@ -54,9 +92,14 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, onD
         : null}
       <Stack direction="row" justifyContent="center" spacing={2}>
         <ImageList cols={3}>
-          {books.map((item) => (
+          {bookshelfBooks.map((item) => (
             <Card key={item._id} style={{ width: "85px", height: "130px" }}>
-              <Link to={"#"} style={{ textDecoration: "none", color: "black" }}>
+                {loggedIn && username === user ?(
+                    <IconButton aria-label="settings" onClick={()=>deleteBookHandler(item._id)} >
+                        <DeleteIcon />
+                    </IconButton>
+                ):null}
+              <Link to={unclickable ? null : `/book/${item._id}`} style={{ textDecoration: "none", color: "black" }}>
                 {item.cover_image !== undefined ? (
                   <CardMedia shelf={id} height="130" component="img" image={item.cover_image} alt={item._id} />
                 ) : (
@@ -83,6 +126,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, onD
       </Stack>
       <Stack direction="row">
         <img style={{ width: "320px", height: "20px" }} src="/images/bookshelf.jpg" alt="bookshelf"></img>
+        {unclickable ? null : loggedIn && username === user ? <Edit /> : null}
       </Stack>
     </Stack>
   );
