@@ -1,11 +1,13 @@
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../components/Header";
 import { Add, ArrowBackIosNew, ArrowOutward, ImageNotSupported } from "@mui/icons-material";
-import { Box, Button, Chip, Stack, Typography } from "@mui/material";
+import {Box, Button, Chip, IconButton, Stack, Typography} from "@mui/material";
 import { LoggedInContext } from "../Contexts";
 import { useContext, useEffect, useState } from "react";
 import ModalShelf from "../components/ModalShelf";
 import Bookcover from "../components/Bookcover";
+import {useAlert} from "../hooks/useAlert.jsx";
+import DeleteIcon from "@mui/icons-material/Delete.js";
 
 export default function Detailpage({ setLoggedIn }) {
   const { loggedIn, username } = useContext(LoggedInContext);
@@ -14,6 +16,9 @@ export default function Detailpage({ setLoggedIn }) {
   const [book, setBook] = useState({});
   const [open, setOpen] = useState(false);
   const [shelfInfo, setShelfInfo] = useState([]);
+    const [bookcaseInfo, setBookcaseInfo] = useState([]);
+  const [errMessage, setErrMessage] = useState("");
+  const [showAlert, alertComponent] = useAlert(errMessage, 3000, "warning");
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -56,13 +61,67 @@ export default function Detailpage({ setLoggedIn }) {
       });
   }, []);
 
+  useEffect(() => {
+    fetch(
+        import.meta.env.VITE_BACKEND_HOST +
+        "/user/" +
+        username +
+        "?" +
+        new URLSearchParams({
+          fields: ["bookcase"],
+        }),
+        {
+          method: "GET",
+        }
+    )
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
+          setBookcaseInfo(res.bookcase??[]);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  }, []);
+
+  function deleteBookHandler(bookId) {
+    if (loggedIn && username && bookcaseInfo.filter((book) => book._id === bookId).length > 0) {
+      fetch(import.meta.env.VITE_BACKEND_HOST + "/user/" + username + "/bookcase/" + bookId, {
+        method: "DELETE",
+      })
+          .then((res) => {
+            return res.json();
+          })
+          .then((res) => {
+            if (!res.error) {
+              navigate(-1);
+            } else {
+              setErrMessage(res.error);
+              showAlert();
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+    }
+  }
+
+  useEffect(() => {
+    console.log("bookcaseInfo",bookcaseInfo)
+  }, [bookcaseInfo]);
+
   function addToBookcase() {}
 
   return (
     <>
+      {alertComponent}
       <Stack direction="row" alignItems="center" justifyContent="space-between">
         <ArrowBackIosNew sx={{ margin: "20px" }} onClick={() => navigate(-1)} />
         <Header setLoggedIn={setLoggedIn} />
+        {loggedIn && username && bookcaseInfo.filter((book) => book._id === isbn).length > 0 ?(<IconButton aria-label="settings" onClick={() => deleteBookHandler(isbn)}>
+          <DeleteIcon />
+        </IconButton>):null}
       </Stack>
       <Stack alignItems="center">
         <Button onClick={addToBookcase}>Add to bookcase</Button>
