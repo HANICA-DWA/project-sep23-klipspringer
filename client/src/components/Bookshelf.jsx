@@ -8,7 +8,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useAlert } from "../hooks/useAlert";
 import Bookcover from "./Bookcover";
 
-export default function Bookshelf({ id, title, books = [], hideAdding, user, unclickable}) {
+export default function Bookshelf({ id, title, books = [], hideAdding, user, unclickable, edit}) {
   const { loggedIn, username } = useContext(LoggedInContext);
   const [errMessage, setErrMessage] = useState("");
   const [showAlert, alertComponent] = useAlert(errMessage, 3000, "warning");
@@ -22,7 +22,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
   }, [books]);
 
   function deleteBookHandler(bookId) {
-    if (loggedIn && username === user) {
+    if (loggedIn && username === user && edit) {
       fetch(import.meta.env.VITE_BACKEND_HOST + "/user/" + username + "/shelves/" + id + "/book/" + bookId, {
         method: "DELETE",
       })
@@ -75,7 +75,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
         <ImageList cols={3}>
           {bookshelfBooks.map((item) => (
             <Card key={item._id} style={{ width: "85px", height: "130px" }}>
-              {loggedIn && username === user ? (
+              {loggedIn && username === user && edit ? (
                 <IconButton aria-label="settings" onClick={() => deleteBookHandler(item._id)}>
                   <DeleteIcon />
                 </IconButton>

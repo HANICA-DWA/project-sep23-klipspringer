@@ -6,11 +6,12 @@ import { LoggedInContext } from "../Contexts";
 import Header from "../components/Header";
 import ProfileInfo from "../components/ProfileInfo";
 
-function Profilepage({ setLoggedIn }) {
+function Profilepage({ setLoggedIn, edit = false }) {
   const navigate = useNavigate();
   const userName = useParams().userName;
   const { loggedIn, username } = useContext(LoggedInContext);
   const [profileInfo, setProfileInfo] = useState([]);
+  const [editMode, setEditMode] = useState(edit);
 
   const shelfClickHandler = loggedIn ? () => {localStorage.removeItem("book"); navigate("/" + username + "/shelf")} : () => navigate("/login");
 
@@ -48,11 +49,11 @@ function Profilepage({ setLoggedIn }) {
         </Button>
 
         {profileInfo.top_three ? (
-          <Bookshelf key={"top_three"} id={"top_three"} title="My top 3 books" books={profileInfo.top_three} user={profileInfo._id}/>
+          <Bookshelf key={"top_three"} id={"top_three"} title="My top 3 books" books={profileInfo.top_three} user={profileInfo._id} edit={editMode}/>
         ) : null}
         {profileInfo.shelf != undefined && profileInfo.shelf.length > 0
           ? profileInfo.shelf.map((shelf) => (
-              <Bookshelf key={shelf._id} id={shelf._id} title={shelf.name} books={shelf.books} user={profileInfo._id}/>
+              <Bookshelf key={shelf._id} id={shelf._id} title={shelf.name} books={shelf.books} user={profileInfo._id} edit={editMode}/>
             ))
           : null}
 
