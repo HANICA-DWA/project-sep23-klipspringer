@@ -2,10 +2,11 @@ import { Box, Button, Container, Stack, TextField, Typography } from "@mui/mater
 import SearchBar from "../components/SearchBar";
 import Bookshelf from "../components/Bookshelf";
 import { useContext, useState, useEffect } from "react";
-import { ArrowBackIos, Title } from "@mui/icons-material";
+import { ArrowBackIos, Title, Add } from "@mui/icons-material";
 import { useNavigate, useParams } from "react-router-dom";
 import { LoggedInContext } from "../Contexts";
 import { useAlert } from "../hooks/useAlert";
+import ModalBookcase from "../components/ModalBookcase";
 
 export default function ShelfPage({edit = false}) {
   const navigate = useNavigate();
@@ -18,12 +19,18 @@ export default function ShelfPage({edit = false}) {
   const [title, setTitle] = useState("");
   const [errMessage, setErrMessage] = useState("");
   const [showAlert, alertComponent] = useAlert(errMessage, 3000, "warning");
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const handleAdd = (toAdd) => {
     const book = toAdd;
     if (books.find((item) => item._id === book._id)) {
       setErrMessage("This book is already on the shelf");
+      showAlert()
     } else {
+      handleClose()
       setBooks([...books, book]);
       setErrMessage("");
     }
@@ -139,7 +146,12 @@ export default function ShelfPage({edit = false}) {
               <ArrowBackIos onClick={() => navigate(-1)} />
               <SearchBar onClick={handleAdd} />
             </Stack>
+            <Stack direction="row" sx={{ margin: "5px" }} onClick={handleOpen}>
+              <Add />
+              <Typography>Choose from bookcase</Typography>
+            </Stack>
           </Stack>
+          <ModalBookcase open={open} handleClose={handleClose} handleAdd={handleAdd} errMessage={errMessage} />
 
           <Stack gap={2} direction="column" alignItems="center" width="100%">
             {edit ? <Bookshelf onBookDelete={handleBookDelete} id={shelf} user={username} books={books} edit={edit} hideAdding unclickable/> : <Bookshelf books={books} hideAdding unclickable/>}
