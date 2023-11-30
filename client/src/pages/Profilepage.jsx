@@ -77,7 +77,14 @@ function Profilepage({ setLoggedIn, edit = false }) {
         ) : null}
 
         {profileInfo.top_three ? (
-          <Bookshelf key={"top_three"} id={"top_three"} title="My top 3 books" books={profileInfo.top_three} user={profileInfo._id} edit={editMode} />
+          <Bookshelf
+            key={"top_three"}
+            id={"top_three"}
+            title={profileInfo.top_three.name}
+            books={profileInfo.top_three.books}
+            user={profileInfo._id}
+            edit={editMode}
+          />
         ) : null}
         {profileInfo.shelf != undefined && profileInfo.shelf.length > 0
           ? profileInfo.shelf.map((shelf) => (
