@@ -26,7 +26,7 @@ Ik ga proberen mijn communicatie te verbeteren, door te noteren waar ik precies 
 
 Als ik tegen een probleem aanloop, meld ik dit aan mijn team.
 Als ik langer dan 20 minuten vastloop op een probleem, of meer dan 3 bronnen heb geraadpleegd, zal ik mezelf verplichten om hulp te vragen aan mijn groep.
-Tijdens de sprint retrospectives vraag ik feedback over mijn voortgang m.b.t. dit leerdoel. Ik vraag of mijn groepsgenoten of zij vinden dat ik genoeg laat weten wanneer ik vastloop en of ik genoeg en op tijd genoeg om hulp vraag.
+Tijdens de sprint retrospectives vraag ik feedback over mijn voortgang m.b.t. dit leerdoel. Ik vraag aan mijn groepsgenoten of zij vinden dat ik genoeg laat weten wanneer ik vastloop en of ik genoeg en op tijd genoeg om hulp vraag.
 
 ### Om mijn leerdoel te bereiken ga ik hulp vragen aan de volgende personen:
 

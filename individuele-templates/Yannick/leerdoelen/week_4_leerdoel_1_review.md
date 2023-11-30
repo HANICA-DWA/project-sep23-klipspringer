@@ -3,7 +3,7 @@
 ### Ik heb op de volgende manier aan mijn leerdoel gewerkt (vermeld afwijkingen op de planning):
 
 Ik heb zoveel mogelijk geprobeerd aan te geven waar ik tijdens het ontwikkelen op vastliep aan mijn groepsgenoten. De planning was om dit ook te vermelden tijdens de daily-standup, dit lukte mij niet altijd. Ook heb ik moeilijkheden geprobeerd in het logboek op te schrijven, dit lukte niet altijd op het moment zelf, zoals gepland, en deed ik vaak pas later op de dag.
-Ik heb verder wat afgeweken van de planning, door vaker "spontaan" om hulp te vragen. Het is dus niet altijd gelukt om te noteren waar ik op vastliep, voordat ik hulp vroeg. Ik heb hier wel van te voren over nagedacht.
+Ik heb verder wat afgeweken van de planning, door vaker "spontaan" om hulp te vragen. Het is dus niet altijd gelukt om te noteren waar ik op vastliep, voordat ik hulp vroeg. Ik heb hier wel van te voren over nagedacht, voordat ik om hulp vroeg.
 
 ### Dit heeft de volgende resultaten opgeleverd:
 
@@ -21,7 +21,7 @@ Ook denk ik dat ik soms toch nog wel eerder om hulp had kunnen vragen. Ik heb we
 
 ### Ik heb mijn leerdoel wel/niet bereikt omdat, onderbouw aan de hand van concrete voorbeelden/situaties uit praktijk (STARRT):
 
-Ik heb denk ik zeker vorderingen gemaakt in mijn leerdoel, maar ik kan er ook nog zeker in verbeteren. Tijdens de sprint retrospective werd wel genoemd dat de communicatie binnen de groep goed is. Ik trek daar de conclusie uit dat de groep de indruk heeft ook voldoende op de hoogte te zijn van mijn voortgang in taken. Ik denk dat ik mijn leerdoel dus deels gehaald heb.
+Ik heb denk ik zeker vorderingen gemaakt in mijn leerdoel, maar ik kan er ook nog zeker in verbeteren. Tijdens de sprint retrospective werd wel genoemd dat de communicatie binnen de groep goed is. Ik trek daar de conclusie uit dat de groep de indruk heeft ook voldoende op de hoogte te zijn van mijn voortgang in taken. Ook gaven ze aan dat ik voldoende om hulp heb gevraagd wanneer dat nodig was. Zelf denk ik dat ik mijn groepsgenoten voldoende op de hoogte heb gebracht van de problemen die ik tegenkwam, maar in sommige situaties nog wel eerder om hulp had kunnen vragen. Het is één keer voorgekomen dat ik buiten de tijd van mijn timebox ([link naar bron](https://agilescrumgroup.nl/timebox/)) werkte en nog steeds niet om hulp had gevraagd. Ik denk dat ik mijn leerdoel dus deels gehaald heb.
 
 Situatiebeschrijving waarbij het nog niet zo goed ging:
 
@@ -32,7 +32,7 @@ Ik was bezig met mijn taak voor het implementeren van inloggen met LinkedIn. Ik 
 Mijn taak was om de inlogfunctionaliteit met LinkedIn te implementeren voor zowel de frontend als de backend. Er werd van mij verwacht om dit in 4 uur af te hebben (deze tijd hadden we ingeschat voor de taken). Mijn doel was ook om dit zo snel mogelijk te doen. Mijn plan hierbij was om dit op dezelfde manier aan te pakken als het inloggen via Google.
 
 <u>_Actie:_</u>
-Ik ben begonnen met dezelfde aanpak als ik met Google had gedaan. Ik heb meerdere libraries gevonden voor de frontend, omdat er een aantal niet werkte. Er kwam een aantal cors-fouten tevoorschijn en ook op de backend lukte het niet helemaal zoals gepland. Ik heb bij deze problemen wel aangegeven dat ik vastliep, maar ik heb niet om hulp gevraagd, ook niet toen ik de tijd van mijn taak overschreed. Ik heb wel op een aantal momenten de afweging gemaakt om om hulp te vragen, maar heb dit niet gedaan. Ik heb veel bronnen opgezocht, en hierbij niet aan mijn groepsgenoten gecommuniceerd dat ik erg lang vastliep op de problemen.
+Ik ben begonnen met dezelfde aanpak als ik met Google had gedaan. Ik heb meerdere libraries gevonden voor de frontend, omdat er een aantal niet werkte. Er kwam een aantal cors-fouten tevoorschijn en ook op de backend lukte het niet helemaal zoals gepland. Ik heb bij deze problemen wel aangegeven dat ik vastliep, maar ik heb niet om hulp gevraagd, ook niet toen ik de tijd van mijn taak (de timebox) overschreed. Ik heb wel op een aantal momenten de afweging gemaakt om om hulp te vragen, maar heb dit niet gedaan. Ik heb veel bronnen opgezocht, en hierbij niet aan mijn groepsgenoten gecommuniceerd dat ik erg lang vastliep op de problemen.
 
 <u>_Resultaat:_</u>
 Het gevolg was dat ik veel langer bezig was met mijn taak dan andere groepsgenoten verwacht hadden. Zij hadden minimaal inzicht in de problemen die ik tegenkwam en waarom ik zo lang met deze taak bezig was. Het invloed op het proces was dat er geen samenwerking was op een moment dat dit wel handig was geweest. Transparantie binnen het groepsproces was op dit moment minder, doordat ik heb nagelaten goed te communiceren.
@@ -73,3 +73,7 @@ Ik ben me bewuster geworden van het aantal moeilijkheden dat ik tegen kom tijden
 ### Het effect op het groepsproces was:
 
 Mijn eigen ontwikkeling heeft ook een positieve invloed op het groepsproces gehad. Door mijn communicatie over de uitdagingen in mijn taken, waren mijn teamleden beter op de hoogte van mijn voortgang. Dit zorgt voor meer begrip en een soepeler groepsproces. Ook heeft het een positieve invloed gehad op de samenwerking. Doordat ik af en toe om hulp vroeg, is er wat meer samengewerkt om oplossingen te vinden.
+
+### Bronnen
+
+Verhelst, F. (2022, 13 november). Wat is een timebox? Agile Scrum Group. Geraadpleegd op 30 november 2023, van https://agilescrumgroup.nl/timebox/
