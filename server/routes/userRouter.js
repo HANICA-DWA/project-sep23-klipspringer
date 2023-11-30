@@ -68,6 +68,10 @@ router.post("/:username/shelf", async (req, res, next) => {
 router.put("/:username/shelves/:shelf", async (req, res, next) => {
   const { book, name, books, type } = req.body;
   const { shelf } = req.params;
+  if (book === undefined) {
+    next(createError("Missing request body", 400))
+  }
+
   if (shelf != undefined) {
     try {
       if (books && type === "editshelf") {
@@ -90,13 +94,9 @@ router.put("/:username/shelves/:shelf", async (req, res, next) => {
       }
       res.status(200).json(book);
     } catch (err) {
-      let error = err;
-      if (err.errors) error = createError(err.errors[Object.keys(err.errors)[0]].message, 400);
+      const error = createError("Invalid book or shelf", 400);
       next(error);
     }
-  } else {
-    const error = createError("Specify body with book or shelf", 400);
-    next(error);
   }
 });
 
@@ -106,9 +106,10 @@ router.delete("/:username/shelves/:shelf", async (req, res, next) => {
     const userShelf = req.user.shelf.id(shelf);
     req.user.deleteShelf(userShelf._id);
     await req.user.save();
-    res.status(200).json("shelf deleted succesfuly");
-  } catch (err) {
-    next(err);
+    res.status(200).json("Shelf deleted succesfully");
+  } catch (err){
+    const error = createError("Shelf not found", 404)
+    next(error)
   }
 });
 
@@ -137,13 +138,9 @@ router.delete("/:username/shelves/:shelf/book/:book", async (req, res, next) => 
       }
       res.status(200).json(book);
     } catch (err) {
-      let error = err;
-      if (err.errors) error = createError(err.errors[Object.keys(err.errors)[0]].message, 400);
+      const error = createError("Shelf not found", 404);
       next(error);
     }
-  } else {
-    const error = createError("Specify body with book or shelf", 400);
-    next(error);
   }
 });
 

@@ -1,7 +1,11 @@
 {
   "type": "module",
+  "engines": {
+    "node": ">=21",
+    "npm": ">=9"
+  },
   "scripts": {
-    "test": "cross-env NODE_ENV=test node --test --experimental-test-coverage ./__tests__/"
+    "test": "cross-env NODE_ENV=test node --test --test-concurrency 1 --experimental-test-coverage ./__tests__/*"
   },
   "dependencies": {
     "cors": "^2.8.5",

@@ -54,7 +54,8 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
       <Typography gutterBottom variant="h5" fontWeight="800" sx={{ overflowWrap: "anywhere", maxWidth: "100%", textAlign: "center" }}>
         {title}
       </Typography>
-      {document.URL.includes("shelf") ? null : loggedIn && username === user && !edit ? (
+      {unclickable ? null : loggedIn && username === user && !edit
+        ?
         <>
           <IconButton
             onClick={() => {
@@ -84,7 +85,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
                 </IconButton>
               ) : null}
               <Box sx={{ width: "85px", height: "160px" }}>
-                <Link to={`/book/${item._id}`} style={{ textDecoration: "none", color: "black" }}>
+                <Link to={unclickable ? null :  `/book/${item._id}`} style={{ textDecoration: "none", color: "black" }}>
                   <Bookcover isbn={item._id} cover_image={item.cover_image} />
                 </Link>
               </Box>
