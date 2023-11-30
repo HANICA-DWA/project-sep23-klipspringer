@@ -1,8 +1,11 @@
 import { Close } from "@mui/icons-material";
 import { Modal, Typography, Stack, Box } from "@mui/material";
 import { useState, useEffect } from "react";
+import { useAlert } from "../hooks/useAlert";
 
-export default function ModalBookcase({ open, handleClose, bookcase }) {
+export default function ModalBookcase({ open, handleClose, bookcase, handleAdd, errMessage }) {
+  const [showAlert, alertComponent] = useAlert(errMessage, 3000, "warning");
+
   const styleModal = {
     position: "absolute",
     top: "0",
@@ -17,6 +20,7 @@ export default function ModalBookcase({ open, handleClose, bookcase }) {
     <>
       <Modal open={open} onClose={handleClose}>
         <Box sx={styleModal}>
+          {alertComponent}
           <Stack direction="row" justifyContent="center" alignItems="center" sx={{ padding: "15px", bgcolor: "#F3F3F3" }}>
             <Typography fontWeight="600" color="#8D8D8D" align="center">
               Choose from bookcase
@@ -24,7 +28,13 @@ export default function ModalBookcase({ open, handleClose, bookcase }) {
             <Close onClick={handleClose} sx={{ position: "absolute", right: "10px", transform: "scale(0.8)" }} />
           </Stack>
           {bookcase.map((book) => (
-            <Typography>{book.title}</Typography>
+            <Stack direction="row" onClick={() => handleAdd(book)}>
+              <img src={book.cover_image} height="104px" width="68px" style={{ margin: "5px" }}></img>
+              <Stack justifyContent="center">
+                <Typography>{book.title}</Typography>
+                <Typography>{book.authors}</Typography>
+              </Stack>
+            </Stack>
           ))}
         </Box>
       </Modal>

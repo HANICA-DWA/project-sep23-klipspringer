@@ -29,7 +29,9 @@ export default function ShelfPage() {
     const book = toAdd;
     if (books.find((item) => item._id === book._id)) {
       setErrMessage("This book is already on the shelf");
+      showAlert()
     } else {
+      handleClose()
       setBooks([...books, book]);
       setErrMessage("");
     }
@@ -109,7 +111,7 @@ export default function ShelfPage() {
               <Typography>Choose from bookcase</Typography>
             </Stack>
           </Stack>
-          <ModalBookcase open={open} handleClose={handleClose} bookcase={bookcase} />
+          <ModalBookcase open={open} handleClose={handleClose} bookcase={bookcase} handleAdd={handleAdd} errMessage={errMessage} />
 
           <Stack gap={2} direction="column" alignItems="center" width="100%">
             <Bookshelf books={books} hideAdding unclickable />
