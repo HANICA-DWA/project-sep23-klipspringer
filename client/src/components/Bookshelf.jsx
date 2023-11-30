@@ -75,7 +75,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
                 </IconButton>
               ) : null}
               <Box sx={{ width: "85px", height: "160px" }}>
-                <Link to={`/book/${item._id}`} style={{ textDecoration: "none", color: "black" }}>
+                <Link to={unclickable ? null :  `/book/${item._id}`} style={{ textDecoration: "none", color: "black" }}>
                   <Bookcover isbn={item._id} cover_image={item.cover_image} />
                 </Link>
               </Box>
