@@ -27,33 +27,33 @@ describe("connection", () => {
     // book is correctly added to bookcase
     it("AddingToBookcase", async () => {
       let user = await User.findById("jan");
-      user.addToBookcase([{ _id: "123", cover_image: "image_url" }]);
+      user.addToBookcase([{ _id: "123", cover_image: "image_url", title: "hoi", authors: [] }]);
       await user.save();
       let test_user = await User.findById("jan").lean();
-      assert.deepEqual(test_user.bookcase, [{ _id: "123", cover_image: "image_url" }]);
+      assert.deepEqual(test_user.bookcase, [{ _id: "123", cover_image: "image_url", title: "hoi", authors: [] }]);
     });
     // book is not added to bookcase if it is already in the bookcase
     it("AddingToBookcaseDuplicate", async () => {
       let user = await User.findById("jan");
-      user.addToBookcase([{ _id: "123", cover_image: "image_url" }]);
+      user.addToBookcase([{ _id: "123", cover_image: "image_url", title: "hoi", authors: [] }]);
       await user.save();
 
-      user.addToBookcase([{ _id: "123", cover_image: "image_url" }]);
+      user.addToBookcase([{ _id: "123", cover_image: "image_url", title: "hoi", authors: [] }]);
       await user.save();
 
       let test_user = await User.findById("jan").lean();
-      assert.deepEqual(test_user.bookcase, [{ _id: "123", cover_image: "image_url" }]);
+      assert.deepEqual(test_user.bookcase, [{ _id: "123", cover_image: "image_url", title: "hoi", authors: [] }]);
     });
 
     it("Removes from bookshelf", async () => {
       let user = await User.findById("jan");
-      user.addToBookcase([{ _id: "123", cover_image: "image_url" }]);
-      user.addToBookcase([{ _id: "124", cover_image: "image_url" }]);
-      user.removeFromBookcase([{ _id: "123", cover_image: "image_url" }]);
+      user.addToBookcase([{ _id: "123", cover_image: "image_url", title: "hoi", authors: [] }]);
+      user.addToBookcase([{ _id: "124", cover_image: "image_url", title: "hoi", authors: [] }]);
+      user.removeFromBookcase([{ _id: "123", cover_image: "image_url", title: "hoi", authors: [] }]);
       await user.save();
       
       let test_user = await User.findById("jan").lean();
-      assert.deepEqual(test_user.bookcase, [{ _id: "124", cover_image: "image_url" }]);
+      assert.deepEqual(test_user.bookcase, [{ _id: "124", cover_image: "image_url", title: "hoi", authors: [] }]);
     })
   });
 
@@ -67,17 +67,17 @@ describe("connection", () => {
           {
             name: "shelf1",
             books: [
-              { _id: "123", cover_image: "image_url" },
-              { _id: "124", cover_image: "image_url" },
-              { _id: "125", cover_image: "image_url" },
+              { _id: "123", cover_image: "image_url", title: "hoi", authors: [] },
+              { _id: "124", cover_image: "image_url", title: "hoi", authors: [] },
+              { _id: "125", cover_image: "image_url", title: "hoi", authors: [] },
             ]
           },
           {
             name: "shelf2",
             books: [
-              { _id: "123", cover_image: "image_url" },
-              { _id: "124", cover_image: "image_url" },
-              { _id: "125", cover_image: "image_url" },
+              { _id: "123", cover_image: "image_url", title: "hoi", authors: [] },
+              { _id: "124", cover_image: "image_url", title: "hoi", authors: [] },
+              { _id: "125", cover_image: "image_url", title: "hoi", authors: [] },
             ]
           }
         ]
@@ -94,9 +94,9 @@ describe("connection", () => {
         _id: {}, 
         name: "shelf2",
         books: [
-          { _id: "123", cover_image: "image_url" },
-          { _id: "124", cover_image: "image_url" },
-          { _id: "125", cover_image: "image_url" },
+          { _id: "123", cover_image: "image_url", title: "hoi", authors: [] },
+          { _id: "124", cover_image: "image_url", title: "hoi", authors: [] },
+          { _id: "125", cover_image: "image_url", title: "hoi", authors: [] },
         ]
       }]);
     });

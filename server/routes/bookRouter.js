@@ -16,7 +16,7 @@ router.get("/:id", (req, res, next) => {
         })
         .then((data) => {
           const cover_url = `https://covers.openlibrary.org/b/id/${data.covers[0]}-M.jpg`;
-          const newBook = { _id: req.params.id, cover_image: cover_url };
+          const newBook = { _id: req.params.id, cover_image: cover_url, title: data.title, authors: [] };
           Book.create(newBook);
           res.send(newBook);
         })

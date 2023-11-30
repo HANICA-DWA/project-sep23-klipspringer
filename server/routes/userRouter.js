@@ -70,6 +70,10 @@ router.post("/:username/shelf", async (req, res, next) => {
 router.put("/:username/shelves/:shelf", async (req, res, next) => {
   const { book, name, books, type } = req.body;
   const { shelf } = req.params;
+  if (book === undefined) {
+    next(createError("Missing request body", 400))
+  }
+
   if (shelf != undefined) {
     try {
       if (shelf === "top_three") {
@@ -94,9 +98,6 @@ router.put("/:username/shelves/:shelf", async (req, res, next) => {
       const error = createError("Invalid book or shelf", 400);
       next(error);
     }
-  } else {
-    const error = createError("Specify body with book or shelf", 400);
-    next(error);
   }
 });
 

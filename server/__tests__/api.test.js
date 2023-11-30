@@ -18,12 +18,14 @@ describe("connection", () => {
   });
 
   // TODO fetch("/book/:id")
-  describe("GET /book/:id", () => {
+  describe("GET /book/:id", { skip: false }, () => {
     beforeEach(async () => {
       await Book.deleteMany();
       await Book.create({
         _id: "1234567890123",
         cover_image: "https://covers.openlibrary.org/b/id/9561870-M.jpg",
+        title: "hoi",
+        authors: [],
       });
     });
 
@@ -31,14 +33,17 @@ describe("connection", () => {
       const res = await request(app).get("/book/1234567890123").expect(200);
 
       const obj = res.body;
-      assert.deepEqual(obj, { __v: 0, _id: 1234567890123, cover_image: "https://covers.openlibrary.org/b/id/9561870-M.jpg" });
+      assert.deepEqual(obj, { __v: 0, _id: 1234567890123, cover_image: "https://covers.openlibrary.org/b/id/9561870-M.jpg",
+      title: "hoi",
+      authors: [], });
     });
 
     it("status 200 with cover from book via isbn (fetched)", async () => {
       const res = await request(app).get("/book/9783125737600").expect(200);
 
       const obj = res.body;
-      assert.deepEqual(obj, { _id: 9783125737600, cover_image: "https://covers.openlibrary.org/b/id/9472783-M.jpg" });
+      assert.deepEqual(obj, { _id: 9783125737600, 
+        cover_image: "https://covers.openlibrary.org/b/id/9472783-M.jpg", title: "Charlie and the Chocolate Factory", authors: [] });
     });
 
     it("status 400 with cover from book via isbn (fetched)", async () => {
@@ -164,14 +169,20 @@ describe("connection", () => {
           {
             _id: "123456789",
             cover_image: "url",
+            title: "hoi",
+            authors: [],
           },
           {
             _id: "324567890",
             cover_image: "url",
+            title: "hoi",
+            authors: [],
           },
           {
             _id: "799754332",
             cover_image: "url",
+            title: "hoi",
+            authors: [],
           },
         ],
       };
@@ -189,14 +200,20 @@ describe("connection", () => {
           {
             _id: "123456789",
             cover_image: "url",
+            title: "hoi",
+            authors: [],
           },
           {
             _id: "324567890",
             cover_image: "url",
+            title: "hoi",
+            authors: [],
           },
           {
             _id: "799754332",
             cover_image: "url",
+            title: "hoi",
+            authors: [],
           },
         ],
       };
@@ -212,12 +229,18 @@ describe("connection", () => {
         books: [
           {
             cover_image: "url1",
+            title: "hoi",
+            authors: [],
           },
           {
             cover_image: "url2",
+            title: "hoi",
+            authors: [],
           },
           {
             cover_image: "url3",
+            title: "hoi",
+            authors: [],
           },
         ],
       };
@@ -234,14 +257,20 @@ describe("connection", () => {
           {
             _id: 1,
             cover_image: "url1",
+            title: "hoi",
+            authors: [],
           },
           {
             _id: 1,
             cover_image: "url2",
+            title: "hoi",
+            authors: [],
           },
           {
             _id: 2,
             cover_image: "url3",
+            title: "hoi",
+            authors: [],
           },
         ],
       };
@@ -259,10 +288,14 @@ describe("connection", () => {
           {
             _id: 1,
             cover_image: "url1",
+            title: "hoi",
+            authors: [],
           },
           {
             _id: 1,
             cover_image: "url2",
+            title: "hoi",
+            authors: [],
           },
         ],
       };
@@ -287,14 +320,20 @@ describe("connection", () => {
               {
                 _id: 123,
                 cover_image: "url",
+                title: "hoi",
+                authors: [],
               },
               {
                 _id: 321,
                 cover_image: "url",
+                title: "hoi",
+                authors: [],
               },
               {
                 _id: 132,
                 cover_image: "url",
+                title: "hoi",
+                authors: [],
               },
             ],
           },
@@ -308,11 +347,15 @@ describe("connection", () => {
 
       const res = await request(app)
         .put(`/user/${username}/shelves/${shelfId}`)
-        .send({ book: { _id: "4321", cover_image: "myimage" } })
+        .send({ book: { _id: "4321", cover_image: "myimage",
+      title: "hoi",
+    authors: [], } })
         .set("Content-Type", "application/json")
         .expect(200);
 
-      assert.deepEqual(res.body, { _id: "4321", cover_image: "myimage" });
+      assert.deepEqual(res.body, { _id: "4321", cover_image: "myimage",
+    title: "hoi",
+  authors: [], });
     });
 
     it("Empty body", async () => {
@@ -321,7 +364,7 @@ describe("connection", () => {
 
       const res = await request(app).put(`/user/${username}/shelves/${shelfId}`).expect(400);
 
-      assert.deepEqual(res.body, { error: "Specify body with book or shelf" });
+      assert.deepEqual(res.body, { error: "Missing request body" });
     });
 
     it("PUT on non existent shelf", async () => {
@@ -330,7 +373,9 @@ describe("connection", () => {
 
       const res = await request(app)
         .put(`/user/${username}/shelves/${shelfId}`)
-        .send({ book: { _id: "4321", cover_image: "myimage" } })
+        .send({book: { _id: "4321", cover_image: "myimage",
+      title: "hoi",
+    authors: [], } })
         .set("Content-Type", "application/json")
         .expect(400);
 
@@ -343,11 +388,15 @@ describe("connection", () => {
 
       const res = await request(app)
         .put(`/user/${username}/shelves/${shelfId}`)
-        .send({ book: { _id: "4321", cover_image: "myimage" } })
+        .send({ book: { _id: "4321", cover_image: "myimage",
+      title: "hoi",
+    authors: [], } })
         .set("Content-Type", "application/json")
         .expect(200);
 
-      assert.deepEqual(res.body, { _id: "4321", cover_image: "myimage" });
+      assert.deepEqual(res.body, { _id: "4321", cover_image: "myimage",
+    title: "hoi",
+  authors: [], });
     });
   });
 
@@ -365,14 +414,20 @@ describe("connection", () => {
               {
                 _id: 123,
                 cover_image: "url",
+                title: "hoi",
+                authors: [],
               },
               {
                 _id: 321,
                 cover_image: "url",
+                title: "hoi",
+                authors: [],
               },
               {
                 _id: 132,
                 cover_image: "url",
+                title: "hoi",
+                authors: [],
               },
             ],
           },
@@ -409,14 +464,20 @@ describe("connection", () => {
           {
             _id: 123,
             cover_image: "url",
+            title: "hoi",
+            authors: [],
           },
           {
             _id: 321,
             cover_image: "url",
+            title: "hoi",
+            authors: [],
           },
           {
             _id: 132,
             cover_image: "url",
+            title: "hoi",
+            authors: [],
           }
         ],
         shelf: [
@@ -427,18 +488,26 @@ describe("connection", () => {
               {
                 _id: 123,
                 cover_image: "url",
+                title: "hoi",
+                authors: [],
               },
               {
                 _id: 321,
                 cover_image: "url",
+                title: "hoi",
+                authors: [],
               },
               {
                 _id: 132,
                 cover_image: "url",
+                title: "hoi",
+                authors: [],
               },
               {
                 _id: 133,
                 cover_image: "url",
+                title: "hoi",
+                authors: [],
               },
             ],
           },
@@ -458,10 +527,14 @@ describe("connection", () => {
         {
           _id: 123,
           cover_image: "url",
+          title: "hoi",
+          authors: [],
         },
         {
           _id: 321,
           cover_image: "url",
+          title: "hoi",
+          authors: [],
         },
       ]);
     })
@@ -482,14 +555,20 @@ describe("connection", () => {
             {
               _id: 123,
               cover_image: "url",
+              title: "hoi",
+              authors: [],
             },
             {
               _id: 321,
               cover_image: "url",
+              title: "hoi",
+              authors: [],
             },
             {
               _id: 133,
               cover_image: "url",
+              title: "hoi",
+              authors: [],
             },
           ],
         },
