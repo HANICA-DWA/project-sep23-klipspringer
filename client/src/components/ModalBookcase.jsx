@@ -1,6 +1,5 @@
 import { Close } from "@mui/icons-material";
 import { Modal, Typography, Stack, Box } from "@mui/material";
-import { useState, useEffect } from "react";
 import { useAlert } from "../hooks/useAlert";
 
 export default function ModalBookcase({ open, handleClose, bookcase, handleAdd, errMessage }) {
