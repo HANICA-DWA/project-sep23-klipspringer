@@ -63,7 +63,6 @@ router.post("/:username/shelf", async (req, res, next) => {
 router.put("/:username/shelves/:shelf", async (req, res, next) => {
   const { book } = req.body;
   const { shelf } = req.params;
-  console.log(book);
   if (book != undefined && shelf != undefined) {
     try {
       if (shelf === "top_three") {
