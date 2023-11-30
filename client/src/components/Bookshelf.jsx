@@ -54,7 +54,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
       <Typography gutterBottom variant="h5" fontWeight="800" sx={{ overflowWrap: "anywhere", maxWidth: "100%", textAlign: "center" }}>
         {title}
       </Typography>
-      {document.URL.includes("shelf") ? null : loggedIn && username === user && !edit
+      {unclickable ? null : loggedIn && username === user && !edit
         ?
         <>
           <IconButton onClick={() => {navigate(`/${username}/${id}/edit`)}}>
