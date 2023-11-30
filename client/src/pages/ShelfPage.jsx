@@ -19,7 +19,6 @@ export default function ShelfPage() {
   const [errMessage, setErrMessage] = useState("");
   const [showAlert, alertComponent] = useAlert(errMessage, 3000, "warning");
   const [open, setOpen] = useState(false);
-  // const [bookcase, setBookcase] = useState([]);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -62,28 +61,6 @@ export default function ShelfPage() {
       showAlert();
     }
   };
-
-  // useEffect(() => {
-  //   fetch(
-  //     import.meta.env.VITE_BACKEND_HOST +
-  //       `/user/${username}?` +
-  //       new URLSearchParams({
-  //         fields: ["bookcase"],
-  //       }),
-  //     {
-  //       method: "GET",
-  //     }
-  //   )
-  //     .then((res) => {
-  //       return res.json();
-  //     })
-  //     .then((res) => {
-  //       setBookcase(res.bookcase);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
 
   return (
     <>
