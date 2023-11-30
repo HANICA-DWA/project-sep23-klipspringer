@@ -86,7 +86,7 @@ describe("connection", () => {
     })
   })
 
-  describe("GET /user/", { skip: true }, () => {
+  describe("GET /user/", { skip: false }, () => {
     beforeEach(async () => {
       await User.deleteOne({ _id: "janwillem" });
       await User.create({
