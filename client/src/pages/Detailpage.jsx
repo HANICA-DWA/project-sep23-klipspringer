@@ -12,7 +12,7 @@ export default function Detailpage({ setLoggedIn }) {
   const { loggedIn, username } = useContext(LoggedInContext);
   const navigate = useNavigate();
   const isbn = useParams().isbn;
-  const [book, setBook] = useState({});
+  const [book, setBook] = useState({ authors: [] });
   const [open, setOpen] = useState(false);
   const [shelfInfo, setShelfInfo] = useState({ bookcase: [] });
   const [addError, setAddError] = useState();
@@ -165,7 +165,12 @@ export default function Detailpage({ setLoggedIn }) {
           shelfInfo={shelfInfo}
           open={open}
           handleClose={handleClose}
-          book={{ _id: isbn, cover_image: book.cover != undefined ? book.cover.medium : null }}
+          book={{
+            _id: isbn,
+            cover_image: book.cover != undefined ? book.cover.medium : null,
+            title: book.title,
+            authors: book.authors.map((author) => author.name),
+          }}
         />
 
         <Chip sx={{ margin: "10px", fontSize: "14px" }} color="primary" icon={<ArrowOutward style={{ transform: "scale(0.7)" }} />} label="Buy" />
