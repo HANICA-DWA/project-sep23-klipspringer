@@ -12,9 +12,10 @@ describe("connection", () => {
   });
 
   after(async () => {
-    await User.deleteOne({ _id: "janwillem" });
-    await server.close();
+    await User.deleteMany();
     await mongoose.disconnect();
+    await server.close();
+    console.log("finished")
   });
 
   // TODO fetch("/book/:id")
@@ -56,7 +57,7 @@ describe("connection", () => {
     });
   });
 
-  describe("HEAD /user/check/:username", () => {
+  describe("HEAD /user/check/:username", { skip: false }, () => {
     beforeEach(async () => {
       await User.deleteOne({ _id: "janwillem" });
       await User.create({
@@ -85,7 +86,7 @@ describe("connection", () => {
     })
   })
 
-  describe("GET /user/", () => {
+  describe("GET /user/", { skip: false }, () => {
     beforeEach(async () => {
       await User.deleteOne({ _id: "janwillem" });
       await User.create({
@@ -105,7 +106,7 @@ describe("connection", () => {
   })
 
   // TODO fetch("/user/:username")
-  describe("GET /user/:username", () => {
+  describe("GET /user/:username", { skip: false }, () => {
     beforeEach(async () => {
       await User.deleteOne({ _id: "janwillem" });
       await User.create({
@@ -151,7 +152,7 @@ describe("connection", () => {
   });
 
   // TODO fetch("/user/:username/shelf")
-  describe("POST /user/:username/shelf", () => {
+  describe("POST /user/:username/shelf", { skip: false }, () => {
     beforeEach(async () => {
       await User.deleteOne({ _id: "janwillem" });
       await User.create({
@@ -306,7 +307,7 @@ describe("connection", () => {
   });
 
   // TODO fetch("/user/:username/shelves/:shelf")
-  describe("PUT /user/:username/shelves/:shelf", () => {
+  describe("PUT /user/:username/shelves/:shelf", { skip: false }, () => {
     beforeEach(async () => {
       await User.deleteOne({ _id: "janwillem" });
       await User.create({
@@ -400,7 +401,7 @@ describe("connection", () => {
     });
   });
 
-  describe("DELETE /user/:username/shelves/:shelf", async () => {
+  describe("DELETE /user/:username/shelves/:shelf", { skip: false }, async () => {
     beforeEach(async () => {
       await User.deleteOne({ _id: "unittester" });
       await User.create({
@@ -454,7 +455,7 @@ describe("connection", () => {
     })
   })
   
-  describe("DELETE /:username/shelves/:shelf/book/:book", async () => {
+  describe("DELETE /:username/shelves/:shelf/book/:book", { skip: false }, async () => {
     before(async () => {
       await User.deleteOne({ _id: "unittester2" });
       await User.create({
