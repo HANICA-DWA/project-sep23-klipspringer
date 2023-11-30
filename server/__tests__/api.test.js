@@ -59,16 +59,16 @@ describe("connection", () => {
         name: "Jan Willem",
         profile_picture: "hallo",
       });
-    })
+    });
 
     it("Status 200 with list of usernames", async () => {
       const res = await request(app)
-        .get("/user/?" + new URLSearchParams({q: "janw"}))
+        .get("/user/?" + new URLSearchParams({ q: "janw" }))
         .expect(200);
 
-      assert.deepEqual(res.body, [{_id: "janwillem", profile_picture: "hallo"}])
-    })
-  })
+      assert.deepEqual(res.body, [{ _id: "janwillem", profile_picture: "hallo" }]);
+    });
+  });
 
   // TODO fetch("/user/:username")
   describe("GET /user/:username", () => {
@@ -90,7 +90,7 @@ describe("connection", () => {
         _id: "janwillem",
         profile_picture: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
         name: "Jan Willem",
-        top_three: [],
+        top_three: { name: "My top three", books: [] },
         shelf: [],
       });
     });
