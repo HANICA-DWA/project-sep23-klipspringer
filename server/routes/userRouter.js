@@ -10,7 +10,6 @@ router.get("/", async (req, res) => {
   const users = await User.find({ _id: { $regex: search, $options: "i" } }, "_id profile_picture")
     .limit(10)
     .exec();
-  console.log(users);
   res.send(users);
 });
 
@@ -61,16 +60,22 @@ router.post("/:username/shelf", async (req, res, next) => {
 });
 
 router.put("/:username/shelves/:shelf", async (req, res, next) => {
-  const { book } = req.body;
+  const { book, name, books, type } = req.body;
   const { shelf } = req.params;
-  if (book != undefined && shelf != undefined) {
+  if (shelf != undefined) {
     try {
       if (shelf === "top_three") {
         const topThree = req.user.top_three;
         topThree.push(book);
         req.user.addToBookcase([book]);
         await req.user.save();
-      } else {
+      } else if (books && type == "editshelf") {
+        const userShelf = req.user.shelf.id(shelf);
+        userShelf.books = books;
+        userShelf.name = name;
+        req.user.addToBookcase(books);
+        await req.user.save();
+      } else if(book != undefined){
         const userShelf = req.user.shelf.id(shelf);
         userShelf.books.push(book);
         req.user.addToBookcase([book]);

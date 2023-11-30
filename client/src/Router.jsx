@@ -54,12 +54,6 @@ export default function Router() {
           <Route path="/book/:isbn" element={<Detailpage setLoggedIn={setLoggedIn} />} />
           <Route exact path="/:userName" element={<ProfileContainer />}>
             {<Route path="" element={<Profilepage setLoggedIn={setLoggedIn} />} />}
-            <Route path="edit" element={
-              <ProtectedRoute loading={loading}>
-                <Profilepage setLoggedIn={setLoggedIn} edit={true}/>
-              </ProtectedRoute>
-              }
-            />
             <Route
               path="shelf"
               element={
@@ -73,6 +67,14 @@ export default function Router() {
               element={
                 <ProtectedRoute loading={loading}>
                   <SearchPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path=":shelf/edit"
+              element={
+                <ProtectedRoute loading={loading}>
+                  <ShelfPage edit={true}/>
                 </ProtectedRoute>
               }
             />
