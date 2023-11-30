@@ -13,20 +13,20 @@ export default function ShelfPage() {
   const usernameParams = useParams().userName;
   const { loggedIn, username } = useContext(LoggedInContext);
 
-  const localStorageBook = localStorage.getItem("book") != undefined ? [JSON.parse(localStorage.getItem("book"))] : []
+  const localStorageBook = localStorage.getItem("book") != undefined ? [JSON.parse(localStorage.getItem("book"))] : [];
   const [books, setBooks] = useState(localStorageBook);
   const [title, setTitle] = useState("");
   const [errMessage, setErrMessage] = useState("");
-  const [showAlert, alertComponent] = useAlert(errMessage, 3000, "warning")
+  const [showAlert, alertComponent] = useAlert(errMessage, 3000, "warning");
   const [open, setOpen] = useState(false);
   const [bookcase, setBookcase] = useState([]);
 
   const handleOpen = () => setOpen(true);
-  
+
   const handleClose = () => setOpen(false);
 
   const handleAdd = (toAdd) => {
-    const book = toAdd.book
+    const book = toAdd;
     if (books.find((item) => item._id === book._id)) {
       setErrMessage("This book is already on the shelf");
     } else {
@@ -54,28 +54,35 @@ export default function ShelfPage() {
         });
       } else {
         setErrMessage("You need to add min 3 books");
-        showAlert()
-
+        showAlert();
       }
     } else {
       setErrMessage("Not allowed to add a shelf");
-      showAlert()
+      showAlert();
     }
   };
 
   useEffect(() => {
-    fetch(import.meta.env.VITE_BACKEND_HOST + `/user/${username}?` + new URLSearchParams({
-      fields: ["bookcase"],
-    }), {
-      method: "GET"
-    }).then((res) => {
-      return res.json();
-    }).then((res) => {
-      setBookcase(res.bookcase)
-    }).catch((err) => {
-      console.log(err);
-    })
-  }, [])
+    fetch(
+      import.meta.env.VITE_BACKEND_HOST +
+        `/user/${username}?` +
+        new URLSearchParams({
+          fields: ["bookcase"],
+        }),
+      {
+        method: "GET",
+      }
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        setBookcase(res.bookcase);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <>
@@ -102,11 +109,7 @@ export default function ShelfPage() {
               <Typography>Choose from bookcase</Typography>
             </Stack>
           </Stack>
-          <ModalBookcase
-            open={open}
-            handleClose={handleClose}
-            bookcase={bookcase}
-          />
+          <ModalBookcase open={open} handleClose={handleClose} bookcase={bookcase} />
 
           <Stack gap={2} direction="column" alignItems="center" width="100%">
             <Bookshelf books={books} hideAdding unclickable />
