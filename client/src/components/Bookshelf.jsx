@@ -74,7 +74,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
             </IconButton>
           ) : null}
         </>
-      ) : null}
+       : null}
       <Stack direction="row" justifyContent="center" spacing={2}>
         <ImageList cols={3}>
           {bookshelfBooks.map((item) => (
