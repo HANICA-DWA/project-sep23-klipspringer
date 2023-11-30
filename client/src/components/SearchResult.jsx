@@ -8,8 +8,6 @@ export default function SearchResult({ book, onAdd, closePopper, fullSearch }) {
   let authors = "";
   let title = "";
 
-  console.log(book);
-
   function onImageError() {
     if (book.cover_i) {
       setCoverImage(`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg?default=false`);
