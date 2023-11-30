@@ -1,11 +1,9 @@
 import { Close } from "@mui/icons-material";
 import { Modal, Typography, Stack, Box } from "@mui/material";
-import { useAlert } from "../hooks/useAlert";
 import { useContext, useEffect, useState } from "react";
 import { LoggedInContext } from "../Contexts";
 
-export default function ModalBookcase({ open, handleClose, handleAdd, errMessage }) {
-  const [showAlert, alertComponent] = useAlert(errMessage, 3000, "warning");
+export default function ModalBookcase({ open, handleClose, handleAdd }) {
   const [bookcase, setBookcase] = useState([]);
   const { loggedIn, username } = useContext(LoggedInContext);
 
@@ -45,7 +43,6 @@ export default function ModalBookcase({ open, handleClose, handleAdd, errMessage
     <>
       <Modal open={open} onClose={handleClose}>
         <Box sx={styleModal}>
-          {alertComponent}
           <Stack direction="row" justifyContent="center" alignItems="center" sx={{ padding: "15px", bgcolor: "#F3F3F3" }}>
             <Typography fontWeight="600" color="#8D8D8D" align="center">
               Choose from bookcase

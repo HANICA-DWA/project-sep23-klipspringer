@@ -6,6 +6,7 @@ import { useContext, useState } from "react";
 import { LoggedInContext } from "../Contexts.jsx";
 import { ArrowBackIos, Add } from "@mui/icons-material";
 import ModalBookcase from "../components/ModalBookcase.jsx";
+import { useAlert } from "../hooks/useAlert.jsx";
 
 export default function SearchPage() {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ export default function SearchPage() {
 
   const [errMessage, setErrMessage] = useState("");
   const [open, setOpen] = useState(false);
+  const [showAlert, alertComponent] = useAlert(errMessage ? errMessage : "Succesfully added", 3000, errMessage ? "warning" : "success");
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -29,9 +31,11 @@ export default function SearchPage() {
     })
       .then((res) => {
         if (res.ok) {
+          showAlert();
           navigate(-1);
         } else {
           res.json().then((message) => setErrMessage(message.error));
+          showAlert();
         }
         console.log("succes", res);
       })
@@ -47,6 +51,7 @@ export default function SearchPage() {
         paddingTop: "20px",
       }}
     >
+      {alertComponent}
       <Stack direction="column" alignItems="center">
         <Stack direction="row" alignItems="center" style={{ marginBottom: "5px" }}>
           <ArrowBackIos onClick={() => navigate(-1)} />
@@ -56,9 +61,9 @@ export default function SearchPage() {
           <Add />
           <Typography>Choose from bookcase</Typography>
         </Stack>
-        <ModalBookcase open={open} handleClose={handleClose} handleAdd={handleAdd} errMessage={errMessage} />
+        <ModalBookcase open={open} handleClose={handleClose} handleAdd={handleAdd} />
         <Suggestions />
       </Stack>
-    </Container >
+    </Container>
   );
 }

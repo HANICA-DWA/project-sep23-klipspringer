@@ -156,7 +156,7 @@ export default function ShelfPage({ edit = false }) {
               <Typography>Choose from bookcase</Typography>
             </Stack>
           </Stack>
-          <ModalBookcase open={open} handleClose={handleClose} handleAdd={handleAdd} errMessage={errMessage} />
+          <ModalBookcase open={open} handleClose={handleClose} handleAdd={handleAdd} />
 
           <Stack gap={2} direction="column" alignItems="center" width="100%">
             {edit ? (
