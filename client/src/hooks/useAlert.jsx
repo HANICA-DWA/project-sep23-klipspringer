@@ -1,4 +1,4 @@
-import { Alert, Snackbar } from "@mui/material";
+import { Alert, Snackbar, Typography } from "@mui/material";
 import { useState } from "react"
 
 export function useAlert(alertText = "error: forgot alert text", autoCloseTimeout = 3000, alertType = "success") {
@@ -16,7 +16,7 @@ export function useAlert(alertText = "error: forgot alert text", autoCloseTimeou
             onClose={() => setShowAlert(false)}
             anchorOrigin={{vertical: 'bottom', horizontal: 'center'}}
         >
-            <Alert severity={alertType}>{alertText}</Alert>
+            <Alert severity={alertType}><Typography>{alertText}</Typography></Alert>
         </Snackbar>
 
     return [setAlertOn, alert]

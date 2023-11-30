@@ -48,7 +48,7 @@ export default function Bookcase({ setLoggedIn }) {
         <ImageList cols={matchDownMd ? 3 : 10} gap={8} sx={{ px: 5 }}>
           {profileInfo.bookcase.map((book) => {
             return (
-              <ImageListItem component={Link} to={`/detailpage/${book._id}`} sx={{ textDecoration: "none", color: "inherit" }} key={book._id}>
+              <ImageListItem component={Link} to={`/book/${book._id}`} sx={{ textDecoration: "none", color: "inherit" }} key={book._id}>
                 <Bookcover isbn={book._id} cover_image={book.cover_image} />
               </ImageListItem>
             );

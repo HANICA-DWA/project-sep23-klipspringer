@@ -1,11 +1,12 @@
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../components/Header";
 import { Add, ArrowBackIosNew, ArrowOutward, ImageNotSupported } from "@mui/icons-material";
-import { Box, Button, Chip, Stack, Typography } from "@mui/material";
+import { Box, Button, Chip, IconButton, Stack, Typography } from "@mui/material";
 import { LoggedInContext } from "../Contexts";
 import { useContext, useEffect, useState } from "react";
 import ModalShelf from "../components/ModalShelf";
 import Bookcover from "../components/Bookcover";
+import { useAlert } from "../hooks/useAlert";
 
 export default function Detailpage({ setLoggedIn }) {
   const { loggedIn, username } = useContext(LoggedInContext);
@@ -13,7 +14,15 @@ export default function Detailpage({ setLoggedIn }) {
   const isbn = useParams().isbn;
   const [book, setBook] = useState({});
   const [open, setOpen] = useState(false);
-  const [shelfInfo, setShelfInfo] = useState([]);
+  const [shelfInfo, setShelfInfo] = useState({ bookcase: [] });
+  const [addError, setAddError] = useState();
+  const [showAddAlert, addAlertComponent] = useAlert(addError || "Succesfully added to your bookcase", 3000, addError ? "error" : "success");
+  const [removeError, setRemoveError] = useState();
+  const [showRemoveAlert, removeAlertComponent] = useAlert(
+    removeError || "Succesfully removed from your bookcase",
+    3000,
+    removeError ? "error" : "success"
+  );
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -24,7 +33,6 @@ export default function Detailpage({ setLoggedIn }) {
         return res.json();
       })
       .then((res) => {
-        console.log(res);
         setBook(res[`ISBN:${isbn}`]);
       })
       .catch((err) => {
@@ -33,39 +41,83 @@ export default function Detailpage({ setLoggedIn }) {
   }, []);
 
   useEffect(() => {
-    fetch(
-      import.meta.env.VITE_BACKEND_HOST +
-        "/user/" +
-        username +
-        "?" +
-        new URLSearchParams({
-          fields: ["top_three", "shelf"],
-        }),
-      {
-        method: "GET",
-      }
-    )
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        setShelfInfo(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+    if (loggedIn) {
+      fetch(
+        import.meta.env.VITE_BACKEND_HOST +
+          "/user/" +
+          username +
+          "?" +
+          new URLSearchParams({
+            fields: ["top_three", "shelf", "bookcase"],
+          }),
+        {
+          method: "GET",
+        }
+      )
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
+          if (!res.error) setShelfInfo(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setShelfInfo({ bookcase: [] });
+    }
+  }, [loggedIn, username, open]);
 
-  function addToBookcase() {}
+  async function addToBookcase(book) {
+    const response = await fetch(import.meta.env.VITE_BACKEND_HOST + `/user/${username}/bookcase`, {
+      method: "PUT",
+      credentials: "include",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ book }),
+    });
+    if (!response.ok) {
+      setAddError("Something went wrong adding this book to your bookcase");
+    } else {
+      setAddError(null);
+      setShelfInfo({ ...shelfInfo, bookcase: [...shelfInfo.bookcase, book] });
+    }
+    showAddAlert();
+  }
+
+  async function removeFromBookcase(isbn) {
+    const response = await fetch(import.meta.env.VITE_BACKEND_HOST + `/user/${username}/bookcase/${isbn}`, {
+      method: "DELETE",
+      credentials: "include",
+      mode: "cors",
+    });
+    if (!response.ok) {
+      setRemoveError("Something went wrong removing this book from your bookcase");
+    } else {
+      setRemoveError(null);
+      setShelfInfo({ ...shelfInfo, bookcase: shelfInfo.bookcase.filter((book) => book._id !== isbn) });
+    }
+    showRemoveAlert();
+  }
 
   return (
     <>
+      {addAlertComponent}
+      {removeAlertComponent}
       <Stack direction="row" alignItems="center" justifyContent="space-between">
         <ArrowBackIosNew sx={{ margin: "20px" }} onClick={() => navigate(-1)} />
         <Header setLoggedIn={setLoggedIn} />
       </Stack>
       <Stack alignItems="center">
-        <Button onClick={addToBookcase}>Add to bookcase</Button>
+        {loggedIn && username ? (
+          shelfInfo.bookcase.find((book) => book._id === isbn) ? (
+            <Button onClick={() => removeFromBookcase(isbn)}>Remove from bookcase</Button>
+          ) : (
+            <Button onClick={() => addToBookcase({ _id: isbn, cover_image: book.cover ? book.cover.medium : undefined })}>Add to bookcase</Button>
+          )
+        ) : null}
         <Box sx={{ margin: "10px", height: "280px" }}>
           <Bookcover isbn={isbn} cover_image={book.cover ? book.cover.medium : undefined} large />
         </Box>

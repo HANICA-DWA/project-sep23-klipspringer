@@ -35,10 +35,11 @@
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
+| Uren | Taak  | Met Wie | Resultaten                                                                                           | Emotie | Link |
+|------|---|---------|------------------------------------------------------------------------------------------------------|---|---|
+| 0.5  | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/126) | N.V.T.  | edit page maken wat wel simpel                                                                       |:satisfied: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/9f6eff230b137c118cfaabbbb5e63c471afd83c6) |
+| 1    | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/121) | N.V.T.  | het koste me wat tijd om het probleem op te lossen met de controlle of het boek in je boekenkast zit |:satisfied: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/00a3335969affd6c54666ea1a4ccb4d5ff822378) |
+|      | |         |                                                                                                      | | |
 
 ## Donderdag 30 december
 

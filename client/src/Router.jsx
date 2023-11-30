@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route, Outlet, useParams, Navigate } from "react-router-dom";
 import Profilepage from "./pages/Profilepage";
-import App from "./pages/App";
 import Login from "./pages/Login";
 import SearchPage from "./pages/SearchPage";
 import ShelfPage from "./pages/ShelfPage";
@@ -67,6 +66,14 @@ export default function Router() {
               element={
                 <ProtectedRoute loading={loading}>
                   <SearchPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path=":shelf/edit"
+              element={
+                <ProtectedRoute loading={loading}>
+                  <ShelfPage edit={true}/>
                 </ProtectedRoute>
               }
             />
