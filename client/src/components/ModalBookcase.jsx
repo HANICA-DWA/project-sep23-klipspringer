@@ -50,7 +50,13 @@ export default function ModalBookcase({ open, handleClose, handleAdd }) {
             <Close onClick={handleClose} sx={{ position: "absolute", right: "10px", transform: "scale(0.8)" }} />
           </Stack>
           {bookcase.map((book) => (
-            <Stack direction="row" onClick={() => handleAdd(book)}>
+            <Stack
+              direction="row"
+              onClick={() => {
+                handleAdd(book);
+                handleClose();
+              }}
+            >
               <img src={book.cover_image} height="104px" width="68px" style={{ margin: "5px" }}></img>
               <Stack justifyContent="center">
                 <Typography>{book.title}</Typography>
