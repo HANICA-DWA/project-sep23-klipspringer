@@ -7,7 +7,9 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   const search = req.query.q ? req.query.q : "";
-  const users = await User.find({_id: {$regex: search, $options: 'i'}}, '_id profile_picture').limit(10).exec();
+  const users = await User.find({ _id: { $regex: search, $options: "i" } }, "_id profile_picture")
+    .limit(10)
+    .exec();
   console.log(users);
   res.send(users);
 });
@@ -61,6 +63,7 @@ router.post("/:username/shelf", async (req, res, next) => {
 router.put("/:username/shelves/:shelf", async (req, res, next) => {
   const { book } = req.body;
   const { shelf } = req.params;
+  console.log(book);
   if (book != undefined && shelf != undefined) {
     try {
       if (shelf === "top_three") {
@@ -142,8 +145,6 @@ router.delete("/:username/bookcase/:book", async (req, res, next) => {
   }
 });
 
-router.put("/:username/bookcase", async (res, req, next) => {
-
-})
+router.put("/:username/bookcase", async (res, req, next) => {});
 
 export default router;

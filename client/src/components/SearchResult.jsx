@@ -8,6 +8,8 @@ export default function SearchResult({ book, onAdd, closePopper, fullSearch }) {
   let authors = "";
   let title = "";
 
+  console.log(book);
+
   function onImageError() {
     if (book.cover_i) {
       setCoverImage(`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg?default=false`);
@@ -68,14 +70,13 @@ export default function SearchResult({ book, onAdd, closePopper, fullSearch }) {
       </div>
       <Button
         onClick={() => {
-          onAdd({ cover_image: coverImage, _id: book.isbn[0] ?? book.isbn });
+          onAdd({ cover_image: coverImage, _id: book.isbn[0] ?? book.isbn, title: book.title, authors: book.author_name });
           closePopper();
         }}
         sx={{ marginRight: "10px" }}
         variant="contained"
       >
-
-        <Typography variant="button">{fullSearch ? 'View' : 'Add'}</Typography>
+        <Typography variant="button">{fullSearch ? "View" : "Add"}</Typography>
       </Button>
     </Paper>
   );
