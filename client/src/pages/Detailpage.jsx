@@ -69,7 +69,6 @@ export default function Detailpage({ setLoggedIn }) {
   }, [loggedIn, username, open]);
 
   async function addToBookcase(book) {
-    console.log(book);
     const response = await fetch(import.meta.env.VITE_BACKEND_HOST + `/user/${username}/bookcase`, {
       method: "PUT",
       credentials: "include",
