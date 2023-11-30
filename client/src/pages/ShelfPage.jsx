@@ -19,10 +19,9 @@ export default function ShelfPage() {
   const [errMessage, setErrMessage] = useState("");
   const [showAlert, alertComponent] = useAlert(errMessage, 3000, "warning");
   const [open, setOpen] = useState(false);
-  const [bookcase, setBookcase] = useState([]);
+  // const [bookcase, setBookcase] = useState([]);
 
   const handleOpen = () => setOpen(true);
-
   const handleClose = () => setOpen(false);
 
   const handleAdd = (toAdd) => {
@@ -64,27 +63,27 @@ export default function ShelfPage() {
     }
   };
 
-  useEffect(() => {
-    fetch(
-      import.meta.env.VITE_BACKEND_HOST +
-        `/user/${username}?` +
-        new URLSearchParams({
-          fields: ["bookcase"],
-        }),
-      {
-        method: "GET",
-      }
-    )
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        setBookcase(res.bookcase);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch(
+  //     import.meta.env.VITE_BACKEND_HOST +
+  //       `/user/${username}?` +
+  //       new URLSearchParams({
+  //         fields: ["bookcase"],
+  //       }),
+  //     {
+  //       method: "GET",
+  //     }
+  //   )
+  //     .then((res) => {
+  //       return res.json();
+  //     })
+  //     .then((res) => {
+  //       setBookcase(res.bookcase);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
 
   return (
     <>
@@ -111,7 +110,7 @@ export default function ShelfPage() {
               <Typography>Choose from bookcase</Typography>
             </Stack>
           </Stack>
-          <ModalBookcase open={open} handleClose={handleClose} bookcase={bookcase} handleAdd={handleAdd} errMessage={errMessage} />
+          <ModalBookcase open={open} handleClose={handleClose} handleAdd={handleAdd} errMessage={errMessage} />
 
           <Stack gap={2} direction="column" alignItems="center" width="100%">
             <Bookshelf books={books} hideAdding unclickable />

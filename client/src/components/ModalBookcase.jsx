@@ -1,9 +1,13 @@
 import { Close } from "@mui/icons-material";
 import { Modal, Typography, Stack, Box } from "@mui/material";
 import { useAlert } from "../hooks/useAlert";
+import { useContext, useEffect, useState } from "react";
+import { LoggedInContext } from "../Contexts";
 
-export default function ModalBookcase({ open, handleClose, bookcase, handleAdd, errMessage }) {
+export default function ModalBookcase({ open, handleClose, handleAdd, errMessage }) {
   const [showAlert, alertComponent] = useAlert(errMessage, 3000, "warning");
+  const [bookcase, setBookcase] = useState([]);
+  const { loggedIn, username } = useContext(LoggedInContext);
 
   const styleModal = {
     position: "absolute",
@@ -14,6 +18,28 @@ export default function ModalBookcase({ open, handleClose, bookcase, handleAdd, 
     bgcolor: "white",
     overflow: "scroll",
   };
+
+  useEffect(() => {
+    fetch(
+      import.meta.env.VITE_BACKEND_HOST +
+        `/user/${username}?` +
+        new URLSearchParams({
+          fields: ["bookcase"],
+        }),
+      {
+        method: "GET",
+      }
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        setBookcase(res.bookcase);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <>
