@@ -4,7 +4,8 @@ import Suggestions from "../components/Suggestions";
 import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useState } from "react";
 import { LoggedInContext } from "../Contexts.jsx";
-import { ArrowBackIos } from "@mui/icons-material";
+import { ArrowBackIos, Add } from "@mui/icons-material";
+import ModalBookcase from "../components/ModalBookcase.jsx";
 
 export default function SearchPage() {
   const navigate = useNavigate();
@@ -13,6 +14,10 @@ export default function SearchPage() {
   const { loggedIn, username } = useContext(LoggedInContext);
 
   const [errMessage, setErrMessage] = useState("");
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const handleAdd = (book) => {
     fetch(import.meta.env.VITE_BACKEND_HOST + "/user/" + username + "/shelves/" + shelf, {
@@ -20,7 +25,7 @@ export default function SearchPage() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ book: book.book }),
+      body: JSON.stringify({ book: book }),
     })
       .then((res) => {
         if (res.ok) {
@@ -31,7 +36,7 @@ export default function SearchPage() {
         console.log("succes", res);
       })
       .catch((err) => {
-          console.log("error", err);
+        console.log("error", err);
       });
   };
 
@@ -42,14 +47,18 @@ export default function SearchPage() {
         paddingTop: "20px",
       }}
     >
-      <Stack direction="row" alignItems="center" style={{ marginBottom: "25px" }}>
-        <ArrowBackIos onClick={() => navigate(-1)} />
-        <SearchBar onClick={handleAdd} />
+      <Stack direction="column" alignItems="center">
+        <Stack direction="row" alignItems="center" style={{ marginBottom: "5px" }}>
+          <ArrowBackIos onClick={() => navigate(-1)} />
+          <SearchBar onClick={handleAdd} />
+        </Stack>
+        <Stack direction="row" alignItems="center" sx={{ margin: "5px", marginBottom: "20px" }} onClick={handleOpen}>
+          <Add />
+          <Typography>Choose from bookcase</Typography>
+        </Stack>
+        <ModalBookcase open={open} handleClose={handleClose} handleAdd={handleAdd} errMessage={errMessage} />
+        <Suggestions />
       </Stack>
-      <Typography align="center" variant="body1" style={{ color: "red" }}>
-        {errMessage}
-      </Typography>
-      <Suggestions />
-    </Container>
+    </Container >
   );
 }

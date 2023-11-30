@@ -70,6 +70,14 @@ export default function Router() {
               }
             />
             <Route
+              path=":shelf/edit"
+              element={
+                <ProtectedRoute loading={loading}>
+                  <ShelfPage edit={true}/>
+                </ProtectedRoute>
+              }
+            />
+            <Route
               path="bookcase"
               element={
                 <ProtectedRoute loading={loading}>

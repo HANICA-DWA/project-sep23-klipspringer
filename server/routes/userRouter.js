@@ -7,8 +7,9 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   const search = req.query.q ? req.query.q : "";
-  const users = await User.find({_id: {$regex: search, $options: 'i'}}, '_id profile_picture').limit(10).exec();
-  console.log(users);
+  const users = await User.find({ _id: { $regex: search, $options: "i" } }, "_id profile_picture")
+    .limit(10)
+    .exec();
   res.send(users);
 });
 
@@ -67,16 +68,22 @@ router.post("/:username/shelf", async (req, res, next) => {
 });
 
 router.put("/:username/shelves/:shelf", async (req, res, next) => {
-  const { book } = req.body;
+  const { book, name, books, type } = req.body;
   const { shelf } = req.params;
-  if (book != undefined && shelf != undefined) {
+  if (shelf != undefined) {
     try {
       if (shelf === "top_three") {
         const topThree = req.user.top_three;
         topThree.push(book);
         req.user.addToBookcase([book]);
         await req.user.save();
-      } else {
+      } else if (books && type == "editshelf") {
+        const userShelf = req.user.shelf.id(shelf);
+        userShelf.books = books;
+        userShelf.name = name;
+        req.user.addToBookcase(books);
+        await req.user.save();
+      } else if(book != undefined){
         const userShelf = req.user.shelf.id(shelf);
         userShelf.books.push(book);
         req.user.addToBookcase([book]);
@@ -94,7 +101,7 @@ router.put("/:username/shelves/:shelf", async (req, res, next) => {
 });
 
 router.delete("/:username/shelves/:shelf", async (req, res, next) => {
-  try{
+  try {
     const { shelf } = req.params;
     const userShelf = req.user.shelf.id(shelf);
     req.user.deleteShelf(userShelf._id);
@@ -104,7 +111,7 @@ router.delete("/:username/shelves/:shelf", async (req, res, next) => {
     const error = createError("Shelf not found", 404)
     next(error)
   }
-})
+});
 
 router.delete("/:username/shelves/:shelf/book/:book", async (req, res, next) => {
   const { shelf, book } = req.params;
@@ -142,7 +149,7 @@ router.delete("/:username/bookcase/:book", async (req, res, next) => {
   if (book != undefined) {
     try {
       const bookcaseBook = req.user.bookcase.find((bookcaseBook) => bookcaseBook._id === book);
-      if (index > -1) {
+      if (bookcaseBook != undefined) {
         req.user.removeFromBookcase([bookcaseBook]);
         await req.user.save();
       }
@@ -158,8 +165,22 @@ router.delete("/:username/bookcase/:book", async (req, res, next) => {
   }
 });
 
-router.put("/:username/bookcase", async (res, req, next) => {
-
-})
+router.put("/:username/bookcase", async (req, res, next) => {
+  const { book } = req.body;
+  if (book != undefined) {
+    try {
+      req.user.addToBookcase([book]);
+      await req.user.save();
+      res.status(200).json(book);
+    } catch (err) {
+      let error = err;
+      if (err.errors) error = createError(err.errors[Object.keys(err.errors)[0]].message, 400);
+      next(error);
+    }
+  } else {
+    const error = createError("Specify body with book or shelf", 400);
+    next(error);
+  }
+});
 
 export default router;

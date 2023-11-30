@@ -65,6 +65,31 @@
 
 ## User
 
+> **`GET`** `/user/`
+
+Get a list of users.
+
+_query_parameters_
+
+`fields` - Array of fields that the request wants to receive.
+
+_returns_
+
+```json
+{
+    "_id": String,
+    "profile_picture": String
+}
+```
+
+> **`HEAD`** `/user/check/:username`
+
+Checks if a username already exists and is valid.
+
+_parameters_
+
+`:username` - Username to check
+
 > **`GET`** `/user/:username`
 
 Get a specific user's data.
