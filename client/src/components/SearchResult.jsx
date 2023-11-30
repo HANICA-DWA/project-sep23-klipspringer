@@ -71,7 +71,7 @@ export default function SearchResult({ book, onClick, closePopper, fullSearch })
           if (fullSearch) {
             onClick({ type: "book", book: { _id: book.isbn[0] ?? book.isbn } });
           } else {
-            onClick({_id: book.isbn[0] ?? book.isbn, cover_image: coverImage, });
+            onClick({ cover_image: coverImage, _id: book.isbn[0] ?? book.isbn, title: book.title, authors: book.author_name });
           }
           closePopper();
         }}
