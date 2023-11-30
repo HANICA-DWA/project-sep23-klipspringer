@@ -12,18 +12,23 @@ function Profilepage({ setLoggedIn, edit = false }) {
   const userName = useParams().userName;
   const { loggedIn, username } = useContext(LoggedInContext);
   const [profileInfo, setProfileInfo] = useState([]);
-  const [deleteShelfID, setDeleteShelfID] = useState(null)
+  const [deleteShelfID, setDeleteShelfID] = useState(null);
   const [editMode, setEditMode] = useState(edit);
 
-  const shelfClickHandler = loggedIn ? () => {localStorage.removeItem("book"); navigate("/" + username + "/shelf")} : () => navigate("/login");
+  const shelfClickHandler = loggedIn
+    ? () => {
+        localStorage.removeItem("book");
+        navigate("/" + username + "/shelf");
+      }
+    : () => navigate("/login");
 
   const [setDeleteShelfAlertOn, deleteShelfAlert] = useAlert("Shelf deleted!");
 
   useEffect(() => {
-    getProfileData()
+    getProfileData();
   }, []);
 
-  function getProfileData(){
+  function getProfileData() {
     fetch(
       import.meta.env.VITE_BACKEND_HOST +
         "/user/" +
@@ -47,21 +52,17 @@ function Profilepage({ setLoggedIn, edit = false }) {
       });
   }
 
-  async function deleteShelf(shelfID){
+  async function deleteShelf(shelfID) {
     try {
-      await fetch(import.meta.env.VITE_BACKEND_HOST + `/user/${username}/shelves/${shelfID}`,
-        {
-          method: "DELETE",
-        }
-      )
-
-    } catch(err){
-      console.log(err)
+      await fetch(import.meta.env.VITE_BACKEND_HOST + `/user/${username}/shelves/${shelfID}`, {
+        method: "DELETE",
+      });
+    } catch (err) {
+      console.log(err);
     }
-    getProfileData()
-    setDeleteShelfAlertOn()
+    getProfileData();
+    setDeleteShelfAlertOn();
   }
-
 
   return (
     <>
@@ -69,16 +70,26 @@ function Profilepage({ setLoggedIn, edit = false }) {
       <Stack justifyContent="flex-start" sx={{ minHeight: "100vh" }} spacing={3} useFlexGap>
         <Header setLoggedIn={setLoggedIn} shareButton={true} />
         <ProfileInfo name={profileInfo.name} avatar={profileInfo.profile_picture} handle={profileInfo._id} />
-        <Button component={Link} to={`/${userName}/bookcase`} variant="contained" sx={{ width: "30vw", alignSelf: "center" }}>
-          Show Bookcase
-        </Button>
+        {loggedIn && username === userName ? (
+          <Button component={Link} to={`/${userName}/bookcase`} variant="contained" sx={{ width: "30vw", alignSelf: "center" }}>
+            Show Bookcase
+          </Button>
+        ) : null}
 
         {profileInfo.top_three ? (
-          <Bookshelf key={"top_three"} id={"top_three"} title="My top 3 books" books={profileInfo.top_three} user={profileInfo._id} edit={editMode}/>
+          <Bookshelf key={"top_three"} id={"top_three"} title="My top 3 books" books={profileInfo.top_three} user={profileInfo._id} edit={editMode} />
         ) : null}
         {profileInfo.shelf != undefined && profileInfo.shelf.length > 0
           ? profileInfo.shelf.map((shelf) => (
-              <Bookshelf onDelete={deleteShelf} key={shelf._id} id={shelf._id} title={shelf.name} books={shelf.books} user={profileInfo._id} edit={editMode}/>
+              <Bookshelf
+                onDelete={deleteShelf}
+                key={shelf._id}
+                id={shelf._id}
+                title={shelf.name}
+                books={shelf.books}
+                user={profileInfo._id}
+                edit={editMode}
+              />
             ))
           : null}
 
