@@ -57,7 +57,7 @@ export default function ModalBookcase({ open, handleClose, handleAdd, errMessage
               <img src={book.cover_image} height="104px" width="68px" style={{ margin: "5px" }}></img>
               <Stack justifyContent="center">
                 <Typography>{book.title}</Typography>
-                <Typography>{book.authors}</Typography>
+                <Typography>{book.authors.join(", ")}</Typography>
               </Stack>
             </Stack>
           ))}

@@ -144,16 +144,9 @@ export default function Detailpage({ setLoggedIn }) {
               </Typography>
             ) : null}
             {book.authors != undefined ? (
-              book.authors.map((author, index, array) => {
-                {
-                  return (
-                    <Typography key={name[1]} variant="h6" color="#6A9D8A">
-                      {author.name}
-                      {index !== array.length - 1 ? ", " : ""}
-                    </Typography>
-                  );
-                }
-              })
+              <Typography variant="h6" color="#6A9D8A">
+                {book.authors.map((author) => author.name).join(", ")}
+              </Typography>
             ) : (
               <Typography variant="h6" color="#6A9D8A">
                 No authors found
