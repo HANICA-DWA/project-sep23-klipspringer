@@ -1,0 +1,19 @@
+# Gebaseerd op https://github.com/pandoc/pandoc-action-example
+name: Maak DWA Plan van Aanpak .pdf document uit 'projectplan.md' template en overige door team ingevulde bestanden in `groepsdocumenten/Projectplan` folder
+
+on:
+  push:
+    branches:
+      - docs
+
+jobs:
+  convert_via_pandoc:
+    runs-on: ubuntu-22.04
+      - run: echo "Maak DWA Plan van Aanpak .pdf document" # Alleen om te zien dat de workflow gestart is
+      - uses: docker://pandoc/latex:3.0.1-ubuntu
+        with:
+          args: >-  # allows you to break string into multiple lines
+            groepsdocumenten/Projectplan/projectplan.md
+            --table-of-contents
+            --lua-filter groepsdocumenten/Projectplan/projectplan-filters.lua
+            --output=groepsdocumenten/Projectplan/DWA-plan-van-aanpak-antilope.pdf
