@@ -12,9 +12,10 @@ describe("connection", () => {
   });
 
   after(async () => {
-    await User.deleteOne({ _id: "janwillem" });
-    await server.close();
+    await User.deleteMany();
     await mongoose.disconnect();
+    await server.close();
+    console.log("finished")
   });
 
   // TODO fetch("/book/:id")
@@ -56,7 +57,7 @@ describe("connection", () => {
     });
   });
 
-  describe("HEAD /user/check/:username", () => {
+  describe("HEAD /user/check/:username", { skip: false }, () => {
     beforeEach(async () => {
       await User.deleteOne({ _id: "janwillem" });
       await User.create({
@@ -85,7 +86,7 @@ describe("connection", () => {
     })
   })
 
-  describe("GET /user/", () => {
+  describe("GET /user/", { skip: false }, () => {
     beforeEach(async () => {
       await User.deleteOne({ _id: "janwillem" });
       await User.create({
@@ -93,19 +94,19 @@ describe("connection", () => {
         name: "Jan Willem",
         profile_picture: "hallo",
       });
-    })
+    });
 
     it("Status 200 with list of usernames", async () => {
       const res = await request(app)
-        .get("/user/?" + new URLSearchParams({q: "janw"}))
+        .get("/user/?" + new URLSearchParams({ q: "janw" }))
         .expect(200);
 
-      assert.deepEqual(res.body, [{_id: "janwillem", profile_picture: "hallo"}])
-    })
-  })
+      assert.deepEqual(res.body, [{ _id: "janwillem", profile_picture: "hallo" }]);
+    });
+  });
 
   // TODO fetch("/user/:username")
-  describe("GET /user/:username", () => {
+  describe("GET /user/:username", { skip: false }, () => {
     beforeEach(async () => {
       await User.deleteOne({ _id: "janwillem" });
       await User.create({
@@ -124,7 +125,7 @@ describe("connection", () => {
         _id: "janwillem",
         profile_picture: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
         name: "Jan Willem",
-        top_three: [],
+        top_three: { name: "My top three", books: [] },
         shelf: [],
       });
     });
@@ -151,7 +152,7 @@ describe("connection", () => {
   });
 
   // TODO fetch("/user/:username/shelf")
-  describe("POST /user/:username/shelf", () => {
+  describe("POST /user/:username/shelf", { skip: false }, () => {
     beforeEach(async () => {
       await User.deleteOne({ _id: "janwillem" });
       await User.create({
@@ -306,7 +307,7 @@ describe("connection", () => {
   });
 
   // TODO fetch("/user/:username/shelves/:shelf")
-  describe("PUT /user/:username/shelves/:shelf", () => {
+  describe("PUT /user/:username/shelves/:shelf", { skip: false }, () => {
     beforeEach(async () => {
       await User.deleteOne({ _id: "janwillem" });
       await User.create({
@@ -400,7 +401,7 @@ describe("connection", () => {
     });
   });
 
-  describe("DELETE /user/:username/shelves/:shelf", async () => {
+  describe("DELETE /user/:username/shelves/:shelf", { skip: false }, async () => {
     beforeEach(async () => {
       await User.deleteOne({ _id: "unittester" });
       await User.create({
@@ -454,7 +455,7 @@ describe("connection", () => {
     })
   })
   
-  describe("DELETE /:username/shelves/:shelf/book/:book", async () => {
+  describe("DELETE /:username/shelves/:shelf/book/:book", { skip: false }, async () => {
     before(async () => {
       await User.deleteOne({ _id: "unittester2" });
       await User.create({

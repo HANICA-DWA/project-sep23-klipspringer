@@ -4,12 +4,12 @@ import { useContext, useEffect, useState } from "react";
 import { LoggedInContext } from "../Contexts";
 import { Edit, Delete } from "@mui/icons-material";
 import { ImageNotSupported } from "@mui/icons-material";
-import { useDialog } from "../hooks/useDialog"
+import { useDialog } from "../hooks/useDialog";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useAlert } from "../hooks/useAlert";
 import Bookcover from "./Bookcover";
 
-export default function Bookshelf({ id, title, books = [], hideAdding, user, unclickable, onDelete, edit, onBookDelete}) {
+export default function Bookshelf({ id, title, books = [], hideAdding, user, unclickable, onDelete, edit, onBookDelete }) {
   const { loggedIn, username } = useContext(LoggedInContext);
   const [errMessage, setErrMessage] = useState("");
   const [showAlert, alertComponent] = useAlert(errMessage, 3000, "warning");
@@ -19,7 +19,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
 
   const placeholderBooks = [];
 
-  const [setDialogOpen, dialog] = useDialog(null, "Are you sure that you want to delete this shelf?", "No", "Yes", onDelete, id)
+  const [setDialogOpen, dialog] = useDialog(null, "Are you sure that you want to delete this shelf?", "No", "Yes", onDelete, id);
 
   useEffect(() => {
     setBookshelfBooks(books);
@@ -57,14 +57,24 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
       {unclickable ? null : loggedIn && username === user && !edit
         ?
         <>
-          <IconButton onClick={() => {navigate(`/${username}/${id}/edit`)}}>
+          <IconButton
+            onClick={() => {
+              navigate(`/${username}/${id}/edit`);
+            }}
+          >
             <Edit />
           </IconButton>
-          <IconButton onClick={() => {setDialogOpen()}}>
-            <Delete />
-          </IconButton>
+          {id !== "top_three" ? (
+            <IconButton
+              onClick={() => {
+                setDialogOpen();
+              }}
+            >
+              <Delete />
+            </IconButton>
+          ) : null}
         </>
-        : null}
+       : null}
       <Stack direction="row" justifyContent="center" spacing={2}>
         <ImageList cols={3}>
           {bookshelfBooks.map((item) => (

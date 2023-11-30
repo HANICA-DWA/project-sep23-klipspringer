@@ -13,15 +13,13 @@ router.get("/", async (req, res) => {
   res.send(users);
 });
 
-const forbiddenNames = ["register", "login", "search", "find", "linkedin", "unauthorized"]
+const forbiddenNames = ["register", "login", "search", "find", "linkedin", "unauthorized"];
 
 router.head("/check/:username", async (req, res, next) => {
   const { username } = req.params;
-  if (forbiddenNames.includes(username))
-    next(createError("Illegal username", 403));
+  if (forbiddenNames.includes(username)) next(createError("Illegal username", 403));
   const user = await User.findById(username);
-  if (user)
-    next(createError("User already exists", 403));
+  if (user) next(createError("User already exists", 403));
   res.status(200).send();
 });
 
@@ -76,18 +74,19 @@ router.put("/:username/shelves/:shelf", async (req, res, next) => {
 
   if (shelf != undefined) {
     try {
-      if (shelf === "top_three") {
-        const topThree = req.user.top_three;
-        topThree.push(book);
-        req.user.addToBookcase([book]);
-        await req.user.save();
-      } else if (books && type == "editshelf") {
-        const userShelf = req.user.shelf.id(shelf);
+      if (books && type === "editshelf") {
+        let userShelf;
+        shelf === "top_three" ? (userShelf = req.user.top_three) : (userShelf = req.user.shelf.id(shelf));
         userShelf.books = books;
         userShelf.name = name;
         req.user.addToBookcase(books);
         await req.user.save();
-      } else if(book != undefined){
+      } else if (shelf === "top_three") {
+        const topThree = req.user.top_three;
+        topThree.books.push(book);
+        req.user.addToBookcase([book]);
+        await req.user.save();
+      } else if (book != undefined) {
         const userShelf = req.user.shelf.id(shelf);
         userShelf.books.push(book);
         req.user.addToBookcase([book]);

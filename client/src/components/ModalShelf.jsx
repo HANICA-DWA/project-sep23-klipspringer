@@ -21,15 +21,11 @@ export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
   };
 
   function newShelf() {
-    const data = {
-      _id: book._id,
-      cover_image: book.cover_image,
-    };
-    localStorage.setItem("book", JSON.stringify(data));
+    localStorage.setItem("book", JSON.stringify(book));
     loggedIn ? navigate(`/${username}/shelf`) : navigate("/login");
   }
 
-  function addToShelf(shelfName) {
+  function addToShelf(shelfName, book) {
     fetch(import.meta.env.VITE_BACKEND_HOST + `/user/${username}/shelves/${shelfName}`, {
       method: "PUT",
       headers: {
@@ -73,51 +69,35 @@ export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
               direction="row"
               justifyContent="space-between"
               sx={{ padding: "10px", borderBottom: "2px solid #F3F3F3" }}
-              onClick={() => addToShelf("top_three")}
+              onClick={() => addToShelf("top_three", book)}
             >
               <Stack direction="row">
                 <Typography fontWeight="600" sx={{ padding: "0px 5px 0px 15px" }}>
                   Top 3
                 </Typography>
-                <Typography color="#8D8D8D">({shelfInfo.top_three.length})</Typography>
+                <Typography color="#8D8D8D">({shelfInfo.top_three.books.length})</Typography>
               </Stack>
               <ArrowForward sx={{ paddingRight: "15px" }} />
             </Stack>
           ) : null}
           {shelfInfo.shelf != undefined &&
-            shelfInfo.shelf.map((shelf) =>
-              shelf.name == "" ? (
-                <Stack
-                  direction="row"
-                  justifyContent="space-between"
-                  sx={{ padding: "10px", borderBottom: "2px solid #F3F3F3" }}
-                  onClick={() => addToShelf(shelf._id)}
-                >
-                  <Stack direction="row">
-                    <Typography fontWeight="600" key={shelf.name} sx={{ padding: "0px 5px 0px 15px" }}>
-                      Nameless shelf
-                    </Typography>
-                    <Typography color="#8D8D8D">({shelf.books.length})</Typography>
-                  </Stack>
-                  <ArrowForward sx={{ paddingRight: "15px" }} />
+            shelfInfo.shelf.map((shelf, index) => (
+              <Stack
+                direction="row"
+                justifyContent="space-between"
+                sx={{ padding: "10px", borderBottom: "2px solid #F3F3F3" }}
+                onClick={() => addToShelf(shelf._id, book)}
+                key={`${shelf.name}${index}`}
+              >
+                <Stack direction="row">
+                  <Typography fontWeight="600" sx={{ padding: "0px 5px 0px 15px" }}>
+                    {shelf.name ? shelf.name : "Nameless shelf"}
+                  </Typography>
+                  <Typography color="#8D8D8D">({shelf.books.length})</Typography>
                 </Stack>
-              ) : shelf.name != "" ? (
-                <Stack
-                  direction="row"
-                  justifyContent="space-between"
-                  sx={{ padding: "10px", borderBottom: "2px solid #F3F3F3" }}
-                  onClick={() => addToShelf(shelf._id)}
-                >
-                  <Stack direction="row">
-                    <Typography fontWeight="600" key={shelf.name} sx={{ padding: "0px 5px 0px 15px" }}>
-                      {shelf.name}
-                    </Typography>
-                    <Typography color="#8D8D8D">({shelf.books.length})</Typography>
-                  </Stack>
-                  <ArrowForward sx={{ paddingRight: "15px" }} />
-                </Stack>
-              ) : null
-            )}
+                <ArrowForward sx={{ paddingRight: "15px" }} />
+              </Stack>
+            ))}
           <Stack direction="row" justifyContent="center" sx={{ bgcolor: "#F3F3F3", padding: "20px" }} onClick={newShelf}>
             <Add sx={{ color: "#8D8D8D", transform: "scale(0.6)" }} />
             <Typography color="#8D8D8D">Create new shelf</Typography>

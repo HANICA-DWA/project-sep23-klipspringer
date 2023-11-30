@@ -1,6 +1,6 @@
 "use strict";
 
-import { it, test, before, after, beforeEach, afterEach, describe } from "node:test";
+import { it, before, after, beforeEach, describe } from "node:test";
 import assert from "node:assert";
 import mongoose from "mongoose";
 import User from "../model/user.js";

@@ -8,7 +8,7 @@ import { LoggedInContext } from "../Contexts";
 import { useAlert } from "../hooks/useAlert";
 import ModalBookcase from "../components/ModalBookcase";
 
-export default function ShelfPage({edit = false}) {
+export default function ShelfPage({ edit = false }) {
   const navigate = useNavigate();
   const { shelf } = useParams();
   const usernameParams = useParams().userName;
@@ -28,9 +28,9 @@ export default function ShelfPage({edit = false}) {
     const book = toAdd;
     if (books.find((item) => item._id === book._id)) {
       setErrMessage("This book is already on the shelf");
-      showAlert()
+      showAlert();
     } else {
-      handleClose()
+      handleClose();
       setBooks([...books, book]);
       setErrMessage("");
     }
@@ -38,7 +38,7 @@ export default function ShelfPage({edit = false}) {
 
   const handleEdit = () => {
     if (loggedIn && username === usernameParams) {
-      if (books.length >= 3) {
+      if ((shelf === "top_three" && books.length <= 3) || (shelf !== "top_three" && books.length >= 3)) {
         setErrMessage("");
         fetch(import.meta.env.VITE_BACKEND_HOST + "/user/" + username + "/shelves/" + shelf, {
           method: "PUT",
@@ -54,7 +54,7 @@ export default function ShelfPage({edit = false}) {
           }
         });
       } else {
-        setErrMessage("You need to add min 3 books");
+        shelf === "top_three" ? setErrMessage("A top three has a max. of 3 books") : setErrMessage("You need to add min 3 books");
         showAlert();
       }
     } else {
@@ -64,8 +64,8 @@ export default function ShelfPage({edit = false}) {
   };
 
   const handleBookDelete = (bookID) => {
-    setBooks(books.filter((e) => e._id !== bookID))
-  }
+    setBooks(books.filter((e) => e._id !== bookID));
+  };
 
   const handleCreate = () => {
     if (loggedIn && username === usernameParams) {
@@ -95,19 +95,19 @@ export default function ShelfPage({edit = false}) {
   };
 
   useEffect(() => {
-    if(edit){
-      getProfileData()
+    if (edit) {
+      getProfileData();
     }
   }, []);
 
-  function getProfileData(){
+  function getProfileData() {
     fetch(
       import.meta.env.VITE_BACKEND_HOST +
         "/user/" +
         username +
         "?" +
         new URLSearchParams({
-          fields: ["shelf"],
+          fields: ["shelf", "top_three"],
         }),
       {
         method: "GET",
@@ -117,9 +117,14 @@ export default function ShelfPage({edit = false}) {
         return res.json();
       })
       .then((res) => {
-        const editShelf = res.shelf.find((e) => e._id === shelf)
-        setBooks(editShelf.books)
-        setTitle(editShelf.name)
+        let editShelf;
+        if (shelf !== "top_three") {
+          editShelf = res.shelf.find((e) => e._id === shelf);
+        } else {
+          editShelf = res.top_three;
+        }
+        setBooks(editShelf.books);
+        setTitle(editShelf.name);
       })
       .catch((err) => {
         console.log(err);
@@ -139,7 +144,7 @@ export default function ShelfPage({edit = false}) {
           <Stack direction="column" alignItems="center" sx={{ width: "100%" }}>
             <Stack direction="row" alignItems="center" justifyContent="center" sx={{ width: "100%" }}>
               <Typography variant="h5" sx={{ my: 1 }}>
-                A shelf contains at least 3 books!
+                {shelf === "top_three" ? "Top three has max. 3 books" : "A shelf contains at least 3 books!"}
               </Typography>
             </Stack>
             <Stack direction="row" alignItems="center" width="100%">
@@ -151,15 +156,19 @@ export default function ShelfPage({edit = false}) {
               <Typography>Choose from bookcase</Typography>
             </Stack>
           </Stack>
-          <ModalBookcase open={open} handleClose={handleClose} handleAdd={handleAdd} errMessage={errMessage} />
+          <ModalBookcase open={open} handleClose={handleClose} handleAdd={handleAdd} />
 
           <Stack gap={2} direction="column" alignItems="center" width="100%">
-            {edit ? <Bookshelf onBookDelete={handleBookDelete} id={shelf} user={username} books={books} edit={edit} hideAdding unclickable/> : <Bookshelf books={books} hideAdding unclickable/>}
+            {edit ? (
+              <Bookshelf onBookDelete={handleBookDelete} id={shelf} user={username} books={books} edit={edit} hideAdding unclickable />
+            ) : (
+              <Bookshelf books={books} hideAdding unclickable />
+            )}
             <Box sx={{ display: "flex", alignItems: "flex-end" }}>
               <Title sx={{ color: "action.active", mr: 1, my: 0.5 }} />
               <TextField id="input-with-sx" label="Title" variant="standard" value={title} onChange={(e) => setTitle(e.target.value)} />
               <Button sx={{ ml: 1 }} variant="contained" onClick={edit ? handleEdit : handleCreate}>
-               {edit ? "Save Shelf" : "Create Shelf"}
+                {edit ? "Save Shelf" : "Create Shelf"}
               </Button>
             </Box>
           </Stack>
