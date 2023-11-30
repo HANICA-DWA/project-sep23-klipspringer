@@ -69,6 +69,7 @@ export default function Detailpage({ setLoggedIn }) {
   }, [loggedIn, username, open]);
 
   async function addToBookcase(book) {
+    console.log(book);
     const response = await fetch(import.meta.env.VITE_BACKEND_HOST + `/user/${username}/bookcase`, {
       method: "PUT",
       credentials: "include",
@@ -115,7 +116,18 @@ export default function Detailpage({ setLoggedIn }) {
           shelfInfo.bookcase.find((book) => book._id === isbn) ? (
             <Button onClick={() => removeFromBookcase(isbn)}>Remove from bookcase</Button>
           ) : (
-            <Button onClick={() => addToBookcase({ _id: isbn, cover_image: book.cover ? book.cover.medium : undefined })}>Add to bookcase</Button>
+            <Button
+              onClick={() =>
+                addToBookcase({
+                  _id: isbn,
+                  cover_image: book.cover ? book.cover.medium : undefined,
+                  title: book.title,
+                  authors: book.authors.map((author) => author.name),
+                })
+              }
+            >
+              Add to bookcase
+            </Button>
           )
         ) : null}
         <Box sx={{ margin: "10px", height: "280px" }}>
