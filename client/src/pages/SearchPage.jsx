@@ -34,8 +34,10 @@ export default function SearchPage() {
           showAlert();
           navigate(-1);
         } else {
-          res.json().then((message) => setErrMessage(message.error));
-          showAlert();
+          res
+            .json()
+            .then((message) => setErrMessage(message.error))
+            .then(() => showAlert());
         }
         console.log("succes", res);
       })
