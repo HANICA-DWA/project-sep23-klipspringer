@@ -69,7 +69,7 @@ router.put("/:username/shelves/:shelf", async (req, res, next) => {
   const { book, name, books, type } = req.body;
   const { shelf } = req.params;
   if (book === undefined) {
-    next(createError("Missing request body", 400))
+    next(createError("Missing request body", 400));
   }
 
   if (shelf != undefined) {
@@ -107,9 +107,9 @@ router.delete("/:username/shelves/:shelf", async (req, res, next) => {
     req.user.deleteShelf(userShelf._id);
     await req.user.save();
     res.status(200).json("Shelf deleted succesfully");
-  } catch (err){
-    const error = createError("Shelf not found", 404)
-    next(error)
+  } catch (err) {
+    const error = createError("Shelf not found", 404);
+    next(error);
   }
 });
 
@@ -119,10 +119,10 @@ router.delete("/:username/shelves/:shelf/book/:book", async (req, res, next) => 
     try {
       if (shelf === "top_three") {
         const topThree = req.user.top_three;
-        const shelfBook = topThree.find((shelfBook) => shelfBook._id === book);
-        const index = topThree.indexOf(shelfBook);
+        const shelfBook = topThree.books.find((shelfBook) => shelfBook._id === book);
+        const index = topThree.books.indexOf(shelfBook);
         if (index > -1) {
-          topThree.splice(index, 1);
+          topThree.books.splice(index, 1);
           req.user.removeFromBookcase([shelfBook]);
           await req.user.save();
         }
@@ -141,6 +141,9 @@ router.delete("/:username/shelves/:shelf/book/:book", async (req, res, next) => 
       const error = createError("Shelf not found", 404);
       next(error);
     }
+  } else {
+    const error = createError("Invalid request", 400);
+    next(error);
   }
 });
 
