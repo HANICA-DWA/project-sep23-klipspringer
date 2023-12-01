@@ -142,6 +142,93 @@ _returns_
 }
 ```
 
+> **`PUT`** `/user/:username/shelves/:shelf`
+
+Put a shelf to a user
+
+_parameters_
+
+`:username` - Username in database.
+`:shelf` - Shelf Id in database.
+
+_returns_
+
+```json
+{
+    "_id": Number,
+    "cover_image": String,
+}
+```
+
+> **`DELETE`** `/user/:username/shelves/:shelf`
+
+Delete a shelf from a user
+
+_parameters_
+
+`:username` - Username in database.
+`:shelf` - Shelf Id in database.
+
+_returns_
+
+```json
+{
+  String,
+}
+```
+
+> **`DELETE`** `/user/:username/shelves/:shelf/book/:book`
+
+Delete a book from a shelf from a user
+
+_parameters_
+
+`:username` - Username in database.
+`:shelf` - Shelf Id in database.
+`:book` - Book Id in database.
+
+_returns_
+
+```json
+{
+  String,
+}
+```
+
+> **`DELETE`** `/user/:username/bookcase/:book`
+
+Delete a book from a bookcase from a user
+
+_parameters_
+
+`:username` - Username in database.
+`:book` - Book Id in database.
+
+_returns_
+
+```json
+{
+    String,
+}
+```
+
+> **`PUT`** `/user/:username/bookcase/`
+
+Put a book to a bookcase to a user
+
+_parameters_
+
+`:username` - Username in database.
+
+_returns_
+
+```json
+{
+    "_id": Number,
+    "cover_image": String,
+}
+```
+
 ## Book
 
 > **`GET`** `/book/:id`
