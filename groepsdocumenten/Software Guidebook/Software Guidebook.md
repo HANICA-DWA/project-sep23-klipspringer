@@ -130,6 +130,18 @@ _parameters_
 
 `:username` - Username in database.
 
+_body_ 
+
+```json
+{
+  "name": String,
+  "books": [{
+    "_id": Number,
+    "cover_image": String,
+  }],
+}
+```
+
 _returns_
 
 ```json
@@ -144,12 +156,31 @@ _returns_
 
 > **`PUT`** `/user/:username/shelves/:shelf`
 
-Put a shelf to a user
+Put a book to a shelf to a user
 
 _parameters_
 
 `:username` - Username in database.
 `:shelf` - Shelf Id in database.
+
+_body_
+
+```json
+{
+  "book": {
+    "_id": Number,
+    "cover_image": String
+  },
+  "name": String,
+  "books": [
+    {
+      "_id": Number,
+      "cover_image": String
+    }
+  ],
+  "type": String,
+}
+```
 
 _returns_
 
@@ -219,6 +250,16 @@ Put a book to a bookcase to a user
 _parameters_
 
 `:username` - Username in database.
+
+_body_
+```json
+{
+  "book": {
+    "_id": Number,
+    "cover_image": String,
+  },
+}
+```
 
 _returns_
 
