@@ -12,7 +12,7 @@ export default function Detailpage({ setLoggedIn }) {
   const { loggedIn, username } = useContext(LoggedInContext);
   const navigate = useNavigate();
   const isbn = useParams().isbn;
-  const [book, setBook] = useState({});
+  const [book, setBook] = useState({ authors: [] });
   const [open, setOpen] = useState(false);
   const [shelfInfo, setShelfInfo] = useState({ bookcase: [] });
   const [addError, setAddError] = useState();
@@ -115,7 +115,18 @@ export default function Detailpage({ setLoggedIn }) {
           shelfInfo.bookcase.find((book) => book._id === isbn) ? (
             <Button onClick={() => removeFromBookcase(isbn)}>Remove from bookcase</Button>
           ) : (
-            <Button onClick={() => addToBookcase({ _id: isbn, cover_image: book.cover ? book.cover.medium : undefined })}>Add to bookcase</Button>
+            <Button
+              onClick={() =>
+                addToBookcase({
+                  _id: isbn,
+                  cover_image: book.cover ? book.cover.medium : undefined,
+                  title: book.title,
+                  authors: book.authors.map((author) => author.name),
+                })
+              }
+            >
+              Add to bookcase
+            </Button>
           )
         ) : null}
         <Box sx={{ margin: "10px", height: "280px" }}>
@@ -132,16 +143,9 @@ export default function Detailpage({ setLoggedIn }) {
               </Typography>
             ) : null}
             {book.authors != undefined ? (
-              book.authors.map((author, index, array) => {
-                {
-                  return (
-                    <Typography key={name[1]} variant="h6" color="#6A9D8A">
-                      {author.name}
-                      {index !== array.length - 1 ? ", " : ""}
-                    </Typography>
-                  );
-                }
-              })
+              <Typography variant="h6" color="#6A9D8A">
+                {book.authors.map((author) => author.name).join(", ")}
+              </Typography>
             ) : (
               <Typography variant="h6" color="#6A9D8A">
                 No authors found
@@ -160,7 +164,12 @@ export default function Detailpage({ setLoggedIn }) {
           shelfInfo={shelfInfo}
           open={open}
           handleClose={handleClose}
-          book={{ _id: isbn, cover_image: book.cover != undefined ? book.cover.medium : null }}
+          book={{
+            _id: isbn,
+            cover_image: book.cover != undefined ? book.cover.medium : null,
+            title: book.title,
+            authors: book.authors.map((author) => author.name),
+          }}
         />
 
         <Chip sx={{ margin: "10px", fontSize: "14px" }} color="primary" icon={<ArrowOutward style={{ transform: "scale(0.7)" }} />} label="Buy" />

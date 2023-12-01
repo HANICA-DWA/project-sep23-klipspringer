@@ -13,15 +13,13 @@ router.get("/", async (req, res) => {
   res.send(users);
 });
 
-const forbiddenNames = ["register", "login", "search", "find", "linkedin", "unauthorized"]
+const forbiddenNames = ["register", "login", "search", "find", "linkedin", "unauthorized"];
 
 router.head("/check/:username", async (req, res, next) => {
   const { username } = req.params;
-  if (forbiddenNames.includes(username))
-    next(createError("Illegal username", 403));
+  if (forbiddenNames.includes(username)) next(createError("Illegal username", 403));
   const user = await User.findById(username);
-  if (user)
-    next(createError("User already exists", 403));
+  if (user) next(createError("User already exists", 403));
   res.status(200).send();
 });
 
@@ -70,20 +68,25 @@ router.post("/:username/shelf", async (req, res, next) => {
 router.put("/:username/shelves/:shelf", async (req, res, next) => {
   const { book, name, books, type } = req.body;
   const { shelf } = req.params;
+  if (book === undefined) {
+    next(createError("Missing request body", 400));
+  }
+
   if (shelf != undefined) {
     try {
-      if (shelf === "top_three") {
-        const topThree = req.user.top_three;
-        topThree.push(book);
-        req.user.addToBookcase([book]);
-        await req.user.save();
-      } else if (books && type == "editshelf") {
-        const userShelf = req.user.shelf.id(shelf);
+      if (books && type === "editshelf") {
+        let userShelf;
+        shelf === "top_three" ? (userShelf = req.user.top_three) : (userShelf = req.user.shelf.id(shelf));
         userShelf.books = books;
         userShelf.name = name;
         req.user.addToBookcase(books);
         await req.user.save();
-      } else if(book != undefined){
+      } else if (shelf === "top_three") {
+        const topThree = req.user.top_three;
+        topThree.books.push(book);
+        req.user.addToBookcase([book]);
+        await req.user.save();
+      } else if (book != undefined) {
         const userShelf = req.user.shelf.id(shelf);
         userShelf.books.push(book);
         req.user.addToBookcase([book]);
@@ -91,13 +94,9 @@ router.put("/:username/shelves/:shelf", async (req, res, next) => {
       }
       res.status(200).json(book);
     } catch (err) {
-      let error = err;
-      if (err.errors) error = createError(err.errors[Object.keys(err.errors)[0]].message, 400);
+      const error = createError("Invalid book or shelf", 400);
       next(error);
     }
-  } else {
-    const error = createError("Specify body with book or shelf", 400);
-    next(error);
   }
 });
 
@@ -107,9 +106,10 @@ router.delete("/:username/shelves/:shelf", async (req, res, next) => {
     const userShelf = req.user.shelf.id(shelf);
     req.user.deleteShelf(userShelf._id);
     await req.user.save();
-    res.status(200).json("shelf deleted succesfuly");
+    res.status(200).json("Shelf deleted succesfully");
   } catch (err) {
-    next(err);
+    const error = createError("Shelf not found", 404);
+    next(error);
   }
 });
 
@@ -119,10 +119,10 @@ router.delete("/:username/shelves/:shelf/book/:book", async (req, res, next) => 
     try {
       if (shelf === "top_three") {
         const topThree = req.user.top_three;
-        const shelfBook = topThree.find((shelfBook) => shelfBook._id === book);
-        const index = topThree.indexOf(shelfBook);
+        const shelfBook = topThree.books.find((shelfBook) => shelfBook._id === book);
+        const index = topThree.books.indexOf(shelfBook);
         if (index > -1) {
-          topThree.splice(index, 1);
+          topThree.books.splice(index, 1);
           req.user.removeFromBookcase([shelfBook]);
           await req.user.save();
         }
@@ -138,12 +138,11 @@ router.delete("/:username/shelves/:shelf/book/:book", async (req, res, next) => 
       }
       res.status(200).json(book);
     } catch (err) {
-      let error = err;
-      if (err.errors) error = createError(err.errors[Object.keys(err.errors)[0]].message, 400);
+      const error = createError("Shelf not found", 404);
       next(error);
     }
   } else {
-    const error = createError("Specify body with book or shelf", 400);
+    const error = createError("Invalid request", 400);
     next(error);
   }
 });

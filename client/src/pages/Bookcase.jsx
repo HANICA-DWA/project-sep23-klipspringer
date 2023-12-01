@@ -45,7 +45,7 @@ export default function Bookcase({ setLoggedIn }) {
         <Typography variant="h4" fontWeight="700" textAlign="center">
           My bookcase
         </Typography>
-        <ImageList cols={matchDownMd ? 3 : 10} gap={8} sx={{ px: 5 }}>
+        <ImageList cols={matchDownMd ? 3 : 10} rowHeight={matchDownMd ? 150 : 200} gap={8} sx={{ px: 5 }}>
           {profileInfo.bookcase.map((book) => {
             return (
               <ImageListItem component={Link} to={`/book/${book._id}`} sx={{ textDecoration: "none", color: "inherit" }} key={book._id}>

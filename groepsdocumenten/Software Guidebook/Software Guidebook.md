@@ -130,6 +130,18 @@ _parameters_
 
 `:username` - Username in database.
 
+_body_ 
+
+```json
+{
+  "name": String,
+  "books": [{
+    "_id": Number,
+    "cover_image": String,
+  }],
+}
+```
+
 _returns_
 
 ```json
@@ -139,6 +151,122 @@ _returns_
         "_id": Number,
         "cover_image": String,
     }],
+}
+```
+
+> **`PUT`** `/user/:username/shelves/:shelf`
+
+Put a book to a shelf to a user
+
+_parameters_
+
+`:username` - Username in database.
+`:shelf` - Shelf Id in database.
+
+_body_
+
+```json
+{
+  "book": {
+    "_id": Number,
+    "cover_image": String
+  },
+  "name": String,
+  "books": [
+    {
+      "_id": Number,
+      "cover_image": String
+    }
+  ],
+  "type": String,
+}
+```
+
+_returns_
+
+```json
+{
+    "_id": Number,
+    "cover_image": String,
+}
+```
+
+> **`DELETE`** `/user/:username/shelves/:shelf`
+
+Delete a shelf from a user
+
+_parameters_
+
+`:username` - Username in database.
+`:shelf` - Shelf Id in database.
+
+_returns_
+
+```json
+{
+  String,
+}
+```
+
+> **`DELETE`** `/user/:username/shelves/:shelf/book/:book`
+
+Delete a book from a shelf from a user
+
+_parameters_
+
+`:username` - Username in database.
+`:shelf` - Shelf Id in database.
+`:book` - Book Id in database.
+
+_returns_
+
+```json
+{
+  String,
+}
+```
+
+> **`DELETE`** `/user/:username/bookcase/:book`
+
+Delete a book from a bookcase from a user
+
+_parameters_
+
+`:username` - Username in database.
+`:book` - Book Id in database.
+
+_returns_
+
+```json
+{
+    String,
+}
+```
+
+> **`PUT`** `/user/:username/bookcase/`
+
+Put a book to a bookcase to a user
+
+_parameters_
+
+`:username` - Username in database.
+
+_body_
+```json
+{
+  "book": {
+    "_id": Number,
+    "cover_image": String,
+  },
+}
+```
+
+_returns_
+
+```json
+{
+    "_id": Number,
+    "cover_image": String,
 }
 ```
 
@@ -189,7 +317,7 @@ _returns_
 }
 ```
 
-> **`DELETE`** `/sessions`
+> **`DELETE`** `/sessions/`
 
 Deletes from a session
 
@@ -219,21 +347,63 @@ _returns_
 ## User schema
 
 ```js
-_id: { type: String, required: true },
+_id: { type: String, required: true, validate: [validatorUsername, "Username can only contain letters, numbers, dots and underscores "] },
 sso_id: { type: String },
 sso_provider: { type: String, enum: ["Google", "LinkedIn"] },
 name: { type: String, required: true },
 profile_picture: { type: String, required: true, default: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" },
-top_three: { type: [Book.schema] },
+top_three: {
+  type: {
+    name: { type: String },
+    books: {
+      type: [Book.schema],
+            required: true,
+    default: [],
+            validate: [
+        { validator: validatorUniqueBooks, message: "This book is already in the top three" },
+        { validator: (val) => val.length <= 3, message: "Top three has a maximum of 3 books" },
+      ],
+    },
+  },
+  required: true,
+default: { name: "My top three", books: [] },
+},
 shelf: {
   type: [
     {
       name: { type: String },
-      books: { type: [Book.schema] },
+      books: {
+        type: [Book.schema],
+        validate: [
+          { validator: (val) => val.length >= 3, message: "Must have a minimum of 3 books" },
+          { validator: validatorUniqueBooks, message: "Can't have duplicates on a bookshelf" },
+        ],
+      },
     },
   ],
 },
-bookcase: { type: [Book.schema] },
+bookcase: { type: [Book.schema], required: true, default: [] },
+},
+{
+  methods: {
+    addToBookcase(books) {
+      books.forEach((book) => {
+        if (!this.bookcase.find((element) => element._id === book._id)) this.bookcase.push(book);
+      });
+    },
+    deleteShelf(shelf) {
+      this.shelf = this.shelf.filter((s) => s._id !== shelf);
+    },
+    removeFromBookcase(books) {
+      books.forEach((book) => {
+        const shelfBook = this.bookcase.find((element) => element._id === book._id);
+        const index = this.bookcase.indexOf(shelfBook);
+        if (index > -1) {
+          this.bookcase.splice(index, 1);
+        }
+      });
+    },
+  },
 ```
 
 ## Book schema
@@ -243,17 +413,20 @@ Images of saved books of a user are saved in our database (from the external API
 ```js
 _id: { type: String, required: true },
 cover_image: { type: String },
+title: { type: String, required: true },
+authors: { type: [String], required: true },
 ```
 
 # Domain terms
 
-| **Term (NL)** | **Term (EN)** | **Betekenis**                                                           | **Synoniemen**       |
-| ------------- | ------------- | ----------------------------------------------------------------------- | -------------------- |
-| Boekenplank   | Shelf         | Een verzameling van boeken, samengesteld door de gebruiker              | Collectie, categorie |
-| Boekenkast    | Bookcase      | Een overzicht van alle boeken die een gebruiker in zijn account heeft   |                      |
-| ISBN          | ISBN          | Uniek id nummer van een boek                                            |                      |
-| Auteur        | Author        | Persoon die een boek heeft geschreven                                   |                      |
-| Titel         | Title         | De naam van een boek                                                    | Naam                 |
-| Favorieten    | Favorites     | Een speciale collectie met de favoriete boeken van een gebruiker        | Voorkeuren           |
-| Suggestie     | Suggestions   | Suggesties voor boeken op basis van de opgeslagen boeken in een account | Aanbeveling, advies  |
-| Delen         | Share         | Het kopiëren van een link naar een profielpagina                        |                      |
+| **Term (NL)**  | **Term (EN)** | **Betekenis**                                                           | **Synoniemen**       |
+|----------------|---------------|-------------------------------------------------------------------------| -------------------- |
+| Boekenplank    | Shelf         | Een verzameling van boeken, samengesteld door de gebruiker              | Collectie, categorie |
+| Boekenkast     | Bookcase      | Een overzicht van alle boeken die een gebruiker in zijn account heeft   |                      |
+| ISBN           | ISBN          | Uniek id nummer van een boek                                            |                      |
+| Auteur         | Author        | Persoon die een boek heeft geschreven                                   |                      |
+| Titel          | Title         | De naam van een boek                                                    | Naam                 |
+| Favorieten     | Favorites     | Een speciale collectie met de favoriete boeken van een gebruiker        | Voorkeuren           |
+| Suggestie      | Suggestions   | Suggesties voor boeken op basis van de opgeslagen boeken in een account | Aanbeveling, advies  |
+| Delen          | Share         | Het kopiëren van een link naar een profielpagina                        |                      |
+| Gebruikersnaam | Handle        | De naam van een gebruiker in de app                                     |                      |

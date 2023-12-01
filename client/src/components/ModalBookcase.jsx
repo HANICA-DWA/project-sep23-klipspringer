@@ -1,11 +1,10 @@
 import { Close } from "@mui/icons-material";
 import { Modal, Typography, Stack, Box } from "@mui/material";
-import { useAlert } from "../hooks/useAlert";
 import { useContext, useEffect, useState } from "react";
 import { LoggedInContext } from "../Contexts";
+import Bookcover from "./Bookcover";
 
-export default function ModalBookcase({ open, handleClose, handleAdd, errMessage }) {
-  const [showAlert, alertComponent] = useAlert(errMessage, 3000, "warning");
+export default function ModalBookcase({ open, handleClose, handleAdd }) {
   const [bookcase, setBookcase] = useState([]);
   const { loggedIn, username } = useContext(LoggedInContext);
 
@@ -45,7 +44,6 @@ export default function ModalBookcase({ open, handleClose, handleAdd, errMessage
     <>
       <Modal open={open} onClose={handleClose}>
         <Box sx={styleModal}>
-          {alertComponent}
           <Stack direction="row" justifyContent="center" alignItems="center" sx={{ padding: "15px", bgcolor: "#F3F3F3" }}>
             <Typography fontWeight="600" color="#8D8D8D" align="center">
               Choose from bookcase
@@ -53,11 +51,19 @@ export default function ModalBookcase({ open, handleClose, handleAdd, errMessage
             <Close onClick={handleClose} sx={{ position: "absolute", right: "10px", transform: "scale(0.8)" }} />
           </Stack>
           {bookcase.map((book) => (
-            <Stack direction="row" onClick={() => handleAdd(book)}>
-              <img src={book.cover_image} height="104px" width="68px" style={{ margin: "5px" }}></img>
+            <Stack
+              direction="row"
+              onClick={() => {
+                handleAdd(book);
+                handleClose();
+              }}
+            >
+              <div style={{ margin: "5px", height: "104px", width: "68px" }}>
+                <Bookcover isbn={book._id} cover_image={book.cover_image} />
+              </div>
               <Stack justifyContent="center">
                 <Typography>{book.title}</Typography>
-                <Typography>{book.authors}</Typography>
+                <Typography>{book.authors.join(", ")}</Typography>
               </Stack>
             </Stack>
           ))}
