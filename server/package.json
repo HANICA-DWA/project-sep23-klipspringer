@@ -5,7 +5,8 @@
     "npm": ">=9"
   },
   "scripts": {
-    "test": "cross-env NODE_ENV=test node --test --test-concurrency 1 --experimental-test-coverage ./__tests__/*"
+    "test": "cross-env NODE_ENV=test node --test --test-concurrency 1 --experimental-test-coverage ./__tests__/*",
+    "start": "node app"
   },
   "dependencies": {
     "cors": "^2.8.5",
