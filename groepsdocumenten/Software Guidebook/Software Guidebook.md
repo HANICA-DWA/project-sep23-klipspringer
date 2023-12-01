@@ -429,4 +429,4 @@ authors: { type: [String], required: true },
 | Favorieten     | Favorites     | Een speciale collectie met de favoriete boeken van een gebruiker        | Voorkeuren           |
 | Suggestie      | Suggestions   | Suggesties voor boeken op basis van de opgeslagen boeken in een account | Aanbeveling, advies  |
 | Delen          | Share         | Het kopiëren van een link naar een profielpagina                        |                      |
-| Gebruikersnaam | Handle        | De gebruikersnaam van een gebruiker                                     |                      |
+| Gebruikersnaam | Handle        | de naam van een gebruiker in de app                                   |                      |
