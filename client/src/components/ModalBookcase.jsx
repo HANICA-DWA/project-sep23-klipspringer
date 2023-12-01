@@ -2,6 +2,7 @@ import { Close } from "@mui/icons-material";
 import { Modal, Typography, Stack, Box } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { LoggedInContext } from "../Contexts";
+import Bookcover from "./Bookcover";
 
 export default function ModalBookcase({ open, handleClose, handleAdd }) {
   const [bookcase, setBookcase] = useState([]);
@@ -57,7 +58,9 @@ export default function ModalBookcase({ open, handleClose, handleAdd }) {
                 handleClose();
               }}
             >
-              <img src={book.cover_image} height="104px" width="68px" style={{ margin: "5px" }}></img>
+              <div style={{ margin: "5px", height: "104px", width: "68px" }}>
+                <Bookcover isbn={book._id} cover_image={book.cover_image} />
+              </div>
               <Stack justifyContent="center">
                 <Typography>{book.title}</Typography>
                 <Typography>{book.authors.join(", ")}</Typography>
