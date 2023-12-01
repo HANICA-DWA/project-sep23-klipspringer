@@ -45,12 +45,13 @@
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak                                                                                     | Met Wie     | Resultaten                          | Emotie | Link |
-|------|------------------------------------------------------------------------------------------|-------------|-------------------------------------|---|---|
-| 0.5  | Oplossen probleem wat yannick gisteren had gevonden                                      | Met Yannick | database opslossing samen uitwerken |:smiley: | [link naar de resultaten](https://github.com/link-naar-de-taakhttps://github.com/HANICA-DWA/project-sep23-klipspringer/commit/de1b70531421e84de0ec1fcf84866b593904096d) |
-| 0.5  | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/147) | N.V.T.      | Reviewen van edit page van joris    |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/f965621c224b73b2918f0bb284115667c4d9b023) |
-| 0.5  | Unit tests                                                                               | N.V.T.      | Reviewen van unit tests van Niels   |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/c9b7b5e4106d38a94421cc0acafba3320d9aa74d) |
-|      |                                                                                          |             |                                     | | |
+| Uren | Taak                                                                                     | Met Wie     | Resultaten                                                 | Emotie | Link |
+|------|------------------------------------------------------------------------------------------|-------------|------------------------------------------------------------|---|---|
+| 0.5  | Oplossen probleem wat yannick gisteren had gevonden                                      | Met Yannick | database opslossing samen uitwerken                        |:smiley: | [link naar de resultaten](https://github.com/link-naar-de-taakhttps://github.com/HANICA-DWA/project-sep23-klipspringer/commit/de1b70531421e84de0ec1fcf84866b593904096d) |
+| 0.5  | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/147) | N.V.T.      | Reviewen van edit page van joris                           |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/f965621c224b73b2918f0bb284115667c4d9b023) |
+| 0.5  | Unit tests                                                                               | N.V.T.      | Reviewen van unit tests van Niels                          |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/c9b7b5e4106d38a94421cc0acafba3320d9aa74d) |
+| 0.5  | Bug van Yannick reviewen                                                                 | Met Roos    | Pull request van edit titel bookshelf reviewen van Yannick |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/f771b7eeb20db4a46c8913ba6ae409d92dc198d4) |
+|      |                                                                                          |             |                                                            | | |
 
 
 
