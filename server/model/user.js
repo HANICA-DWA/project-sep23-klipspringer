@@ -34,7 +34,7 @@ const schema = new mongoose.Schema(
     profile_picture: { type: String, required: true, default: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" },
     top_three: {
       type: {
-        name: { type: String },
+        name: { type: String, default: "My top three" },
         books: {
           type: [Book.schema],
           required: true,

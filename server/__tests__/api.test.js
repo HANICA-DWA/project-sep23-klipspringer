@@ -15,7 +15,7 @@ describe("connection", () => {
     await User.deleteMany();
     await mongoose.disconnect();
     await server.close();
-    console.log("finished")
+    console.log("finished");
   });
 
   // TODO fetch("/book/:id")
@@ -34,17 +34,25 @@ describe("connection", () => {
       const res = await request(app).get("/book/1234567890123").expect(200);
 
       const obj = res.body;
-      assert.deepEqual(obj, { __v: 0, _id: 1234567890123, cover_image: "https://covers.openlibrary.org/b/id/9561870-M.jpg",
-      title: "hoi",
-      authors: [], });
+      assert.deepEqual(obj, {
+        __v: 0,
+        _id: 1234567890123,
+        cover_image: "https://covers.openlibrary.org/b/id/9561870-M.jpg",
+        title: "hoi",
+        authors: [],
+      });
     });
 
     it("status 200 with cover from book via isbn (fetched)", async () => {
       const res = await request(app).get("/book/9783125737600").expect(200);
 
       const obj = res.body;
-      assert.deepEqual(obj, { _id: 9783125737600, 
-        cover_image: "https://covers.openlibrary.org/b/id/9472783-M.jpg", title: "Charlie and the Chocolate Factory", authors: [] });
+      assert.deepEqual(obj, {
+        _id: 9783125737600,
+        cover_image: "https://covers.openlibrary.org/b/id/9472783-M.jpg",
+        title: "Charlie and the Chocolate Factory",
+        authors: [],
+      });
     });
 
     it("status 400 with cover from book via isbn (fetched)", async () => {
@@ -65,26 +73,20 @@ describe("connection", () => {
         name: "Jan Willem",
         profile_picture: "hallo",
       });
-    })
+    });
 
     it("Status 200", async () => {
-      await request(app)
-        .head("/user/check/henk")
-        .expect(200);
-    })
+      await request(app).head("/user/check/henk").expect(200);
+    });
 
     it("Status 403", async () => {
-      await request(app)
-        .head("/user/check/janwillem")
-        .expect(403);
-    })
+      await request(app).head("/user/check/janwillem").expect(403);
+    });
 
     it("Status 403", async () => {
-      await request(app)
-        .head("/user/check/login")
-        .expect(403);
-    })
-  })
+      await request(app).head("/user/check/login").expect(403);
+    });
+  });
 
   describe("GET /user/", { skip: false }, () => {
     beforeEach(async () => {
@@ -121,6 +123,7 @@ describe("connection", () => {
         .expect(200);
 
       const obj = res.body;
+      delete obj.top_three._id;
       assert.deepEqual(obj, {
         _id: "janwillem",
         profile_picture: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
@@ -348,15 +351,11 @@ describe("connection", () => {
 
       const res = await request(app)
         .put(`/user/${username}/shelves/${shelfId}`)
-        .send({ book: { _id: "4321", cover_image: "myimage",
-      title: "hoi",
-    authors: [], } })
+        .send({ book: { _id: "4321", cover_image: "myimage", title: "hoi", authors: [] } })
         .set("Content-Type", "application/json")
         .expect(200);
 
-      assert.deepEqual(res.body, { _id: "4321", cover_image: "myimage",
-    title: "hoi",
-  authors: [], });
+      assert.deepEqual(res.body, { _id: "4321", cover_image: "myimage", title: "hoi", authors: [] });
     });
 
     it("Empty body", async () => {
@@ -374,9 +373,7 @@ describe("connection", () => {
 
       const res = await request(app)
         .put(`/user/${username}/shelves/${shelfId}`)
-        .send({book: { _id: "4321", cover_image: "myimage",
-      title: "hoi",
-    authors: [], } })
+        .send({ book: { _id: "4321", cover_image: "myimage", title: "hoi", authors: [] } })
         .set("Content-Type", "application/json")
         .expect(400);
 
@@ -389,15 +386,11 @@ describe("connection", () => {
 
       const res = await request(app)
         .put(`/user/${username}/shelves/${shelfId}`)
-        .send({ book: { _id: "4321", cover_image: "myimage",
-      title: "hoi",
-    authors: [], } })
+        .send({ book: { _id: "4321", cover_image: "myimage", title: "hoi", authors: [] } })
         .set("Content-Type", "application/json")
         .expect(200);
 
-      assert.deepEqual(res.body, { _id: "4321", cover_image: "myimage",
-    title: "hoi",
-  authors: [], });
+      assert.deepEqual(res.body, { _id: "4321", cover_image: "myimage", title: "hoi", authors: [] });
     });
   });
 
@@ -437,50 +430,48 @@ describe("connection", () => {
     });
 
     it("Should delete the shelf", async () => {
-      const res = await request(app)
-        .delete("/user/unittester/shelves/655b323165c31f3c397b6753")
-        .expect(200);
+      const res = await request(app).delete("/user/unittester/shelves/655b323165c31f3c397b6753").expect(200);
 
       assert.deepEqual(res.body, "Shelf deleted succesfully");
       const user = await User.findById("unittester").lean();
       assert.deepEqual(user.shelf, []);
-    })
+    });
 
     it("Should give a 404 with invalid shelf", async () => {
-      const res = await request(app)
-        .delete("/user/unittester/shelves/655b323165c31f3c397b6754")
-        .expect(404);
+      const res = await request(app).delete("/user/unittester/shelves/655b323165c31f3c397b6754").expect(404);
 
-      assert.deepEqual(res.body, { error: "Shelf not found" })
-    })
-  })
-  
+      assert.deepEqual(res.body, { error: "Shelf not found" });
+    });
+  });
+
   describe("DELETE /:username/shelves/:shelf/book/:book", { skip: false }, async () => {
     before(async () => {
       await User.deleteOne({ _id: "unittester2" });
       await User.create({
         _id: "unittester2",
         name: "Jan Willem",
-        top_three: [
-          {
-            _id: 123,
-            cover_image: "url",
-            title: "hoi",
-            authors: [],
-          },
-          {
-            _id: 321,
-            cover_image: "url",
-            title: "hoi",
-            authors: [],
-          },
-          {
-            _id: 132,
-            cover_image: "url",
-            title: "hoi",
-            authors: [],
-          }
-        ],
+        top_three: {
+          books: [
+            {
+              _id: 123,
+              cover_image: "url",
+              title: "hoi",
+              authors: [],
+            },
+            {
+              _id: 321,
+              cover_image: "url",
+              title: "hoi",
+              authors: [],
+            },
+            {
+              _id: 132,
+              cover_image: "url",
+              title: "hoi",
+              authors: [],
+            },
+          ],
+        },
         shelf: [
           {
             _id: "655b323165c31f3c397b6753",
@@ -514,38 +505,38 @@ describe("connection", () => {
           },
         ],
       });
-    })
+    });
 
     it("Should delete the book from the top_three shelf", async () => {
-      const res = await request(app)
-        .delete("/user/unittester2/shelves/top_three/book/132")
-        .expect(200);
+      const res = await request(app).delete("/user/unittester2/shelves/top_three/book/132").expect(200);
 
-      assert.deepEqual(res.body, '132')
+      assert.deepEqual(res.body, "132");
 
       const user = await User.findById("unittester2").lean();
-      assert.deepEqual(user.top_three, [
-        {
-          _id: 123,
-          cover_image: "url",
-          title: "hoi",
-          authors: [],
-        },
-        {
-          _id: 321,
-          cover_image: "url",
-          title: "hoi",
-          authors: [],
-        },
-      ]);
-    })
+      delete user.top_three._id;
+      assert.deepEqual(user.top_three, {
+        name: "My top three",
+        books: [
+          {
+            _id: 123,
+            cover_image: "url",
+            title: "hoi",
+            authors: [],
+          },
+          {
+            _id: 321,
+            cover_image: "url",
+            title: "hoi",
+            authors: [],
+          },
+        ],
+      });
+    });
 
     it("Should delete the book from the shelf", async () => {
-      const res = await request(app)
-        .delete("/user/unittester2/shelves/655b323165c31f3c397b6753/book/132")
-        .expect(200);
+      const res = await request(app).delete("/user/unittester2/shelves/655b323165c31f3c397b6753/book/132").expect(200);
 
-      assert.deepEqual(res.body, '132')
+      assert.deepEqual(res.body, "132");
 
       const user = await User.findById("unittester2").lean();
       assert.deepEqual(user.shelf, [
@@ -574,14 +565,12 @@ describe("connection", () => {
           ],
         },
       ]);
-    })
+    });
 
     it("Should return a 404 on invalid shelf", async () => {
-      const res = await request(app)
-        .delete("/user/unittester2/shelves/doesnt_exist/book/132")
-        .expect(404);
+      const res = await request(app).delete("/user/unittester2/shelves/doesnt_exist/book/132").expect(404);
 
       assert.deepEqual(res.body, { error: "Shelf not found" });
-    })
+    });
   });
 });
