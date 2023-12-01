@@ -2,10 +2,6 @@ import express from "express";
 import mongoose from "mongoose";
 import session from "express-session";
 import cors from "cors";
-import { mongoServer } from "./constants.js";
-
-import path from 'path';
-import { fileURLToPath } from 'url';
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -26,27 +22,18 @@ const sessionParser = session({
   },
 });
 
-// Old skool Node __dirname inladen
-// Bron: https://byby.dev/node-dirname-not-defined
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 const host = process.env.HOST || "localhost";
-const port = process.env.PORT || 3002;
+const port = process.env.PORT || 3001;
+
+const mongoServer = process.env.MONGO_HOST || "mongodb://127.0.0.1:27017";
 
 app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
 app.use(sessionParser);
 app.use(express.json());
 
-app.use("/", express.static("public"));
-
 app.use("/user", userRouter);
 app.use("/book", bookRouter);
 app.use("/sessions", sessionsRouter);
-
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/public/index.html');
-});
 
 app.use((err, req, res, next) => {
   if (!err.status) err.status = 500;
@@ -56,7 +43,7 @@ app.use((err, req, res, next) => {
 export default app;
 
 export const server = app.listen(port, host, async () => {
-  console.log("> ");
+  console.log("> connecting");
   if (process.env.NODE_ENV === "test") {
     console.log("Connecting to test db");
     await mongoose.connect(`${mongoServer}/TestBKS`);

@@ -9,7 +9,5 @@ Dit is de BKS webapp front-end.
 
 ## How to install and run
 
-NB: First start the back-end (see the `README.md` in the `/server` folder of this monorepo).
-
 1. >npm i
 1. >npm run dev

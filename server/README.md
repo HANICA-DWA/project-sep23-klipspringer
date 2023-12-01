@@ -16,6 +16,8 @@ Via instelling in de `package.json` voert dit het commando `node app`, waarmee d
 
 ## Hoe te testen?
 
+Testen vereist node versie 21+
+
 ```console
 npm test
 ```
