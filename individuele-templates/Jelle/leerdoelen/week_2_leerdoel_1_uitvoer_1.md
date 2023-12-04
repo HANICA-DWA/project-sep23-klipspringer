@@ -5,7 +5,7 @@ Ik heb groepsgenoten uit laten spreken en zelf minder bemoeid met de richting va
 
 
 ### Welke acties op welke momenten heb je uitgevoerd? 
-Tijdens overlegmomenten heb ik gevraagt aan anderen hoe zij bijvoorbeeld foutmeldingen in gedachten hadden.
+Tijdens overlegmomenten heb ik gevraagd aan anderen hoe zij bijvoorbeeld foutmeldingen in gedachten hadden.
 
 
 ### Wie heb je om hulp gevraagd?
