@@ -13,7 +13,7 @@ export default function SearchBar({ onClick, fullSearch }) {
 
   function popperContents() {
     if (isLoading) {
-      return <LinearProgress sx={{ width: "400px" }} />;
+      return <LinearProgress sx={{ width: "100%" }} />;
     } else if (searchResults && searchResults.length >= 1 && searchText.startsWith("@") && fullSearch && !isLoading) {
       return searchResults.map((person) => {
         return <SearchResultPerson closePopper={closepopper} person={person} onClick={onClick} key={person._id} />;
