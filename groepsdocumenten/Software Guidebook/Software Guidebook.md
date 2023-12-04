@@ -1,6 +1,11 @@
-- [Software Guidebook BKS](#software-guidebook-bks)
+# **Inhoudsopgave**
+- [**Inhoudsopgave**](#inhoudsopgave)
+- [Context](#context)
+- [Functional Overview](#functional-overview)
+    - [link met meer informatie](#link-met-meer-informatie)
+- [Quality Attributes](#quality-attributes)
 - [C4-models](#c4-models)
-  - [Context](#context)
+  - [Context](#context-1)
   - [Container](#container)
   - [Component React + Vite](#component-react--vite)
   - [Component REST API](#component-rest-api)
@@ -19,7 +24,31 @@
   - [Book schema](#book-schema)
 - [Domain terms](#domain-terms)
 
-# Software Guidebook BKS
+
+# Context
+de opdrachtgever wil een platform waarop mensen op een laagdrempelige manier boeken kunnen delen met anderen. De opdrachtgever heeft met meerdere mensen gesproken die geen eenvoudig platform kunnen vinden om hun leesinteresses te kunnen delen met anderen. Er is een gat in de markt dat de opdrachtgever wil vullen met dit project.
+
+er wordt een mobile-first webapplicatie gemaakt van een persoonlijke boekenpagina. Met deze applicatie kun je jouw leesvoorkeuren delen, zoals je favoriete boeken, top 3 boeken, diverse collecties en je kunt zelfs een aangepaste collectie maken.
+
+# Functional Overview
+Als gebruiker kan je een account aanmaken via LinkdIn of Google. Zodra je dit gedaan hebt kom je uit op je profielpagina. hier kan je een plank aanmaken en deze vullen met boeken door deze op te zoeken, deze planken zijn openbaar. je hebt ook een boekenkast die prive is, waar je ook boeken een kan toevoegen. je kunt ook informatie van een boek bekijken en deze kopen via de app.
+
+het kopen van boeken moet via een affiliate link gaan van bijvoorbeeld bol.com of amazon.com.
+
+  ### link met meer informatie
+  [link naar userstory's](https://github.com/HANICA-DWA/project-sep23-klipspringer/blob/09111504bac3c06557e2a2dea3854e95361d2059/groepsdocumenten/Projectplan/Product%20Backlog.md)
+
+  [link naar wireframe's](https://www.sketch.com/s/a50a2622-b344-4f1d-afd9-7f2bf52a80a1)
+
+# Quality Attributes
+- applicatie moet mobile-first zijn. wij gebruiken de iphone SE tijdens development.
+- applicatie moet responsive zijn. voor zowel mobiel als desktop en alles daar tussen in.
+- applicatie moet snel zijn. laden onder de 2 seconden, hoger zorgt er voor dat gebruikers de pagina sluiten.
+- inloggen wordt geregeld via Google en LinkdIn SSO
+- voor de boeken wordt een externe (gratis) API gebruikt.
+- frontend wordt volgens de designs van Rik gemaakt.
+- teksten zijn in het engels.
+
 
 # C4-models
 
