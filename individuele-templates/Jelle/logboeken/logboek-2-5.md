@@ -8,7 +8,36 @@
 
 > [Hier is een lijstje met alle GitHub emojis](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md)
 
-## Maandag 6 december
+## Maandag 4 december
+
+> Eventueel informatieve algemene opmerkingen over deze dag.
+
+| Uren | Taak                  | Met Wie | Resultaten                                    | Emotie | Link |
+|------|-----------------------|---------|-----------------------------------------------|---|---|
+| 0.5  | leerdoelen verbeteren | N.V.T.  | grammatica en zinsopbouw verbeteren           |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/80d780f39c4ee17b1f781c077a7b0970c6b9cf9a) |
+| 0.5  | unit tests            | N.V.T.  | reviewen van unit test pull request van Niels |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/6a00640d66bdc321f2869dc19227e3ce8e7dbf2c) |
+|      |                       |         |                                               | | |
+
+
+## Dinsdag 5 december
+
+> Eventueel informatieve algemene opmerkingen over deze dag.
+
+| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
+|---|---|---|---|---|---|
+| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
+| | | | | | |
+
+## Woensdag 6 december
+
+> Eventueel informatieve algemene opmerkingen over deze dag.
+
+| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
+|---|---|---|---|---|---|
+| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
+| | | | | | |
+
+## Donderdag 7 december
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
@@ -18,36 +47,8 @@
 | | | | | | |
 
 
-## Dinsdag 7 december
 
-> Eventueel informatieve algemene opmerkingen over deze dag.
-
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
-
-## Woensdag 8 december
-
-> Eventueel informatieve algemene opmerkingen over deze dag.
-
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
-
-## Donderdag 9 december
-
-> Eventueel informatieve algemene opmerkingen over deze dag.
-
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
-
-
-
-## Vrijdag 10 december
+## Vrijdag 8 december
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 

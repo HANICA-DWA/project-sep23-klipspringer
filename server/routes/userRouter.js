@@ -68,7 +68,7 @@ router.post("/:username/shelf", async (req, res, next) => {
 router.put("/:username/shelves/:shelf", async (req, res, next) => {
   const { book, name, books, type } = req.body;
   const { shelf } = req.params;
-  if (!type && book === undefined) {
+  if (book === undefined && books === undefined) {
     next(createError("Missing request body", 400));
   }
 
@@ -141,9 +141,6 @@ router.delete("/:username/shelves/:shelf/book/:book", async (req, res, next) => 
       const error = createError("Shelf not found", 404);
       next(error);
     }
-  } else {
-    const error = createError("Invalid request", 400);
-    next(error);
   }
 });
 
@@ -155,16 +152,11 @@ router.delete("/:username/bookcase/:book", async (req, res, next) => {
       if (bookcaseBook != undefined) {
         req.user.removeFromBookcase([bookcaseBook]);
         await req.user.save();
-      }
+      } else throw new Error();
       res.status(200).json(book);
     } catch (err) {
-      let error = err;
-      if (err.errors) error = createError(err.errors[Object.keys(err.errors)[0]].message, 400);
-      next(error);
+      next(createError("Specified book does not exist", 404));
     }
-  } else {
-    const error = createError("Specify body with book or shelf", 400);
-    next(error);
   }
 });
 
@@ -172,17 +164,14 @@ router.put("/:username/bookcase", async (req, res, next) => {
   const { book } = req.body;
   if (book != undefined) {
     try {
+      if (!typeof book === "object" || !Object.keys(book).every((key) => ["title", "authors", "_id", "cover_image"].includes(key)) || Object.keys(book).length !== 4)
+        throw new Error();
       req.user.addToBookcase([book]);
       await req.user.save();
       res.status(200).json(book);
     } catch (err) {
-      let error = err;
-      if (err.errors) error = createError(err.errors[Object.keys(err.errors)[0]].message, 400);
-      next(error);
+      next(createError("Invalid request body", 400));
     }
-  } else {
-    const error = createError("Specify body with book or shelf", 400);
-    next(error);
   }
 });
 
