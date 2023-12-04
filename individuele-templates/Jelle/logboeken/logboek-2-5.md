@@ -12,11 +12,12 @@
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak                  | Met Wie | Resultaten                                    | Emotie | Link |
-|------|-----------------------|---------|-----------------------------------------------|---|---|
-| 0.5  | leerdoelen verbeteren | N.V.T.  | grammatica en zinsopbouw verbeteren           |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/80d780f39c4ee17b1f781c077a7b0970c6b9cf9a) |
-| 0.5  | unit tests            | N.V.T.  | reviewen van unit test pull request van Niels |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/6a00640d66bdc321f2869dc19227e3ce8e7dbf2c) |
-|      |                       |         |                                               | | |
+| Uren | Taak                  | Met Wie     | Resultaten                                                        | Emotie | Link |
+|------|-----------------------|-------------|-------------------------------------------------------------------|---|---|
+| 0.5  | leerdoelen verbeteren | N.V.T.      | grammatica en zinsopbouw verbeteren                               |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/80d780f39c4ee17b1f781c077a7b0970c6b9cf9a) |
+| 0.5  | unit tests            | N.V.T.      | reviewen van unit test pull request van Niels                     |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/6a00640d66bdc321f2869dc19227e3ce8e7dbf2c) |
+| 0.5  | reviewen              | Met Yannick | reviewen van pull request van Yannick over de edit pagina bug fix |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/8a5be7e5dd71fedc2da9c168a342321a2fa9b8ff) |
+|      |                       |             |                                                                   | | |
 
 
 ## Dinsdag 5 december
