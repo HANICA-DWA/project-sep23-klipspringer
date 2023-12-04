@@ -50,5 +50,5 @@ Wat minder aangezien ik zelf niet een prettig gevoel had of ik wel genoeg inbren
 
 
 ### Het effect op het groepsproces was:
-Heel goed, er was minder discussie en iedereen deed zijn eigen dingen.
+Doordat ik veel luisterde ging het heel goed, er was minder discussie en iedereen deed zijn eigen dingen.
 
