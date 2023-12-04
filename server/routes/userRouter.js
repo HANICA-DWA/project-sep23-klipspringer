@@ -68,7 +68,7 @@ router.post("/:username/shelf", async (req, res, next) => {
 router.put("/:username/shelves/:shelf", async (req, res, next) => {
   const { book, name, books, type } = req.body;
   const { shelf } = req.params;
-  if (book === undefined) {
+  if (!type && book === undefined) {
     next(createError("Missing request body", 400));
   }
 
