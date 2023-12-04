@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { LoggedInContext } from "../Contexts";
 import { Edit, Delete } from "@mui/icons-material";
-import { ImageNotSupported } from "@mui/icons-material";
 import { useDialog } from "../hooks/useDialog";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useAlert } from "../hooks/useAlert";
@@ -25,7 +24,6 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
     setBookshelfBooks(books);
   }, [books]);
 
-  //TODO na ontwerp Rik dit refactoren
   if ((bookshelfBooks.length === 0 && !loggedIn) || (bookshelfBooks.length === 0 && hideAdding)) {
     placeholderBooks.push(<div></div>);
     placeholderBooks.push(
