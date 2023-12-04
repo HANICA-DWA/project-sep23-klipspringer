@@ -57,10 +57,10 @@ export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
             direction="row"
             justifyContent="center"
             alignItems="center"
-            sx={{ padding: "15px", bgcolor: "#F3F3F3", borderRadius: "10px 10px 0px 0px" }}
+            sx={{ padding: "15px"}}
           >
-            <Typography fontWeight="600" color="#8D8D8D" align="center">
-              Choose a shelf
+            <Typography fontWeight="600" align="center">
+              What shelf?
             </Typography>
             <Close onClick={handleClose} sx={{ position: "absolute", right: "10px", transform: "scale(0.8)" }} />
           </Stack>
@@ -68,16 +68,16 @@ export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
             <Stack
               direction="row"
               justifyContent="space-between"
-              sx={{ padding: "10px", borderBottom: "2px solid #F3F3F3" }}
+              sx={{ padding: "10px", margin: "10px", border: "1px solid black", borderRadius: "5px"}}
               onClick={() => addToShelf("top_three", book)}
             >
               <Stack direction="row">
-                <Typography fontWeight="600" sx={{ padding: "0px 5px 0px 15px" }}>
-                  Top 3
+                <Typography fontWeight="600" sx={{ paddingRight: "5px" }}>
+                  {shelfInfo.top_three.name}
                 </Typography>
-                <Typography color="#8D8D8D">({shelfInfo.top_three.books.length})</Typography>
+                <Typography color="#8D8D8D">{shelfInfo.top_three.books.length}</Typography>
               </Stack>
-              <ArrowForward sx={{ paddingRight: "15px" }} />
+              <ArrowForward sx={{ transform: "scale(0.8)", color: "#8D8D8D" }} />
             </Stack>
           ) : null}
           {shelfInfo.shelf != undefined &&
@@ -85,22 +85,22 @@ export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
               <Stack
                 direction="row"
                 justifyContent="space-between"
-                sx={{ padding: "10px", borderBottom: "2px solid #F3F3F3" }}
+                sx={{ padding: "10px", margin: "10px", border: "1px solid black", borderRadius: "5px" }}
                 onClick={() => addToShelf(shelf._id, book)}
                 key={`${shelf.name}${index}`}
               >
                 <Stack direction="row">
-                  <Typography fontWeight="600" sx={{ padding: "0px 5px 0px 15px" }}>
+                  <Typography fontWeight="600" sx={{ paddingRight: "5px" }}>
                     {shelf.name ? shelf.name : "Nameless shelf"}
                   </Typography>
-                  <Typography color="#8D8D8D">({shelf.books.length})</Typography>
+                  <Typography color="#8D8D8D">{shelf.books.length}</Typography>
                 </Stack>
-                <ArrowForward sx={{ paddingRight: "15px" }} />
+                <ArrowForward sx={{ transform: "scale(0.8)", color: "#8D8D8D" }} />
               </Stack>
             ))}
-          <Stack direction="row" justifyContent="center" sx={{ bgcolor: "#F3F3F3", padding: "20px" }} onClick={newShelf}>
-            <Add sx={{ color: "#8D8D8D", transform: "scale(0.6)" }} />
-            <Typography color="#8D8D8D">Create new shelf</Typography>
+          <Stack direction="row" justifyContent="center" sx={{ margin: "20px"}} onClick={newShelf}>
+            <Add sx={{ transform: "scale(0.6)"}} />
+            <Typography >Create a new shelf</Typography>
           </Stack>
         </Box>
       </Modal>
