@@ -57,7 +57,7 @@ export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
             direction="row"
             justifyContent="center"
             alignItems="center"
-            sx={{ padding: "15px"}}
+            sx={{ padding: "15px", borderBottom: "2px solid #EFEFEF"}}
           >
             <Typography fontWeight="600" align="center">
               What shelf?
@@ -75,9 +75,9 @@ export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
                 <Typography fontWeight="600" sx={{ paddingRight: "5px" }}>
                   {shelfInfo.top_three.name}
                 </Typography>
-                <Typography color="#8D8D8D">{shelfInfo.top_three.books.length}</Typography>
+                <Typography color="#AFAFAF">{shelfInfo.top_three.books.length}</Typography>
               </Stack>
-              <ArrowForward sx={{ transform: "scale(0.8)", color: "#8D8D8D" }} />
+              <ArrowForward sx={{ transform: "scale(0.8)", color: "#AFAFAF" }} />
             </Stack>
           ) : null}
           {shelfInfo.shelf != undefined &&
@@ -93,9 +93,9 @@ export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
                   <Typography fontWeight="600" sx={{ paddingRight: "5px" }}>
                     {shelf.name ? shelf.name : "Nameless shelf"}
                   </Typography>
-                  <Typography color="#8D8D8D">{shelf.books.length}</Typography>
+                  <Typography color="#AFAFAF">{shelf.books.length}</Typography>
                 </Stack>
-                <ArrowForward sx={{ transform: "scale(0.8)", color: "#8D8D8D" }} />
+                <ArrowForward sx={{ transform: "scale(0.8)", color: "#AFAFAF" }} />
               </Stack>
             ))}
           <Stack direction="row" justifyContent="center" sx={{ margin: "20px"}} onClick={newShelf}>
