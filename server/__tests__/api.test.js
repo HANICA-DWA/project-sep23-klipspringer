@@ -316,6 +316,24 @@ describe("connection", () => {
       await User.create({
         _id: "janwillem",
         name: "Jan Willem",
+        top_three: {
+          _id: "655b323165c31f3c397b6754",
+          name: "My top three",
+          books: [
+            {
+              _id: 123,
+              cover_image: "url",
+              title: "hoi",
+              authors: [],
+            },
+            {
+              _id: 321,
+              cover_image: "url",
+              title: "hoi",
+              authors: [],
+            }
+          ],
+        },
         shelf: [
           {
             _id: "655b323165c31f3c397b6753",
@@ -343,6 +361,29 @@ describe("connection", () => {
           },
         ],
       });
+    });
+
+    it("Put on top_three shelf", async () => {
+      await request(app)
+        .put("/user/janwillem/shelves/top_three")
+        .send({
+          name: "My top three",
+          books: [{
+            _id: 132,
+            cover_image: "url",
+            title: "hoi",
+            authors: [],
+          }],
+          type: "editshelf"
+        }).expect(200);
+
+      const user = await User.findById("janwillem").lean();
+      assert.deepEqual(user.top_three, {name: "My top three", _id: new mongoose.Types.ObjectId("655b323165c31f3c397b6754"), books: [{
+        _id: 132,
+        cover_image: "url",
+        title: "hoi",
+        authors: [],
+      }]})
     });
 
     it("Regular PUT on shelf", async () => {
@@ -573,4 +614,146 @@ describe("connection", () => {
       assert.deepEqual(res.body, { error: "Shelf not found" });
     });
   });
+
+  describe("DELETE /user/:username/bookcase/:book", async () => {
+    beforeEach(async () => {
+      await User.deleteOne({ _id: "unittester2" });
+      await User.create({
+        _id: "unittester2",
+        name: "Jan Willem",
+        bookcase: [
+          {
+            _id: 123,
+            cover_image: "url",
+            title: "hoi",
+            authors: [],
+          },
+          {
+            _id: 321,
+            cover_image: "url",
+            title: "hoi",
+            authors: [],
+          },
+          {
+            _id: 133,
+            cover_image: "url",
+            title: "hoi",
+            authors: [],
+          },
+        ]
+      })
+    })
+
+    it("Should delete book with status 200", async () => {
+      await request(app)
+        .delete("/user/unittester2/bookcase/133")
+        .expect(200)
+
+      const data = await User.findById("unittester2").lean();
+      assert.deepEqual(data.bookcase, [{
+        _id: 123,
+        cover_image: "url",
+        title: "hoi",
+        authors: [],
+      },
+      {
+        _id: 321,
+        cover_image: "url",
+        title: "hoi",
+        authors: [],
+      }])
+    })
+
+    it("Should error with status 404", async () => {
+      const res = await request(app)
+        .delete ("/user/unittester2/bookcase/undefined")
+        .expect(404);
+
+      assert.deepEqual(res.body, { error: "Specified book does not exist" })
+    })
+  })
+
+  describe("PUT /user/:username/bookcase", async () => {
+    beforeEach(async () => {
+      await User.deleteOne({ _id: "unittester2" });
+      await User.create({
+        _id: "unittester2",
+        name: "Jan Willem",
+        bookcase: [
+          {
+            _id: 123,
+            cover_image: "url",
+            title: "hoi",
+            authors: [],
+          },
+          {
+            _id: 321,
+            cover_image: "url",
+            title: "hoi",
+            authors: [],
+          },
+          {
+            _id: 133,
+            cover_image: "url",
+            title: "hoi",
+            authors: [],
+          },
+        ]
+      })
+    })
+
+    it("Should put a book on bookcase status 200", async () => {
+      const res = await request(app)
+        .put("/user/unittester2/bookcase")
+        .send({book: {
+          _id: 134,
+          cover_image: "url",
+          title: "hoi",
+          authors: [],
+        }})
+        .expect(200);
+
+      assert.deepEqual(res.body, {
+        _id: 134,
+        cover_image: "url",
+        title: "hoi",
+        authors: [],
+      })
+
+      let user = await User.findById("unittester2").lean();
+      assert.deepEqual(user.bookcase, [
+        {
+          _id: 123,
+          cover_image: "url",
+          title: "hoi",
+          authors: [],
+        },
+        {
+          _id: 321,
+          cover_image: "url",
+          title: "hoi",
+          authors: [],
+        },
+        {
+          _id: 133,
+          cover_image: "url",
+          title: "hoi",
+          authors: [],
+        },
+        {
+          _id: 134,
+          cover_image: "url",
+          title: "hoi",
+          authors: [],
+        }
+      ])
+    })
+
+    it("Should error on non book", async () => {
+      await request(app)
+        .put("/user/unittester2/bookcase")
+        .send({book: "geen boek"})
+        .expect(400);
+    })
+  })
 });
