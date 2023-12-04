@@ -88,8 +88,14 @@ router.put("/:username/shelves/:shelf", async (req, res, next) => {
         await req.user.save();
       } else if (book != undefined) {
         const userShelf = req.user.shelf.id(shelf);
-        userShelf.books.push(book);
-        req.user.addToBookcase([book]);
+        if(Array.isArray(book)){
+          book.forEach((item) => {
+            userShelf.books.push(item);
+          })
+        } else {
+          userShelf.books.push(book);
+          req.user.addToBookcase([book]);
+        }
         await req.user.save();
       }
       res.status(200).json(book);

@@ -26,14 +26,16 @@ export default function ShelfPage({ edit = false }) {
 
   const handleAdd = (toAdd) => {
     const book = toAdd;
-    if (books.find((item) => item._id === book._id)) {
-      setErrMessage("This book is already on the shelf");
-      showAlert();
-    } else {
-      handleClose();
-      setBooks([...books, book]);
-      setErrMessage("");
-    }
+    book.forEach((book) => {
+      if (books.find((item) => item._id === book._id)) {
+        setErrMessage("This book is already on the shelf");
+        showAlert();
+      } else {
+        handleClose();
+        setBooks((prevBooks) => [...prevBooks, book]);
+        setErrMessage("");
+      }
+    })
   };
 
   const handleEdit = () => {
@@ -103,12 +105,12 @@ export default function ShelfPage({ edit = false }) {
   function getProfileData() {
     fetch(
       import.meta.env.VITE_BACKEND_HOST +
-        "/user/" +
-        username +
-        "?" +
-        new URLSearchParams({
-          fields: ["shelf", "top_three"],
-        }),
+      "/user/" +
+      username +
+      "?" +
+      new URLSearchParams({
+        fields: ["shelf", "top_three"],
+      }),
       {
         method: "GET",
       }
