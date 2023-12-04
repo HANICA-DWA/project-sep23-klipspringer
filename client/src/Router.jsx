@@ -144,7 +144,6 @@ function ShelfContainer() {
           })
       );
       const data = await response.json();
-      console.log(data);
       response.ok ? setShelfExist(Boolean(data.shelf.find((responseShelf) => responseShelf._id === shelf))) : setShelfExist(false);
     };
     fetchShelfExists(shelf);

@@ -62,7 +62,7 @@ function Profilepage({ setLoggedIn }) {
         ) : null}
         {profileInfo.shelf && profileInfo.shelf.length > 0
           ? profileInfo.shelf.map((shelf) => (
-              <Link key={shelf._id} to={`/${username}/${shelf._id}`}>
+              <Link key={shelf._id} to={`/${userName}/${shelf._id}`}>
                 <Button
                   variant="outlined"
                   sx={{
