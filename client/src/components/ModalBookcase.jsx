@@ -3,10 +3,13 @@ import { Modal, Typography, Stack, Box, Icon, Button } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { LoggedInContext } from "../Contexts";
 import Bookcover from "./Bookcover";
+import { useAlert } from "../hooks/useAlert";
 
-export default function ModalBookcase({ open, handleClose, handleAdd }) {
+export default function ModalBookcase({ open, handleClose, handleAdd, booksOnShelf, topThreeLength, setTopThreeLength, booksShelfPage }) {
   const [bookcase, setBookcase] = useState([]);
   const [books, setBooks] = useState([])
+  const [errMessage, setErrMessage] = useState("");
+  const [showAlert, alertComponent] = useAlert(errMessage, 1500, "warning");
   const { loggedIn, username } = useContext(LoggedInContext);
 
   const styleModal = {
@@ -42,15 +45,47 @@ export default function ModalBookcase({ open, handleClose, handleAdd }) {
   }, []);
 
   function handlePick(book) {
-    if (books.find((item) => item._id == book._id)) {
-      setBooks(books.filter((item) => item._id != book._id));
+    if (booksOnShelf) {
+      if (!booksOnShelf.find((item) => item._id === book._id)) {
+        if(books.find((item) => item._id === book._id)){
+          handleBookDeselection(book);
+        } else {
+          handleBookSelect(book);
+        }
+      } else {
+        setErrMessage("Book already on shelf");
+        showAlert();
+      }
+    }
+    else if (books.find((item) => item._id === book._id)) {
+      handleBookDeselection(book);
     } else {
+      handleBookSelect(book);
+    }
+  }
+
+  function handleBookSelect(book) {
+    if (topThreeLength && topThreeLength === 3) {
+      setErrMessage("You can only have 3 books on this shelf");
+      showAlert();
+    } else {
+      if (topThreeLength != undefined) {
+        setTopThreeLength(topThreeLength + 1);
+      }
       setBooks((prevBooks) => [...prevBooks, book]);
     }
   }
 
+  function handleBookDeselection(book) {
+    if (topThreeLength != undefined) {
+      setTopThreeLength(topThreeLength - 1);
+    }
+    setBooks((prevBooks) => prevBooks.filter((item) => item._id !== book._id));
+  }
+
   return (
     <>
+      {alertComponent}
       <Modal open={open} onClose={handleClose}>
         <Box sx={styleModal}>
           <Stack direction="row" justifyContent="center" alignItems="center" sx={{ padding: "15px", bgcolor: "#F3F3F3" }}>
@@ -87,7 +122,7 @@ export default function ModalBookcase({ open, handleClose, handleAdd }) {
             ))}
           </Box>
           <Stack justifyContent="center" sx={{ bgcolor: "white", width: "100vw" }}>
-            <Button variant="contained" sx={{ margin: "5px" }} onClick={() => {handleAdd(books); setBooks([])}}>Add to shelf</Button>
+            <Button variant="contained" sx={{ margin: "5px" }} onClick={() => { handleAdd(books); setBooks([]) }}>Add to shelf</Button>
           </Stack>
         </Box>
       </Modal>

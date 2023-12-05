@@ -153,12 +153,14 @@ export default function ShelfPage({ edit = false }) {
               <ArrowBackIos onClick={() => navigate(-1)} />
               <SearchBar onClick={handleAdd} />
             </Stack>
-            <Stack direction="row" sx={{ margin: "5px" }} onClick={handleOpen}>
-              <Add />
-              <Typography>Choose from bookcase</Typography>
-            </Stack>
+            {!edit ?
+              <Stack direction="row" sx={{ margin: "5px" }} onClick={handleOpen}>
+                <Add />
+                <Typography>Choose from bookcase</Typography>
+              </Stack> : null
+            }
+            <ModalBookcase open={open} handleClose={handleClose} handleAdd={handleAdd} booksOnShelf={books}/>
           </Stack>
-          <ModalBookcase open={open} handleClose={handleClose} handleAdd={handleAdd} />
 
           <Stack gap={2} direction="column" alignItems="center" width="100%">
             {edit ? (
