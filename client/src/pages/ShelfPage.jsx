@@ -100,12 +100,12 @@ export default function ShelfPage({ setLoggedIn }) {
   useEffect(() => {
     fetch(
       import.meta.env.VITE_BACKEND_HOST +
-        "/user/" +
-        userName +
-        "?" +
-        new URLSearchParams({
-          fields: ["_id", "profile_picture", "shelf"],
-        }),
+      "/user/" +
+      userName +
+      "?" +
+      new URLSearchParams({
+        fields: ["_id", "profile_picture", "shelf"],
+      }),
       {
         method: "GET",
       }
@@ -156,13 +156,11 @@ export default function ShelfPage({ setLoggedIn }) {
               <ArrowBackIos onClick={() => navigate(-1)} />
               <SearchBar onClick={handleAdd} />
             </Stack>
-            {!edit ?
-              <Stack direction="row" sx={{ margin: "5px" }} onClick={handleOpen}>
-                <Add />
-                <Typography>Choose from bookcase</Typography>
-              </Stack> : null
-            }
-            <ModalBookcase open={open} handleClose={handleClose} handleAdd={handleAdd} booksOnShelf={books}/>
+            {/* <Stack direction="row" sx={{ margin: "5px" }} onClick={handleOpen}>
+              <Add />
+              <Typography>Choose from bookcase</Typography>
+            </Stack>
+            <ModalBookcase open={open} handleClose={handleClose} handleAdd={handleAdd} booksOnShelf={books} /> */}
           </Stack>
 
           <Stack gap={2} direction="column" alignItems="center" width="100%">
