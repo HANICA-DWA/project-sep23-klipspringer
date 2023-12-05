@@ -26,6 +26,7 @@ In dit project maken wij een mobiele web applicatie voor het delen van boeken op
 | Favorieten    | Favorites     | Een speciale collectie met de favoriete boeken van een gebruiker        | Voorkeuren           |
 | Suggestie     | Suggestions   | Suggesties voor boeken op basis van de opgeslagen boeken in een account | Aanbeveling, advies  |
 | Delen         | Share         | Het kopiëren van een link naar een profielpagina                        |                      |
+| Gebruikersnaam | Handle        | De naam van een gebruiker in de app                                     |                      |
 
 # Inhoudsopgave
 
