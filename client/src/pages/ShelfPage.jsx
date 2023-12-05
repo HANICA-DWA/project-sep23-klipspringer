@@ -1,4 +1,4 @@
-import { Stack } from "@mui/material";
+import { Stack, Container, Typography, TextField, Button } from "@mui/material";
 import Header from "../components/Header";
 import ProfileInfo from "../components/ProfileInfo";
 import { useContext, useEffect, useState } from "react";
@@ -7,6 +7,9 @@ import Bookshelf from "../components/Bookshelf";
 import CreateShelfButton from "../components/CreateShelfButton";
 import { LoggedInContext } from "../Contexts";
 import { useAlert } from "../hooks/useAlert";
+import { ArrowBackIos } from "@mui/icons-material";
+import ModalBookcase from "../components/ModalBookcase";
+import SearchBar from "../components/SearchBar";
 
 export default function ShelfPage({ setLoggedIn }) {
   const navigate = useNavigate();
