@@ -5,7 +5,7 @@ import { LoggedInContext } from "../Contexts";
 import Bookcover from "./Bookcover";
 import { useAlert } from "../hooks/useAlert";
 
-export default function ModalBookcase({ open, handleClose, handleAdd, booksOnShelf, topThreeLength, setTopThreeLength, booksShelfPage }) {
+export default function ModalBookcase({ open, handleClose, handleAdd, booksOnShelf, topThreeLength, setTopThreeLength}) {
   const [bookcase, setBookcase] = useState([]);
   const [books, setBooks] = useState([])
   const [errMessage, setErrMessage] = useState("");

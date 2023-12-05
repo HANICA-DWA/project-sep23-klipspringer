@@ -31,7 +31,19 @@ export default function ShelfCreatePage({ edit = false }) {
       showAlert();
     } else {
       handleClose();
-      setBooks([...books, book]);
+      if (!Array.isArray(book)) {
+        setBooks((prevBooks) => [...prevBooks, book])
+      } else {
+        book.forEach((item) => {
+          if (Array.isArray(item)) {
+            item.forEach((book) =>
+              setBooks((prevBooks) => [...prevBooks, book])
+            )
+          } else {
+            setBooks((prevBooks) => [...prevBooks, item])
+          }
+        })
+      }
       setErrMessage("");
     }
   };
@@ -103,12 +115,12 @@ export default function ShelfCreatePage({ edit = false }) {
   function getProfileData() {
     fetch(
       import.meta.env.VITE_BACKEND_HOST +
-        "/user/" +
-        username +
-        "?" +
-        new URLSearchParams({
-          fields: ["shelf", "top_three"],
-        }),
+      "/user/" +
+      username +
+      "?" +
+      new URLSearchParams({
+        fields: ["shelf", "top_three"],
+      }),
       {
         method: "GET",
       }
