@@ -2,13 +2,15 @@
 
 ### Intent
 
-BKS uses three different external interfaces. Namely openlibrary, google authentication and linkedin authentication. Openlibrary is hosted by archive.org as a non-profit tool for providing a database for all books ever written. It exposes its database through an API via http. It gives back results in JSON format. We use openlibrary to get all information regarding a specific book, like title, author, cover image, etc. We also use its search function to search through all books that exist. We also 'cache' books on our own database as to not overload the use of openlibrary. We query from the client and as little as possible as to not reach the rate limit of 100 requests in a short timespan.
+BKS maakt gebruik van drie verschillende externe interfaces, namelijk Openlibrary, Google-authenticatie en LinkedIn-authenticatie. Openlibrary wordt gehost door archive.org als een non-profit om een database te bieden voor alle ooit geschreven boeken. Het stelt zijn database beschikbaar via een API via http en geeft resultaten terug in JSON-formaat. We gebruiken Openlibrary om alle informatie over een specifiek boek op te halen, zoals titel, auteur, coverafbeelding, enz. We maken ook gebruik van de zoekfunctie om door alle bestaande boeken te zoeken. We 'cachen' ook boeken in onze eigen database om het gebruik van Openlibrary te beperken en de rate limit van 100 verzoeken in korte tijd niet te overschrijden.
 
-Some examples of the requests we use:
-```js 
-fetch(apiUrl + "/isbn/" + req.params.id + ".json") // Get book by ISBN
-const result = await fetch(`https://openlibrary.org/search.json?q=${urlTitle}&limit=10`); // Search by anything
-const cover_url = `https://covers.openlibrary.org/b/id/${data.covers[0]}-M.jpg`; // Get cover image url by cover ID
+Enkele voorbeelden van de requests die we gebruiken:
+
+```js
+Copy code
+fetch(apiUrl + "/isbn/" + req.params.id + ".json") // Boek opvragen op basis van ISBN
+const result = await fetch(`https://openlibrary.org/search.json?q=${urlTitle}&limit=10`); // Zoeken op basis van een willekeurige term
+const cover_url = `https://covers.openlibrary.org/b/id/${data.covers[0]}-M.jpg`; // URL van de coverafbeelding ophalen op basis van de cover-ID
 ```
 
-We use Google and LinkedIn authentication very similarly. We use it to authenticate users. This happens via requests to their respective endpoints and libraries to get user tokens and basic user information. This info is received as JSON via http requests. These authentication providers are owned by Google and LinkedIn respectively, which are large companies expected to exist for a long time.
+We maken op vergelijkbare wijze gebruik van Google- en LinkedIn-authenticatie. We gebruiken ze om gebruikers te authenticeren. Dit gebeurt via verzoeken naar hun eindpunten en libraries om user tokens en basisinformatie te verkrijgen. Deze informatie wordt als JSON ontvangen via http-requests. Deze authenticatieproviders zijn eigendom van Google en LinkedIn, grote bedrijven waarvan wordt verwacht dat ze nog lang zullen bestaan.
