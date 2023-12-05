@@ -4,6 +4,8 @@
 - [Functional Overview](#functional-overview)
     - [link met meer informatie](#link-met-meer-informatie)
 - [Quality Attributes](#quality-attributes)
+- [Constraints](#constraints)
+- [Principles](#principles)
 - [C4-models](#c4-models)
   - [Context](#context-1)
   - [Container](#container)
@@ -49,6 +51,36 @@ het kopen van boeken moet via een affiliate link gaan van bijvoorbeeld bol.com o
 - frontend wordt volgens de designs van Rik gemaakt.
 - teksten zijn in het engels.
 
+# Constraints
+
+# Principles
+- DRY (Don't Repeat Yourself):
+  
+  We maken voor dingen die we vaker gebruiken een component om deze zo te herbruiken. zoals bijvoorbeeld de ui van een plank op een profiel.
+
+- Prefer a Rich Domain Model:
+
+  we gebruiken een mongoose schema met de logic en validatie van de data, zodat de data in mongoDB altijd goed opgeslagen wordt.
+  
+- Buy Rather Than Build:
+  
+  inplaats van een eigen login bouwen gaan we google en linkdin SSO gebruiken.
+
+- Don't Reinvent the Wheel:
+  
+  we gebruiken bijna aleen maar MUI-components en bouwen alleen eigen componenten als het echt nodig is. we gebruiken dus ook alleen de styling via MUI en geen eigen geschreven CSS.
+
+- Responsive Design:
+
+  we gebruiken MUI-responsive componenten om te zorgen dat op zowel desktop en mobiel de pagina er goed uitziet en werkt.
+
+- Material-UI Theming:
+
+  we maken gebruik van MUI theming om zo de huisstijl in de applicatie makkelijk te kunnen weergeven en wijzigen indien nodig.
+
+- Client-Side Routing:
+
+  we gebruiken React Router voor client-side routing, dit zorgt voor een vloeiende en dynamische ervaring voor de gebruiker. hierdoor zijn er geen volledige pagina herladingen.
 
 # C4-models
 
