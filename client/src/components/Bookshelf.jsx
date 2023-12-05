@@ -3,13 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { LoggedInContext } from "../Contexts";
 import { Edit, Delete } from "@mui/icons-material";
-import { ImageNotSupported } from "@mui/icons-material";
 import { useDialog } from "../hooks/useDialog";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useAlert } from "../hooks/useAlert";
 import Bookcover from "./Bookcover";
 
-export default function Bookshelf({ id, title, books = [], hideAdding, user, unclickable, onDelete, edit, onBookDelete }) {
+export default function Bookshelf({ id, title, books = [], hideAdding, user, unclickable, onDelete, edit, onBookDelete, nrOfColums = 3 }) {
   const { loggedIn, username } = useContext(LoggedInContext);
   const [errMessage, setErrMessage] = useState("");
   const [showAlert, alertComponent] = useAlert(errMessage, 3000, "warning");
@@ -25,7 +24,6 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
     setBookshelfBooks(books);
   }, [books]);
 
-  //TODO na ontwerp Rik dit refactoren
   if ((bookshelfBooks.length === 0 && !loggedIn) || (bookshelfBooks.length === 0 && hideAdding)) {
     placeholderBooks.push(<div></div>);
     placeholderBooks.push(
@@ -54,8 +52,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
       <Typography gutterBottom variant="h5" fontWeight="800" sx={{ overflowWrap: "anywhere", maxWidth: "100%", textAlign: "center" }}>
         {title}
       </Typography>
-      {unclickable ? null : loggedIn && username === user && !edit
-        ?
+      {unclickable ? null : loggedIn && username === user && !edit ? (
         <>
           <IconButton
             onClick={() => {
@@ -74,9 +71,9 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
             </IconButton>
           ) : null}
         </>
-       : null}
+      ) : null}
       <Stack direction="row" justifyContent="center" spacing={2}>
-        <ImageList cols={3}>
+        <ImageList cols={nrOfColums}>
           {bookshelfBooks.map((item) => (
             <Card key={item._id}>
               {loggedIn && username === user && edit ? (
@@ -85,7 +82,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
                 </IconButton>
               ) : null}
               <Box sx={{ width: "85px", height: "160px" }}>
-                <Link to={unclickable ? null :  `/book/${item._id}`} style={{ textDecoration: "none", color: "black" }}>
+                <Link to={unclickable ? null : `/book/${item._id}`} style={{ textDecoration: "none", color: "black" }}>
                   <Bookcover isbn={item._id} cover_image={item.cover_image} />
                 </Link>
               </Box>
@@ -104,8 +101,8 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
           )}
         </ImageList>
       </Stack>
-      <Stack direction="row">
-        <img style={{ width: "320px", height: "20px" }} src="/images/bookshelf.jpg" alt="bookshelf"></img>
+      <Stack direction="row" sx={{ height: "20px", width: `${nrOfColums * 100}px`, maxWidth: "98vw", position: "relative", overflow: "hidden" }}>
+        <img style={{ bottom: 0, left: 0, top: 0, right: 0, position: "absolute", width: "100%" }} src="/images/bookshelf.jpg" alt="bookshelf"></img>
       </Stack>
     </Stack>
   );

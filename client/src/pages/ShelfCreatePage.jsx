@@ -1,21 +1,23 @@
-import { Stack } from "@mui/material";
-import Header from "../components/Header";
-import ProfileInfo from "../components/ProfileInfo";
-import { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Box, Button, Container, FormControl, Stack, TextField, Typography } from "@mui/material";
+import SearchBar from "../components/SearchBar";
 import Bookshelf from "../components/Bookshelf";
-import CreateShelfButton from "../components/CreateShelfButton";
+import { useContext, useState, useEffect } from "react";
+import { ArrowBackIos, Title, Add } from "@mui/icons-material";
+import { useNavigate, useParams } from "react-router-dom";
 import { LoggedInContext } from "../Contexts";
 import { useAlert } from "../hooks/useAlert";
+import ModalBookcase from "../components/ModalBookcase";
 
-export default function ShelfPage({ setLoggedIn }) {
+export default function ShelfCreatePage({ edit = false }) {
   const navigate = useNavigate();
-  const [profileInfo, setProfileInfo] = useState([]);
-  const [shelfInfo, setShelfInfo] = useState({});
+  const { shelf } = useParams();
+  const usernameParams = useParams().userName;
   const { loggedIn, username } = useContext(LoggedInContext);
-  const { userName, shelf } = useParams();
+
+  const localStorageBook = localStorage.getItem("book") != undefined ? [JSON.parse(localStorage.getItem("book"))] : [];
+  const [books, setBooks] = useState(localStorageBook);
+  const [title, setTitle] = useState("");
   const [errMessage, setErrMessage] = useState("");
-  const [setDeleteShelfAlertOn, deleteShelfAlert] = useAlert(errMessage ? errMessage : "Shelf deleted!", 3000, errMessage ? "error" : "success");
   const [showAlert, alertComponent] = useAlert(errMessage, 3000, "warning");
   const [open, setOpen] = useState(false);
 
@@ -24,16 +26,14 @@ export default function ShelfPage({ setLoggedIn }) {
 
   const handleAdd = (toAdd) => {
     const book = toAdd;
-    book.forEach((book) => {
-      if (books.find((item) => item._id === book._id)) {
-        setErrMessage("This book is already on the shelf");
-        showAlert();
-      } else {
-        handleClose();
-        setBooks((prevBooks) => [...prevBooks, book]);
-        setErrMessage("");
-      }
-    })
+    if (books.find((item) => item._id === book._id)) {
+      setErrMessage("This book is already on the shelf");
+      showAlert();
+    } else {
+      handleClose();
+      setBooks([...books, book]);
+      setErrMessage("");
+    }
   };
 
   const handleEdit = () => {
@@ -48,7 +48,7 @@ export default function ShelfPage({ setLoggedIn }) {
           body: JSON.stringify({ name: title, books: books, type: "editshelf" }),
         }).then((res) => {
           if (res.ok) {
-            navigate(`/${username}`);
+            shelf === "top_three" ? navigate(`/${username}`) : navigate(`/${username}/${shelf}`);
           } else {
             res.json().then((message) => setErrMessage(message.error));
           }
@@ -95,13 +95,19 @@ export default function ShelfPage({ setLoggedIn }) {
   };
 
   useEffect(() => {
+    if (edit) {
+      getProfileData();
+    }
+  }, []);
+
+  function getProfileData() {
     fetch(
       import.meta.env.VITE_BACKEND_HOST +
         "/user/" +
-        userName +
+        username +
         "?" +
         new URLSearchParams({
-          fields: ["_id", "profile_picture", "shelf"],
+          fields: ["shelf", "top_three"],
         }),
       {
         method: "GET",
@@ -111,26 +117,18 @@ export default function ShelfPage({ setLoggedIn }) {
         return res.json();
       })
       .then((res) => {
-        setProfileInfo(res);
-        setShelfInfo(res.shelf.find((shelfFromUser) => shelfFromUser._id === shelf));
+        let editShelf;
+        if (shelf !== "top_three") {
+          editShelf = res.shelf.find((e) => e._id === shelf);
+        } else {
+          editShelf = res.top_three;
+        }
+        setBooks(editShelf.books);
+        setTitle(editShelf.name);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
-
-  async function deleteShelf(shelfID) {
-    try {
-      await fetch(import.meta.env.VITE_BACKEND_HOST + `/user/${username}/shelves/${shelfID}`, {
-        method: "DELETE",
-      });
-      setShelfInfo({});
-      setErrMessage("");
-      navigate(`/${userName}`);
-    } catch (err) {
-      setErrMessage(err.message);
-    }
-    setDeleteShelfAlertOn();
   }
 
   return (
@@ -153,14 +151,12 @@ export default function ShelfPage({ setLoggedIn }) {
               <ArrowBackIos onClick={() => navigate(-1)} />
               <SearchBar onClick={handleAdd} />
             </Stack>
-            {!edit ?
-              <Stack direction="row" sx={{ margin: "5px" }} onClick={handleOpen}>
-                <Add />
-                <Typography>Choose from bookcase</Typography>
-              </Stack> : null
-            }
-            <ModalBookcase open={open} handleClose={handleClose} handleAdd={handleAdd} booksOnShelf={books}/>
+            <Stack direction="row" sx={{ margin: "5px" }} onClick={handleOpen}>
+              <Add />
+              <Typography>Choose from bookcase</Typography>
+            </Stack>
           </Stack>
+          <ModalBookcase open={open} handleClose={handleClose} handleAdd={handleAdd} />
 
           <Stack gap={2} direction="column" alignItems="center" width="100%">
             {edit ? (
@@ -170,10 +166,19 @@ export default function ShelfPage({ setLoggedIn }) {
             )}
             <Box sx={{ display: "flex", alignItems: "flex-end" }}>
               <Title sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-              <TextField id="input-with-sx" label="Title" variant="standard" value={title} onChange={(e) => setTitle(e.target.value)} />
-              <Button sx={{ ml: 1 }} variant="contained" onClick={edit ? handleEdit : handleCreate}>
-                {edit ? "Save Shelf" : "Create Shelf"}
-              </Button>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  edit ? handleEdit() : handleCreate();
+                }}
+              >
+                <FormControl sx={{ flexDirection: "row", alignItems: "flex-end" }}>
+                  <TextField id="input-with-sx" label="Title" variant="standard" value={title} onChange={(e) => setTitle(e.target.value)} />
+                  <Button sx={{ ml: 1, height: "80%" }} variant="contained" type="submit">
+                    {edit ? "Save Shelf" : "Create Shelf"}
+                  </Button>
+                </FormControl>
+              </form>
             </Box>
           </Stack>
         </Stack>

@@ -22,12 +22,11 @@ Ik, Roos, Joris, Yannick en Niels waren betrokken bij dit gesprek op school.
 Over wat we in het sprint voorstel gingen zetten.
 
 We moesten nadenken over wat we in het sprint voorstel gingen zetten.
-Ik als deelnemer moest dus ook nadenken en met voostellen komen.
-Zodat we een sprintvoorstel hadden om te gebruiken tijdens de sprintplanning.
-mijn plan was hiervoor om te luisteren naar wat de iedeeen van anderen waren.
+Ik als deelnemer moest dus ook nadenken en met voorstellen komen.
+Zodat we een sprintvoorstel hadden om te gebruiken tijdens de sprintplanning. Mijn plan was hiervoor om te luisteren naar wat de ideeën van anderen waren.
 
-Ik heb doorgevraagd naar de ideeen van anderen.
-Door eerst te luisteren en uit te laten spreken, en daarna door te vragen vanaf het perspectief van de opdrachtgever. wat de opdrachtgever mogelijk belangrijk zou vinden.
+Ik heb doorgevraagd naar de ideeën van anderen.
+Door eerst te luisteren en uit te laten spreken, en daarna door te vragen vanaf het perspectief van de opdrachtgever, wat de opdrachtgever mogelijk belangrijk zou vinden.
 Soms werd er verteld dat wat ik inbracht niet heel belangrijk was, dus dan hield ik mijn mond weer. Anders begonnen ze zelf er ook over na te denken en hebben ze zelf weer hun voorstel aangepast.
 Hierdoor kreeg ik niet het gevoel dat ik veel inbreng had, maar heb ik wel aandachtig geluisterd naar anderen.
 Mijn inbreng was dus niet heel groot, maar ik heb wel mensen aangespoord om nog eens na te denken over hun voorstel.

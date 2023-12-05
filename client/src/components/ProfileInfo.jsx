@@ -3,12 +3,10 @@ import { Link } from "react-router-dom";
 
 export default function ProfileInfo({ name, avatar, handle }) {
   return (
-    <Stack direction="column" alignItems="center">
+    <Stack direction="column" alignItems="center" useFlexGap gap={1}>
       <Link to={`/${handle}`}>
         <div
           style={{
-            marginTop: "40px",
-            marginBottom: "20px",
             padding: "3px",
             border: "1px solid grey",
             borderRadius: "50px",
