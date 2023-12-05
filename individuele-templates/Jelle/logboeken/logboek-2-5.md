@@ -25,10 +25,10 @@
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
+| Uren | Taak  | Met Wie | Resultaten                                                                                                                                                                                                                       | Emotie | Link                                                                                                                                      |
+|------|---|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---|-------------------------------------------------------------------------------------------------------------------------------------------|
+| 0.5  | leerdoelen verbeteren | N.V.T.  | Ik moest goed nadenken wat ik zou willen verbeteren en hoe ik dat ging omschrijven tot ik een goed leerdoel had geformuleerd, dit was wel even nadenken, maar ik denk dat ik uiteindelijk tot een redelijk leerdoel ben gekomen. |:smiley:| [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/66583c3ef28fd5459b410383890fad41c7a4e532) |
+|      | |         |                                                                                                                                                                                                                                  | |                                                                                                                                           |
 
 ## Woensdag 6 december
 
