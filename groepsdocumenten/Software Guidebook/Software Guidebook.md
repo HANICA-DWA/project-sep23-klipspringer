@@ -1,8 +1,9 @@
 # **Inhoudsopgave**
+
 - [**Inhoudsopgave**](#inhoudsopgave)
 - [Context](#context)
 - [Functional Overview](#functional-overview)
-    - [link met meer informatie](#link-met-meer-informatie)
+  - [link met meer informatie](#link-met-meer-informatie)
 - [Quality Attributes](#quality-attributes)
 - [Constraints](#constraints)
 - [Principles](#principles)
@@ -26,23 +27,31 @@
   - [Book schema](#book-schema)
 - [Domain terms](#domain-terms)
 
-
 # Context
-de opdrachtgever wil een platform waarop mensen op een laagdrempelige manier boeken kunnen delen met anderen. De opdrachtgever heeft met meerdere mensen gesproken die geen eenvoudig platform kunnen vinden om hun leesinteresses te kunnen delen met anderen. Er is een gat in de markt dat de opdrachtgever wil vullen met dit project.
 
-er wordt een mobile-first webapplicatie gemaakt van een persoonlijke boekenpagina. Met deze applicatie kun je jouw leesvoorkeuren delen, zoals je favoriete boeken, top 3 boeken, diverse collecties en je kunt zelfs een aangepaste collectie maken.
+![Context Diagram](C4-models/C4-model%20context.png)
+
+BKS wordt een mobile-first webapplicatie van een persoonlijke boekenpagina. Met deze applicatie kun een gebruiker zijn leesvoorkeuren delen, zoals favoriete boeken, top 3 boeken, diverse collecties en je kunt zelfs een aangepaste collectie maken.
+
+Deze software wordt gebruikt door 2 verschillende soorten gebruikers, anonieme gebruikers en geauthenticeerde gebruikers. De anononieme gebruiker kan profielen van anderen en boeken bekijken. Ook kan een anonieme gebruiker inloggen om een geauthenticeerde gebruiker te worden.
+Een geauthenticeerde gebruiker kan zijn eigen profielpagina bewerken, boekenplanken toevoegen, bewerken en verwijderen. Hij heeft ook inzicht in zijn boekenkast en kan hier ook aanpassingen aan doen.
+
+De software van BKS gebruikt 3 externe systemen, die van Google en LinkedIn voor het authenticeren van gebruikers. En het systeem van OpenLibrary om informatie van boeken op te halen.
 
 # Functional Overview
+
 Als gebruiker kan je een account aanmaken via LinkdIn of Google. Zodra je dit gedaan hebt kom je uit op je profielpagina. hier kan je een plank aanmaken en deze vullen met boeken door deze op te zoeken, deze planken zijn openbaar. je hebt ook een boekenkast die prive is, waar je ook boeken een kan toevoegen. je kunt ook informatie van een boek bekijken en deze kopen via de app.
 
 het kopen van boeken moet via een affiliate link gaan van bijvoorbeeld bol.com of amazon.com.
 
-  ### link met meer informatie
-  [link naar userstory's](https://github.com/HANICA-DWA/project-sep23-klipspringer/blob/09111504bac3c06557e2a2dea3854e95361d2059/groepsdocumenten/Projectplan/Product%20Backlog.md)
+### link met meer informatie
 
-  [link naar wireframe's](https://www.sketch.com/s/a50a2622-b344-4f1d-afd9-7f2bf52a80a1)
+[link naar userstory's](https://github.com/HANICA-DWA/project-sep23-klipspringer/blob/09111504bac3c06557e2a2dea3854e95361d2059/groepsdocumenten/Projectplan/Product%20Backlog.md)
+
+[link naar wireframe's](https://www.sketch.com/s/a50a2622-b344-4f1d-afd9-7f2bf52a80a1)
 
 # Quality Attributes
+
 - applicatie moet mobile-first zijn. wij gebruiken de iphone SE tijdens development.
 - applicatie moet responsive zijn. voor zowel mobiel als desktop en alles daar tussen in.
 - applicatie moet snel zijn. laden onder de 2 seconden, hoger zorgt er voor dat gebruikers de pagina sluiten.
@@ -54,20 +63,21 @@ het kopen van boeken moet via een affiliate link gaan van bijvoorbeeld bol.com o
 # Constraints
 
 # Principles
+
 - DRY (Don't Repeat Yourself):
-  
+
   We maken voor dingen die we vaker gebruiken een component om deze zo te herbruiken. zoals bijvoorbeeld de ui van een plank op een profiel.
 
 - Prefer a Rich Domain Model:
 
   we gebruiken een mongoose schema met de logic en validatie van de data, zodat de data in mongoDB altijd goed opgeslagen wordt.
-  
+
 - Buy Rather Than Build:
-  
+
   inplaats van een eigen login bouwen gaan we google en linkdin SSO gebruiken.
 
 - Don't Reinvent the Wheel:
-  
+
   we gebruiken bijna aleen maar MUI-components en bouwen alleen eigen componenten als het echt nodig is. we gebruiken dus ook alleen de styling via MUI en geen eigen geschreven CSS.
 
 - Responsive Design:
@@ -191,7 +201,7 @@ _parameters_
 
 `:username` - Username in database.
 
-_body_ 
+_body_
 
 ```json
 {
@@ -313,6 +323,7 @@ _parameters_
 `:username` - Username in database.
 
 _body_
+
 ```json
 {
   "book": {
@@ -481,7 +492,7 @@ authors: { type: [String], required: true },
 # Domain terms
 
 | **Term (NL)**  | **Term (EN)** | **Betekenis**                                                           | **Synoniemen**       |
-|----------------|---------------|-------------------------------------------------------------------------| -------------------- |
+| -------------- | ------------- | ----------------------------------------------------------------------- | -------------------- |
 | Boekenplank    | Shelf         | Een verzameling van boeken, samengesteld door de gebruiker              | Collectie, categorie |
 | Boekenkast     | Bookcase      | Een overzicht van alle boeken die een gebruiker in zijn account heeft   |                      |
 | ISBN           | ISBN          | Uniek id nummer van een boek                                            |                      |
