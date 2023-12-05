@@ -2,7 +2,7 @@ import { Container, Stack, Typography } from "@mui/material";
 import SearchBar from "../components/SearchBar";
 import Suggestions from "../components/Suggestions";
 import { useNavigate, useParams } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { LoggedInContext } from "../Contexts.jsx";
 import { ArrowBackIos, Add } from "@mui/icons-material";
 import ModalBookcase from "../components/ModalBookcase.jsx";
@@ -17,6 +17,8 @@ export default function SearchPage() {
   const [errMessage, setErrMessage] = useState("");
   const [open, setOpen] = useState(false);
   const [showAlert, alertComponent] = useAlert(errMessage ? errMessage : "Succesfully added", 3000, errMessage ? "warning" : "success");
+  const [booksOnShelf, setBooksOnShelf] = useState([])
+  const [topThreeLength, setTopThreeLength] = useState()
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -46,6 +48,37 @@ export default function SearchPage() {
       });
   };
 
+  useEffect(() => {
+    fetch(
+      import.meta.env.VITE_BACKEND_HOST +
+        "/user/" +
+        username +
+        "?" +
+        new URLSearchParams({
+          fields: ["top_three", "shelf"],
+        }),
+      {
+        method: "GET",
+      }
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        let currentShelf;
+        if(shelf === "top_three"){
+          currentShelf = res.top_three
+          setTopThreeLength(currentShelf.books.length)
+        } else {
+          currentShelf = res.shelf.find((item) => item._id == shelf);
+        }
+        setBooksOnShelf(currentShelf.books);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [])
+
   return (
     <Container
       maxWidth="sm"
@@ -63,7 +96,7 @@ export default function SearchPage() {
           <Add />
           <Typography>Choose from bookcase</Typography>
         </Stack>
-        <ModalBookcase open={open} handleClose={handleClose} handleAdd={handleAdd} />
+        <ModalBookcase open={open} handleClose={handleClose} handleAdd={handleAdd} booksOnShelf={booksOnShelf} topThreeLength={topThreeLength} setTopThreeLength={setTopThreeLength}/>
         <Suggestions />
       </Stack>
     </Container>
