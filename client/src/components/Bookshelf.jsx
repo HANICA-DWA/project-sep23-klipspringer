@@ -76,12 +76,27 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
         <ImageList cols={nrOfColums}>
           {bookshelfBooks.map((item) => (
             <Card key={item._id}>
-              {loggedIn && username === user && edit ? (
-                <IconButton aria-label="settings" onClick={() => onBookDelete(item._id)}>
-                  <DeleteIcon />
-                </IconButton>
-              ) : null}
-              <Box sx={{ width: "85px", height: "160px" }}>
+              <Box sx={{ width: "85px", height: "160px", display:"flex", justifyContent:"flex-end"}}>
+                  {loggedIn && username === user && edit ? (
+                      <IconButton sx={{
+                          position: "absolute",
+                          marginTop: "-0.6rem",
+                          marginRight: "-0.6rem",
+                          bgcolor: "black",
+                          borderRadius: "50%",
+                          width: "1.7rem",
+                          height: "1.7rem",
+                      }} onClick={() => onBookDelete(item._id)}>
+
+                      <DeleteIcon sx={{
+                          position: "relative",
+                          color: "white",
+                          width: "1rem",
+                          height: "1rem",
+                      }}
+                      />
+                      </IconButton >
+                  ) : null}
                 <Link to={unclickable ? null : `/book/${item._id}`} style={{ textDecoration: "none", color: "black" }}>
                   <Bookcover isbn={item._id} cover_image={item.cover_image} />
                 </Link>
