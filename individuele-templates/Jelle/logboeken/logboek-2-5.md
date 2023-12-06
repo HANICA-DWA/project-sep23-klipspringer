@@ -38,10 +38,11 @@
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak  | Met Wie | Resultaten                              | Emotie | Link |
-|------|---|---------|-----------------------------------------|---|---|
+| Uren | Taak                  | Met Wie | Resultaten                              | Emotie | Link |
+|------|-----------------------|---------|-----------------------------------------|---|---|
 | 0.5  | leerdoelen verbeteren | N.V.T.  | leerdoelen aanpassen op verzoek van Pim |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/aed0cb649e7c51ce5d71c7b412dc499033597762) |
-|      | |         |                                         | | |
+| 1    | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/213) | N.V.T.  | navragen wat de keuzes waren en waarom  |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/24793604269302a3f744e0f644137a91ba1dfd39) |
+|      |                       |         |                                         | | |
 
 ## Donderdag 7 december
 
