@@ -170,7 +170,7 @@ export default function ShelfCreatePage({ edit = false }) {
               </Stack> : null
             }
           </Stack>
-          <ModalBookcase open={open} handleClose={handleClose} handleAdd={handleAdd} />
+          <ModalBookcase open={open} handleClose={handleClose} handleAdd={handleAdd} booksOnShelf={books}/>
 
           <Stack gap={2} direction="column" alignItems="center" width="100%">
             {edit ? (
