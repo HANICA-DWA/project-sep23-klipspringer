@@ -2,30 +2,37 @@
 
 - [**Inhoudsopgave**](#inhoudsopgave)
 - [Context](#context)
+  - [Domain terms](#domain-terms)
 - [Functional Overview](#functional-overview)
   - [Link met meer informatie](#link-met-meer-informatie)
 - [Quality Attributes](#quality-attributes)
 - [Constraints](#constraints)
+  - [Tijd](#tijd)
+  - [Toegestane technologieën](#toegestane-technologieën)
+  - [Bestaande systemen](#bestaande-systemen)
+  - [Implementatieplatform](#implementatieplatform)
+  - [Publieke standaarden](#publieke-standaarden)
+  - [Kennis van het software-development team](#kennis-van-het-software-development-team)
 - [Principles](#principles)
-- [C4-models](#c4-models)
-  - [Context](#context-1)
-  - [Container](#container)
-  - [Component React + Vite](#component-react--vite)
-  - [Component REST API](#component-rest-api)
-  - [Component MongoBD](#component-mongobd)
-- [Wireframes](#wireframes)
-  - [Loginpage](#loginpage)
-  - [Profilepage](#profilepage)
-  - [Searchpage](#searchpage)
-  - [Search results](#search-results)
-- [REST API](#rest-api)
-  - [User](#user)
-  - [Book](#book)
-  - [Sessions](#sessions)
-- [Database schemas](#database-schemas)
+- [Software Architecture](#software-architecture)
+  - [Container diagram](#container-diagram)
+  - [Component MongoDB Diagram](#component-mongodb-diagram)
+  - [Component REST API Diagram](#component-rest-api-diagram)
+  - [Component React/Vite Diagram](#component-reactvite-diagram)
+- [External Interfaces](#external-interfaces)
+- [Code](#code)
+  - [Architectural layering](#architectural-layering)
+  - [JWT Verificatie](#jwt-verificatie)
+- [Data](#data)
   - [User schema](#user-schema)
   - [Book schema](#book-schema)
-- [Domain terms](#domain-terms)
+- [Infrastructure Architecture](#infrastructure-architecture)
+- [Deployment](#deployment)
+- [Operatie en support](#operatie-en-support)
+  - [Configuratie](#configuratie)
+  - [Diagnostiek](#diagnostiek)
+  - [Monitoring](#monitoring)
+- [Decision Log](#decision-log)
 
 # Context
 
@@ -37,6 +44,20 @@ Deze software wordt gebruikt door 2 verschillende soorten gebruikers, anonieme g
 Een geauthenticeerde gebruiker kan zijn eigen profielpagina bewerken, boekenplanken toevoegen, bewerken en verwijderen. Hij heeft ook inzicht in zijn boekenkast en kan hier ook aanpassingen aan doen.
 
 De software van BKS gebruikt 3 externe systemen, die van Google en LinkedIn voor het authenticeren van gebruikers. En het systeem van OpenLibrary om informatie van boeken op te halen.
+
+### Domain terms
+
+| **Term (NL)**  | **Term (EN)** | **Betekenis**                                                           | **Synoniemen**       |
+| -------------- | ------------- | ----------------------------------------------------------------------- | -------------------- |
+| Boekenplank    | Shelf         | Een verzameling van boeken, samengesteld door de gebruiker              | Collectie, categorie |
+| Boekenkast     | Bookcase      | Een overzicht van alle boeken die een gebruiker in zijn account heeft   |                      |
+| ISBN           | ISBN          | Uniek id nummer van een boek                                            |                      |
+| Auteur         | Author        | Persoon die een boek heeft geschreven                                   |                      |
+| Titel          | Title         | De naam van een boek                                                    | Naam                 |
+| Favorieten     | Favorites     | Een speciale collectie met de favoriete boeken van een gebruiker        | Voorkeuren           |
+| Suggestie      | Suggestions   | Suggesties voor boeken op basis van de opgeslagen boeken in een account | Aanbeveling, advies  |
+| Delen          | Share         | Het kopiëren van een link naar een profielpagina                        |                      |
+| Gebruikersnaam | Handle        | De naam van een gebruiker in de app                                     |                      |
 
 # Functional Overview
 
@@ -65,6 +86,36 @@ Het kopen van boeken moet via een affiliate link gaan van bijvoorbeeld bol.com o
 - Teksten zijn in het engels.
 
 # Constraints
+
+In dit hoofdstuk worden de beperkingen aan dit project toegelicht.
+
+### Tijd
+
+De tijd om deze software te ontwikkelen is beperkt tot 8 weken. Dit heeft als invloed op de architectuur dat er veelal technologieën worden gebruikt die al bekend zijn bij het team: React, Node.js, Express, MongoDB.
+
+### Toegestane technologieën
+
+Vanuit school wordt er een aantal beperkingen opgelegd met betrekking tot de technologieën die gebruikt mogen worden.
+
+- Een React framework voor de frontend
+- Node.js voor de backend
+- NoSQL als database
+
+### Bestaande systemen
+
+Het gebruik van externe authenticatieproviders (Google en LinkedIn), verplicht het gebruik van JSON Web Tokens voor verificatie en authenticatie.
+
+### Implementatieplatform
+
+De app moet toegankelijk zijn via het internet en moet dus ondersteuning hebben voor de bekendste webbrowsers (Google Chrome, Firefox, Safari, Microsoft Edge), ook voor oudere versies. Er wordt daarom ViteJS gebruikt voor de ondersteuning van oudere syntaxen.
+
+### Publieke standaarden
+
+De publieke standaarden HTTP, JSON en REST hebben invloed op de architectuur die gekozen wordt. Voor webcommunicatie moet HTTP worden gebruikt. Verder wordt er een API ontwikkeld volgens de REST-standaard in combinatie met het JSON format voor responses.
+
+### Kennis van het software-development team
+
+Kennis van het software-development team over React, Express.js en MongoDB, heeft invloed op de keuze om deze technologieën te gebruiken.
 
 # Principles
 
@@ -96,413 +147,253 @@ Het kopen van boeken moet via een affiliate link gaan van bijvoorbeeld bol.com o
 
   we gebruiken React Router voor client-side routing, dit zorgt voor een vloeiende en dynamische ervaring voor de gebruiker. Hierdoor zijn er geen volledige pagina herladingen.
 
-# C4-models
+# Software Architecture
 
-## Context
+### Container diagram
 
-![Context model](C4-models/C4-model%20context.png)
+![Container](C4-models/C4-model%20container.png)
 
-## Container
+In dit container diagram is een overzicht te zien van de containers die in de architectuur te vinden zijn. Gebruikers maken via HTTP verbindinging met de React/Vite frontend via een browser. Deze frontend fetcht via HTTP naar de REST API om CRUD operaties uit te voeren. De REST API maakt verbinding met een aantal systemen. Data die in de MongoDB database opgeslagen is, kan via de API gelezen en geschreven worden. Verder maakt de API verbinding met de externe systemen van Google en LinkedIn via HTTP voor authenticatie van gebruikers. En met het systeem van OpenLibrary via HTTP voor het ophalen van boekendata.
 
-![Container model](C4-models/C4-model%20container.png)
-
-## Component React + Vite
-
-![Component frontend](C4-models/C4-model%20component%20react+vite.png)
-
-## Component REST API
-
-![Component REST API](C4-models/C4-model%20component%20REST%20API.png)
-
-## Component MongoBD
+### Component MongoDB Diagram
 
 ![Component MongoDB](C4-models/C4-model%20component%20MongoDB.png)
 
-# Wireframes
+De REST API communiceert met de MongoDB database via het Mongo protocol. Deze container bestaat uit een documentenopslag, waarin JSON objecten zijn opgeslagen.
 
-## Loginpage
+### Component REST API Diagram
 
-![Wireframe loginpage](Wireframes/login%20pagina%20met%20componenten.png)
+![Component REST API](C4-models/C4-model%20component%20REST%20API.png)
 
-## Profilepage
+De React/Vite container communiceert met het Express component in de REST API. Dit component maakt de verbinding tussen de frontend en backend mogelijk. Express gebruikt het mongoose component om verbinding te maken met de MongoDB container. Verder gebruikt Express een authenticatie component die ieder via een connector verbinding maakt met het externe systeem voor authenticatie. Er is nog een connector voor boeken die verbinding maakt met het OpenLibrary systeem. En een profielbewerk component, waarin aanpassingen aan een gebruiker worden gedaan.
 
-![Wireframe profilepage](Wireframes/profiel%20pagina%20met%20componenten.png)
+### Component React/Vite Diagram
 
-## Searchpage
+![Component React/Vite](C4-models/C4-model%20component%20react+vite.png)
 
-![Wireframe searchpage](Wireframes/search%20pagina%20met%20componenten.png)
+De Pages component communiceert via HTTP met de REST API en de externe systemen voor authenticatie en boekeninformatie. Dit component bevat de pagina's die de gebruiker te zien krijgt. Er wordt gebruik gemaakt van het Material UI component die veel React componenten bevat die worden gebruikt. De Router component bepaalt de URL's die worden gebruikt voor de verschillende pagina's.
 
-## Search results
+# External Interfaces
 
-![Wireframe search results](Wireframes/search%20results%20met%20componenten.png)
+BKS maakt gebruik van drie verschillende externe interfaces, namelijk Openlibrary, Google-authenticatie en LinkedIn-authenticatie. Openlibrary wordt gehost door archive.org als een non-profit om een database te bieden voor alle ooit geschreven boeken. Het stelt zijn database beschikbaar via een API via http en geeft resultaten terug in JSON-formaat. We gebruiken Openlibrary om alle informatie over een specifiek boek op te halen, zoals titel, auteur, coverafbeelding, enz. We maken ook gebruik van de zoekfunctie om door alle bestaande boeken te zoeken. We 'cachen' ook boeken in onze eigen database om het gebruik van Openlibrary te beperken en de rate limit van 100 verzoeken in korte tijd niet te overschrijden.
 
-# REST API
-
-## User
-
-> **`GET`** `/user/`
-
-Get a list of users.
-
-_query_parameters_
-
-`fields` - Array of fields that the request wants to receive.
-
-_returns_
-
-```json
-{
-    "_id": String,
-    "profile_picture": String
-}
-```
-
-> **`HEAD`** `/user/check/:username`
-
-Checks if a username already exists and is valid.
-
-_parameters_
-
-`:username` - Username to check
-
-> **`GET`** `/user/:username`
-
-Get a specific user's data.
-
-_parameters_
-
-`:username` - Username in database.
-
-_query_parameters_
-
-`fields` - Array of fields that the request wants to receive.
-
-_returns_
-
-```json
-{
-    "_id": String,
-    "name": String,
-    "top_three": [{
-        "_id": Number,
-        "cover_image": String,
-    }],
-    "shelf": [{
-        "name": String,
-        "books": [{
-            "_id": Number,
-            "cover_image": String,
-        }],
-    }],
-}
-```
-
-> **`POST`** `/user/:username/shelf`
-
-Post a new shelf to a user
-
-_parameters_
-
-`:username` - Username in database.
-
-_body_
-
-```json
-{
-  "name": String,
-  "books": [{
-    "_id": Number,
-    "cover_image": String,
-  }],
-}
-```
-
-_returns_
-
-```json
-{
-    "name": String,
-    "books": [{
-        "_id": Number,
-        "cover_image": String,
-    }],
-}
-```
-
-> **`PUT`** `/user/:username/shelves/:shelf`
-
-Put a book to a shelf to a user
-
-_parameters_
-
-`:username` - Username in database.
-`:shelf` - Shelf Id in database.
-
-_body_
-
-```json
-{
-  "book": {
-    "_id": Number,
-    "cover_image": String
-  },
-  "name": String,
-  "books": [
-    {
-      "_id": Number,
-      "cover_image": String
-    }
-  ],
-  "type": String,
-}
-```
-
-_returns_
-
-```json
-{
-    "_id": Number,
-    "cover_image": String,
-}
-```
-
-> **`DELETE`** `/user/:username/shelves/:shelf`
-
-Delete a shelf from a user
-
-_parameters_
-
-`:username` - Username in database.
-`:shelf` - Shelf Id in database.
-
-_returns_
-
-```json
-{
-  String,
-}
-```
-
-> **`DELETE`** `/user/:username/shelves/:shelf/book/:book`
-
-Delete a book from a shelf from a user
-
-_parameters_
-
-`:username` - Username in database.
-`:shelf` - Shelf Id in database.
-`:book` - Book Id in database.
-
-_returns_
-
-```json
-{
-  String,
-}
-```
-
-> **`DELETE`** `/user/:username/bookcase/:book`
-
-Delete a book from a bookcase from a user
-
-_parameters_
-
-`:username` - Username in database.
-`:book` - Book Id in database.
-
-_returns_
-
-```json
-{
-    String,
-}
-```
-
-> **`PUT`** `/user/:username/bookcase/`
-
-Put a book to a bookcase to a user
-
-_parameters_
-
-`:username` - Username in database.
-
-_body_
-
-```json
-{
-  "book": {
-    "_id": Number,
-    "cover_image": String,
-  },
-}
-```
-
-_returns_
-
-```json
-{
-    "_id": Number,
-    "cover_image": String,
-}
-```
-
-## Book
-
-> **`GET`** `/book/:id`
-
-Get a specific books cover image.
-
-_parameters_
-
-`:id` - ISBN number.
-
-_returns_
-
-```json
-{
-    "_id": Number,
-    "cover_image": String,
-}
-```
-
-## Sessions
-
-> **`POST`** `/sessions/google`
-
-Post to a session when logging in with google
-
-_returns_
-
-```json
-{
-    "status": String,
-    "username": String,
-}
-```
-
-> **`POST`** `/sessions/linkedin`
-
-Post to a session when logging in with linkedin
-
-_returns_
-
-```json
-{
-    "status": String,
-    "username": String,
-}
-```
-
-> **`DELETE`** `/sessions/`
-
-Deletes from a session
-
-_returns_
-
-```json
-{
-    "status": String,
-}
-```
-
-> **`GET`** `/sessions/current`
-
-Get the current session
-
-_returns_
-
-```json
-{
-    "loggedIn": Boolean,
-    "username": String,
-}
-```
-
-# Database schemas
-
-## User schema
+Enkele voorbeelden van de requests die we gebruiken:
 
 ```js
-_id: { type: String, required: true, validate: [validatorUsername, "Username can only contain letters, numbers, dots and underscores "] },
-sso_id: { type: String },
-sso_provider: { type: String, enum: ["Google", "LinkedIn"] },
-name: { type: String, required: true },
-profile_picture: { type: String, required: true, default: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" },
-top_three: {
-  type: {
-    name: { type: String },
-    books: {
-      type: [Book.schema],
-            required: true,
-    default: [],
-            validate: [
-        { validator: validatorUniqueBooks, message: "This book is already in the top three" },
-        { validator: (val) => val.length <= 3, message: "Top three has a maximum of 3 books" },
+fetch(apiUrl + "/isbn/" + req.params.id + ".json"); // Boek opvragen op basis van ISBN
+const result = await fetch(`https://openlibrary.org/search.json?q=${urlTitle}&limit=10`); // Zoeken op basis van een willekeurige term
+const cover_url = `https://covers.openlibrary.org/b/id/${data.covers[0]}-M.jpg`; // URL van de coverafbeelding ophalen op basis van de cover-ID
+```
+
+We maken op vergelijkbare wijze gebruik van Google- en LinkedIn-authenticatie. We gebruiken ze om gebruikers te authenticeren. Dit gebeurt via verzoeken naar hun eindpunten en libraries om user tokens en basisinformatie te verkrijgen. Deze informatie wordt als JSON ontvangen via http-requests. Deze authenticatieproviders zijn eigendom van Google en LinkedIn, grote bedrijven waarvan wordt verwacht dat ze nog lang zullen bestaan.
+
+# Code
+
+### Architectural layering
+
+In de webapplicatie is een aantal lagen te vinden.
+De presentatielaag is te vinden in de frontend, gemaakt met React. Deze laag bevat de applicatie die voor de gebruiker te zien is.
+De logische laag bestaat uit de API, gemaakt met Node.js en Express. Op deze laag vindt de logica plaats, tussen de presentatielaag en de datalaag.
+De datalaag bestaat uit de MongoDB database. Hierin is alle data die voor de applicatie gebruikt wordt opgeslagen.
+
+### JWT Verificatie
+
+Een onderdeel van de applicatie dat niet direct triviaal is, is de verificatie van JWT's op de backend voor authenticatie.
+Er worden tokens gebruikt van Google en LinkedIn.
+
+_Google_
+
+Voor de verificatie van Google JWT's wordt een library van Google gebruikt. De daadwerkelijke implementatie hiervan vindt dus niet plaats binnen de webapplicatie.
+
+```js
+import { OAuth2Client } from "google-auth-library";
+function googleVerifyIdToken(token) {
+  const client = new OAuth2Client();
+  const ticket = await client.verifyIdToken({
+    idToken: token,
+    audience: process.env.GOOGLE_CLIENT_ID,
+  });
+  const payload = ticket.getPayload();
+  return payload;
+}
+```
+
+_LinkedIn_
+
+De verificatie van LinkedIn JWT's is wel geïmplementeerd. De token wordt eerst gedecodeerd en gecontroleerd op de verplichte velden. Met een fetch worden de public keys opgehaald van LinkedIn. De token wordt hierna geverifieerd, met behulp van deze public keys. Vervolgens wordt een aantal checks uitgevoerd voor de echtheid van de token. Er wordt gekeken of de token niet verlopen is, deze daadwerkelijk van LinkedIn komt en of de API key overeenkomt.
+
+```js
+import jwt from "jsonwebtoken";
+import jwkToPem from "jwk-to-pem";
+import { createError } from "./errorCreation.js";
+function linkedInVerifyIdToken(token) {
+  const response = await fetch("https://www.linkedin.com/oauth/openid/jwks");
+  const jwks = await response.json();
+  // Find the correct key in the JWKS based on the key ID (kid) from your JWT header
+  const decodedToken = jwt.decode(token, { complete: true });
+  if (!decodedToken || !decodedToken.header || !decodedToken.header.kid) {
+    throw createError("Invalid JWT format or missing key ID (kid).", 500);
+  }
+  const kid = decodedToken.header.kid;
+  const key = jwks.keys.find((k) => k.kid === kid);
+  const publicKeyPem = jwkToPem(key);
+
+  // Verify the ID Token
+  const decoded = jwt.verify(token, publicKeyPem, { algorithms: ["RS256"] });
+  // Token is valid
+  // Additional checks
+  const now = Math.floor(Date.now() / 1000);
+  if (decoded.exp < now) {
+    throw createError("Token has expired", 400);
+  }
+
+  if (decoded.iss !== "https://www.linkedin.com") {
+    throw createError("Issuer mismatch", 400);
+  }
+
+  if (decoded.aud !== process.env.LINKEDIN_APP_ID) {
+    throw createError("Audience mismatch", 400);
+  }
+
+  return decoded;
+}
+```
+
+# Data
+
+Als dataopslag wordt MongoDB gebruikt. Dit is een NoSQL document based database. Documenten worden hier in het JSON-format opgeslagen. Bij gebruik van een cloud database kunnen er automatisch backups worden gemaakt om de data te beschermen.
+De hoeveelheid opslag die nodig is, is van tevoren lastig te bepalen. Dit zou afhankelijk zijn van het aantal gebruikers dat de webapplicatie krijgt. MongoDB heeft een maximum van 16MB per document. Aangezien hier enkel tekst opgeslagen wordt, zal dit maximum niet snel worden bereikt.
+Mongoose wordt gebruikt voor de connectie vanuit de backend met de datbase. Hiervoor zijn de volgende mongoose schema's gemaakt als datamodel.
+
+### User schema
+
+Dit schema is bedoeld voor het opslaan van gebruikers. Er is gekozen om te embedden in dit schema. De voordelen van NoSQL worden hierbij benut, door onnodige referenties te vermijden waar kan.
+
+```js
+ {
+    _id: { type: String, required: true},
+    sso_id: { type: String },
+    sso_provider: { type: String, enum: ["Google", "LinkedIn"] },
+    name: { type: String, required: true },
+    profile_picture: { type: String, required: true},
+    top_three: {
+      type: {
+        name: { type: String},
+        books: {
+          type: [Book.schema],
+          required: true,
+        },
+      },
+      required: true,
+    },
+    shelf: {
+      type: [
+        {
+          name: { type: String },
+          books: {
+            type: [Book.schema]
+          },
+        },
       ],
     },
-  },
-  required: true,
-default: { name: "My top three", books: [] },
-},
-shelf: {
-  type: [
-    {
-      name: { type: String },
-      books: {
-        type: [Book.schema],
-        validate: [
-          { validator: (val) => val.length >= 3, message: "Must have a minimum of 3 books" },
-          { validator: validatorUniqueBooks, message: "Can't have duplicates on a bookshelf" },
-        ],
-      },
-    },
-  ],
-},
-bookcase: { type: [Book.schema], required: true, default: [] },
-},
-{
-  methods: {
-    addToBookcase(books) {
-      books.forEach((book) => {
-        if (!this.bookcase.find((element) => element._id === book._id)) this.bookcase.push(book);
-      });
-    },
-    deleteShelf(shelf) {
-      this.shelf = this.shelf.filter((s) => s._id !== shelf);
-    },
-    removeFromBookcase(books) {
-      books.forEach((book) => {
-        const shelfBook = this.bookcase.find((element) => element._id === book._id);
-        const index = this.bookcase.indexOf(shelfBook);
-        if (index > -1) {
-          this.bookcase.splice(index, 1);
-        }
-      });
-    },
-  },
+    bookcase: { type: [Book.schema], required: true},
+  }
 ```
 
-## Book schema
+### Book schema
 
-Images of saved books of a user are saved in our database (from the external API), so the images are loaded easily and faster.
+Op verschillende plekken in de user schema wordt gebruikt gemaakt van het type van book schema. Deze is hieronder te zien.
 
 ```js
-_id: { type: String, required: true },
-cover_image: { type: String },
-title: { type: String, required: true },
-authors: { type: [String], required: true },
+{
+  _id: { type: String, required: true },
+  cover_image: { type: String },
+  title: { type: String, required: true },
+  authors: { type: [String], required: true },
+}
 ```
 
-# Domain terms
+# Infrastructure Architecture
 
-| **Term (NL)**  | **Term (EN)** | **Betekenis**                                                           | **Synoniemen**       |
-| -------------- | ------------- | ----------------------------------------------------------------------- | -------------------- |
-| Boekenplank    | Shelf         | Een verzameling van boeken, samengesteld door de gebruiker              | Collectie, categorie |
-| Boekenkast     | Bookcase      | Een overzicht van alle boeken die een gebruiker in zijn account heeft   |                      |
-| ISBN           | ISBN          | Uniek id nummer van een boek                                            |                      |
-| Auteur         | Author        | Persoon die een boek heeft geschreven                                   |                      |
-| Titel          | Title         | De naam van een boek                                                    | Naam                 |
-| Favorieten     | Favorites     | Een speciale collectie met de favoriete boeken van een gebruiker        | Voorkeuren           |
-| Suggestie      | Suggestions   | Suggesties voor boeken op basis van de opgeslagen boeken in een account | Aanbeveling, advies  |
-| Delen          | Share         | Het kopiëren van een link naar een profielpagina                        |                      |
-| Gebruikersnaam | Handle        | De naam van een gebruiker in de app                                     |                      |
+Het doel van een Infrastructure architecture is om een duidelijk beeld te vormen over hoe de applicatie is opgebouwd.
+Hierdoor wordt het makkelijker om de applicatie te onderhouden en uit te breiden.
+
+Aangezien wij geen eigen server bezitten, kunnen we daar geen specificaties van beschrijven.
+Als de applicatie moet worden gedeployed zouden cloudservices gebruikt kunnen worden.
+Omdat de applicatie niet door ons wordt gedeployed, wordt de hardware specificaties uitbesteed aan de cloudservices provider.
+
+In geval van rampen of storingen kan er worden geraadpleegd bij de cloudservice provider.
+Het onderhouden en beheren of bewaken van de applicatie zal niet door ons worden verstrekt.
+
+![Infrastructure Architecture Diagram](Diagrammen/Infrastructure_Architecture_Diagram.png)
+
+# Deployment
+
+We hebben nog niet bepaald hoe we onze applicatie gaan deployen. We hebben we een paar opties:
+
+- Compleet zelf hosten via een VM.
+- Hosten in de cloud via AWS / GCP.
+- Hosten op een deployment helper zoals vercel of netlify, met een externe database hosting provider zoals MongoDB.
+
+Voor ons gaat de voorkeur naar zelf hosten met een VM. Dit zorgt voor complete controle over het deployen en is het ook het makkelijkst om problemen op te sporen. Het is wel goedkoper om alles via AWS of GCP te deployen. Hier betaal je voor wat je gebruikt dus betaal je niet te veel als er weinig traffic op de website komt. Ook als de applicatie veel traffic krijgt zorgen ze er zelf voor dat er meer servers gaan draaien. Het is wel wat moeilijker om dit op te zetten omdat we 3 containers hebben die dan allemaal met elkaar moeten communiceren.
+
+# Operatie en support
+
+### Configuratie
+
+De applicatie gebruikt environment variabelen voor zowel de frontend als de backend. Na aanpassing van deze variabelen is een restart vereist.
+
+_Backend_
+
+```
+GOOGLE_CLIENT_ID=
+LINKEDIN_APP_SECRET=
+LINKEDIN_APP_ID=
+MONGOO_HOST=
+```
+
+De backend kan gerund worden met `node app` of, voor development, `nodemon app`, als nodemon geïnstalleerd is.
+
+_Frontend_
+
+```
+NODE_ENV=development
+VITE_BACKEND_HOST=http://localhost:3001
+VITE_GG_APP_ID=
+VITE_LINKEDIN_APP_SECRET=
+VITE_LINKEDIN_APP_ID=`
+```
+
+De frontend kan gerund worden in development met `npm run dev`. Dit runt via Vite. Een productieklare versie kan gemaakt worden door `npm run build`. Verschillende configuratieinstellingen voor Vite kunnen aangepast worden via `vite.config.js`.
+
+### Diagnostiek
+
+Er worden geen logs bijgehouden van errors of andere informatie. Tijdens het runnen van de applicatie via de terminal, zijn foutmeldingen in deze terminal te zien.
+
+### Monitoring
+
+Naast het runnen van de applicatie via de terminal, is er geen expliciete plek waar de applicatie gemonitord kan worden. Er zijn geen handmatige taken die periodiek uitgevoerd moeten worden, ook hoeft de data uit de database niet periodiek gearchiveerd te worden.
+
+# Decision Log
+
+We hebben gekozen om de volgende technologieën te gebruiken:
+
+Wij gebruiken als frontend framework React met MUI (Material UI) als component library, omdat we snel een frontend in elkaar wilden zetten wat lightweight en makkelijk te gebruiken is. Dit hebben we onderzocht door op google te zoeken naar frameworks voor react dat voldeed aan de criteria. Semantic UI hebben we ook overwogen, maar deze bleek lastiger bij gebruik en personalisatie.
+
+Wij gebruiken als code framework React, omdat we verplicht door school React moesten gebruiken. In combinatie met sessions op de backend is React makkelijker te gebruiken dan Next.js, wat we ook hebben overwogen.
+
+Wij gebruiken React-Router voor client-side routing, omdat dit niet standaard aanwezig is in React. Daarnaast is React-Router een populaire keuze voor client-side routing.
+
+Wij gebruiken als database MongoDB, omdat we verplicht door school een NoSQL database moesten gebruiken en we ervaring hebben in MongoDB.
+
+Wij gebruiken als backend framework Express, omdat we ervaring hebben in Express als gebruik voor een API Framework.
+
+Wij gebruiken REST als API architectuur, omdat we voor onze communicatie HTTP gebruiken en REST ons is aangeleerd door school en verplicht REST of SOAP van school moeten gebruiken.
+
+Wij gebruiken als database schema Mongoose op de backend, omdat dit ons is aangeleerd door school en het hierdoor eenvoudiger wordt om de database te manipuleren.
+
+Wij hebben ervoor gekozen om geen websockets te gebruiken, omdat dit niet nodig is voor onze applicatie. Dit hebben we onderzocht door aandachtig na te denken wat er nodig was voor de requirements van de applicatie.
+
+Wij hebben ervoor gekozen om Vite te gebruiken, omdat Vite sneller is dan create_react_app (CRA), dit hebben we onderzocht uit ervaring en opgezocht op google.
+
+Kortom gebruiken wij de MERN stack (MongoDB, Express.js, React, Node.js). Wij zijn tevreden met de keuzes die we hebben gemaakt. Dit zijn ook veelgebruikte, populaire technologieën. Hierdoor krijgen de keuzes meer credibiliteit.
