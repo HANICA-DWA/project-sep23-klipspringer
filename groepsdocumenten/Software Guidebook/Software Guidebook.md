@@ -3,7 +3,7 @@
 - [**Inhoudsopgave**](#inhoudsopgave)
 - [Context](#context)
 - [Functional Overview](#functional-overview)
-  - [link met meer informatie](#link-met-meer-informatie)
+  - [Link met meer informatie](#link-met-meer-informatie)
 - [Quality Attributes](#quality-attributes)
 - [Constraints](#constraints)
 - [Principles](#principles)
@@ -40,25 +40,29 @@ De software van BKS gebruikt 3 externe systemen, die van Google en LinkedIn voor
 
 # Functional Overview
 
-Als gebruiker kan je een account aanmaken via LinkdIn of Google. Zodra je dit gedaan hebt kom je uit op je profielpagina. hier kan je een plank aanmaken en deze vullen met boeken door deze op te zoeken, deze planken zijn openbaar. je hebt ook een boekenkast die prive is, waar je ook boeken een kan toevoegen. je kunt ook informatie van een boek bekijken en deze kopen via de app.
+Gebruikers kunnen een account aanmaken via LinkdIn of Google. Zodra een gebruiker een account heeft, komt hij uit op zijn eigen profielpagina.
+Hier staat al een "top 3" plank voor de gebruiker klaar. Ook kan de gebruiker zelf een plank aanmaken. Op deze planken kunnen boeken toegevoegd worden. De gebruiker kan hierbij boeken zoeken en deze vervolgens toevoegen aan de plank. Zijn profiel en de gemaakte planken zijn openbaar, waardoor de gebruiker zijn profiel kan delen met anderen. De gebruiker kan per boek een informatiepagina openen. Via deze pagina kan het boek ook gekocht worden via een webshop.
 
-het kopen van boeken moet via een affiliate link gaan van bijvoorbeeld bol.com of amazon.com.
+Het kopen van boeken moet via een affiliate link gaan van bijvoorbeeld bol.com of amazon.com.
 
-### link met meer informatie
+### Link met meer informatie
 
-[link naar userstory's](https://github.com/HANICA-DWA/project-sep23-klipspringer/blob/09111504bac3c06557e2a2dea3854e95361d2059/groepsdocumenten/Projectplan/Product%20Backlog.md)
+[Link naar userstory's](../Projectplan/Product%20Backlog.md)
 
-[link naar wireframe's](https://www.sketch.com/s/a50a2622-b344-4f1d-afd9-7f2bf52a80a1)
+[Link naar wireframe's](https://www.sketch.com/s/a50a2622-b344-4f1d-afd9-7f2bf52a80a1)
 
 # Quality Attributes
 
-- applicatie moet mobile-first zijn. wij gebruiken de iphone SE tijdens development.
-- applicatie moet responsive zijn. voor zowel mobiel als desktop en alles daar tussen in.
-- applicatie moet snel zijn. laden onder de 2 seconden, hoger zorgt er voor dat gebruikers de pagina sluiten.
-- inloggen wordt geregeld via Google en LinkdIn SSO
-- voor de boeken wordt een externe (gratis) API gebruikt.
-- frontend wordt volgens de designs van Rik gemaakt.
-- teksten zijn in het engels.
+- Applicatie moet mobile-first zijn. Wij gebruiken de iphone SE tijdens development voor het testen.
+- Applicatie moet responsive zijn, voor zowel mobiel als desktop en alles daar tussen in.
+- Applicatie moet snel zijn. Pagina's moeten laden binnen 2 seconden.
+- Inloggen wordt geregeld via Google en LinkdIn SSO.
+- Authenticatie wordt op de backend server verwerkt.
+- API requests naar de backend server duren niet langer dan 500ms.
+- Testcoverage is minimaal 90%.
+- Voor de boeken wordt de externe (gratis) API gebruikt van OpenLibrary.
+- Frontend wordt volgens de designs van Rik gemaakt.
+- Teksten zijn in het engels.
 
 # Constraints
 
@@ -66,31 +70,31 @@ het kopen van boeken moet via een affiliate link gaan van bijvoorbeeld bol.com o
 
 - DRY (Don't Repeat Yourself):
 
-  We maken voor dingen die we vaker gebruiken een component om deze zo te herbruiken. zoals bijvoorbeeld de ui van een plank op een profiel.
+  We maken voor dingen die we vaker gebruiken een component of functie, zodat deze herbruikbaar is.
 
 - Prefer a Rich Domain Model:
 
-  we gebruiken een mongoose schema met de logic en validatie van de data, zodat de data in mongoDB altijd goed opgeslagen wordt.
+  We gebruiken een mongoose schema met de logic en validatie van de data, zodat de data in MongoDB altijd goed opgeslagen wordt en consistent is.
 
 - Buy Rather Than Build:
 
-  inplaats van een eigen login bouwen gaan we google en linkdin SSO gebruiken.
+  In plaats van een eigen login bouwen gaan we Google en LinkedIn SSO gebruiken. Ook gebruiken we een externe API voor boekeninformatie.
 
 - Don't Reinvent the Wheel:
 
-  we gebruiken bijna aleen maar MUI-components en bouwen alleen eigen componenten als het echt nodig is. we gebruiken dus ook alleen de styling via MUI en geen eigen geschreven CSS.
+  We gebruiken voornamelijk Material UI (MUI)-componenten en bouwen alleen eigen componenten als het echt nodig is. We gebruiken dus ook alleen de styling via MUI en geen eigen geschreven CSS.
 
 - Responsive Design:
 
-  we gebruiken MUI-responsive componenten om te zorgen dat op zowel desktop en mobiel de pagina er goed uitziet en werkt.
+  We gebruiken MUI-responsive componenten om te zorgen dat op zowel desktop en mobiel de applicatie goed te gebruiken is.
 
 - Material-UI Theming:
 
-  we maken gebruik van MUI theming om zo de huisstijl in de applicatie makkelijk te kunnen weergeven en wijzigen indien nodig.
+  We maken gebruik van MUI theming om zo de huisstijl in de applicatie makkelijk te kunnen weergeven en wijzigen indien nodig.
 
 - Client-Side Routing:
 
-  we gebruiken React Router voor client-side routing, dit zorgt voor een vloeiende en dynamische ervaring voor de gebruiker. hierdoor zijn er geen volledige pagina herladingen.
+  we gebruiken React Router voor client-side routing, dit zorgt voor een vloeiende en dynamische ervaring voor de gebruiker. Hierdoor zijn er geen volledige pagina herladingen.
 
 # C4-models
 
