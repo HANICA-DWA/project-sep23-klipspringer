@@ -1,5 +1,5 @@
 import { Add, Check, Close } from "@mui/icons-material";
-import { Modal, Typography, Stack, Box, Icon, Button } from "@mui/material";
+import { Modal, Typography, Stack, Box, Button } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { LoggedInContext } from "../Contexts";
 import Bookcover from "./Bookcover";
@@ -19,7 +19,6 @@ export default function ModalBookcase({ open, handleClose, handleAdd, booksOnShe
     width: "100vw",
     height: "100vh",
     bgcolor: "white",
-    overflow: "scroll",
   };
 
   useEffect(() => {
@@ -42,7 +41,7 @@ export default function ModalBookcase({ open, handleClose, handleAdd, booksOnShe
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [username]);
 
   function handlePick(book) {
     if (booksOnShelf) {
@@ -104,9 +103,10 @@ export default function ModalBookcase({ open, handleClose, handleAdd, booksOnShe
             </Typography>
             <Close onClick={handleClose} sx={{ position: "absolute", right: "10px", transform: "scale(0.8)" }} />
           </Stack>
-          <Box sx={{ height: "85%", overflow: "scroll" }}>
+          <Box sx={{ height: "85%", overflowY: "scroll" }}>
             {bookcase.map((book) => (
               <Stack
+                key={book._id}
                 direction="row"
                 justifyContent="space-between"
                 alignItems="center"

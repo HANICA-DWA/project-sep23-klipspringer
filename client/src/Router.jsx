@@ -147,7 +147,7 @@ function ShelfContainer() {
       response.ok ? setShelfExist(Boolean(data.shelf.find((responseShelf) => responseShelf._id === shelf))) : setShelfExist(false);
     };
     shelf === "top_three" ? setShelfExist(true) : fetchShelfExists(shelf);
-  }, [shelf]);
+  }, [shelf, userName]);
 
   if (shelfExist === null) {
     return (

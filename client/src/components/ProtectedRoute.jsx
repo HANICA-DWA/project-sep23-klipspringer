@@ -15,7 +15,7 @@ export default function ProtectedRoute({ children, loading }) {
         navigate("/");
       }
     }
-  }, [loggedIn, username, usernameParams, loading]);
+  }, [loggedIn, username, usernameParams, loading, navigate]);
 
   return loading ? null : loggedIn ? children : null;
 }

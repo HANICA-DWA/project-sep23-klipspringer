@@ -14,7 +14,7 @@ function Profilepage({ setLoggedIn }) {
 
   useEffect(() => {
     getProfileData();
-  }, []);
+  }, [getProfileData]);
 
   function getProfileData() {
     fetch(

@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../components/Header";
-import { Add, ArrowBackIosNew, ArrowOutward, ImageNotSupported } from "@mui/icons-material";
-import { Box, Button, Chip, IconButton, Stack, Typography } from "@mui/material";
+import { Add, ArrowBackIosNew, ArrowOutward } from "@mui/icons-material";
+import { Box, Button, Chip, Stack, Typography } from "@mui/material";
 import { LoggedInContext } from "../Contexts";
 import { useContext, useEffect, useState } from "react";
 import ModalShelf from "../components/ModalShelf";
@@ -38,7 +38,7 @@ export default function Detailpage({ setLoggedIn }) {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [isbn]);
 
   useEffect(() => {
     if (loggedIn) {

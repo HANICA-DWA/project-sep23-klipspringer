@@ -1,4 +1,4 @@
-import { FormControl, InputAdornment, IconButton, TextField, Popper, Box, Paper, Button, Typography, LinearProgress } from "@mui/material";
+import { FormControl, InputAdornment, IconButton, TextField, Popper, Paper, Button, Typography, LinearProgress } from "@mui/material";
 import SearchResult from "./SearchResult";
 import { useEffect, useRef, useState } from "react";
 import { Search } from "@mui/icons-material";

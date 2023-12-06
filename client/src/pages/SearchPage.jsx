@@ -77,7 +77,7 @@ export default function SearchPage() {
       .catch((err) => {
         console.log(err);
       });
-  }, [])
+  }, [shelf, username])
 
   return (
     <Container

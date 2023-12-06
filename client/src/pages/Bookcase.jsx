@@ -3,7 +3,6 @@ import ProfileInfo from "../components/ProfileInfo";
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import { ImageList, ImageListItem, Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { ImageNotSupported } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Bookcover from "../components/Bookcover";
 
@@ -35,7 +34,7 @@ export default function Bookcase({ setLoggedIn }) {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [userName]);
 
   return (
     <Stack justifyContent="flex-start" sx={{ minHeight: "100vh" }} spacing={3} useFlexGap>

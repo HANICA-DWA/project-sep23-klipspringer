@@ -1,4 +1,4 @@
-import { Typography, Card, Stack, CardMedia, ImageList, Icon, Box, CardHeader, IconButton } from "@mui/material";
+import { Typography, Card, Stack, CardMedia, ImageList, Box, IconButton } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { LoggedInContext } from "../Contexts";

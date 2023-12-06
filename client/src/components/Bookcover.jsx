@@ -1,6 +1,6 @@
 import { Stack, Typography } from "@mui/material";
 import { ImageNotSupported } from "@mui/icons-material";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 
 export default function Bookcover({ isbn, cover_image, border, large }) {
   const [imageSrc, setImageSrc] = useState(`http://covers.openlibrary.org/b/isbn/${isbn}-M.jpg?default=false`);

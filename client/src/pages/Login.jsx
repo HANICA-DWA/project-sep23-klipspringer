@@ -14,7 +14,7 @@ export default function Login({ setLoggedIn }) {
 
   useEffect(() => {
     if (loggedIn) navigate(`/${username}`);
-  }, [loggedIn, username]);
+  }, [loggedIn, username, navigate]);
 
   return (
     <Stack

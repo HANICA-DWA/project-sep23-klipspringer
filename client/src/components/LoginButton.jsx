@@ -1,5 +1,5 @@
 import { Login } from "@mui/icons-material";
-import { Button, IconButton, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 export default function LoginButton() {
