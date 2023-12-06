@@ -83,6 +83,16 @@ export default function ModalBookcase({ open, handleClose, handleAdd, booksOnShe
     setBooks((prevBooks) => prevBooks.filter((item) => item._id !== book._id));
   }
 
+  function addBooks(book){
+    if(books.length == 0){
+      setErrMessage("You need to pick min 1 book");
+      showAlert();
+    } else {
+      handleAdd(book);
+      setBooks([]);
+    }
+  }
+
   return (
     <>
       {alertComponent}
@@ -122,7 +132,7 @@ export default function ModalBookcase({ open, handleClose, handleAdd, booksOnShe
             ))}
           </Box>
           <Stack justifyContent="center" sx={{ bgcolor: "white", width: "100vw" }}>
-            <Button variant="contained" sx={{ margin: "5px" }} onClick={() => { handleAdd(books); setBooks([]) }}>Add to shelf</Button>
+            <Button variant="contained" sx={{ margin: "5px" }} onClick={() =>  addBooks(books)}>Add to shelf</Button>
           </Stack>
         </Box>
       </Modal>
