@@ -18,6 +18,7 @@ export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
     width: "100vw",
     bgcolor: "white",
     borderRadius: "10px 10px 0px 0px",
+    overflow: "scroll"
   };
 
   function newShelf() {
@@ -57,49 +58,51 @@ export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
             direction="row"
             justifyContent="center"
             alignItems="center"
-            sx={{ padding: "15px", borderBottom: "2px solid #EFEFEF"}}
+            sx={{ padding: "15px", borderBottom: "2px solid #EFEFEF" }}
           >
             <Typography fontWeight="600" align="center">
               What shelf?
             </Typography>
             <Close onClick={handleClose} sx={{ position: "absolute", right: "10px", transform: "scale(0.8)" }} />
           </Stack>
-          {shelfInfo.top_three != undefined ? (
-            <Stack
-              direction="row"
-              justifyContent="space-between"
-              sx={{ padding: "10px", margin: "10px", border: "1px solid black", borderRadius: "5px"}}
-              onClick={() => addToShelf("top_three", book)}
-            >
-              <Stack direction="row">
-                <Typography fontWeight="600" sx={{ paddingRight: "5px" }}>
-                  {shelfInfo.top_three.name}
-                </Typography>
-                <Typography color="#AFAFAF">{shelfInfo.top_three.books.length}</Typography>
-              </Stack>
-              <ArrowForward sx={{ transform: "scale(0.8)", color: "#AFAFAF" }} />
-            </Stack>
-          ) : null}
-          {shelfInfo.shelf != undefined &&
-            shelfInfo.shelf.map((shelf, index) => (
+          <Box sx={{ height: "50vh", overflow: "scroll" }}>
+            {shelfInfo.top_three != undefined ? (
               <Stack
                 direction="row"
                 justifyContent="space-between"
                 sx={{ padding: "10px", margin: "10px", border: "1px solid black", borderRadius: "5px" }}
-                onClick={() => addToShelf(shelf._id, book)}
-                key={`${shelf.name}${index}`}
+                onClick={() => addToShelf("top_three", book)}
               >
                 <Stack direction="row">
                   <Typography fontWeight="600" sx={{ paddingRight: "5px" }}>
-                    {shelf.name ? shelf.name : "Nameless shelf"}
+                    {shelfInfo.top_three.name}
                   </Typography>
-                  <Typography color="#AFAFAF">{shelf.books.length}</Typography>
+                  <Typography color="#AFAFAF">{shelfInfo.top_three.books.length}</Typography>
                 </Stack>
                 <ArrowForward sx={{ transform: "scale(0.8)", color: "#AFAFAF" }} />
               </Stack>
-            ))}
-          <Stack direction="row" justifyContent="center" sx={{ margin: "20px"}} onClick={newShelf}>
-            <Add sx={{ transform: "scale(0.6)"}} />
+            ) : null}
+            {shelfInfo.shelf != undefined &&
+              shelfInfo.shelf.map((shelf, index) => (
+                <Stack
+                  direction="row"
+                  justifyContent="space-between"
+                  sx={{ padding: "10px", margin: "10px", border: "1px solid black", borderRadius: "5px" }}
+                  onClick={() => addToShelf(shelf._id, book)}
+                  key={`${shelf.name}${index}`}
+                >
+                  <Stack direction="row">
+                    <Typography fontWeight="600" sx={{ paddingRight: "5px" }}>
+                      {shelf.name ? shelf.name : "Nameless shelf"}
+                    </Typography>
+                    <Typography color="#AFAFAF">{shelf.books.length}</Typography>
+                  </Stack>
+                  <ArrowForward sx={{ transform: "scale(0.8)", color: "#AFAFAF" }} />
+                </Stack>
+              ))}
+          </Box>
+          <Stack direction="row" justifyContent="center" sx={{ margin: "20px" }} onClick={newShelf}>
+            <Add sx={{ transform: "scale(0.6)" }} />
             <Typography >Create a new shelf</Typography>
           </Stack>
         </Box>
