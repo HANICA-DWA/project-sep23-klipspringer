@@ -88,15 +88,25 @@ export default function SearchPage() {
     >
       {alertComponent}
       <Stack direction="column" alignItems="center">
-        <Stack direction="row" alignItems="center" style={{ marginBottom: "5px" }}>
-          <ArrowBackIos onClick={() => navigate(-1)} />
-          <SearchBar onClick={handleAdd} />
+        <Stack direction="column" alignItems="center" width="100%">
+          <Stack direction="row" alignItems="center" width="100%" sx={{ marginBottom: "5px" }}>
+            <ArrowBackIos onClick={() => navigate(-1)} />
+            <SearchBar onClick={handleAdd} />
+          </Stack>
+          <Stack direction="row" alignItems="center" sx={{ margin: "5px", marginBottom: "20px" }} onClick={handleOpen}>
+            <Add />
+            <Typography>Choose from bookcase</Typography>
+          </Stack>
         </Stack>
-        <Stack direction="row" alignItems="center" sx={{ margin: "5px", marginBottom: "20px" }} onClick={handleOpen}>
-          <Add />
-          <Typography>Choose from bookcase</Typography>
-        </Stack>
-        <ModalBookcase open={open} handleClose={handleClose} handleAdd={handleAdd} booksOnShelf={booksOnShelf} topThreeLength={topThreeLength} setTopThreeLength={setTopThreeLength}/>
+
+        <ModalBookcase
+          open={open}
+          handleClose={handleClose}
+          handleAdd={handleAdd}
+          booksOnShelf={booksOnShelf}
+          topThreeLength={topThreeLength}
+          setTopThreeLength={setTopThreeLength}
+        />
         <Suggestions />
       </Stack>
     </Container>

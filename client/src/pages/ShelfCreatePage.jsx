@@ -152,7 +152,7 @@ export default function ShelfCreatePage({ edit = false }) {
           paddingTop: "20px",
         }}
       >
-        <Stack direction="column" alignItems="center" justifyContent="space-between" height="90vh">
+        <Stack direction="column" alignItems="center" justifyContent="space-between" minHeight="90vh">
           <Stack direction="column" alignItems="center" sx={{ width: "100%" }}>
             <Stack direction="row" alignItems="center" justifyContent="center" sx={{ width: "100%" }}>
               <Typography variant="h5" sx={{ my: 1 }}>
@@ -163,14 +163,14 @@ export default function ShelfCreatePage({ edit = false }) {
               <ArrowBackIos onClick={() => navigate(-1)} />
               <SearchBar onClick={handleAdd} />
             </Stack>
-            {!edit ?
+            {!edit ? (
               <Stack direction="row" sx={{ margin: "5px" }} onClick={handleOpen}>
                 <Add />
                 <Typography>Choose from bookcase</Typography>
-              </Stack> : null
-            }
+              </Stack>
+            ) : null}
           </Stack>
-          <ModalBookcase open={open} handleClose={handleClose} handleAdd={handleAdd} booksOnShelf={books}/>
+          <ModalBookcase open={open} handleClose={handleClose} handleAdd={handleAdd} booksOnShelf={books} />
 
           <Stack gap={2} direction="column" alignItems="center" width="100%">
             {edit ? (
