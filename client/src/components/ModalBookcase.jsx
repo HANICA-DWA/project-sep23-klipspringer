@@ -10,7 +10,7 @@ export default function ModalBookcase({ open, handleClose, handleAdd, booksOnShe
   const [books, setBooks] = useState([])
   const [errMessage, setErrMessage] = useState("");
   const [showAlert, alertComponent] = useAlert(errMessage, 1500, "warning");
-  const { loggedIn, username } = useContext(LoggedInContext);
+  const { username } = useContext(LoggedInContext);
 
   const styleModal = {
     position: "absolute",
@@ -24,10 +24,10 @@ export default function ModalBookcase({ open, handleClose, handleAdd, booksOnShe
   useEffect(() => {
     fetch(
       import.meta.env.VITE_BACKEND_HOST +
-      `/user/${username}?` +
-      new URLSearchParams({
-        fields: ["bookcase"],
-      }),
+        `/user/${username}?` +
+        new URLSearchParams({
+          fields: ["bookcase"],
+        }),
       {
         method: "GET",
       }
@@ -46,7 +46,7 @@ export default function ModalBookcase({ open, handleClose, handleAdd, booksOnShe
   function handlePick(book) {
     if (booksOnShelf) {
       if (!booksOnShelf.find((item) => item._id === book._id)) {
-        if(books.find((item) => item._id === book._id)){
+        if (books.find((item) => item._id === book._id)) {
           handleBookDeselection(book);
         } else {
           handleBookSelect(book);
@@ -55,8 +55,7 @@ export default function ModalBookcase({ open, handleClose, handleAdd, booksOnShe
         setErrMessage("Book already on shelf");
         showAlert();
       }
-    }
-    else if (books.find((item) => item._id === book._id)) {
+    } else if (books.find((item) => item._id === book._id)) {
       handleBookDeselection(book);
     } else {
       handleBookSelect(book);
@@ -82,8 +81,8 @@ export default function ModalBookcase({ open, handleClose, handleAdd, booksOnShe
     setBooks((prevBooks) => prevBooks.filter((item) => item._id !== book._id));
   }
 
-  function addBooks(book){
-    if(books.length == 0){
+  function addBooks(book) {
+    if (books.length == 0) {
       setErrMessage("You need to pick min 1 book");
       showAlert();
     } else {
@@ -111,9 +110,9 @@ export default function ModalBookcase({ open, handleClose, handleAdd, booksOnShe
                 justifyContent="space-between"
                 alignItems="center"
                 onClick={() => {
-                  handlePick(book);
+                  if (!booksOnShelf.find((shelfBook) => shelfBook._id === book._id)) handlePick(book);
                 }}
-                sx={{ margin: "5px 12px 5px 12px" }}
+                sx={{ margin: "5px 12px 5px 12px", opacity: booksOnShelf.find((shelfBook) => shelfBook._id === book._id) ? 0.3 : 1 }}
               >
                 <Stack direction="row">
                   <div style={{ margin: "5px", height: "104px", width: "68px" }}>
@@ -124,15 +123,20 @@ export default function ModalBookcase({ open, handleClose, handleAdd, booksOnShe
                     <Typography>{book.authors.join(", ")}</Typography>
                   </Stack>
                 </Stack>
-                {books.find((item) => item._id == book._id) ?
-                  <Check sx={{ color: "white", borderRadius: "20px", bgcolor: "black", transform: "scale(0.7)", padding: "5px" }} /> :
-                  <Add sx={{ border: "1px solid black", borderRadius: "20px", transform: "scale(0.7)", padding: "5px" }} />
-                }
+                {!booksOnShelf.find((shelfBook) => shelfBook._id === book._id) ? (
+                  books.find((item) => item._id == book._id) ? (
+                    <Check sx={{ color: "white", borderRadius: "20px", bgcolor: "black", transform: "scale(0.7)", padding: "5px" }} />
+                  ) : (
+                    <Add sx={{ border: "1px solid black", borderRadius: "20px", transform: "scale(0.7)", padding: "5px" }} />
+                  )
+                ) : null}
               </Stack>
             ))}
           </Box>
           <Stack justifyContent="center" sx={{ bgcolor: "white", width: "100vw" }}>
-            <Button variant="contained" sx={{ margin: "5px" }} onClick={() =>  addBooks(books)}>Add to shelf</Button>
+            <Button variant="contained" sx={{ margin: "5px" }} onClick={() => addBooks(books)}>
+              Add to shelf
+            </Button>
           </Stack>
         </Box>
       </Modal>

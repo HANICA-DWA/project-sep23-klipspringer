@@ -13,11 +13,8 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
   const [errMessage, setErrMessage] = useState("");
   const [showAlert, alertComponent] = useAlert(errMessage, 3000, "warning");
   const navigate = useNavigate();
-
   const [bookshelfBooks, setBookshelfBooks] = useState(books);
-
   const placeholderBooks = [];
-
   const [setDialogOpen, dialog] = useDialog(null, "Are you sure that you want to delete this shelf?", "No", "Yes", onDelete, id);
 
   useEffect(() => {
@@ -76,27 +73,33 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
         <ImageList cols={nrOfColums}>
           {bookshelfBooks.map((item) => (
             <Card key={item._id}>
-              <Box sx={{ width: "85px", height: "160px", display:"flex", justifyContent:"flex-end"}}>
-                  {loggedIn && username === user && edit ? (
-                      <IconButton sx={{
-                          position: "absolute",
-                          marginTop: "-0.6rem",
-                          marginRight: "-0.6rem",
-                          bgcolor: "black",
-                          borderRadius: "50%",
-                          width: "1.7rem",
-                          height: "1.7rem",
-                      }} onClick={() => onBookDelete(item._id)}>
-
-                      <DeleteIcon sx={{
-                          position: "relative",
-                          color: "white",
-                          width: "1rem",
-                          height: "1rem",
+              <Box sx={{ width: "85px", height: "160px", display: "flex", justifyContent: "flex-end" }}>
+                {loggedIn && username === user && edit ? (
+                  <IconButton
+                    sx={{
+                      position: "absolute",
+                      marginTop: "-0.6rem",
+                      marginRight: "-0.6rem",
+                      bgcolor: "black",
+                      borderRadius: "50%",
+                      width: "1.7rem",
+                      height: "1.7rem",
+                      "&:hover": {
+                        bgcolor: "primary.main",
+                      },
+                    }}
+                    onClick={() => onBookDelete(item._id)}
+                  >
+                    <DeleteIcon
+                      sx={{
+                        position: "relative",
+                        color: "white",
+                        width: "1rem",
+                        height: "1rem",
                       }}
-                      />
-                      </IconButton >
-                  ) : null}
+                    />
+                  </IconButton>
+                ) : null}
                 <Link to={unclickable ? null : `/book/${item._id}`} style={{ textDecoration: "none", color: "black" }}>
                   <Bookcover isbn={item._id} cover_image={item.cover_image} />
                 </Link>

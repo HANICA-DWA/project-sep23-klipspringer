@@ -12,7 +12,7 @@ export default function SearchPage() {
   const navigate = useNavigate();
 
   const shelf = useParams().shelf;
-  const { loggedIn, username } = useContext(LoggedInContext);
+  const { username } = useContext(LoggedInContext);
 
   const [errMessage, setErrMessage] = useState("");
   const [open, setOpen] = useState(false);
