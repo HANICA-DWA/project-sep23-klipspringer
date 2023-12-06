@@ -1,6 +1,14 @@
-- [Software Guidebook BKS](#software-guidebook-bks)
+# **Inhoudsopgave**
+
+- [**Inhoudsopgave**](#inhoudsopgave)
+- [Context](#context)
+- [Functional Overview](#functional-overview)
+  - [Link met meer informatie](#link-met-meer-informatie)
+- [Quality Attributes](#quality-attributes)
+- [Constraints](#constraints)
+- [Principles](#principles)
 - [C4-models](#c4-models)
-  - [Context](#context)
+  - [Context](#context-1)
   - [Container](#container)
   - [Component React + Vite](#component-react--vite)
   - [Component REST API](#component-rest-api)
@@ -19,7 +27,74 @@
   - [Book schema](#book-schema)
 - [Domain terms](#domain-terms)
 
-# Software Guidebook BKS
+# Context
+
+![Context Diagram](C4-models/C4-model%20context.png)
+
+BKS wordt een mobile-first webapplicatie van een persoonlijke boekenpagina. Met deze applicatie kun een gebruiker zijn leesvoorkeuren delen, zoals favoriete boeken, top 3 boeken, diverse collecties en je kunt zelfs een aangepaste collectie maken.
+
+Deze software wordt gebruikt door 2 verschillende soorten gebruikers, anonieme gebruikers en geauthenticeerde gebruikers. De anononieme gebruiker kan profielen van anderen en boeken bekijken. Ook kan een anonieme gebruiker inloggen om een geauthenticeerde gebruiker te worden.
+Een geauthenticeerde gebruiker kan zijn eigen profielpagina bewerken, boekenplanken toevoegen, bewerken en verwijderen. Hij heeft ook inzicht in zijn boekenkast en kan hier ook aanpassingen aan doen.
+
+De software van BKS gebruikt 3 externe systemen, die van Google en LinkedIn voor het authenticeren van gebruikers. En het systeem van OpenLibrary om informatie van boeken op te halen.
+
+# Functional Overview
+
+Gebruikers kunnen een account aanmaken via LinkdIn of Google. Zodra een gebruiker een account heeft, komt hij uit op zijn eigen profielpagina.
+Hier staat al een "top 3" plank voor de gebruiker klaar. Ook kan de gebruiker zelf een plank aanmaken. Op deze planken kunnen boeken toegevoegd worden. De gebruiker kan hierbij boeken zoeken en deze vervolgens toevoegen aan de plank. Zijn profiel en de gemaakte planken zijn openbaar, waardoor de gebruiker zijn profiel kan delen met anderen. De gebruiker kan per boek een informatiepagina openen. Via deze pagina kan het boek ook gekocht worden via een webshop.
+
+Het kopen van boeken moet via een affiliate link gaan van bijvoorbeeld bol.com of amazon.com.
+
+### Link met meer informatie
+
+[Link naar userstory's](../Projectplan/Product%20Backlog.md)
+
+[Link naar wireframe's](https://www.sketch.com/s/a50a2622-b344-4f1d-afd9-7f2bf52a80a1)
+
+# Quality Attributes
+
+- Applicatie moet mobile-first zijn. Wij gebruiken de iphone SE tijdens development voor het testen.
+- Applicatie moet responsive zijn, voor zowel mobiel als desktop en alles daar tussen in.
+- Applicatie moet snel zijn. Pagina's moeten laden binnen 2 seconden.
+- Inloggen wordt geregeld via Google en LinkdIn SSO.
+- Authenticatie wordt op de backend server verwerkt.
+- API requests naar de backend server duren niet langer dan 500ms.
+- Testcoverage is minimaal 90%.
+- Voor de boeken wordt de externe (gratis) API gebruikt van OpenLibrary.
+- Frontend wordt volgens de designs van Rik gemaakt.
+- Teksten zijn in het engels.
+
+# Constraints
+
+# Principles
+
+- DRY (Don't Repeat Yourself):
+
+  We maken voor dingen die we vaker gebruiken een component of functie, zodat deze herbruikbaar is.
+
+- Prefer a Rich Domain Model:
+
+  We gebruiken een mongoose schema met de logic en validatie van de data, zodat de data in MongoDB altijd goed opgeslagen wordt en consistent is.
+
+- Buy Rather Than Build:
+
+  In plaats van een eigen login bouwen gaan we Google en LinkedIn SSO gebruiken. Ook gebruiken we een externe API voor boekeninformatie.
+
+- Don't Reinvent the Wheel:
+
+  We gebruiken voornamelijk Material UI (MUI)-componenten en bouwen alleen eigen componenten als het echt nodig is. We gebruiken dus ook alleen de styling via MUI en geen eigen geschreven CSS.
+
+- Responsive Design:
+
+  We gebruiken MUI-responsive componenten om te zorgen dat op zowel desktop en mobiel de applicatie goed te gebruiken is.
+
+- Material-UI Theming:
+
+  We maken gebruik van MUI theming om zo de huisstijl in de applicatie makkelijk te kunnen weergeven en wijzigen indien nodig.
+
+- Client-Side Routing:
+
+  we gebruiken React Router voor client-side routing, dit zorgt voor een vloeiende en dynamische ervaring voor de gebruiker. Hierdoor zijn er geen volledige pagina herladingen.
 
 # C4-models
 
@@ -130,7 +205,7 @@ _parameters_
 
 `:username` - Username in database.
 
-_body_ 
+_body_
 
 ```json
 {
@@ -252,6 +327,7 @@ _parameters_
 `:username` - Username in database.
 
 _body_
+
 ```json
 {
   "book": {
@@ -420,7 +496,7 @@ authors: { type: [String], required: true },
 # Domain terms
 
 | **Term (NL)**  | **Term (EN)** | **Betekenis**                                                           | **Synoniemen**       |
-|----------------|---------------|-------------------------------------------------------------------------| -------------------- |
+| -------------- | ------------- | ----------------------------------------------------------------------- | -------------------- |
 | Boekenplank    | Shelf         | Een verzameling van boeken, samengesteld door de gebruiker              | Collectie, categorie |
 | Boekenkast     | Bookcase      | Een overzicht van alle boeken die een gebruiker in zijn account heeft   |                      |
 | ISBN           | ISBN          | Uniek id nummer van een boek                                            |                      |
