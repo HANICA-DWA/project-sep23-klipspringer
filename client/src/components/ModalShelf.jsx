@@ -18,7 +18,6 @@ export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
     width: "100vw",
     bgcolor: "white",
     borderRadius: "10px 10px 0px 0px",
-    overflow: "scroll"
   };
 
   function newShelf() {
@@ -65,7 +64,7 @@ export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
             </Typography>
             <Close onClick={handleClose} sx={{ position: "absolute", right: "10px", transform: "scale(0.8)" }} />
           </Stack>
-          <Box sx={{ height: "50vh", overflow: "scroll" }}>
+          <Box sx={{ height: "50vh", overflowY: "scroll" }}>
             {shelfInfo.top_three != undefined ? (
               <Stack
                 direction="row"
@@ -75,7 +74,7 @@ export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
               >
                 <Stack direction="row">
                   <Typography fontWeight="600" sx={{ paddingRight: "5px" }}>
-                    {shelfInfo.top_three.name}
+                    {shelfInfo.top_three.name || "Top 3"}
                   </Typography>
                   <Typography color="#AFAFAF">{shelfInfo.top_three.books.length}</Typography>
                 </Stack>
