@@ -1,6 +1,6 @@
 # Opstellen leerdoel 1
 
-### De komende 4 weken ga ik met het volgende leerdoel aan de slag: 
+### De komende 4 weken ga ik met het volgende leerdoel aan de slag:
 Ik wil meer anderen respecteren.
 
 
@@ -9,11 +9,11 @@ Ik heb nog wel eens de neiging om te spreken voor een ander of geen rekening te 
 
 
 ### Dit leerdoel leveren het volgende op voor mij:
-Meer respect voor anderen en betere communicatie in een project.
+Meer respect voor anderen en betere communicatie in dit project.
 
 
 ### Dit leerdoel levert het volgende op voor mijn team:
-Betere communicatie in een project
+Betere communicatie in dit project en ook geeft ik anderen meer ruimte voor inbreng op dit project.
 
 
 ### Ik ga op de volgende manier(en) werken aan mijn leerdoel:
@@ -29,4 +29,4 @@ Mijn hond.
 
 
 ### Ik heb mijn leerdoel bereikt als (formuleer meetbare criteria):
-Als er tijdens de retrospective niks over wordt verteld.
+Ik heb mijn leerdoel bereikt als anderen het gevoel hebben dat zei inbreng hebben op het project en ik niet mijn mening op hun heb geforceerd.
