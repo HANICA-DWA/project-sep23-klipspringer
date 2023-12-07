@@ -13,7 +13,7 @@ Meer respect voor anderen en betere communicatie in dit project.
 
 
 ### Dit leerdoel levert het volgende op voor mijn team:
-Betere communicatie in dit project en ook geeft ik anderen meer ruimte voor inbreng op dit project.
+Betere communicatie in dit project en ook geeft dit anderen meer ruimte voor inbreng op dit project.
 
 
 ### Ik ga op de volgende manier(en) werken aan mijn leerdoel:
@@ -25,7 +25,7 @@ Tijdens vergaderingen, en ook tijdens communicatie met andere teamleden.
 
 
 ### Om mijn leerdoel te bereiken ga ik hulp vragen aan de volgende personen:
-Mijn hond.
+Ik ga niemand om hulp vragen. Ik ga zelf de LSD-technieken die ik heb geleerd in de lessen toepassen, hiervoor heb ik niemand nodig.
 
 
 ### Ik heb mijn leerdoel bereikt als (formuleer meetbare criteria):
