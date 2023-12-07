@@ -421,6 +421,26 @@ describe("connection", () => {
       assert.deepEqual(res.body, { error: "Invalid book or shelf" });
     });
 
+    it("PUT duplicate on shelf", async () => {
+      const username = "janwillem";
+      const shelfId = "655b323165c31f3c397b6753";
+
+      const res = await request(app)
+        .put(`/user/${username}/shelves/${shelfId}`)
+        .send({
+          book: {
+            _id: 123,
+            cover_image: "url",
+            title: "hoi",
+            authors: [],
+          },
+        })
+        .set("Content-Type", "application/json")
+        .expect(400);
+
+      assert.deepEqual(res.body, { error: "Can't have duplicates on a bookshelf" });
+    });
+
     it("PUT on top_three", async () => {
       const username = "janwillem";
       const shelfId = "top_three";
