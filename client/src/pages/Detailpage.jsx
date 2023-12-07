@@ -107,8 +107,7 @@ export default function Detailpage({ setLoggedIn }) {
       {addAlertComponent}
       {removeAlertComponent}
       <Stack direction="row" alignItems="center" justifyContent="space-between">
-        <ArrowBackIosNew sx={{ margin: "20px" }} onClick={() => navigate(-1)} />
-        <Header setLoggedIn={setLoggedIn} />
+        <Header setLoggedIn={setLoggedIn} backButton />
       </Stack>
       <Stack alignItems="center">
         {loggedIn && username ? (
