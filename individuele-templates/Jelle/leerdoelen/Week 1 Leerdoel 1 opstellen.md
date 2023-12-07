@@ -13,7 +13,7 @@ Meer respect voor anderen en betere communicatie in dit project.
 
 
 ### Dit leerdoel levert het volgende op voor mijn team:
-Betere communicatie in dit project en ook geeft ik anderen meer ruimte voor inbreng op dit project.
+Betere communicatie in dit project en ook geeft dit anderen meer ruimte voor inbreng op dit project.
 
 
 ### Ik ga op de volgende manier(en) werken aan mijn leerdoel:
