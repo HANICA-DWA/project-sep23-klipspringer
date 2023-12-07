@@ -18,12 +18,11 @@ export default function Header({ setLoggedIn, shareButton, backButton }) {
   return (
     <>
       <Stack direction="row" justifyContent="space-between" alignItems="center" width="100%">
-        {backButton && (
+        {backButton ? (
           <Box sx={{ flex: "1 1 0px", width: "0px", textAlign: "start" }}>
             <ArrowBackIosNew sx={{ margin: "20px" }} onClick={() => navigate(-1)} />
           </Box>
-        )}
-        {loggedIn && username === userName && shareButton ? (
+        ) : loggedIn && username === userName && shareButton ? (
           <Box sx={{ flex: "1 1 0px", width: "0px", textAlign: "start" }}>
             <ProfileLink alert={setShareLinkAlertOn} />
           </Box>
