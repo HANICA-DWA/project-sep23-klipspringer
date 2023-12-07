@@ -27,7 +27,11 @@ export default function Header({ setLoggedIn, shareButton, backButton }) {
           <Box sx={{ flex: "1 1 0px", width: "0px", textAlign: "start" }}>
             <ProfileLink alert={setShareLinkAlertOn} />
           </Box>
-        ) : null}
+        ) : (
+          <Box sx={{ flex: "1 1 0px" }}>
+            <div></div>
+          </Box>
+        )}
         <Box sx={{ flex: "1 1 0px", width: "0px", textAlign: "center" }}>
           <IconButton onClick={() => navigate("/find")} sx={{ color: "black" }}>
             <Search fontSize="large" />
