@@ -1,0 +1,43 @@
+Notulen sprintreview en sprintplanning 8-12-2023:
+
+Rik is ziek dus neemt Frits de rol van Rik over tijdens deze vergadering.
+
+De meeste complexiteit zat in het editen. Verder wordt veel tijd besteed aan error afhandeling en bugs fixen.
+
+
+Frits vindt als volgende punt is misschien een social feautere zoals iemand volgen om realtime functies toe tevoegen met websockets.
+Frits vind het netjes dat onze userstories klein zijn.
+
+Definition of done vindt frits 
+"Holymoly dat je klaar voor productie in je DOD hebt staan"
+oké. prima.
+
+Als we onze software guidebook inrichten op features dan wordt het makkelijker te vinden waar alles staat, inplaats van vite, backend etc.
+
+Frits vindt het belangrijk dat de sessions worden gechecked zodat bijvoorbeeld yannick niet boeken kan toevoegen voor roos.
+
+Frits zegt netjes.
+
+Frits vindt nog wel dat de authenticatie moeten worden gefixed.
+
+
+
+___________ Planning _____________
+
+
+Frits zegt dat dit wel nog moest: Websocket userstories moet nog worden toegevoegd.
+
+Frits zegt nog wel te willen kunnen klikken op auteur van een boek detailpagina.
+
+"Als gebruiker wil ik op de hoogte blijven van mijn volgers"
+"Als gebruiker wil ik een andere gebruiker kunnen volgen"
+"Als gebruiker wil ik een notificatie krijgen als ik wordt gevolgt"
+
+Frits zegt toch wel een manier om wel terug te gaan naar je eigen profielpagina door een kleine navigatiebalk of iets in die richting.
+
+Frits vindt:
+Als je deelt dan heb je zo een socialmedia card.
+
+
+
+- Frits zegt om de review iets beter te maken door tijdens review ook te verwijzen naar de userstories die erbij horen.
