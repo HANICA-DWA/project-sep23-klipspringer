@@ -13,6 +13,7 @@ export default function Detailpage({ setLoggedIn }) {
   const navigate = useNavigate();
   const isbn = useParams().isbn;
   const [book, setBook] = useState({ authors: [] });
+  const [bookWorks, setBookWorks] = useState({});
   const [open, setOpen] = useState(false);
   const [shelfInfo, setShelfInfo] = useState({ bookcase: [] });
   const [addError, setAddError] = useState();
@@ -39,6 +40,24 @@ export default function Detailpage({ setLoggedIn }) {
         console.log(err);
       });
   }, [isbn]);
+
+  useEffect(() => {
+    if(book.identifiers != null && book.identifiers.openlibrary != null){
+      fetch(import.meta.env.VITE_BACKEND_HOST +
+          "/book/works/"+
+          book.identifiers.openlibrary[0]
+      )
+          .then((res) => {
+            return res.json();
+          })
+          .then((res) => {
+            setBookWorks(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+    }
+  }, [book]);
 
   useEffect(() => {
     if (loggedIn) {
@@ -172,6 +191,17 @@ export default function Detailpage({ setLoggedIn }) {
         />
 
         <Chip sx={{ margin: "10px", fontSize: "14px" }} color="primary" icon={<ArrowOutward style={{ transform: "scale(0.7)" }} />} label="Buy" />
+
+        {bookWorks.description ?(<Box sx={{ margin: "10px" }}>
+          <Stack alignItems="center">
+            <Typography align="center" variant="h2" fontWeight="700" gutterBottom>
+              Summary
+            </Typography>
+            <Typography variant="h6">
+              {typeof bookWorks.description === "string" ? bookWorks.description : bookWorks.description.value}
+            </Typography>
+          </Stack>
+        </Box>):null}
       </Stack>
     </>
   );
