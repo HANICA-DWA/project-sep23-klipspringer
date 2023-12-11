@@ -4,8 +4,9 @@ import SearchBar from "../components/SearchBar";
 import Suggestions from "../components/Suggestions";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import {HamburgerMenu} from "../components/HamburgerMenu.jsx";
 
-export default function Search() {
+export default function Search({ setLoggedIn }) {
 
     const navigate = useNavigate()
 
@@ -28,6 +29,8 @@ export default function Search() {
           <Stack direction="row" alignItems="center" style={{ marginBottom: "25px" }}>
             <ArrowBackIos onClick={() => navigate(-1)} />
             <SearchBar fullSearch onClick={handleClick} />
+              {// <HamburgerMenu setLoggedIn={setLoggedIn}/> Waiting for design
+              }
           </Stack>
           <Typography align="center" variant="body1" style={{ color: "red" }}>
             {errMessage}

@@ -47,7 +47,7 @@ export default function Router() {
         <Routes>
           <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/search" element={<SearchPage />} />
-          <Route path="/find" element={<Search />} />
+          <Route path="/find" element={<Search setLoggedIn={setLoggedIn} />} />
           <Route path="/find/scan" element={<Barcode />} />
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
           <Route path="/register" element={<Register setLoggedIn={setLoggedIn} />} />
