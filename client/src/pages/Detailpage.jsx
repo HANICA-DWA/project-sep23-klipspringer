@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import Header from "../components/Header";
 import { Add, ArrowBackIosNew, ArrowOutward } from "@mui/icons-material";
 import { Box, Button, Chip, Stack, Typography } from "@mui/material";
@@ -184,8 +184,13 @@ export default function Detailpage({ setLoggedIn }) {
           }}
         />
 
-        <Chip sx={{ margin: "10px", fontSize: "14px" }} color="primary" icon={<ArrowOutward style={{ transform: "scale(0.7)" }} />} label="Buy" />
-
+        {(book.identifiers && book.identifiers.amazon)?
+            (<Link to={"https://www.amazon.com/gp/product/" + book.identifiers.amazon[0]}>
+              <Chip sx={{ margin: "10px", fontSize: "14px" }} color="primary" icon={<ArrowOutward style={{ transform: "scale(0.7)" }} />} label="Buy" />
+            </Link>):
+            (<Link to={"https://www.amazon.com/s?k="+isbn}>
+              <Chip sx={{ margin: "10px", fontSize: "14px" }} color="primary" icon={<ArrowOutward style={{ transform: "scale(0.7)" }} />} label="Buy" />
+            </Link>)}
         {bookWorks.description ? (
           <Box sx={{ margin: "10px" }}>
             <Stack alignItems="center" mt={3}>
