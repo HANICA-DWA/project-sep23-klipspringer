@@ -44,6 +44,8 @@ export default function ShelfPage({ setLoggedIn }) {
     try {
       await fetch(import.meta.env.VITE_BACKEND_HOST + `/user/${username}/shelves/${shelfID}`, {
         method: "DELETE",
+        credentials: "include",
+        mode: "cors",
       });
       setShelfInfo({});
       setErrMessage("");
