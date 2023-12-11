@@ -174,11 +174,11 @@ function AuthorContainer({ children }) {
   const [authorExist, setAuthorExist] = useState(null);
 
   useEffect(() => {
-    const fetchAuthorExists = async (shelf) => {
+    const fetchAuthorExists = async (author) => {
       const response = await fetch(`https://openlibrary.org/authors/${author}.json`);
       response.ok ? setAuthorExist(true) : setAuthorExist(false);
     };
-    fetchAuthorExists();
+    fetchAuthorExists(author);
   }, [author]);
 
   if (authorExist === null) {
