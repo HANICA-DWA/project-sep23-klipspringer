@@ -52,6 +52,14 @@ router.get("/:username", (req, res, next) => {
   }
 });
 
+router.use("/:username", (req, res, next) => {
+  const { username } = req.params;
+  if (process.env.NODE_ENV !== "test" && (!req.session.loggedIn || req.session.user !== username)) {
+    next(createError("Unauthorized", 403));
+  }
+  next();
+});
+
 router.post("/:username/shelf", async (req, res, next) => {
   try {
     req.user.shelf.push(req.body);
