@@ -53,7 +53,6 @@ router.get("/:username", (req, res, next) => {
 });
 
 router.post("/:username/shelf", async (req, res, next) => {
-  console.log(req.body)
   try {
     req.user.shelf.push(req.body);
     req.user.addToBookcase(req.body.books);
