@@ -53,7 +53,14 @@ export default function Router() {
           <Route path="/linkedin" element={<LinkedInCallback />} />
           <Route path="/unauthorized" element={<Unauthorized />} />
           <Route path="/book/:isbn" element={<Detailpage setLoggedIn={setLoggedIn} />} />
-          <Route path="/author/:author" element={<AuthorPage />} />
+          <Route
+            path="/author/:author"
+            element={
+              <AuthorContainer>
+                <AuthorPage />
+              </AuthorContainer>
+            }
+          />
           <Route exact path="/:userName" element={<ProfileContainer />}>
             {<Route path="" element={<Profilepage setLoggedIn={setLoggedIn} />} />}
             <Route
@@ -160,4 +167,27 @@ function ShelfContainer() {
   }
 
   return shelfExist ? <Outlet /> : <NotFound />;
+}
+
+function AuthorContainer({ children }) {
+  const { author } = useParams();
+  const [authorExist, setAuthorExist] = useState(null);
+
+  useEffect(() => {
+    const fetchAuthorExists = async (shelf) => {
+      const response = await fetch(`https://openlibrary.org/authors/${author}.json`);
+      response.ok ? setAuthorExist(true) : setAuthorExist(false);
+    };
+    fetchAuthorExists();
+  }, [author]);
+
+  if (authorExist === null) {
+    return (
+      <Stack height="100vh" alignItems="center" justifyContent="center">
+        <CircularProgress style={{ width: "15vh", height: "auto" }} />
+      </Stack>
+    );
+  }
+
+  return authorExist ? children : <NotFound />;
 }
