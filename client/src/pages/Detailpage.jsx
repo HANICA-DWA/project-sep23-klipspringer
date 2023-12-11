@@ -13,6 +13,7 @@ export default function Detailpage({ setLoggedIn }) {
   const navigate = useNavigate();
   const isbn = useParams().isbn;
   const [book, setBook] = useState({ authors: [] });
+  const [bookWorks, setBookWorks] = useState({});
   const [open, setOpen] = useState(false);
   const [shelfInfo, setShelfInfo] = useState({ bookcase: [] });
   const [addError, setAddError] = useState();
@@ -39,6 +40,18 @@ export default function Detailpage({ setLoggedIn }) {
         console.log(err);
       });
   }, [isbn]);
+
+  useEffect(() => {
+    if (book.identifiers && book.identifiers.openlibrary) {
+      fetch(`https://openlibrary.org/books/${book.identifiers.openlibrary[0]}.json`)
+        .then((res) => res.json())
+        .then((data) => {
+          fetch(`https://openlibrary.org${data.works[0].key}.json`)
+            .then((res) => res.json())
+            .then((data) => setBookWorks(data));
+        });
+    }
+  }, [book]);
 
   useEffect(() => {
     if (loggedIn) {
@@ -172,6 +185,19 @@ export default function Detailpage({ setLoggedIn }) {
         />
 
         <Chip sx={{ margin: "10px", fontSize: "14px" }} color="primary" icon={<ArrowOutward style={{ transform: "scale(0.7)" }} />} label="Buy" />
+
+        {bookWorks.description ? (
+          <Box sx={{ margin: "10px" }}>
+            <Stack alignItems="center" mt={3}>
+              <Typography align="center" variant="h4" fontWeight="700" gutterBottom>
+                Summary
+              </Typography>
+              <Typography variant="body1" width="85%">
+                {typeof bookWorks.description === "string" ? bookWorks.description : bookWorks.description.value}
+              </Typography>
+            </Stack>
+          </Box>
+        ) : null}
       </Stack>
     </>
   );
