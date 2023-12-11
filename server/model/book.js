@@ -9,6 +9,7 @@ const schema = new mongoose.Schema({
   cover_image: { type: String },
   title: { type: String, required: true },
   authors: { type: [String], required: true },
+  subject: { type: [String]},
 });
 
 const model = mongoose.model(name, schema);

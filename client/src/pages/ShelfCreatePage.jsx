@@ -48,6 +48,8 @@ export default function ShelfCreatePage({ edit = false }) {
     }
   };
 
+  console.log(books)
+
   const handleEdit = () => {
     if (loggedIn && username === usernameParams) {
       if ((shelf === "top_three" && books.length <= 3) || (shelf !== "top_three" && books.length >= 3)) {
