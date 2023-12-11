@@ -42,7 +42,7 @@
 
 | Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
 |---|---|---|---|---|---|
-|  | | | | | |
+| 1 uur | Sprint review/planning voorbereiden | Iedereen | Ging top | :upside_down_face: | - |
 
 
 
