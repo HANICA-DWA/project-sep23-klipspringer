@@ -15,6 +15,7 @@ import Detailpage from "./pages/Detailpage";
 import Search from "./pages/Search";
 import Bookcase from "./pages/Bookcase";
 import ShelfPage from "./pages/ShelfPage";
+import Barcode from "./pages/Barcode";
 
 export default function Router() {
   const [loggedIn, setLoggedIn] = useState({ loggedIn: false, username: undefined });
@@ -47,6 +48,7 @@ export default function Router() {
           <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/find" element={<Search />} />
+          <Route path="/find/scan" element={<Barcode />} />
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
           <Route path="/register" element={<Register setLoggedIn={setLoggedIn} />} />
           <Route path="/linkedin" element={<LinkedInCallback />} />
