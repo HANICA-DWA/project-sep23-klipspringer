@@ -31,6 +31,8 @@ export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
+      mode: "cors",
       body: JSON.stringify({ book: book }),
     })
       .then((res) => {
