@@ -12,12 +12,13 @@
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak  | Met Wie | Resultaten                              | Emotie | Link |
-|------|---|---------|-----------------------------------------|---|---|
-| 2    | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/134)| N.V.T   | werken met de popup was wel vervelend   |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/b06130895b8c89cc768f78ed5ac8d06340724f85) |
+| Uren | Taak  | Met Wie | Resultaten                             | Emotie | Link |
+|------|---|---------|----------------------------------------|---|---|
+| 2    | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/134)| N.V.T   | werken met de popup was wel vervelend  |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/b06130895b8c89cc768f78ed5ac8d06340724f85) |
 | 1.5  | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/223)| N.V.T   | data moest worden opgelagen in de state |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/b31ec2bd004bd93063be9fdd7e51bc456c4b5635) |
-| 1.5  | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/224)| N.V.T   | data ophalen gaf CORS foutmeldingen     |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/79de69397ee1185726c136d4107db95b4be7cf83) |
-|      | |         |                                         | | |
+| 1.5  | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/224)| N.V.T   | data ophalen gaf CORS foutmeldingen    |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/79de69397ee1185726c136d4107db95b4be7cf83) |
+| 1    | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/243)| N.V.T   | link naar amazon                       |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/ba208e86a9a720ea0d60b8c642f3a58dc58b6dc6) |
+|      | |         |                                        | | |
 
 
 ## Dinsdag 12 december
