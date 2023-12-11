@@ -42,20 +42,14 @@ export default function Detailpage({ setLoggedIn }) {
   }, [isbn]);
 
   useEffect(() => {
-    if(book.identifiers != null && book.identifiers.openlibrary != null){
-      fetch(import.meta.env.VITE_BACKEND_HOST +
-          "/book/works/"+
-          book.identifiers.openlibrary[0]
-      )
-          .then((res) => {
-            return res.json();
-          })
-          .then((res) => {
-            setBookWorks(res);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+    if (book.identifiers && book.identifiers.openlibrary) {
+      fetch(`https://openlibrary.org/books/${book.identifiers.openlibrary[0]}.json`)
+        .then((res) => res.json())
+        .then((data) => {
+          fetch(`https://openlibrary.org${data.works[0].key}.json`)
+            .then((res) => res.json())
+            .then((data) => setBookWorks(data));
+        });
     }
   }, [book]);
 
@@ -192,16 +186,18 @@ export default function Detailpage({ setLoggedIn }) {
 
         <Chip sx={{ margin: "10px", fontSize: "14px" }} color="primary" icon={<ArrowOutward style={{ transform: "scale(0.7)" }} />} label="Buy" />
 
-        {bookWorks.description ?(<Box sx={{ margin: "10px" }}>
-          <Stack alignItems="center">
-            <Typography align="center" variant="h2" fontWeight="700" gutterBottom>
-              Summary
-            </Typography>
-            <Typography variant="h6">
-              {typeof bookWorks.description === "string" ? bookWorks.description : bookWorks.description.value}
-            </Typography>
-          </Stack>
-        </Box>):null}
+        {bookWorks.description ? (
+          <Box sx={{ margin: "10px" }}>
+            <Stack alignItems="center" mt={3}>
+              <Typography align="center" variant="h4" fontWeight="700" gutterBottom>
+                Summary
+              </Typography>
+              <Typography variant="body1" width="85%">
+                {typeof bookWorks.description === "string" ? bookWorks.description : bookWorks.description.value}
+              </Typography>
+            </Stack>
+          </Box>
+        ) : null}
       </Stack>
     </>
   );
