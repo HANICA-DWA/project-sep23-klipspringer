@@ -29,7 +29,8 @@ export default function Search({ setLoggedIn }) {
           <Stack direction="row" alignItems="center" style={{ marginBottom: "25px" }}>
             <ArrowBackIos onClick={() => navigate(-1)} />
             <SearchBar fullSearch onClick={handleClick} />
-              <HamburgerMenu setLoggedIn={setLoggedIn}/>
+              {// <HamburgerMenu setLoggedIn={setLoggedIn}/> Waiting for design
+              }
           </Stack>
           <Typography align="center" variant="body1" style={{ color: "red" }}>
             {errMessage}
