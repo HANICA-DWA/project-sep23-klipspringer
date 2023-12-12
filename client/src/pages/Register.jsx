@@ -242,6 +242,23 @@ export default function Register({ setLoggedIn }) {
           Sign In
         </Typography>
       </Stack>
+      <Stack direction="row" useFlexGap gap={0.5} alignItems="center">
+        <Box sx={{
+          pt: "1rem",
+          pb: "1rem",
+          marginLeft: "0.5rem",
+          marginRight: "0.5rem",
+          paddingLeft: "0.5rem",
+          paddingRight: "0.5rem",
+          borderRadius: "4px",
+          marginBottom: "1rem",
+          bgcolor: "#F5F5F5",
+        }}>
+          <Typography>
+            By signing up, you agree to our <Link to={"/terms-of-service"}>Terms of Service</Link> and <Link to={"/privacy-policy"}>Privacy Policy</Link>
+          </Typography>
+        </Box>
+      </Stack>
     </Stack>
   );
 }
