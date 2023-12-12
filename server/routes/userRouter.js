@@ -114,8 +114,8 @@ router.put("/:username/shelves/:shelf", async (req, res, next) => {
       }
       res.status(200).json(book);
     } catch (err) {
-       let error = createError("Invalid book or shelf", 400);
-       if (err.errors) error = createError(err.errors[Object.keys(err.errors)[0]].message, 400);
+      let error = createError("Invalid book or shelf", 400);
+      if (err.errors) error = createError(err.errors[Object.keys(err.errors)[0]].message, 400);
       next(error);
     }
   }
@@ -195,5 +195,45 @@ router.put("/:username/bookcase", async (req, res, next) => {
     }
   }
 });
+
+router.put("/:username/follow", async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.username);
+    const account = await User.findById(req.body.account);
+    if(!user || !account){
+      const error = createError("User not found", 404);
+      throw error;
+    } else {
+      user.following.push(account._id);
+      account.followers.push(user._id);
+
+      await user.save();
+      await account.save();
+      res.status(200).json(account);
+    }
+  } catch (err) {
+    next(createError("cann't follow", 400))
+  }
+});
+
+router.delete("/:username/unfollow", async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.username);
+    const account = await User.findById(req.body.account);
+    if(!user || !account){
+      const error = createError("User not found", 404);
+      throw error;
+    } else {
+      user.following.pull(account._id)
+      account.followers.pull(user._id)
+
+      await user.save();
+      await account.save();
+      res.status(200).json(account);
+    }
+  } catch {
+    next(createError("cann't unfollow", 400))
+  }
+})
 
 export default router;
