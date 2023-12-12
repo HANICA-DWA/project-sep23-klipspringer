@@ -53,12 +53,12 @@ export default function Privacy() {
                         2. How We Use Your Information
                     </Typography>
                     <Typography>
-                        We may use the information we collect for the following purposes:
-
-                        To provide and maintain our web application.
-                        To personalize your experience.
-                        To improve our web application.
-                        To send periodic emails regarding your account or other products and services.
+                        We may use the information we collect for the following purposes:<br />
+                        <br />
+                        To provide and maintain our web application.<br />
+                        To personalize your experience.<br />
+                        To improve our web application.<br />
+                        To send periodic emails regarding your account or other products and services.<br />
                     </Typography>
                 </Box>
                 <Box sx={{

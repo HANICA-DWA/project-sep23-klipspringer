@@ -88,12 +88,12 @@ export default function Terms() {
 						5. Prohibited Conduct
 					</Typography>
 					<Typography>
-						You agree not to engage in any of the following activities:
-
-						Violating any applicable laws or regulations.
+						You agree not to engage in any of the following activities:<br />
+						<br />
+						Violating any applicable laws or regulations.<br />
 						Posting, transmitting, or disseminating content that is harmful, threatening, abusive,
-						defamatory, or otherwise objectionable.
-						Attempting to interfere with the proper functioning of our web application.
+						defamatory, or otherwise objectionable.<br />
+						Attempting to interfere with the proper functioning of our web application.<br />
 					</Typography>
 				</Box>
 				<Box sx={{
