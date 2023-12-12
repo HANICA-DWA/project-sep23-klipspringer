@@ -117,9 +117,11 @@ export default function EditProfilePage({ setLoggedIn }) {
         </Button>
       </Stack>
       <Stack mt="auto" alignItems="center" useFlexGap gap={1}>
-        <Typography variant="body1" fontWeight={500}>
-          Connected via {profileInfo.sso_provider}
-        </Typography>
+        {profileInfo.sso_provider && (
+          <Typography variant="body1" fontWeight={500}>
+            Connected via {profileInfo.sso_provider}
+          </Typography>
+        )}
         <Typography
           variant="body1"
           fontWeight={600}

@@ -32,7 +32,7 @@ app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
 app.use(sessionParser);
 app.use(express.json());
 
-app.use(express.static("public"));
+app.use("/public", express.static("public"));
 
 app.use("/user", userRouter);
 app.use("/book", bookRouter);

@@ -68,12 +68,18 @@ const storage = multer.diskStorage({
   },
   filename: customName,
 });
-const upload = multer({ storage: storage, fileFilter: createFileFilter("image/") });
+const upload = multer({ storage: storage, fileFilter: createFileFilter("image/"), limits: { fileSize: 1024 * 1024 * 2 } });
 
 router.patch("/:username", upload.single("image"), (req, res, next) => {
   const { name } = req.body;
-  console.log(req.file.path);
-  res.send("test");
+  try {
+    if (req.file) req.user.profile_picture = req.file.path;
+    req.user.name = name;
+    req.user.save();
+    res.status(200).send("Succesfully updated");
+  } catch (err) {
+    next(err);
+  }
 });
 
 router.post("/:username/shelf", async (req, res, next) => {
