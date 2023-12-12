@@ -19,6 +19,8 @@ import AuthorContainer from "./containers/AuthorContainer";
 import ShelfContainer from "./containers/ShelfContainer";
 import ProfileContainer from "./containers/ProfileContainer";
 import Barcode from "./pages/Barcode";
+import TermsOfServicePage from "./pages/TermsOfServicePage.jsx";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage.jsx";
 
 export default function Router() {
   const [loggedIn, setLoggedIn] = useState({ loggedIn: false, username: undefined });
@@ -56,6 +58,8 @@ export default function Router() {
           <Route path="/register" element={<Register setLoggedIn={setLoggedIn} />} />
           <Route path="/linkedin" element={<LinkedInCallback />} />
           <Route path="/unauthorized" element={<Unauthorized />} />
+          <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/book/:isbn" element={<Detailpage setLoggedIn={setLoggedIn} />} />
           <Route
             path="/author/:author"
