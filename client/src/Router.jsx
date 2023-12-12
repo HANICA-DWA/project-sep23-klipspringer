@@ -16,6 +16,7 @@ import Search from "./pages/Search";
 import Bookcase from "./pages/Bookcase";
 import ShelfPage from "./pages/ShelfPage";
 import Barcode from "./pages/Barcode";
+import EditProfilePage from "./pages/EditProfilePage";
 
 export default function Router() {
   const [loggedIn, setLoggedIn] = useState({ loggedIn: false, username: undefined });
@@ -55,7 +56,8 @@ export default function Router() {
           <Route path="/unauthorized" element={<Unauthorized />} />
           <Route path="/book/:isbn" element={<Detailpage setLoggedIn={setLoggedIn} />} />
           <Route exact path="/:userName" element={<ProfileContainer />}>
-            {<Route path="" element={<Profilepage setLoggedIn={setLoggedIn} />} />}
+            <Route path="" element={<Profilepage setLoggedIn={setLoggedIn} />} />
+            <Route path="edit" element={<EditProfilePage setLoggedIn={setLoggedIn} />} />
             <Route
               path="shelf"
               element={

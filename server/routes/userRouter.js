@@ -1,7 +1,9 @@
 import express from "express";
+import multer from "multer";
 
 import User from "../model/user.js";
 import { createError } from "../functions/errorCreation.js";
+import { createFileFilter, customName } from "../functions/fileUpload.js";
 
 const router = express.Router();
 
@@ -58,6 +60,20 @@ router.use("/:username", (req, res, next) => {
     next(createError("Unauthorized", 403));
   }
   next();
+});
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "./public/avatars");
+  },
+  filename: customName,
+});
+const upload = multer({ storage: storage, fileFilter: createFileFilter("image/") });
+
+router.patch("/:username", upload.single("image"), (req, res, next) => {
+  const { name } = req.body;
+  console.log(req.file.path);
+  res.send("test");
 });
 
 router.post("/:username/shelf", async (req, res, next) => {
