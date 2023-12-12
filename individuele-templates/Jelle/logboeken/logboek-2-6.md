@@ -25,10 +25,11 @@
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak  | Met Wie | Resultaten                                         | Emotie | Link |
-|------|---|---------|----------------------------------------------------|---|---|
-| 3    | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/221) | N.V.T   | het maken van de inhoud en het stylen van de tekst |:smiley:| [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/264/files) |
-|      | |         |                                                    | | |
+| Uren | Taak                                                                                    | Met Wie | Resultaten                                                  | Emotie | Link |
+|------|-----------------------------------------------------------------------------------------|---------|-------------------------------------------------------------|---|---|
+| 3    | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/221) | N.V.T   | het maken van de inhoud en het stylen van de tekst          |:smiley:| [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/264/files) |
+| 0.5  | omdat bookcase button nu in het menu staat kan deze knop weg                            | N.V.T   | button weggehaald, nu lijkt de profielpagina meer opgeruimt |:smiley:| [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/2455ad7af3181cb334dfa110839e28906fb776ba) |
+|      |                                                                                         |         |                                                             | | |
 
 ## Woensdag 13 december
 
