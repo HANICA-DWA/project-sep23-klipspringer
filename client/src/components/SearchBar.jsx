@@ -1,8 +1,10 @@
-import { FormControl, InputAdornment, IconButton, TextField, Popper, Paper, Button, Typography, LinearProgress } from "@mui/material";
+import { FormControl, InputAdornment, IconButton, TextField, Popper, Paper, Button, Typography, LinearProgress, Divider } from "@mui/material";
 import SearchResult from "./SearchResult";
 import { useEffect, useRef, useState } from "react";
-import { Search } from "@mui/icons-material";
+import { Cancel, QrCodeScanner, Search } from "@mui/icons-material";
 import SearchResultPerson from "./SearchResultPerson";
+import { useNavigate } from "react-router-dom";
+import Barcode from "../pages/Barcode";
 
 export default function SearchBar({ onClick, fullSearch }) {
   const [searchText, setSearchText] = useState("");
@@ -10,6 +12,7 @@ export default function SearchBar({ onClick, fullSearch }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isOnCooldown, setIsOnCooldown] = useState(false);
   const [lastSearched, setLastSearched] = useState("");
+  const [isScanning, setIsScanning] = useState(false);
 
   function popperContents() {
     if (isLoading) {
@@ -85,6 +88,9 @@ export default function SearchBar({ onClick, fullSearch }) {
   const open = Boolean(anchorEl);
   const id = open ? "simple-popper" : undefined;
 
+  if (isScanning)
+    return <Barcode onAdd={onClick} closeScanner={() => setIsScanning(false)} setIsScanning={setIsScanning}/>
+
   return (
     <>
       <form
@@ -110,14 +116,20 @@ export default function SearchBar({ onClick, fullSearch }) {
               ),
               endAdornment: (
                 <InputAdornment position="end">
-                  <Button
+                  <Cancel
+                    
                     onClick={() => {
                       closepopper();
                       setSearchText("");
                     }}
-                  >
-                    cancel
-                  </Button>
+                    sx={{cursor: "pointer", borderRight: "1px solid", padding: "0.25rem 0.5rem"}}
+                  />
+                  <QrCodeScanner 
+                    onClick={()=> {
+                      setIsScanning(true);
+                    }}
+                    sx={{cursor: "pointer", padding: "0.25rem 0rem 0.25rem 0.7rem"}}
+                  />
                 </InputAdornment>
               ),
               sx: {
