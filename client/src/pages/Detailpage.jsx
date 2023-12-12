@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import { Add, ArrowBackIosNew, ArrowOutward } from "@mui/icons-material";
 import { Box, Button, Chip, Stack, Typography } from "@mui/material";
 import { LoggedInContext } from "../Contexts";
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ModalShelf from "../components/ModalShelf";
 import Bookcover from "../components/Bookcover";
 import { useAlert } from "../hooks/useAlert";
@@ -155,8 +155,19 @@ export default function Detailpage({ setLoggedIn }) {
               </Typography>
             ) : null}
             {book.authors != undefined ? (
-              <Typography variant="h6" color="#6A9D8A">
-                {book.authors.map((author) => author.name).join(", ")}
+              <Typography variant="h6" color="#6A9D8A" textAlign="center">
+                {book.authors.map((author, index, array) => {
+                  const url = new URL(author.url);
+                  const authorId = url.pathname.split("/").slice(2, 3)[0];
+                  return (
+                    <React.Fragment key={author.name}>
+                      <Link to={`/author/${authorId}`} style={{ color: "inherit" }}>
+                        {author.name}
+                      </Link>
+                      {index < array.length - 1 && ", "}
+                    </React.Fragment>
+                  );
+                })}
               </Typography>
             ) : (
               <Typography variant="h6" color="#6A9D8A">
