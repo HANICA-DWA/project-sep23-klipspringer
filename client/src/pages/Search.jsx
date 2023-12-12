@@ -13,6 +13,8 @@ export default function Search({ setLoggedIn }) {
     const [errMessage, setErrMessage] = useState("");
 
     const handleClick = (searched) => {
+        if (!searched.type)
+            navigate(`/book/${searched._id}`)
         if (searched.type === "book")
             navigate(`/book/${searched.book._id}`)
         if (searched.type === "person")
