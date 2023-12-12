@@ -17,7 +17,6 @@ export default function Barcode({onAdd, closeScanner, setIsScanning}) {
     const onResult = async (result) => {
         setIsScanning(false);
         const bookdata = await fetchBookData(result.text)
-        console.log(bookdata);
         onAdd({
             _id: result.text,
             cover_image: bookdata.cover ? bookdata.cover.medium : undefined,
