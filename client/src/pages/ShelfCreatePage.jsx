@@ -57,6 +57,8 @@ export default function ShelfCreatePage({ edit = false }) {
           headers: {
             "Content-Type": "application/json",
           },
+          credentials: "include",
+          mode: "cors",
           body: JSON.stringify({ name: title, books: books, type: "editshelf" }),
         }).then((res) => {
           if (res.ok) {
@@ -88,6 +90,8 @@ export default function ShelfCreatePage({ edit = false }) {
           headers: {
             "Content-Type": "application/json",
           },
+          credentials: "include",
+          mode: "cors",
           body: JSON.stringify({ name: title, books: books }),
         }).then((res) => {
           if (res.ok) {
