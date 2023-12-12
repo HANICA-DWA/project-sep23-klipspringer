@@ -6,6 +6,7 @@ import { LoggedInContext } from "../Contexts";
 import Header from "../components/Header";
 import ProfileInfo from "../components/ProfileInfo";
 import CreateShelfButton from "../components/CreateShelfButton";
+import getProfileData from "../data/getProfileData";
 
 function Profilepage({ setLoggedIn }) {
   const userName = useParams().userName;
@@ -13,32 +14,12 @@ function Profilepage({ setLoggedIn }) {
   const [profileInfo, setProfileInfo] = useState([]);
 
   useEffect(() => {
-    getProfileData();
-  }, []);
-
-  function getProfileData() {
-    fetch(
-      import.meta.env.VITE_BACKEND_HOST +
-        "/user/" +
-        userName +
-        "?" +
-        new URLSearchParams({
-          fields: ["_id", "profile_picture", "name", "top_three", "shelf"],
-        }),
-      {
-        method: "GET",
-      }
-    )
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        setProfileInfo(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+    const getFunction = async () => {
+      const profileData = await getProfileData(userName, ["_id", "profile_picture", "name", "top_three", "shelf"]);
+      setProfileInfo(profileData);
+    };
+    getFunction();
+  }, [userName]);
 
   return (
     <>
