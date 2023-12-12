@@ -30,6 +30,7 @@
 | 3    | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/221) | N.V.T   | het maken van de inhoud en het stylen van de tekst          |:smiley:| [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/264/files) |
 | 0.5  | omdat bookcase button nu in het menu staat kan deze knop weg                             | N.V.T   | button weggehaald, nu lijkt de profielpagina meer opgeruimt |:smiley:| [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/2455ad7af3181cb334dfa110839e28906fb776ba) |
 | 0.5  | leerdoelen opgesomd als resultaat van de retrospective                                   | N.V.T   | Samenvatting van de leerdoelen van sprint 3                 |:smiley:| [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/20bb73c367130d3d3b9680c6a13df5381bab72ef) |
+| 0.5  | afvang tekst voor geen boeken in de boekenkast voor boek toevoegen aan plank             | N.V.T   | text toevoegen                                              |:smiley:| [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/f4cf7b17ad19bd61f9b586595c76cf79a5a025d8) |
 |      |                                                                                          |         |                                                             | | |
 
 ## Woensdag 13 december
