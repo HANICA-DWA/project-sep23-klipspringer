@@ -204,8 +204,8 @@ router.put("/:username/follow", async (req, res, next) => {
       const error = createError("User not found", 404);
       throw error;
     } else {
-      user.following.push(account._id);
-      account.followers.push(user._id);
+      user.following.push({_id: account._id, profile_picture: account.profile_picture});
+      account.followers.push({_id: user._id, profile_picture: user.profile_picture});
 
       await user.save();
       await account.save();

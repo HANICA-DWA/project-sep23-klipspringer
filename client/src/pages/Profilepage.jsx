@@ -6,12 +6,21 @@ import { LoggedInContext } from "../Contexts";
 import Header from "../components/Header";
 import ProfileInfo from "../components/ProfileInfo";
 import CreateShelfButton from "../components/CreateShelfButton";
+import ModalFollowers from "../components/ModalFollowers";
 
 function Profilepage({ setLoggedIn }) {
   const userName = useParams().userName;
   const navigate = useNavigate();
   const { loggedIn, username } = useContext(LoggedInContext);
   const [profileInfo, setProfileInfo] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [valueTabs, setValueTabs] = useState("")
+
+  const handleOpen = (tab) => {
+    setOpen(true);
+    setValueTabs(tab)
+  }
+  const handleClose = () => setOpen(false);
 
   useEffect(() => {
     getProfileData();
@@ -87,11 +96,11 @@ function Profilepage({ setLoggedIn }) {
           <ProfileInfo name={profileInfo.name} avatar={profileInfo.profile_picture} handle={profileInfo._id} />
           <Stack justifyContent="center">
             <Stack direction="row">
-              <Stack alignItems="center" margin="5px">
+              <Stack alignItems="center" margin="5px" onClick={() => handleOpen("followers")}>
                 <Typography variant="caption">Followers</Typography>
                 <Typography >{profileInfo.followers ? profileInfo.followers.length : null}</Typography>
               </Stack>
-              <Stack alignItems="center" margin="5px">
+              <Stack alignItems="center" margin="5px" onClick={() => handleOpen("following")}>
                 <Typography variant="caption" >Following</Typography>
                 <Typography >{profileInfo.following ? profileInfo.following.length : null}</Typography>
               </Stack>
@@ -106,6 +115,12 @@ function Profilepage({ setLoggedIn }) {
               </Button>
               : null
             }
+            <ModalFollowers 
+              open={open} handleClose={handleClose} 
+              valueTabs={valueTabs} setValueTabs={setValueTabs} 
+              followers={profileInfo.followers} following={profileInfo.following}
+              profile={userName}
+            />
           </Stack>
         </Stack>
         {loggedIn && username === userName ? (
