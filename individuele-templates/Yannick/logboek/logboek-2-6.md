@@ -18,12 +18,11 @@
 
 ## Dinsdag 12 december
 
-> Eventueel informatieve algemene opmerkingen over deze dag.
-
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
+| **Uren** | **Taak**                                                                                                                        | **Met Wie**   | **Resultaten**                                                                                                                                                                            | **Emotie**  | **Link**                                                                                                                                                                                                  |
+|----------|---------------------------------------------------------------------------------------------------------------------------------|---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 2.5h     | [link naar taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/118)<br>Frontend profiel editen                | Alleen ikzelf | Een frontend gemaakt voor het aanpassen van de naam en profielfoto. Een preview voor het uploaden van foto's was<br>nieuw en kostte daarom wat meer tijd.                                 | :thinking:  | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/f8c64cbf3f086b8a80471e35f32a33790ab171df#diff-5439f26b6790334d08ce795c59693dbe7aea2ad468ce55b8f649d89e3da020bb) |
+| 2h       | [link naar taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/119)<br>Backend voor het aanpassen van profiel | Alleen ikzelf | Een endpoint gemaakt voor het aanpassen van de naam en profielfoto. Ook hier was het even uitzoeken hoe afbeeldingen goed geüpload<br>en opgeslagen konden worden.                        | :thinking:  | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/f8c64cbf3f086b8a80471e35f32a33790ab171df#diff-5439f26b6790334d08ce795c59693dbe7aea2ad468ce55b8f649d89e3da020bb) |
+| 2.5h     | [link naar taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/120)<br>Frontend met backend koppelen          | Alleen ikzelf | De koppeling en het daadwerkelijk uploaden van afbeeldingen is gemaakt. Hier ook nog wat compressie aan toegevoegd, zodat<br>de afbeeldingen niet te groot op onze server komen te staan. | :zany_face: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/f8c64cbf3f086b8a80471e35f32a33790ab171df)                                                                       |
 
 ## Woensdag 13 december
 
