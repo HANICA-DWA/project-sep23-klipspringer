@@ -1,10 +1,10 @@
-import { FormControl, InputAdornment, IconButton, TextField, Popper, Paper, Button, Typography, LinearProgress } from "@mui/material";
+import { FormControl, InputAdornment, IconButton, TextField, Popper, Paper, Button, Typography, LinearProgress, Chip } from "@mui/material";
 import SearchResult from "./SearchResult";
 import { useEffect, useRef, useState } from "react";
 import { Search } from "@mui/icons-material";
 import SearchResultPerson from "./SearchResultPerson";
 
-export default function SearchBar({ onClick, fullSearch }) {
+export default function SearchBar({ onClick, fullSearch, genreChips, deleteChip, setChips }) {
   const [searchText, setSearchText] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -30,7 +30,8 @@ export default function SearchBar({ onClick, fullSearch }) {
   useEffect(() => {
     if (
       (!isOnCooldown && searchText.length >= 3 && !searchText.startsWith("@")) ||
-      (!isOnCooldown && searchText.length >= 2 && searchText.startsWith("@"))
+      (!isOnCooldown && searchText.length >= 2 && searchText.startsWith("@")) ||
+      (!isOnCooldown && genreChips) && !searchText.startsWith("@")
     ) {
       if (lastSearched !== searchText) {
         updateSearch();
@@ -63,10 +64,17 @@ export default function SearchBar({ onClick, fullSearch }) {
   }
 
   async function getBookSearchResults() {
+    const data = null
     setIsLoading(true);
-    const urlTitle = searchText.replace(/([\s])/g, "+");
-    const result = await fetch(`https://openlibrary.org/search.json?q=${urlTitle}&limit=10`);
-    const data = await result.json();
+    if(searchText){
+      const urlTitle = searchText.replace(/([\s])/g, "+");
+      const result = await fetch(`https://openlibrary.org/search.json?q=${urlTitle}&limit=10`);
+      data = await result.json();
+    } else if (genreChips){
+      setIsLoading(true);
+      const result = await fetch(`https://openlibrary.org/search.json?subject=${genreChips.join("+")}&limit=10`);
+      data = await result.json();
+    }
     setSearchResults(data.docs.filter((book) => book.isbn));
     setIsLoading(false);
   }
@@ -99,14 +107,22 @@ export default function SearchBar({ onClick, fullSearch }) {
           <TextField
             value={searchText}
             onChange={(e) => setSearchText(e.target.value ? e.target.value : "")}
-            placeholder="Search books..."
+            placeholder={genreChips.length > 0 ? null : "Search books..."}
             InputProps={{
+              readOnly: genreChips.length > 0 ? true : false,
               startAdornment: (
+                <>
                 <InputAdornment position="start">
                   <IconButton type="submit" edge="end">
                     <Search />
                   </IconButton>
                 </InputAdornment>
+                <div style={{display: "flex", flexWrap: "wrap"}}>
+                  {genreChips.map((g) => {
+                    return <Chip sx={{margin: "5px 5px 5px 0px"}} key={g} label={g} onDelete={() => deleteChip(g) }/> 
+                  })}
+                </div>
+                </>
               ),
               endAdornment: (
                 <InputAdornment position="end">
@@ -114,6 +130,7 @@ export default function SearchBar({ onClick, fullSearch }) {
                     onClick={() => {
                       closepopper();
                       setSearchText("");
+                      setChips([])
                     }}
                   >
                     cancel
