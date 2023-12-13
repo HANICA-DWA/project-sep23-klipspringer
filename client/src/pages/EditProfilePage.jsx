@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import getProfileData from "../data/getProfileData.js";
 import { Box, Button, Divider, FormControl, IconButton, InputAdornment, Stack, TextField, Typography } from "@mui/material";
-import { AlternateEmail, Edit } from "@mui/icons-material";
+import { AlternateEmail, ArrowBackIosNew, Edit } from "@mui/icons-material";
 import ProfileAvatar from "../components/ProfileAvatar.jsx";
 import logout from "../data/logout.js";
 import imageCompression from "browser-image-compression";
@@ -76,9 +76,13 @@ export default function EditProfilePage({ setLoggedIn }) {
   return (
     <Stack alignItems="center" mt={2} useFlexGap gap={2} minHeight="90vh">
       {alert}
-      <Typography variant="h5" fontWeight="600" sx={{ flex: "0 1 auto" }}>
-        Edit profile
-      </Typography>
+      <Stack direction="row" justifyContent="space-between" width="100%">
+        <ArrowBackIosNew sx={{ position: "relative", left: 15 }} onClick={() => navigate(-1)} />
+        <Typography variant="h5" fontWeight="600" sx={{ position: "relative", left: -15 }}>
+          Edit profile
+        </Typography>
+        <div></div>
+      </Stack>
       <Divider style={{ width: "100%" }} />
       <Stack alignItems="center" useFlexGap gap={5}>
         <Box position="relative">
