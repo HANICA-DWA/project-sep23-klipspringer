@@ -26,12 +26,11 @@
 
 ## Woensdag 13 december
 
-> Eventueel informatieve algemene opmerkingen over deze dag.
-
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
+| **Uren** | **Taak**                                                                                                                      | **Met Wie**   | **Resultaten**                                                                                                                                                                                                   | **Emotie**  | **Link**                                                                                                                            |
+|----------|-------------------------------------------------------------------------------------------------------------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| 3h       | Profiel editen afmaken, en bugs oplossen                                                                                      | Joris en ik   | Profile editing afgemaakt met wat feedbackmeldingen voor de gebruiker. Joris heeft dit gereviewd en vond nog wat bugs.<br>Die hebben we vervolgens opgelost.                                                     | :thinking:  | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/269)                                        |
+| 1.5h     | [link naar taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/249)<br>Websocket server op de backend maken | Alleen ikzelf | Een start gemaakt met het inrichten van de websocketserver op de backend.                                                                                                                                        | :smile:     | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/65ffd6ee6dcec50e5a65ed22e4c3772e9c4ec8dd) |
+| 1.5h     | Tests faalden na een aanpassing aan het mongoose schema, dit fixen                                                            | Niels en ik   | Een aantal dingen op de backend en frontend aangepast, omdat de toevoeging aan het schema eigenlijk niet nodig was.<br>Hierbij ook wat bugs opgelost. Niels heeft ook een aantal foutmeldingen en bugs opgelost. | :zany_face: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/273)                                        |
 
 ## Donderdag 14 december
 
