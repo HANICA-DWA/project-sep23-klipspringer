@@ -70,6 +70,9 @@ Ik neem mezelf voor voor de volgende keer om om direct om hulp en uitleg te vrag
 
 Ik ben me bewuster geworden van het aantal moeilijkheden dat ik tegen kom tijdens het werken aan mijn taken. Ik vraag nu ook wat sneller om hulp als ik ergens echt niet uit kom en dit heeft een positieve invloed op de efficiëntie van mijn werk.
 
+op zich een redelijk aannemelijk verhaal. Ik zie dat je serieus aan de slag bent gegaan. Ga je nu anders te werk als het gaat om hulpvragen? Is het nog steeds een onderwerp waarbij je uit je comfortzone moet komen? Heeft theorie je kunnen helpen (en welke?).
+
+
 ### Het effect op het groepsproces was:
 
 Mijn eigen ontwikkeling heeft ook een positieve invloed op het groepsproces gehad. Door mijn communicatie over de uitdagingen in mijn taken, waren mijn teamleden beter op de hoogte van mijn voortgang. Dit zorgt voor meer begrip en een soepeler groepsproces. Ook heeft het een positieve invloed gehad op de samenwerking. Doordat ik af en toe om hulp vroeg, is er wat meer samengewerkt om oplossingen te vinden.

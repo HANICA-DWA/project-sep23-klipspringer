@@ -22,9 +22,9 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
   }, [books]);
 
   if ((bookshelfBooks.length === 0 && !loggedIn) || (bookshelfBooks.length === 0 && hideAdding)) {
-    placeholderBooks.push(<div></div>);
+    placeholderBooks.push(<div key="p1"></div>);
     placeholderBooks.push(
-      <Typography variant="h5" order="2">
+      <Typography key="p2" variant="h5" order="2">
         No books on this shelf
       </Typography>
     );

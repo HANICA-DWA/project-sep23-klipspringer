@@ -2,8 +2,10 @@ import { Stack, Typography } from "@mui/material";
 import { ImageNotSupported } from "@mui/icons-material";
 import {  useState } from "react";
 
-export default function Bookcover({ isbn, cover_image, border, large }) {
-  const [imageSrc, setImageSrc] = useState(`http://covers.openlibrary.org/b/isbn/${isbn}-M.jpg?default=false`);
+export default function Bookcover({ isbn, coverId, cover_image, border, large }) {
+  const [imageSrc, setImageSrc] = useState(
+    isbn ? `http://covers.openlibrary.org/b/isbn/${isbn}-M.jpg?default=false` : `https://covers.openlibrary.org/b/id/${coverId}-L.jpg?default=false`
+  );
 
   const handleImageError = () => {
     if (cover_image && cover_image !== imageSrc) {
@@ -18,7 +20,7 @@ export default function Bookcover({ isbn, cover_image, border, large }) {
       style={{ borderRadius: "5px", width: "auto", maxWidth: "100%", height: "100%", objectFit: "cover" }}
       src={imageSrc}
       onError={handleImageError}
-      alt={isbn}
+      alt={isbn || coverId}
     />
   ) : (
     <Stack

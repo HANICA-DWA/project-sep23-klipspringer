@@ -5,8 +5,9 @@ import Suggestions from "../components/Suggestions";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Genres from "../components/Genres";
+import {HamburgerMenu} from "../components/HamburgerMenu.jsx";
 
-export default function Search() {
+export default function Search({ setLoggedIn }) {
 
     const navigate = useNavigate()
 
@@ -14,6 +15,8 @@ export default function Search() {
     const [selectedGenreChips, setSelectedGenreChips] = useState([]);
 
     const handleClick = (searched) => {
+        if (!searched.type)
+            navigate(`/book/${searched._id}`)
         if (searched.type === "book")
             navigate(`/book/${searched.book._id}`)
         if (searched.type === "person")
@@ -37,6 +40,8 @@ export default function Search() {
           <Stack direction="row" alignItems="center" style={{ marginBottom: "25px" }}>
             <ArrowBackIos onClick={() => navigate(-1)} />
             <SearchBar fullSearch onClick={handleClick} genreChips={selectedGenreChips} setChips={setSelectedGenreChips} deleteChip={deleteGenreChip}/>
+              {// <HamburgerMenu setLoggedIn={setLoggedIn}/> Waiting for design
+              }
           </Stack>
           <Typography align="center" variant="body1" style={{ color: "red" }}>
             {errMessage}
