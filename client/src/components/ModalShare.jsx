@@ -17,9 +17,10 @@ export default function ModalShare({alert, open, handleClose, profileInfo}) {
 		elementRef.current.style.display = "block";
 		toPng(elementRef.current, { cacheBust: true })
 			.then((dataUrl) => {
-				elementRef.current.style.display = "none";
 				const img = document.createElement("img");
 				img.src = dataUrl;
+				img.style.width = "100%";
+				elementRef.current.style.display = "none";
 				elementRef.current.parentNode.appendChild(img)
 			})
 			.catch((err) => {
@@ -52,16 +53,18 @@ export default function ModalShare({alert, open, handleClose, profileInfo}) {
 						<Close onClick={handleClose} sx={{ position: "absolute", right: "10px", transform: "scale(0.8)" }} />
 					</Stack>
 					{/*<Box sx={{padding: "15px"}}>*/}
-					<Box sx={{padding: "15px", overflowY: "scroll", height: "40vh"}}>
+					<Box sx={{padding: "2px",overflowY: "scroll", height: "40vh"}}>
 						<IconButton onClick={htmlToImageConvert} sx={{
-							position: "relative",
-							bottom: "0",
-							right: "0",
-							padding: "2px",
+							position: "fixed",
 							color: "black",
+							bgcolor: "white",
+							borderRadius: "8px",
+							boxShadow: "0px 1px 2px 1px rgba(0, 0, 0, 0.1)",
+							padding: "2px",
 						}}>
-							<ArrowCircleDownIcon />
+							<ArrowCircleDownIcon fontSize={"large"}/>
 						</IconButton>
+						{/*</Box>*/}
 						<SocialCard elementRef={elementRef} name={profileInfo.name??""} avatar={profileInfo.profile_picture??""} handle={profileInfo._id??""} top_three={profileInfo.top_three} />
 					</Box>
 					<Box sx={{padding: "15px",height: "10vh" }}>
