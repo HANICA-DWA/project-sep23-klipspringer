@@ -44,6 +44,11 @@ export default function Bookcase({ setLoggedIn }) {
         <Typography variant="h4" fontWeight="700" textAlign="center">
           My bookcase
         </Typography>
+          {(profileInfo.bookcase && profileInfo.bookcase.length > 0)?null:(
+              <Typography variant="h5" textAlign="center">
+                  No books in the bookcase, <Link to={"/find"}>add now!</Link>
+              </Typography>
+          )}
         <ImageList cols={matchDownMd ? 3 : 10} rowHeight={matchDownMd ? 150 : 200} gap={8} sx={{ px: 5 }}>
           {profileInfo.bookcase.map((book) => {
             return (
