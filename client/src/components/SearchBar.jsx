@@ -30,10 +30,9 @@ export default function SearchBar({ onClick, fullSearch, genreChips, deleteChip,
   useEffect(() => {
     if (
       (!isOnCooldown && searchText.length >= 3 && !searchText.startsWith("@")) ||
-      (!isOnCooldown && searchText.length >= 2 && searchText.startsWith("@")) ||
-      (!isOnCooldown && genreChips) && !searchText.startsWith("@")
+      (!isOnCooldown && searchText.length >= 2 && searchText.startsWith("@"))
     ) {
-      if (lastSearched !== searchText) {
+      if (lastSearched !== searchText){
         updateSearch();
         setIsOnCooldown(true);
         setTimeout(() => setIsOnCooldown(false), 1000);
@@ -64,7 +63,7 @@ export default function SearchBar({ onClick, fullSearch, genreChips, deleteChip,
   }
 
   async function getBookSearchResults() {
-    const data = null
+    let data = null
     setIsLoading(true);
     if(searchText){
       const urlTitle = searchText.replace(/([\s])/g, "+");
@@ -88,6 +87,7 @@ export default function SearchBar({ onClick, fullSearch, genreChips, deleteChip,
   }
 
   function closepopper() {
+    console.log("sluiten")
     setAnchorEl(null);
   }
   const open = Boolean(anchorEl);
@@ -98,8 +98,7 @@ export default function SearchBar({ onClick, fullSearch, genreChips, deleteChip,
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          getBookSearchResults();
-          openpopper();
+          updateSearch();
         }}
         style={{ marginBottom: "0px", width: "100%" }}
       >

@@ -81,7 +81,6 @@ const seed = async () => {
         {_id: "Guide / How-to "},
         {_id: "Religion And Spirituality"},
         {_id: "Humanities And Social Sciences"},
-        {_id: "True Crime"},
         {_id: "Parenting And Families"},
         {_id: "Science And Technology"},
       ]
