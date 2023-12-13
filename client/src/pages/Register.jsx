@@ -139,7 +139,18 @@ export default function Register({ setLoggedIn }) {
           </Stack>
         </>
       ) : (
-        <Stack useFlexGap gap={2} alignItems="center"  sx={{marginTop: "100px"}}>
+        <Stack useFlexGap gap={2} alignItems="center" sx={{marginTop: "30px"}}>
+          <Box
+              display="flex"
+              component="img"
+              src="/images/bookicon.png"
+              sx={{
+                width: {
+                  xs: "90vw",
+                  md: "30vw",
+                },
+              }}
+            ></Box>
           <Stack direction="row" alignItems="center" useFlexGap gap={2}>
             <ArrowBackIos
               onClick={() => {
@@ -239,9 +250,9 @@ export default function Register({ setLoggedIn }) {
         </Stack>
       )}
       <Stack alignItems="center" sx={{marginBottom: "10px"}}>
-        <Stack direction="row" useFlexGap gap={0.5}>
-          <Typography sx={{ opacity: 0.5 }}>Already on BKS?</Typography>
-          <Typography component={Link} href="/login" sx={{ textDecoration: "none", color: "black" }}>
+        <Stack direction="row" useFlexGap gap={0.5} sx={{color: "success.main"}}>
+          <Typography >Already on BKS?</Typography>
+          <Typography component={Link} href="/login" sx={{ textDecoration: "none", color: "success.main" }}>
             Sign In
           </Typography>
         </Stack>
