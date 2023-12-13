@@ -6,6 +6,8 @@ _Beschrijf wat je -tot nu toe- hebt gedaan om te werken aan je persoonlijke leer
 
 Ik heb in deze eerste sprintweek geprobeerd om me bewuster te zijn van de problemen die ik tegenkom. In mijn logboek heb ik bij "Resultaten" zoveel mogelijk genoteerd waar ik tegen aan ben gelopen. Ik heb daarnaast zoveel mogelijk proberen mede te delen waar ik op vastliep.
 
+neem een paar concrete voorbeelden op.
+
 ### Welke acties op welke momenten heb je uitgevoerd?
 
 Ik heb tijdens het invullen van mijn logboek (meestal aan het einde van de dag) genoteerd welke problemen ik ben tegengekomen.
@@ -27,6 +29,8 @@ Ik heb niets bijgesteld, ik heb geprobeerd om een deel van de acties die ik heb 
 
 Ik ben bewuster geworden van de problemen waar ik tegen aanloop. Door dit bewustzijn kan ik eerder aangeven waar ik vastloop. Daarnaast levert dit voor mij extra kennis op door ideeën van anderen aan te horen.
 
+hoe ga je van "ik ben bewust geworden" naar concrete handelingen?
+
 ### Wat heeft het opgeleverd voor je team?
 
 Het team heeft meer inzicht gekregen in de problemen waar tegen aan wordt gelopen en de obstakels die in het project zitten. Als team hebben we problemen sneller op kunnen lossen en gezamenlijk meer kennis gekregen.
@@ -35,3 +39,5 @@ Het team heeft meer inzicht gekregen in de problemen waar tegen aan wordt gelope
 
 Eerder problemen in mijn logboek opschrijven. Ik doe dit nu vaak aan het einde van de dag, maar ik kan dit beter direct noteren.
 Explicieter om hulp vragen. Ik geef nu vaak wel aan waar ik tegen aanloop, maar geef vaak nog niet aan waar ik hulp bij kan gebruiken.
+
+ok voor de rest en duidelijk doel.

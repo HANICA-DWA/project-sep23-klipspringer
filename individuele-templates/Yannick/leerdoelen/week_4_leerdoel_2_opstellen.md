@@ -4,6 +4,8 @@
 
 Ik wil mijn vaardigheden verbeteren in het geven van effectieve feedback op producten die door mijn teamgenoten zijn ontwikkeld.
 
+welke THEORIE / MODEK ga je inzetten/ gebruiken?
+
 ### Mijn motivatie om aan dit leerdoel te werken is:
 
 Ik heb gemerkt dat mijn feedback op producten van teamleden soms te algemeen is en niet altijd even constructief of zelfs helemaal ontbreekt. Door specifiekere en doelgerichte feedback te geven, wil ik bijdragen aan een verbeterde productkwaliteit en beter inzicht voor anderen wat er volgens mij nog beter zou kunnen.

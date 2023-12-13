@@ -26,11 +26,6 @@ function Profilepage({ setLoggedIn }) {
       <Stack justifyContent="flex-start" alignItems="center" sx={{ minHeight: "100vh" }} spacing={3} useFlexGap>
         <Header setLoggedIn={setLoggedIn} shareButton={true} />
         <ProfileInfo name={profileInfo.name} avatar={profileInfo.profile_picture} handle={profileInfo._id} />
-        {loggedIn && username === userName ? (
-          <Button component={Link} to={`/${username}/bookcase`} variant="contained" sx={{ width: "30vw", alignSelf: "center" }}>
-            Show Bookcase
-          </Button>
-        ) : null}
 
         {profileInfo.top_three ? (
           <Bookshelf
