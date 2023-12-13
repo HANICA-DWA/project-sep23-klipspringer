@@ -33,7 +33,7 @@ function Profilepage({ setLoggedIn }) {
   }, [userName, location]);
 
   function handleFollow() {
-    if (profileInfo.followers.find((name) => name === username)) {
+    if (profileInfo.followers.find((name) => name._id === username)) {
       fetch(import.meta.env.VITE_BACKEND_HOST + "/user/" + username + "/unfollow", {
         method: "DELETE",
         headers: {
@@ -93,7 +93,7 @@ function Profilepage({ setLoggedIn }) {
             </Stack>
             {username !== userName && loggedIn ? (
               <Button variant="contained" onClick={handleFollow}>
-                {profileInfo.followers ? (profileInfo.followers.find((name) => name === username) ? "Unfollow" : "Follow") : null}
+                {profileInfo.followers ? (profileInfo.followers.find((name) => name._id === username) ? "Unfollow" : "Follow") : null}
               </Button>
             ) : !loggedIn ? (
               <Button variant="contained" onClick={() => navigate("/login")}>

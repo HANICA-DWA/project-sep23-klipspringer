@@ -33,10 +33,10 @@ export default function ({ open, handleClose, valueTabs, setValueTabs, followers
                 </Box>
                 <TabContext value={valueTabs} >
                     <TabPanel value="followers" variant="scrollable">
-                        <FollowerList list={followers} />
+                        <FollowerList list={followers} handleClose={handleClose} />
                     </TabPanel>
                     <TabPanel value="following">
-                        <FollowerList list={following} />
+                        <FollowerList list={following} handleClose={handleClose}/>
                     </TabPanel>
                 </TabContext>
             </Box>
