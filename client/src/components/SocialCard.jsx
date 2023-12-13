@@ -1,9 +1,9 @@
 import {Box, Stack} from "@mui/material";
 import ProfileInfo from "./ProfileInfo.jsx";
 import Bookshelf from "./Bookshelf.jsx";
-import {toPng} from "html-to-image";
 
 export default function SocialCard({elementRef, name, avatar, handle, top_three = [] }) {
+
     return (
         <>
         <Stack id="socialCard" ref={elementRef} justifyContent="flex-start" sx={{minHeight: "100vh"}} spacing={3} useFlexGap>

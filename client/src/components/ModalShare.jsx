@@ -1,27 +1,33 @@
-import {Box, Button, FormControl, IconButton, InputAdornment, Modal, Stack, TextField, Typography} from "@mui/material";
-import {Close, Search} from "@mui/icons-material";
+import {Box, FormControl, IconButton, InputAdornment, Modal, Stack, TextField, Typography} from "@mui/material";
+import {Close} from "@mui/icons-material";
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 import SocialCard from "./SocialCard.jsx";
 import {useRef} from "react";
 import {toPng} from "html-to-image";
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 
-export default function ModalShare({alert, open, handleClose, profileInfo}) {
+export default function ModalShare({ alert, open, handleClose, profileInfo}) {
 	const elementRef = useRef(null);
+
 	const handleClick = () => {
 		navigator.clipboard.writeText(window.location.href);
 		alert();
 	};
 
+	//
 	function htmlToImageConvert() {
-		elementRef.current.style.display = "block";
 		toPng(elementRef.current, { cacheBust: true })
 			.then((dataUrl) => {
 				const img = document.createElement("img");
 				img.src = dataUrl;
 				img.style.width = "100%";
 				elementRef.current.style.display = "none";
-				elementRef.current.parentNode.appendChild(img)
+				elementRef.current.parentNode.appendChild(img);
+
+				const link = document.createElement("a");
+				link.href = dataUrl;
+				link.download = `BKS - ${profileInfo.name??""}.png`;
+				link.click();
 			})
 			.catch((err) => {
 				console.log(err);
@@ -39,6 +45,7 @@ export default function ModalShare({alert, open, handleClose, profileInfo}) {
 
 	return (
 		<>
+
 			<Modal open={open} onClose={handleClose}>
 				<Box sx={styleModal}>
 					<Stack
@@ -65,7 +72,10 @@ export default function ModalShare({alert, open, handleClose, profileInfo}) {
 							<ArrowCircleDownIcon fontSize={"large"}/>
 						</IconButton>
 						{/*</Box>*/}
-						<SocialCard elementRef={elementRef} name={profileInfo.name??""} avatar={profileInfo.profile_picture??""} handle={profileInfo._id??""} top_three={profileInfo.top_three} />
+						<SocialCard
+							sx={{display: "none"}}
+							elementRef={elementRef} name={profileInfo.name??""} avatar={profileInfo.profile_picture??""} handle={profileInfo._id??""} top_three={profileInfo.top_three} />
+
 					</Box>
 					<Box sx={{padding: "15px",height: "10vh" }}>
 						<FormControl fullWidth>
