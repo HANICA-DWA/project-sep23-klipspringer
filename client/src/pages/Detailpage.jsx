@@ -1,6 +1,6 @@
 import {Link, useNavigate, useParams} from "react-router-dom";
 import Header from "../components/Header";
-import { Add, ArrowBackIosNew, ArrowOutward, Bookmark, BookmarkBorder } from "@mui/icons-material";
+import { Add, ArrowBackIos, ArrowBackIosNew, ArrowOutward, Bookmark, BookmarkBorder } from "@mui/icons-material";
 import { Box, Button, Chip, Stack, Typography } from "@mui/material";
 import { LoggedInContext } from "../Contexts";
 import React, { useContext, useEffect, useState } from "react";
@@ -138,8 +138,9 @@ export default function Detailpage({ setLoggedIn }) {
       {addAlertComponent}
       {removeAlertComponent}
       <Stack direction="row" alignItems="center" justifyContent="space-between">
-        <Header setLoggedIn={setLoggedIn} backButton />
+        <Header setLoggedIn={setLoggedIn} />
       </Stack>
+      <ArrowBackIos onClick={() => navigate(-1)} sx={{paddingLeft: "15px"}}/>
       <Stack alignItems="center">
         <Box sx={{ margin: "10px", height: "280px" }}>
           <Bookcover isbn={isbn} cover_image={book.cover ? book.cover.medium : undefined} large />
@@ -155,7 +156,7 @@ export default function Detailpage({ setLoggedIn }) {
               </Typography>
             ) : null}
             {book.authors != undefined ? (
-              <Typography variant="h6" color="#6A9D8A" textAlign="center">
+              <Typography variant="h6" color="primary" textAlign="center">
                 {book.authors.map((author, index, array) => {
                   const url = new URL(author.url);
                   const authorId = url.pathname.split("/").slice(2, 3)[0];
@@ -170,7 +171,7 @@ export default function Detailpage({ setLoggedIn }) {
                 })}
               </Typography>
             ) : (
-              <Typography variant="h6" color="#6A9D8A">
+              <Typography variant="h6" color="primary">
                 No authors found
               </Typography>
             )}
@@ -186,7 +187,7 @@ export default function Detailpage({ setLoggedIn }) {
           {loggedIn && username ? (
             shelfInfo.bookcase.find((book) => book._id === isbn) ?
             <Bookmark
-              color="success"
+              color="primary"
               fontSize="large"
               onClick={() => removeFromBookcase(isbn)}
               sx={{cursor: "pointer"}}
