@@ -1,10 +1,11 @@
 import { Typography, ImageList, ImageListItem, Skeleton } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { LoggedInContext } from "../Contexts.jsx";
-import { SubjectTwoTone } from "@mui/icons-material";
 import Bookcover from "./Bookcover.jsx";
+import { useNavigate } from "react-router-dom";
 
 export default function Suggestions() {
+  const navigate = useNavigate();
   const { loggedIn, username } = useContext(LoggedInContext);
   const [suggestions, setSuggestions] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -54,7 +55,7 @@ export default function Suggestions() {
       <ImageList sx={{ display: "flex", justifyContent: "center" }} cols={3} gap={10} >
         {loading ? suggestionNumber.map((item) => <Skeleton key={item} animation="wave" variant="rectangular" width={75} height={120} sx={{ marginRight: "10px" }} />) :
         suggestions.map((item) => (
-          <ImageListItem sx={{ width: "85px", height: "130px" }} key={item.isbn[0]}>
+          <ImageListItem sx={{ width: "85px", height: "130px" }} key={item.isbn[0]} onClick={() => navigate(`/book/${item.isbn[0]}`)}>
             <Bookcover isbn={item.isbn[0]} cover_image={`https://covers.openlibrary.org/b/id/${item.cover_i}-M.jpg?default=false`} />
           </ImageListItem>
         ))}
