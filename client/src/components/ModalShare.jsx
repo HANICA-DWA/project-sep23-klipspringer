@@ -14,7 +14,6 @@ export default function ModalShare({ alert, open, handleClose, profileInfo}) {
 		alert();
 	};
 
-	//
 	function htmlToImageConvert() {
 		toPng(elementRef.current, { cacheBust: true })
 			.then((dataUrl) => {
@@ -59,7 +58,6 @@ export default function ModalShare({ alert, open, handleClose, profileInfo}) {
 						</Typography>
 						<Close onClick={handleClose} sx={{ position: "absolute", right: "10px", transform: "scale(0.8)" }} />
 					</Stack>
-					{/*<Box sx={{padding: "15px"}}>*/}
 					<Box sx={{padding: "2px",overflowY: "scroll", height: "40vh"}}>
 						<IconButton onClick={htmlToImageConvert} sx={{
 							position: "fixed",
@@ -71,7 +69,6 @@ export default function ModalShare({ alert, open, handleClose, profileInfo}) {
 						}}>
 							<ArrowCircleDownIcon fontSize={"large"}/>
 						</IconButton>
-						{/*</Box>*/}
 						<SocialCard
 							sx={{display: "none"}}
 							elementRef={elementRef} name={profileInfo.name??""} avatar={profileInfo.profile_picture??""} handle={profileInfo._id??""} top_three={profileInfo.top_three} />
