@@ -48,7 +48,7 @@ export default function NotificationTray() {
                 sx={{margin: "10px 10px 10px -10px"}}
             >
                 {hasNotification() &&
-                    notifications.map((item) => <NotificationItem key={item._id} item={item}/>)}
+                    notifications.map((item) => <NotificationItem key={item._id} item={item} setNotificationAnchor={setNotificationAnchor}/>)}
                 {hasNotification() && <Stack>
                     <Button
                         onClick={clearNotifications}
@@ -60,13 +60,16 @@ export default function NotificationTray() {
     )
 }
 
-function NotificationItem({ item }) {
+function NotificationItem({ item, setNotificationAnchor }) {
 
     const navigate = useNavigate()
 
     return (
         <>
-            <MenuItem onClick={() => navigate("/" + item._id)}>
+            <MenuItem onClick={() => {
+                setNotificationAnchor(null);
+                navigate("/" + item._id)
+            }}>
                 <Stack flexDirection="row" alignItems="center">
                     <Avatar src={item.profile_picture}/>
                     <span style={{paddingLeft: "10px"}}>@{item._id} has followed you!</span>
