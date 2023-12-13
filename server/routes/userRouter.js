@@ -1,7 +1,9 @@
 import express from "express";
+import multer from "multer";
 
 import User from "../model/user.js";
 import { createError } from "../functions/errorCreation.js";
+import { createFileFilter, customName } from "../functions/fileUpload.js";
 
 const router = express.Router();
 
@@ -58,6 +60,29 @@ router.use("/:username", (req, res, next) => {
     next(createError("Unauthorized", 403));
   }
   next();
+});
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "./public/avatars");
+  },
+  filename: customName,
+});
+const upload = multer({ storage: storage, fileFilter: createFileFilter("image/"), limits: { fileSize: 1024 * 1024 * 2 } });
+
+router.patch("/:username", upload.single("image"), async (req, res, next) => {
+  const { name } = req.body;
+  try {
+    if (req.file) req.user.profile_picture = req.file.path;
+    if (!name) throw createError("Name is required", 400);
+    req.user.name = name;
+    await req.user.save();
+    res.status(200).json({ message: "Succesfully updated" });
+  } catch (err) {
+    let error = err;
+    if (err.errors) error = createError(err.errors[Object.keys(err.errors)[0]].message, 400);
+    next(error);
+  }
 });
 
 router.post("/:username/shelf", async (req, res, next) => {

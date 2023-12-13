@@ -9,6 +9,7 @@ dotenv.config();
 import userRouter from "./routes/userRouter.js";
 import sessionsRouter from "./routes/sessionsRouter.js";
 import bookRouter from "./routes/bookRouter.js";
+import multer from "multer";
 import genreRouter from "./routes/genreRouter.js";
 
 const app = express();
@@ -32,14 +33,20 @@ app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
 app.use(sessionParser);
 app.use(express.json());
 
+app.use("/public", express.static("public"));
+
 app.use("/user", userRouter);
 app.use("/book", bookRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/genre", genreRouter);
 
 app.use((err, req, res, next) => {
-  if (!err.status) err.status = 500;
-  res.status(err.status).json({ error: err.message });
+  if (err instanceof multer.MulterError) {
+    res.status(400).json({ error: err.message });
+  } else {
+    if (!err.status) err.status = 500;
+    res.status(err.status).json({ error: err.message });
+  }
 });
 
 export default app;

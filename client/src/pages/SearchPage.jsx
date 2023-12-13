@@ -7,6 +7,7 @@ import { LoggedInContext } from "../Contexts.jsx";
 import { ArrowBackIos, Add } from "@mui/icons-material";
 import ModalBookcase from "../components/ModalBookcase.jsx";
 import { useAlert } from "../hooks/useAlert.jsx";
+import getProfileData from "../data/getProfileData.js";
 
 export default function SearchPage() {
   const navigate = useNavigate();
@@ -17,8 +18,8 @@ export default function SearchPage() {
   const [errMessage, setErrMessage] = useState("");
   const [open, setOpen] = useState(false);
   const [showAlert, alertComponent] = useAlert(errMessage ? errMessage : "Succesfully added", 3000, errMessage ? "warning" : "success");
-  const [booksOnShelf, setBooksOnShelf] = useState([])
-  const [topThreeLength, setTopThreeLength] = useState()
+  const [booksOnShelf, setBooksOnShelf] = useState([]);
+  const [topThreeLength, setTopThreeLength] = useState();
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -51,35 +52,19 @@ export default function SearchPage() {
   };
 
   useEffect(() => {
-    fetch(
-      import.meta.env.VITE_BACKEND_HOST +
-        "/user/" +
-        username +
-        "?" +
-        new URLSearchParams({
-          fields: ["top_three", "shelf"],
-        }),
-      {
-        method: "GET",
+    const getFunction = async () => {
+      const profileData = await getProfileData(username, ["top_three", "shelf"]);
+      let currentShelf;
+      if (shelf === "top_three") {
+        currentShelf = profileData.top_three;
+        setTopThreeLength(currentShelf.books.length);
+      } else {
+        currentShelf = profileData.shelf.find((item) => item._id == shelf);
       }
-    )
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        let currentShelf;
-        if(shelf === "top_three"){
-          currentShelf = res.top_three
-          setTopThreeLength(currentShelf.books.length)
-        } else {
-          currentShelf = res.shelf.find((item) => item._id == shelf);
-        }
-        setBooksOnShelf(currentShelf.books);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [shelf, username])
+      setBooksOnShelf(currentShelf.books);
+    };
+    getFunction();
+  }, [shelf, username]);
 
   return (
     <Container

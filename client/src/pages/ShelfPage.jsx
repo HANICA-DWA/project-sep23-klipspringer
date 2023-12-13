@@ -7,6 +7,7 @@ import Bookshelf from "../components/Bookshelf";
 import CreateShelfButton from "../components/CreateShelfButton";
 import { LoggedInContext } from "../Contexts";
 import { useAlert } from "../hooks/useAlert";
+import getProfileData from "../data/getProfileData";
 
 export default function ShelfPage({ setLoggedIn }) {
   const navigate = useNavigate();
@@ -17,29 +18,14 @@ export default function ShelfPage({ setLoggedIn }) {
   const [errMessage, setErrMessage] = useState("");
   const [setDeleteShelfAlertOn, deleteShelfAlert] = useAlert(errMessage ? errMessage : "Shelf deleted!", 3000, errMessage ? "error" : "success");
   useEffect(() => {
-    fetch(
-      import.meta.env.VITE_BACKEND_HOST +
-        "/user/" +
-        userName +
-        "?" +
-        new URLSearchParams({
-          fields: ["_id", "profile_picture", "shelf"],
-        }),
-      {
-        method: "GET",
-      }
-    )
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        setProfileInfo(res);
-        setShelfInfo(res.shelf.find((shelfFromUser) => shelfFromUser._id === shelf));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const getFunction = async () => {
+      const profileData = await getProfileData(userName, ["_id", "profile_picture", "shelf"]);
+      setProfileInfo(profileData);
+      setShelfInfo(profileData.shelf.find((shelfFromUser) => shelfFromUser._id === shelf));
+    };
+    getFunction();
   }, []);
+
   async function deleteShelf(shelfID) {
     try {
       await fetch(import.meta.env.VITE_BACKEND_HOST + `/user/${username}/shelves/${shelfID}`, {
