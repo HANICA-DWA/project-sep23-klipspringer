@@ -31,7 +31,6 @@ export default function Suggestions() {
           const subjectsResult = await subjectsResponse.json();
           if (subjectsResult[`ISBN:${randomBook._id}`].subjects) {
             const subjects = subjectsResult[`ISBN:${randomBook._id}`].subjects.map((subject) => subject.name);
-
             for (let i = 0; i < 5; i++) {
               array.push(subjects[Math.floor(Math.random() * subjects.length)].replace(/([\s])/g, "+"));
             }
@@ -61,6 +60,7 @@ export default function Suggestions() {
       <ImageList sx={{ display: "flex", justifyContent: "center" }} cols={3} gap={10} >
         {loading ? suggestionNumber.map((item) => <Skeleton key={item} animation="wave" variant="rectangular" width={75} height={120} sx={{ marginRight: "10px" }} />) :
         suggestions.map((item) => (
+          item.isbn[0] && 
           <ImageListItem sx={{ width: "85px", height: "130px" }} key={item.isbn[0]} onClick={() => navigate(`/book/${item.isbn[0]}`)}>
             <Bookcover isbn={item.isbn[0]} cover_image={`https://covers.openlibrary.org/b/id/${item.cover_i}-M.jpg?default=false`} />
           </ImageListItem>
