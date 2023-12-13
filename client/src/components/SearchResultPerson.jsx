@@ -1,5 +1,6 @@
 import { Avatar, Button, Paper, Skeleton, Typography } from "@mui/material";
 import { useState } from "react";
+import ProfileAvatar from "./ProfileAvatar";
 
 export default function SearchResultPerson({ closePopper, onClick, person }) {
   const [loading, setLoading] = useState(true);
@@ -26,13 +27,7 @@ export default function SearchResultPerson({ closePopper, onClick, person }) {
     >
       <div style={{ display: "flex", alignItems: "center", width: "100%" }}>
         {loading ? <Skeleton animation="wave" variant="circular" width={50} height={50} sx={{ margin: "10px" }} /> : <></>}
-        <Avatar
-          sx={{ width: 56, height: 56, marginX: "10px" }}
-          alt={person._id}
-          src={person.profile_picture}
-          imgProps={{ referrerPolicy: "no-referrer" }}
-          onLoad={() => showImage()}
-        />
+        <ProfileAvatar alt={person._id} image={person.profile_picture} border={false} onLoad={showImage} />
         <div>
           <Typography variant="body1" sx={{ fontWeight: "700", marginX: "10px" }}>
             {person._id}
