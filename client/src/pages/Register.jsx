@@ -241,7 +241,7 @@ export default function Register({ setLoggedIn }) {
       <Stack alignItems="center" sx={{marginBottom: "10px"}}>
         <Stack direction="row" useFlexGap gap={0.5}>
           <Typography sx={{ opacity: 0.5 }}>Already on BKS?</Typography>
-          <Typography component={Link} to="/login" sx={{ textDecoration: "none", color: "black" }}>
+          <Typography component={Link} href="/login" sx={{ textDecoration: "none", color: "black" }}>
             Sign In
           </Typography>
         </Stack>
