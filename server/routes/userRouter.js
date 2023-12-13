@@ -70,15 +70,18 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage, fileFilter: createFileFilter("image/"), limits: { fileSize: 1024 * 1024 * 2 } });
 
-router.patch("/:username", upload.single("image"), (req, res, next) => {
+router.patch("/:username", upload.single("image"), async (req, res, next) => {
   const { name } = req.body;
   try {
     if (req.file) req.user.profile_picture = req.file.path;
+    if (!name) throw createError("Name is required", 400);
     req.user.name = name;
-    req.user.save();
-    res.status(200).send("Succesfully updated");
+    await req.user.save();
+    res.status(200).json({ message: "Succesfully updated" });
   } catch (err) {
-    next(err);
+    let error = err;
+    if (err.errors) error = createError(err.errors[Object.keys(err.errors)[0]].message, 400);
+    next(error);
   }
 });
 

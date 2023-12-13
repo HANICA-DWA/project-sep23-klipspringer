@@ -6,12 +6,15 @@ import { AlternateEmail, Edit } from "@mui/icons-material";
 import ProfileAvatar from "../components/ProfileAvatar.jsx";
 import logout from "../data/logout.js";
 import imageCompression from "browser-image-compression";
+import { useAlert } from "../hooks/useAlert.jsx";
 
 export default function EditProfilePage({ setLoggedIn }) {
   const navigate = useNavigate();
   const { userName } = useParams();
   const [profileInfo, setProfileInfo] = useState({ _id: "" });
   const [edits, setEdits] = useState({ image: "", nameInput: "" });
+  const [message, setMessage] = useState({ type: "", message: "" });
+  const [setAlertOn, alert] = useAlert(message.message, 3000, message.type === "error" ? "error" : "success");
 
   useEffect(() => {
     const getFunction = async () => {
@@ -61,14 +64,18 @@ export default function EditProfilePage({ setLoggedIn }) {
         mode: "cors",
       });
       const result = await response.json();
-      console.log(result);
+      if (!response.ok) throw new Error(result.error);
+      setMessage({ type: "success", message: result.message });
     } catch (err) {
-      console.log(err);
+      setMessage({ type: "error", message: err.message });
+    } finally {
+      setAlertOn();
     }
   };
 
   return (
     <Stack alignItems="center" mt={2} useFlexGap gap={2} minHeight="90vh">
+      {alert}
       <Typography variant="h5" fontWeight="600" sx={{ flex: "0 1 auto" }}>
         Edit profile
       </Typography>
