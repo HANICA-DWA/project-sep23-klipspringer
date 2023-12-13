@@ -18,7 +18,8 @@ let theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: "35px",
-        },
+          textTransform: "lowercase"
+        }
       },
     },
   },
