@@ -1,10 +1,10 @@
-import { Box, Button, FormControl, FormHelperText, IconButton, InputAdornment, Stack, TextField, Typography } from "@mui/material";
+import { Box, Button, FormControl, FormHelperText, InputAdornment, Stack, TextField, Typography, Link } from "@mui/material";
 import { AlternateEmail, Cancel, CheckCircleOutline } from "@mui/icons-material";
 import { ArrowBackIos } from "@mui/icons-material";
 import { GoogleLogin } from "@react-oauth/google";
 import { LinkedIn } from "react-linkedin-login-oauth2";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { LoggedInContext } from "../Contexts";
 
@@ -47,19 +47,21 @@ export default function Register({ setLoggedIn }) {
 
   return (
     <Stack
-      useFlexGap
-      gap={4}
+      // useFlexGap
+      // gap={4}
       alignItems="center"
       sx={{
-        mt: {
-          xs: "10vh",
-          md: "5vh",
-        },
+        // mt: {
+        //   xs: "10vh",
+        //   md: "5vh",
+        // },
+        height: "100vh"
       }}
+      justifyContent="space-between"
     >
       {!submitted ? (
         <>
-          <Stack useFlexGap gap={2} alignItems="center">
+          <Stack useFlexGap gap={2} alignItems="center"  sx={{marginTop: "30px"}}>
             <Box
               display="flex"
               component="img"
@@ -137,7 +139,7 @@ export default function Register({ setLoggedIn }) {
           </Stack>
         </>
       ) : (
-        <Stack useFlexGap gap={2} alignItems="center">
+        <Stack useFlexGap gap={2} alignItems="center"  sx={{marginTop: "100px"}}>
           <Stack direction="row" alignItems="center" useFlexGap gap={2}>
             <ArrowBackIos
               onClick={() => {
@@ -236,26 +238,16 @@ export default function Register({ setLoggedIn }) {
           </Stack>
         </Stack>
       )}
-      <Stack direction="row" useFlexGap gap={0.5}>
-        <Typography sx={{ opacity: 0.5 }}>Already on BKS?</Typography>
-        <Typography component={Link} to="/login" sx={{ textDecoration: "none", color: "black" }}>
-          Sign In
-        </Typography>
-      </Stack>
-      <Stack direction="row" useFlexGap gap={0.5} alignItems="center">
-        <Box sx={{
-          pt: "1rem",
-          pb: "1rem",
-          marginLeft: "0.5rem",
-          marginRight: "0.5rem",
-          paddingLeft: "0.5rem",
-          paddingRight: "0.5rem",
-          borderRadius: "4px",
-          marginBottom: "1rem",
-          bgcolor: "#F5F5F5",
-        }}>
-          <Typography>
-            By signing up, you agree to our <Link to={"/terms-of-service"}>Terms of Service</Link> and <Link to={"/privacy-policy"}>Privacy Policy</Link>
+      <Stack alignItems="center" sx={{marginBottom: "10px"}}>
+        <Stack direction="row" useFlexGap gap={0.5}>
+          <Typography sx={{ opacity: 0.5 }}>Already on BKS?</Typography>
+          <Typography component={Link} to="/login" sx={{ textDecoration: "none", color: "black" }}>
+            Sign In
+          </Typography>
+        </Stack>
+        <Box>
+          <Typography align="center" color="#666666" variant="caption">
+            By signing up, you agree to our <Link color="#666666" href={"/terms-of-service"}>Terms of Service</Link> and <Link color="#666666" href={"/privacy-policy"}>Privacy Policy</Link>
           </Typography>
         </Box>
       </Stack>
