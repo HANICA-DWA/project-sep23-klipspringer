@@ -132,7 +132,7 @@ export default function ModalBookcase({ open, handleClose, handleAdd, booksOnShe
                 ) : null}
               </Stack>
             )):(
-                <Typography variant="h5" order="2">
+                <Typography variant="h5" order="2" align="center" margin="5px">
                   No books in the bookcase
                 </Typography>
             )}
