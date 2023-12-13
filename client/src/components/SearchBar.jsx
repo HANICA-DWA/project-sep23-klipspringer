@@ -112,9 +112,9 @@ export default function SearchBar({ onClick, fullSearch, genreChips, deleteChip,
           <TextField
             value={searchText}
             onChange={(e) => setSearchText(e.target.value ? e.target.value : "")}
-            placeholder={genreChips.length > 0 ? null : "Search books..."}
+            placeholder={genreChips && genreChips.length > 0 ? null : "Search books..."}
             InputProps={{
-              readOnly: genreChips.length > 0 ? true : false,
+              readOnly: genreChips && genreChips.length > 0 ? true : false,
               startAdornment: (
                 <>
                 <InputAdornment position="start">
@@ -123,7 +123,7 @@ export default function SearchBar({ onClick, fullSearch, genreChips, deleteChip,
                   </IconButton>
                 </InputAdornment>
                 <div style={{display: "flex", flexWrap: "wrap"}}>
-                  {genreChips.map((g) => {
+                  {genreChips && genreChips.map((g) => {
                     return <Chip size="small" sx={{margin: "5px 5px 5px 0px"}} key={g} label={g} onDelete={() => deleteChip(g) }/> 
                   })}
                 </div>
