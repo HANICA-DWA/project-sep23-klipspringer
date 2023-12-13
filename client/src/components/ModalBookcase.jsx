@@ -103,7 +103,7 @@ export default function ModalBookcase({ open, handleClose, handleAdd, booksOnShe
             <Close onClick={handleClose} sx={{ position: "absolute", right: "10px", transform: "scale(0.8)" }} />
           </Stack>
           <Box sx={{ height: "85%", overflowY: "scroll" }}>
-            {bookcase.map((book) => (
+            {bookcase.length > 0?bookcase.map((book) => (
               <Stack
                 key={book._id}
                 direction="row"
@@ -131,7 +131,11 @@ export default function ModalBookcase({ open, handleClose, handleAdd, booksOnShe
                   )
                 ) : null}
               </Stack>
-            ))}
+            )):(
+                <Typography variant="h5" order="2" align="center" margin="5px">
+                  No books in the bookcase
+                </Typography>
+            )}
           </Box>
           <Stack justifyContent="center" sx={{ bgcolor: "white", width: "100vw" }}>
             <Button variant="contained" sx={{ margin: "5px" }} onClick={() => addBooks(books)}>

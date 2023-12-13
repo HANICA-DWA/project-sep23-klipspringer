@@ -1,4 +1,4 @@
-import { FormControl, InputAdornment, IconButton, TextField, Popper, Paper, Button, Typography, LinearProgress, Divider } from "@mui/material";
+import { FormControl, InputAdornment, IconButton, TextField, Popper, Paper, Button, Typography, LinearProgress, Chip, Divider } from "@mui/material";
 import SearchResult from "./SearchResult";
 import { useEffect, useRef, useState } from "react";
 import { Cancel, QrCodeScanner, Search } from "@mui/icons-material";
@@ -6,7 +6,7 @@ import SearchResultPerson from "./SearchResultPerson";
 import { useNavigate } from "react-router-dom";
 import Barcode from "../pages/Barcode";
 
-export default function SearchBar({ onClick, fullSearch }) {
+export default function SearchBar({ onClick, fullSearch, genreChips, deleteChip, setChips }) {
   const [searchText, setSearchText] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -35,7 +35,7 @@ export default function SearchBar({ onClick, fullSearch }) {
       (!isOnCooldown && searchText.length >= 3 && !searchText.startsWith("@")) ||
       (!isOnCooldown && searchText.length >= 2 && searchText.startsWith("@"))
     ) {
-      if (lastSearched !== searchText) {
+      if (lastSearched !== searchText){
         updateSearch();
         setIsOnCooldown(true);
         setTimeout(() => setIsOnCooldown(false), 1000);
@@ -66,10 +66,17 @@ export default function SearchBar({ onClick, fullSearch }) {
   }
 
   async function getBookSearchResults() {
+    let data = null
     setIsLoading(true);
-    const urlTitle = searchText.replace(/([\s])/g, "+");
-    const result = await fetch(`https://openlibrary.org/search.json?q=${urlTitle}&limit=10`);
-    const data = await result.json();
+    if(searchText){
+      const urlTitle = searchText.replace(/([\s])/g, "+");
+      const result = await fetch(`https://openlibrary.org/search.json?q=${urlTitle}&limit=10`);
+      data = await result.json();
+    } else if (genreChips){
+      setIsLoading(true);
+      const result = await fetch(`https://openlibrary.org/search.json?subject=${genreChips.join("+")}&limit=10`);
+      data = await result.json();
+    }
     setSearchResults(data.docs.filter((book) => book.isbn));
     setIsLoading(false);
   }
@@ -96,8 +103,7 @@ export default function SearchBar({ onClick, fullSearch }) {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          getBookSearchResults();
-          openpopper();
+          updateSearch();
         }}
         style={{ marginBottom: "0px", width: "100%" }}
       >
@@ -105,14 +111,22 @@ export default function SearchBar({ onClick, fullSearch }) {
           <TextField
             value={searchText}
             onChange={(e) => setSearchText(e.target.value ? e.target.value : "")}
-            placeholder="Search books..."
+            placeholder={genreChips && genreChips.length > 0 ? null : "Search books..."}
             InputProps={{
+              readOnly: genreChips && genreChips.length > 0 ? true : false,
               startAdornment: (
+                <>
                 <InputAdornment position="start">
                   <IconButton type="submit" edge="end">
                     <Search />
                   </IconButton>
                 </InputAdornment>
+                <div style={{display: "flex", flexWrap: "wrap"}}>
+                  {genreChips && genreChips.map((g) => {
+                    return <Chip size="small" sx={{margin: "5px 5px 5px 0px"}} key={g} label={g} onDelete={() => deleteChip(g) }/> 
+                  })}
+                </div>
+                </>
               ),
               endAdornment: (
                 <InputAdornment position="end">
@@ -121,6 +135,7 @@ export default function SearchBar({ onClick, fullSearch }) {
                     onClick={() => {
                       closepopper();
                       setSearchText("");
+                      setChips([])
                     }}
                     sx={{cursor: "pointer", borderRight: "1px solid", padding: "0.25rem 0.5rem"}}
                   />

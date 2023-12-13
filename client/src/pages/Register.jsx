@@ -85,7 +85,7 @@ export default function Register({ setLoggedIn }) {
               <FormControl>
                 <TextField
                   variant="outlined"
-                  color={usernameInput && !inputError ? "success" : "secondary"}
+                  color={usernameInput && !inputError ? "success" : "primary"}
                   id="username"
                   name="username"
                   placeholder="yourname"
@@ -99,7 +99,7 @@ export default function Register({ setLoggedIn }) {
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
-                        <Typography color="secondary" fontSize="1rem" fontWeight="medium">
+                        <Typography color="primary" fontSize="1rem" fontWeight="medium">
                           BKS.com/
                         </Typography>
                       </InputAdornment>
@@ -131,7 +131,7 @@ export default function Register({ setLoggedIn }) {
                 ) : (
                   ""
                 )}
-                <Button variant="contained" color="secondary" type="submit" sx={{ p: 1, fontSize: "0.9rem", mt: 2 }}>
+                <Button variant="contained" color="primary" type="submit" sx={{ p: 1, fontSize: "0.9rem", mt: 2 }}>
                   Claim your shelf
                 </Button>
               </FormControl>
@@ -139,7 +139,18 @@ export default function Register({ setLoggedIn }) {
           </Stack>
         </>
       ) : (
-        <Stack useFlexGap gap={2} alignItems="center"  sx={{marginTop: "100px"}}>
+        <Stack useFlexGap gap={2} alignItems="center" sx={{marginTop: "30px"}}>
+          <Box
+              display="flex"
+              component="img"
+              src="/images/bookicon.png"
+              sx={{
+                width: {
+                  xs: "90vw",
+                  md: "30vw",
+                },
+              }}
+            ></Box>
           <Stack direction="row" alignItems="center" useFlexGap gap={2}>
             <ArrowBackIos
               onClick={() => {
@@ -239,9 +250,9 @@ export default function Register({ setLoggedIn }) {
         </Stack>
       )}
       <Stack alignItems="center" sx={{marginBottom: "10px"}}>
-        <Stack direction="row" useFlexGap gap={0.5}>
-          <Typography sx={{ opacity: 0.5 }}>Already on BKS?</Typography>
-          <Typography component={Link} href="/login" sx={{ textDecoration: "none", color: "black" }}>
+        <Stack direction="row" useFlexGap gap={0.5} sx={{color: "success.main"}}>
+          <Typography >Already on BKS?</Typography>
+          <Typography component={Link} href="/login" sx={{ textDecoration: "none", color: "success.main" }}>
             Sign In
           </Typography>
         </Stack>

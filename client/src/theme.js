@@ -7,18 +7,16 @@ let theme = createTheme({
   },
   palette: {
     primary: {
-      main: "#FFA501",
-    },
-    secondary: {
       main: "#238892",
-    },
+    }
   },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
           borderRadius: "35px",
-        },
+          textTransform: "lowercase"
+        }
       },
     },
   },

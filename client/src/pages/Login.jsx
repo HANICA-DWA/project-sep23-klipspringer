@@ -116,9 +116,9 @@ export default function Login({ setLoggedIn }) {
           )}
         </LinkedIn>
       </Stack>
-      <Stack direction="row" useFlexGap gap={0.5}>
-        <Typography sx={{ opacity: 0.5 }}>No account yet?</Typography>
-        <Typography component={Link} to="/register" sx={{ textDecoration: "none", color: "black" }}>
+      <Stack direction="row" useFlexGap gap={0.5} sx={{color: "success.main"}}>
+        <Typography >No account yet?</Typography>
+        <Typography component={Link} to="/register" sx={{ textDecoration: "none", color: "success.main" }}>
           Sign Up
         </Typography>
       </Stack>

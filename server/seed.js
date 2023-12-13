@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 import User from "./model/user.js";
 import Book from "./model/book.js";
+import Genre from "./model/genre.js";
 
 const main = async ($log) => {
   $log("> connecting");
@@ -60,8 +61,57 @@ const seed = async () => {
         name: "Aan te raden",
       },
       bookcase: [],
+      followers: [],
+      following: [],
     },
   ]);
+  await Genre.deleteMany();
+  await Genre.insertMany([
+    {  
+      _id: "Nonfiction",
+      subgenres: [
+        {_id: "Memoir And Autobiography"},
+        {_id: "Biography"},
+        {_id: "Food And Drink"},
+        {_id: "Art And Photography"},
+        {_id: "Self-help"},
+        {_id: "History"},
+        {_id: "Travel"},
+        {_id: "True Crime"},
+        {_id: "Humor"},
+        {_id: "Essays"},
+        {_id: "Guide / How-to "},
+        {_id: "Religion And Spirituality"},
+        {_id: "Humanities And Social Sciences"},
+        {_id: "Parenting And Families"},
+        {_id: "Science And Technology"},
+      ]
+    },
+    {
+      "_id": "Fiction",
+      "subgenres": [
+        {_id: "Fantasy"},
+        {_id: "Science Fiction"},
+        {_id: "Dystopian"},
+        {_id: "Action And Adventure"},
+        {_id: "Mystery"},
+        {_id: "Horror"},
+        {_id: "Thriller And Suspense"},
+        {_id: "Historical Fiction"},
+        {_id: "Romance"},
+        {_id: "Women’s Fiction"},
+        {_id: "LGBTQ+"},
+        {_id: "Contemporary Fiction"},
+        {_id: "Literary Fiction"},
+        {_id: "Magical Realism"},
+        {_id: "Graphic Novel"},
+        {_id: "Short Story"},
+        {_id: "Young Adult"},
+        {_id: "New Adult"},
+        {_id: "Children’s"},
+      ]
+    }
+  ])
 };
 
 main(console.log);
