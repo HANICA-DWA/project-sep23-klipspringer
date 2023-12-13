@@ -124,7 +124,7 @@ export default function SearchBar({ onClick, fullSearch, genreChips, deleteChip,
                 </InputAdornment>
                 <div style={{display: "flex", flexWrap: "wrap"}}>
                   {genreChips.map((g) => {
-                    return <Chip sx={{margin: "5px 5px 5px 0px"}} key={g} label={g} onDelete={() => deleteChip(g) }/> 
+                    return <Chip size="small" sx={{margin: "5px 5px 5px 0px"}} key={g} label={g} onDelete={() => deleteChip(g) }/> 
                   })}
                 </div>
                 </>

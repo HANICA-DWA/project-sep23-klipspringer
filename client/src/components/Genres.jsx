@@ -25,6 +25,7 @@ export default function Genres({setChips, selectedChips}){
                             {
                                 e.subgenres.map((g) => {    
                                     return <Chip 
+                                                size="small"
                                                 sx={chipStyle} 
                                                 disabled={selectedChips.find((e) => e === g._id) ? true : false } 
                                                 key={g._id} label={g._id} 
