@@ -29,14 +29,20 @@ export default function Suggestions() {
       const randomBook = res.bookcase[Math.floor(Math.random() * res.bookcase.length)];
 
       let array = [];
-      for (let i = 0; i < 5; i++) {
-        array.push(randomBook.subject[Math.floor(Math.random() * randomBook.subject.length)].replace(/([\s])/g, "+"))
+      if (randomBook.subject.length > 0) {
+        for (let i = 0; i < 5; i++) {
+          array.push(randomBook.subject[Math.floor(Math.random() * randomBook.subject.length)].replace(/([\s])/g, "+"))
+        }
+      } else {
+        array.push("Fantasy");
       }
       getSuggestions(array)
     }).catch((err) => {
       console.log(err)
     })
   }, [])
+
+  const getNoSuggestions = () => <></>;
 
   async function getSuggestions(subjects) {
     const searchSubjects = subjects.join("+OR+");
@@ -54,6 +60,7 @@ export default function Suggestions() {
       <ImageList sx={{ display: "flex", justifyContent: "center" }} cols={3} gap={10} >
         {loading ? suggestionNumber.map((item) => <Skeleton key={item} animation="wave" variant="rectangular" width={75} height={120} sx={{ marginRight: "10px" }} />) :
         suggestions.map((item) => (
+          item.isbn[0] && 
           <ImageListItem sx={{ width: "85px", height: "130px" }} key={item.isbn[0]} onClick={() => navigate(`/book/${item.isbn[0]}`)}>
             <Bookcover isbn={item.isbn[0]} cover_image={`https://covers.openlibrary.org/b/id/${item.cover_i}-M.jpg?default=false`} />
           </ImageListItem>
