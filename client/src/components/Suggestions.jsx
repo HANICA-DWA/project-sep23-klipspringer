@@ -12,35 +12,37 @@ export default function Suggestions() {
   const suggestionNumber = [1, 2, 3, 4]
 
   useEffect(() => {
-    fetch(
-      import.meta.env.VITE_BACKEND_HOST +
-      "/user/" +
-      username +
-      "?" +
-      new URLSearchParams({
-        fields: ["bookcase"],
-      }),
-      {
-        method: "GET",
-      }
-    ).then((res) => {
-      return res.json();
-    }).then((res) => {
-      const randomBook = res.bookcase[Math.floor(Math.random() * res.bookcase.length)];
+    const suggestionsFunction = async () => {
+      let array = ["Fantasy", "History", "Thriller", "Humor", "Literature"];
+      if (loggedIn && username) {
+        try {
+          const response = await fetch(
+            import.meta.env.VITE_BACKEND_HOST + "/user/" + username + "?" + new URLSearchParams({ fields: ["bookcase"] }),
+            {
+              method: "GET",
+              credentials: "include",
+              mode: "cors",
+            }
+          );
+          const data = await response.json();
+          const randomBook = data.bookcase[Math.floor(Math.random() * data.bookcase.length)];
 
-      let array = [];
-      if (randomBook.subject.length > 0) {
-        for (let i = 0; i < 5; i++) {
-          array.push(randomBook.subject[Math.floor(Math.random() * randomBook.subject.length)].replace(/([\s])/g, "+"))
+          const subjectsResponse = await fetch(`https://openlibrary.org/api/books?bibkeys=ISBN:${randomBook._id}&format=json&jscmd=data`);
+          const subjectsResult = await subjectsResponse.json();
+          if (subjectsResult[`ISBN:${randomBook._id}`].subjects) {
+            const subjects = subjectsResult[`ISBN:${randomBook._id}`].subjects.map((subject) => subject.name);
+            for (let i = 0; i < 5; i++) {
+              array.push(subjects[Math.floor(Math.random() * subjects.length)].replace(/([\s])/g, "+"));
+            }
+          }
+        } catch (err) {
+          console.log(err);
         }
-      } else {
-        array.push("Fantasy");
       }
-      getSuggestions(array)
-    }).catch((err) => {
-      console.log(err)
-    })
-  }, [])
+      getSuggestions(array);
+    };
+    suggestionsFunction();
+  }, [loggedIn, username]);
 
   const getNoSuggestions = () => <></>;
 
@@ -49,7 +51,7 @@ export default function Suggestions() {
     const result = await fetch("https://openlibrary.org/search.json?q=subject:(" + searchSubjects + ")+AND+publish_year:[1971+TO+*]&limit=4");
     const data = await result.json();
     setSuggestions(data.docs);
-    setLoading(false)
+    setLoading(false);
   }
 
   return (
