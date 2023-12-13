@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import getProfileData from "../data/getProfileData.js";
-import { Box, Button, Divider, FormControl, IconButton, InputAdornment, Stack, TextField, Typography } from "@mui/material";
+import { Box, Button, CircularProgress, Divider, FormControl, IconButton, InputAdornment, Stack, TextField, Typography } from "@mui/material";
 import { AlternateEmail, ArrowBackIosNew, Edit } from "@mui/icons-material";
 import ProfileAvatar from "../components/ProfileAvatar.jsx";
 import logout from "../data/logout.js";
@@ -15,6 +15,7 @@ export default function EditProfilePage({ setLoggedIn }) {
   const [edits, setEdits] = useState({ image: "", nameInput: "" });
   const [message, setMessage] = useState({ type: "", message: "" });
   const [setAlertOn, alert] = useAlert(message.message, 3000, message.type === "error" ? "error" : "success");
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const getFunction = async () => {
@@ -50,8 +51,11 @@ export default function EditProfilePage({ setLoggedIn }) {
     const { image, nameInput } = edits;
     const formData = new FormData();
 
-    if (edits.image && edits.image !== profileInfo.profile_picture) {
-      const compressedImage = await imageCompression(image, { maxSizeMB: 2 });
+    if (image) {
+      const compressedImage = await imageCompression(image, {
+        maxSizeMB: 2,
+        onProgress: (percentage) => setProgress(percentage),
+      });
       formData.append("image", compressedImage);
     }
     formData.append("name", nameInput);
@@ -86,6 +90,8 @@ export default function EditProfilePage({ setLoggedIn }) {
       <Divider style={{ width: "100%" }} />
       <Stack alignItems="center" useFlexGap gap={5}>
         <Box position="relative">
+          <CircularProgress variant="determinate" value={progress} size={70} sx={{ position: "absolute", zIndex: 0, top: -3, left: -3.5 }} />
+
           <ProfileAvatar name={profileInfo.name} image={profileInfo.profile_picture} />
           <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" hidden onChange={uploadHandler} />
           <label htmlFor="avatar">
