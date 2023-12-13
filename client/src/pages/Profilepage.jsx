@@ -6,8 +6,6 @@ import { LoggedInContext } from "../Contexts";
 import Header from "../components/Header";
 import ProfileInfo from "../components/ProfileInfo";
 import CreateShelfButton from "../components/CreateShelfButton";
-import {toPng} from 'html-to-image';
-import SocialCard from "../components/SocialCard.jsx";
 
 function Profilepage({ setLoggedIn }) {
   const userName = useParams().userName;
@@ -45,9 +43,8 @@ function Profilepage({ setLoggedIn }) {
 
   return (
     <>
-        <SocialCard name={profileInfo.name} avatar={profileInfo.profile_picture} handle={profileInfo._id} top_three={profileInfo.top_three} />
       <Stack justifyContent="flex-start" alignItems="center" sx={{ minHeight: "100vh" }} spacing={3} useFlexGap>
-        <Header setLoggedIn={setLoggedIn} shareButton={true} />
+        <Header setLoggedIn={setLoggedIn} shareButton={true} profileInfo={profileInfo}/>
         <ProfileInfo name={profileInfo.name} avatar={profileInfo.profile_picture} handle={profileInfo._id} />
         {profileInfo.top_three ? (
           <Bookshelf
