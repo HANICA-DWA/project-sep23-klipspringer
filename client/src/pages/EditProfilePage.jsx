@@ -92,7 +92,7 @@ export default function EditProfilePage({ setLoggedIn }) {
         <Box position="relative">
           <CircularProgress variant="determinate" value={progress} size={70} sx={{ position: "absolute", zIndex: 0, top: -3, left: -3.5 }} />
 
-          <ProfileAvatar name={profileInfo.name} image={profileInfo.profile_picture} noCache={false} />
+          <ProfileAvatar name={profileInfo.name} image={profileInfo.profile_picture} />
           <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" hidden onChange={uploadHandler} />
           <label htmlFor="avatar">
             <IconButton

@@ -1,9 +1,9 @@
 import { Avatar, Box } from "@mui/material";
 import { Link } from "react-router-dom";
 
-export default function ProfileAvatar({ alt, image, handle, clickable, border = true, onLoad, noCache = true }) {
+export default function ProfileAvatar({ alt, image, handle, clickable, border = true, onLoad }) {
   const link = handle ? `/${handle}` : "";
-  const imageLink = getAvatarUrl(image, noCache);
+  const imageLink = getAvatarUrl(image);
   const borderObject = border ? { padding: "3px", border: "1px solid grey", borderRadius: "50px" } : {};
   return (
     <Box sx={borderObject}>
@@ -30,15 +30,15 @@ export default function ProfileAvatar({ alt, image, handle, clickable, border = 
   );
 }
 
-function getAvatarUrl(stringUrl, noCache) {
+function getAvatarUrl(stringUrl) {
   if (stringUrl) {
     try {
       const url = new URL(stringUrl);
-      if (noCache) url.searchParams.set("cacheBuster", new Date().getTime());
+      if (!stringUrl.startsWith("data:image/")) url.searchParams.set("cacheBuster", new Date().getTime());
       return url;
     } catch (e) {
       const url = new URL(stringUrl, import.meta.env.VITE_BACKEND_HOST);
-      if (noCache) url.searchParams.set("cacheBuster", new Date().getTime());
+      url.searchParams.set("cacheBuster", new Date().getTime());
       return url;
     }
   }
