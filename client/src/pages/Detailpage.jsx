@@ -19,6 +19,7 @@ export default function Detailpage({ setLoggedIn }) {
   const [addError, setAddError] = useState();
   const [showAddAlert, addAlertComponent] = useAlert(addError || "Succesfully added to your bookcase", 3000, addError ? "error" : "success");
   const [removeError, setRemoveError] = useState();
+  const [readMore, setReadMore] = useState(false);
   const [showRemoveAlert, removeAlertComponent] = useAlert(
     removeError || "Succesfully removed from your bookcase",
     3000,
@@ -115,6 +116,23 @@ export default function Detailpage({ setLoggedIn }) {
     showRemoveAlert();
   }
 
+  function handleReadMore(summary){
+    if(summary.length > 200){
+      return (
+      <Stack alignItems="center">
+        <Typography>{!readMore ? summary.substr(0, 200) + "..." : summary}</Typography>
+        <Button onClick={() => setReadMore(!readMore)}>
+          {!readMore ? "Read more" : "Read less"}
+        </Button>
+      </Stack>
+      )
+    } else {
+      return (
+        <Typography>{summary}</Typography>
+      )
+    }
+  }
+
   return (
     <>
       {addAlertComponent}
@@ -209,7 +227,7 @@ export default function Detailpage({ setLoggedIn }) {
                 Summary
               </Typography>
               <Typography variant="body1" width="85%" sx={{overflowWrap: "anywhere"}}>
-                {typeof bookWorks.description === "string" ? bookWorks.description : bookWorks.description.value}
+                {typeof bookWorks.description === "string" ? handleReadMore(bookWorks.description) : handleReadMore(bookWorks.description.value)}
               </Typography>
             </Stack>
           </Box>

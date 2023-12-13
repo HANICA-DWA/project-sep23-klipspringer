@@ -9,6 +9,7 @@ dotenv.config();
 import userRouter from "./routes/userRouter.js";
 import sessionsRouter from "./routes/sessionsRouter.js";
 import bookRouter from "./routes/bookRouter.js";
+import genreRouter from "./routes/genreRouter.js";
 
 const app = express();
 
@@ -34,6 +35,7 @@ app.use(express.json());
 app.use("/user", userRouter);
 app.use("/book", bookRouter);
 app.use("/sessions", sessionsRouter);
+app.use("/genre", genreRouter);
 
 app.use((err, req, res, next) => {
   if (!err.status) err.status = 500;

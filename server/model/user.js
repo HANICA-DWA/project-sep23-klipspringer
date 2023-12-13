@@ -63,6 +63,8 @@ const schema = new mongoose.Schema(
       ],
     },
     bookcase: { type: [Book.schema], required: true, default: [] },
+    followers: { type: [{ _id: {type: String}, profile_picture: {type: String} }]},
+    following: { type: [{ _id: {type: String}, profile_picture: {type: String} }]},
   },
   {
     methods: {
