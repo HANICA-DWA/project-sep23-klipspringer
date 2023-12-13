@@ -120,7 +120,7 @@ export default function Detailpage({ setLoggedIn }) {
     if(summary.length > 200){
       return (
       <Stack alignItems="center">
-        <Typography>{!readMore ? summary.substr(0, 200) + "..." : summary}</Typography>
+        <Typography variant="body1" width="85%" sx={{overflowWrap: "anywhere"}}>{!readMore ? summary.substr(0, 200) + "..." : summary}</Typography>
         <Button onClick={() => setReadMore(!readMore)}>
           {!readMore ? "Read more" : "Read less"}
         </Button>
@@ -128,7 +128,7 @@ export default function Detailpage({ setLoggedIn }) {
       )
     } else {
       return (
-        <Typography>{summary}</Typography>
+        <Typography variant="body1" width="85%" sx={{overflowWrap: "anywhere"}}>{summary}</Typography>
       )
     }
   }
@@ -189,6 +189,7 @@ export default function Detailpage({ setLoggedIn }) {
               color="success"
               fontSize="large"
               onClick={() => removeFromBookcase(isbn)}
+              sx={{cursor: "pointer"}}
             /> :
             <BookmarkBorder
               fontSize="large"
@@ -198,6 +199,7 @@ export default function Detailpage({ setLoggedIn }) {
                 title: book.title,
                 authors: book.authors.map((author) => author.name),
               })}
+              sx={{cursor: "pointer"}}
             />
           ) : null}
         </Stack>
@@ -227,9 +229,7 @@ export default function Detailpage({ setLoggedIn }) {
               <Typography align="center" variant="h4" fontWeight="700" gutterBottom>
                 Summary
               </Typography>
-              <Typography variant="body1" width="85%" sx={{overflowWrap: "anywhere"}}>
                 {typeof bookWorks.description === "string" ? handleReadMore(bookWorks.description) : handleReadMore(bookWorks.description.value)}
-              </Typography>
             </Stack>
           </Box>
         ) : null}
