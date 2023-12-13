@@ -208,7 +208,7 @@ export default function Detailpage({ setLoggedIn }) {
               <Typography align="center" variant="h4" fontWeight="700" gutterBottom>
                 Summary
               </Typography>
-              <Typography variant="body1" width="85%">
+              <Typography variant="body1" width="85%" sx={{overflowWrap: "anywhere"}}>
                 {typeof bookWorks.description === "string" ? bookWorks.description : bookWorks.description.value}
               </Typography>
             </Stack>
