@@ -90,7 +90,6 @@ export default function SearchBar({ onClick, fullSearch, genreChips, deleteChip,
   }
 
   function closepopper() {
-    console.log("sluiten")
     setAnchorEl(null);
   }
   const open = Boolean(anchorEl);
