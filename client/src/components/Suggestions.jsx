@@ -44,8 +44,6 @@ export default function Suggestions() {
     suggestionsFunction();
   }, [loggedIn, username]);
 
-  const getNoSuggestions = () => <></>;
-
   async function getSuggestions(subjects) {
     const searchSubjects = subjects.join("+OR+");
     const result = await fetch("https://openlibrary.org/search.json?q=subject:(" + searchSubjects + ")+AND+publish_year:[1971+TO+*]&limit=4");
