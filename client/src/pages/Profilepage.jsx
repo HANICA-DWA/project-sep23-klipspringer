@@ -1,8 +1,7 @@
 import { Button, Stack } from "@mui/material";
 import Bookshelf from "../components/Bookshelf";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link, useLocation } from "react-router-dom";
-import { LoggedInContext } from "../Contexts";
 import Header from "../components/Header";
 import ProfileInfo from "../components/ProfileInfo";
 import CreateShelfButton from "../components/CreateShelfButton";
