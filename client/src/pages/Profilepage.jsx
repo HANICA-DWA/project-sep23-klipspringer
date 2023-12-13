@@ -1,7 +1,7 @@
 import { Button, Stack } from "@mui/material";
 import Bookshelf from "../components/Bookshelf";
 import { useContext, useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import { LoggedInContext } from "../Contexts";
 import Header from "../components/Header";
 import ProfileInfo from "../components/ProfileInfo";
@@ -10,7 +10,7 @@ import getProfileData from "../data/getProfileData";
 
 function Profilepage({ setLoggedIn }) {
   const userName = useParams().userName;
-  const { loggedIn, username } = useContext(LoggedInContext);
+  const location = useLocation();
   const [profileInfo, setProfileInfo] = useState([]);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ function Profilepage({ setLoggedIn }) {
       setProfileInfo(profileData);
     };
     getFunction();
-  }, [userName]);
+  }, [userName, location]);
 
   return (
     <>
