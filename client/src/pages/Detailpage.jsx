@@ -1,6 +1,6 @@
 import {Link, useNavigate, useParams} from "react-router-dom";
 import Header from "../components/Header";
-import { Add, ArrowBackIosNew, ArrowOutward } from "@mui/icons-material";
+import { Add, ArrowBackIosNew, ArrowOutward, Bookmark, BookmarkBorder } from "@mui/icons-material";
 import { Box, Button, Chip, Stack, Typography } from "@mui/material";
 import { LoggedInContext } from "../Contexts";
 import React, { useContext, useEffect, useState } from "react";
@@ -141,24 +141,6 @@ export default function Detailpage({ setLoggedIn }) {
         <Header setLoggedIn={setLoggedIn} backButton />
       </Stack>
       <Stack alignItems="center">
-        {loggedIn && username ? (
-          shelfInfo.bookcase.find((book) => book._id === isbn) ? (
-            <Button onClick={() => removeFromBookcase(isbn)}>Remove from bookcase</Button>
-          ) : (
-            <Button
-              onClick={() =>
-                addToBookcase({
-                  _id: isbn,
-                  cover_image: book.cover ? book.cover.medium : undefined,
-                  title: book.title,
-                  authors: book.authors.map((author) => author.name),
-                })
-              }
-            >
-              Add to bookcase
-            </Button>
-          )
-        ) : null}
         <Box sx={{ margin: "10px", height: "280px" }}>
           <Bookcover isbn={isbn} cover_image={book.cover ? book.cover.medium : undefined} large />
         </Box>
@@ -194,12 +176,31 @@ export default function Detailpage({ setLoggedIn }) {
             )}
           </Stack>
         </Box>
-        <Chip
-          onClick={handleOpen}
-          sx={{ margin: "10px", fontSize: "14px", bgcolor: "#000000", color: "#FFFFFF" }}
-          icon={<Add style={{ transform: "scale(0.7)", color: "#FFFFFF" }} />}
-          label="Add to shelf"
-        />
+        <Stack flexDirection="row" alignItems="center" gap={1}>
+          <Chip
+            onClick={handleOpen}
+            sx={{ margin: "10px", fontSize: "14px", bgcolor: "#000000", color: "#FFFFFF" }}
+            icon={<Add style={{ transform: "scale(0.7)", color: "#FFFFFF" }} />}
+            label="Add to shelf"
+          />
+          {loggedIn && username ? (
+            shelfInfo.bookcase.find((book) => book._id === isbn) ?
+            <Bookmark
+              color="success"
+              fontSize="large"
+              onClick={() => removeFromBookcase(isbn)}
+            /> :
+            <BookmarkBorder
+              fontSize="large"
+              onClick={() => addToBookcase({
+                _id: isbn,
+                cover_image: book.cover ? book.cover.medium : undefined,
+                title: book.title,
+                authors: book.authors.map((author) => author.name),
+              })}
+            />
+          ) : null}
+        </Stack>
 
         <ModalShelf
           shelfInfo={shelfInfo}

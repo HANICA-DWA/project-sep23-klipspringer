@@ -123,11 +123,6 @@ function Profilepage({ setLoggedIn }) {
             />
           </Stack>
         </Stack>
-        {loggedIn && username === userName ? (
-          <Button component={Link} to={`/${username}/bookcase`} variant="contained" sx={{ width: "30vw", alignSelf: "center" }}>
-            Show Bookcase
-          </Button>
-        ) : null}
 
         {profileInfo.top_three ? (
           <Bookshelf
