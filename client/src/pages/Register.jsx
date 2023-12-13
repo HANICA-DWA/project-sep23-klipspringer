@@ -85,7 +85,7 @@ export default function Register({ setLoggedIn }) {
               <FormControl>
                 <TextField
                   variant="outlined"
-                  color={usernameInput && !inputError ? "success" : "secondary"}
+                  color={usernameInput && !inputError ? "success" : "primary"}
                   id="username"
                   name="username"
                   placeholder="yourname"
@@ -99,7 +99,7 @@ export default function Register({ setLoggedIn }) {
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
-                        <Typography color="secondary" fontSize="1rem" fontWeight="medium">
+                        <Typography color="primary" fontSize="1rem" fontWeight="medium">
                           BKS.com/
                         </Typography>
                       </InputAdornment>
@@ -131,7 +131,7 @@ export default function Register({ setLoggedIn }) {
                 ) : (
                   ""
                 )}
-                <Button variant="contained" color="secondary" type="submit" sx={{ p: 1, fontSize: "0.9rem", mt: 2 }}>
+                <Button variant="contained" color="primary" type="submit" sx={{ p: 1, fontSize: "0.9rem", mt: 2 }}>
                   Claim your shelf
                 </Button>
               </FormControl>
