@@ -28,7 +28,7 @@ export default function Header({ setLoggedIn, shareButton, backButton, profileIn
           </Box>
           {loggedIn && username === userName && shareButton ? (
             <Box>
-              <ProfileLink alert={setShareLinkAlertOn} />
+              <ProfileLink alert={setShareLinkAlertOn} profileInfo={profileInfo} />
             </Box>
           ) : null}
         </Stack>
