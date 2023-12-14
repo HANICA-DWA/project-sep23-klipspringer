@@ -30,33 +30,57 @@ const seed = async () => {
       top_three: {
         books: [
           {
-            _id: "9780140328721",
-            cover_image: "https://covers.openlibrary.org/b/id/8739161-M.jpg",
-            title: "Book1",
-            authors: ["author"],
+            "_id": "9783502506652",
+            "cover_image": "https://covers.openlibrary.org/b/isbn/9783502506652-M.jpg?default=false",
+            "title": "They Do It with Mirrors",
+            "authors": [
+              "Agatha Christie"
+            ]
           },
+          {
+            "_id": "098020044X",
+            "cover_image": "https://covers.openlibrary.org/b/isbn/098020044X-M.jpg?default=false",
+            "title": "Slow reading",
+            "authors": [
+              "John Miedema"
+            ]
+          },
+          {
+            "_id": "0870706837",
+            "cover_image": "https://covers.openlibrary.org/b/isbn/0870706837-M.jpg?default=false",
+            "title": "D.W. Griffith",
+            "authors": [
+              "Barry, Iris"
+            ]
+          }
         ],
       },
       shelf: {
         books: [
           {
-            _id: "9781338299205",
-            cover_image: "https://covers.openlibrary.org/b/id/14453897-M.jpg",
-            title: "Book1",
-            authors: ["author"],
+            "_id": "1787556921",
+            "cover_image": "https://covers.openlibrary.org/b/id/10544254-M.jpg?default=false",
+            "title": "Moby Dick",
+            "authors": [
+              "Herman Melville"
+            ]
           },
           {
-            _id: "9781419748684",
-            cover_image: "https://covers.openlibrary.org/b/id/10630557-M.jpg",
-            title: "Book1",
-            authors: ["author"],
+            "_id": "5783872559",
+            "cover_image": "https://covers.openlibrary.org/b/id/10323405-M.jpg?default=false",
+            "title": "The Deep End",
+            "authors": [
+              "Jeff Kinney"
+            ]
           },
           {
-            _id: "9781897377758",
-            cover_image: "https://covers.openlibrary.org/b/id/10787655-M.jpg",
-            title: "Book1",
-            authors: ["author"],
-          },
+            "_id": "2070643085",
+            "cover_image": "https://covers.openlibrary.org/b/isbn/2070643085-M.jpg?default=false",
+            "title": "Harry Potter and the Deathly Hallows",
+            "authors": [
+              "J. K. Rowling"
+            ]
+          }
         ],
         name: "Aan te raden",
       },
