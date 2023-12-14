@@ -26,6 +26,7 @@
 |---|---|---|---|---|---|
 | 30 min | [link naar taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/248) | Alleen | Het aanpassen moest 2x gebeuren, omdat ik er halverwege achter kwam dat ik nog extra info moest opslaan | :relaxed: | [link naar resultaat](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/c0603662456e09829f824058276652eb32286eaa) |
 | 3 uur | [link naar taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/246) [link naar taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/247) | Alleen | Het was erg gemakkelijk om te doen, makkelijker dan ik dacht | :shipit: | [link naar resultaat](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/c0603662456e09829f824058276652eb32286eaa) [link naar resultaat](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/f713e5ff6ae70f28fce684ba4eec08696ca5c9ef) |
+| 1 uur | Meeting met Pim | Iedereen + Pim | We hebben een retrospective gehouden | :penguin: | - |
 
 ## Woensdag 13 december
 
@@ -45,6 +46,7 @@
 |---|---|---|---|---|---|
 | 1 uur | titel en auteur afbeelden onder plank | Alleen | Het was vrij gemakkelijk, alleen om alles netjes af te werken moest niels eerst zijn taak af hebben | :slightly_smiling_face: |  |
 | 1 uur | titel en auteur afbeelden bij boekenkast | Alleen | Doordat de afbeelding waar de tekst onder moest niet wilde meewerken en dit op geen enkele manier ging werken, is het geschrapt | :pensive: | - |
+| 30 min | Meeting met Bart | Iedereen + Bart | We hebben kort de features besproken | :frog: | - |
 
 ## Vrijdag 15 december
 
