@@ -6,37 +6,34 @@ import { getWebSocket } from "../data/websockets";
 import ProfileAvatar from "./ProfileAvatar";
 
 export default function NotificationTray() {
-  useEffect(() => {
-    getWebSocket().onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      switch (data.type) {
-        case "notification_follow":
-          setNotifications(notifications.concat({ ...data, message: `@${data.person._id} has followed you!` }));
-          break;
-        case "notification_unfollow":
-          setNotifications(notifications.concat({ ...data, message: `@${data.person._id} stopped following you` }));
-          break;
-        case "edited_top_three":
-          setNotifications(notifications.concat({ ...data, message: `@${data.person._id} made changes to their top three!` }));
-          break;
-        case "edited_shelf":
-          setNotifications(notifications.concat({ ...data, message: `@${data.person._id} made changes to a shelf!` }));
-          break;
-        case "new_shelf":
-          setNotifications(notifications.concat({ ...data, message: `@${data.person._id} created a new shelf!` }));
-          break;
-        case "new_book":
-          setNotifications(notifications.concat({ ...data, message: `@${data.person._id} added a new book!` }));
-          break;
-        default:
-          console.log("Unknown message type");
-      }
-    };
-  }, []);
-
   const [notifications, setNotifications] = useState([]);
-
   const [notificationAnchor, setNotificationAnchor] = useState(null);
+
+  getWebSocket().onmessage = (event) => {
+    const data = JSON.parse(event.data);
+    switch (data.type) {
+      case "notification_follow":
+        setNotifications(notifications.concat({ ...data, message: `@${data.person._id} has followed you!` }));
+        break;
+      case "notification_unfollow":
+        setNotifications(notifications.concat({ ...data, message: `@${data.person._id} stopped following you` }));
+        break;
+      case "edited_top_three":
+        setNotifications(notifications.concat({ ...data, message: `@${data.person._id} made changes to their top three!` }));
+        break;
+      case "edited_shelf":
+        setNotifications(notifications.concat({ ...data, message: `@${data.person._id} made changes to a shelf!` }));
+        break;
+      case "new_shelf":
+        setNotifications(notifications.concat({ ...data, message: `@${data.person._id} created a new shelf!` }));
+        break;
+      case "new_book":
+        setNotifications(notifications.concat({ ...data, message: `@${data.person._id} added a new book!` }));
+        break;
+      default:
+        console.log("Unknown message type");
+    }
+  };
 
   const hasNotification = () => notifications.length > 0;
 
@@ -66,7 +63,7 @@ export default function NotificationTray() {
         sx={{ margin: "10px 10px 10px -10px" }}
       >
         {hasNotification() &&
-          notifications.map((item) => <NotificationItem key={item._id} item={item} setNotificationAnchor={setNotificationAnchor} />)}
+          notifications.toReversed().map((item) => <NotificationItem key={item._id} item={item} setNotificationAnchor={setNotificationAnchor} />)}
         {hasNotification() && (
           <Stack>
             <Button onClick={clearNotifications}>Clear notifications</Button>
