@@ -48,7 +48,6 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
   }, [bookshelfBooks])
 
   if ((bookshelfBooks.length === 0 && !loggedIn) || (bookshelfBooks.length === 0 && hideAdding)) {
-    console.log("HOI")
     placeholderBooks.push(<div key="p1"></div>);
     placeholderBooks.push(
       <Typography key="p2" variant="h5" order="2">
