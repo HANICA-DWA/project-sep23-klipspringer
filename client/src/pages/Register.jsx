@@ -1,10 +1,10 @@
-import { Box, Button, FormControl, FormHelperText, IconButton, InputAdornment, Stack, TextField, Typography } from "@mui/material";
+import { Box, Button, FormControl, FormHelperText, InputAdornment, Stack, TextField, Typography, Link } from "@mui/material";
 import { AlternateEmail, Cancel, CheckCircleOutline } from "@mui/icons-material";
 import { ArrowBackIos } from "@mui/icons-material";
 import { GoogleLogin } from "@react-oauth/google";
 import { LinkedIn } from "react-linkedin-login-oauth2";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { LoggedInContext } from "../Contexts";
 
@@ -47,19 +47,21 @@ export default function Register({ setLoggedIn }) {
 
   return (
     <Stack
-      useFlexGap
-      gap={4}
+      // useFlexGap
+      // gap={4}
       alignItems="center"
       sx={{
-        mt: {
-          xs: "10vh",
-          md: "5vh",
-        },
+        // mt: {
+        //   xs: "10vh",
+        //   md: "5vh",
+        // },
+        height: "100vh"
       }}
+      justifyContent="space-between"
     >
       {!submitted ? (
         <>
-          <Stack useFlexGap gap={2} alignItems="center">
+          <Stack useFlexGap gap={2} alignItems="center"  sx={{marginTop: "30px"}}>
             <Box
               display="flex"
               component="img"
@@ -83,7 +85,7 @@ export default function Register({ setLoggedIn }) {
               <FormControl>
                 <TextField
                   variant="outlined"
-                  color={usernameInput && !inputError ? "success" : "secondary"}
+                  color={usernameInput && !inputError ? "success" : "primary"}
                   id="username"
                   name="username"
                   placeholder="yourname"
@@ -97,7 +99,7 @@ export default function Register({ setLoggedIn }) {
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
-                        <Typography color="secondary" fontSize="1rem" fontWeight="medium">
+                        <Typography color="primary" fontSize="1rem" fontWeight="medium">
                           BKS.com/
                         </Typography>
                       </InputAdornment>
@@ -129,7 +131,7 @@ export default function Register({ setLoggedIn }) {
                 ) : (
                   ""
                 )}
-                <Button variant="contained" color="secondary" type="submit" sx={{ p: 1, fontSize: "0.9rem", mt: 2 }}>
+                <Button variant="contained" color="primary" type="submit" sx={{ p: 1, fontSize: "0.9rem", mt: 2 }}>
                   Claim your shelf
                 </Button>
               </FormControl>
@@ -137,7 +139,18 @@ export default function Register({ setLoggedIn }) {
           </Stack>
         </>
       ) : (
-        <Stack useFlexGap gap={2} alignItems="center">
+        <Stack useFlexGap gap={2} alignItems="center" sx={{marginTop: "30px"}}>
+          <Box
+              display="flex"
+              component="img"
+              src="/images/bookicon.png"
+              sx={{
+                width: {
+                  xs: "90vw",
+                  md: "30vw",
+                },
+              }}
+            ></Box>
           <Stack direction="row" alignItems="center" useFlexGap gap={2}>
             <ArrowBackIos
               onClick={() => {
@@ -236,26 +249,16 @@ export default function Register({ setLoggedIn }) {
           </Stack>
         </Stack>
       )}
-      <Stack direction="row" useFlexGap gap={0.5}>
-        <Typography sx={{ opacity: 0.5 }}>Already on BKS?</Typography>
-        <Typography component={Link} to="/login" sx={{ textDecoration: "none", color: "black" }}>
-          Sign In
-        </Typography>
-      </Stack>
-      <Stack direction="row" useFlexGap gap={0.5} alignItems="center">
-        <Box sx={{
-          pt: "1rem",
-          pb: "1rem",
-          marginLeft: "0.5rem",
-          marginRight: "0.5rem",
-          paddingLeft: "0.5rem",
-          paddingRight: "0.5rem",
-          borderRadius: "4px",
-          marginBottom: "1rem",
-          bgcolor: "#F5F5F5",
-        }}>
-          <Typography>
-            By signing up, you agree to our <Link to={"/terms-of-service"}>Terms of Service</Link> and <Link to={"/privacy-policy"}>Privacy Policy</Link>
+      <Stack alignItems="center" sx={{marginBottom: "10px"}}>
+        <Stack direction="row" useFlexGap gap={0.5} sx={{color: "success.main"}}>
+          <Typography >Already on BKS?</Typography>
+          <Typography component={Link} href="/login" sx={{ textDecoration: "none", color: "success.main" }}>
+            Sign In
+          </Typography>
+        </Stack>
+        <Box>
+          <Typography align="center" color="#666666" variant="caption">
+            By signing up, you agree to our <Link color="#666666" href={"/terms-of-service"}>Terms of Service</Link> and <Link color="#666666" href={"/privacy-policy"}>Privacy Policy</Link>
           </Typography>
         </Box>
       </Stack>

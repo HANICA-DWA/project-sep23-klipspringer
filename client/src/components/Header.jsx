@@ -6,6 +6,7 @@ import ProfileLink from "./ProfileLink";
 import { useAlert } from "../hooks/useAlert";
 import { useNavigate, useParams } from "react-router-dom";
 import { HamburgerMenu } from "./HamburgerMenu.jsx";
+import NotificationTray from "./NotificationTray.jsx";
 
 
 export default function Header({ setLoggedIn, shareButton, backButton, profileInfo }) {
@@ -19,11 +20,12 @@ export default function Header({ setLoggedIn, shareButton, backButton, profileIn
         <>
             <Stack direction="row" justifyContent="space-between" alignItems="center" width="100%">
                 <Box sx={{ margin: "10px" }}>
-                    <Stack>
+                    <Stack flex flexDirection="row">
                         <HamburgerMenu setLoggedIn={setLoggedIn} />
                         {backButton ? (
                             <ArrowBackIosNew sx={{marginTop: "5px"}} onClick={() => navigate(-1)} />
                         ) : null}
+                        <NotificationTray />
                     </Stack>
                 </Box>
                 {loggedIn && username === userName && shareButton ? (

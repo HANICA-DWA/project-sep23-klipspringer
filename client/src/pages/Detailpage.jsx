@@ -1,6 +1,6 @@
 import {Link, useNavigate, useParams} from "react-router-dom";
 import Header from "../components/Header";
-import { Add, ArrowBackIosNew, ArrowOutward } from "@mui/icons-material";
+import { Add, ArrowBackIosNew, ArrowOutward, Bookmark, BookmarkBorder } from "@mui/icons-material";
 import { Box, Button, Chip, Stack, Typography } from "@mui/material";
 import { LoggedInContext } from "../Contexts";
 import React, { useContext, useEffect, useState } from "react";
@@ -19,6 +19,7 @@ export default function Detailpage({ setLoggedIn }) {
   const [addError, setAddError] = useState();
   const [showAddAlert, addAlertComponent] = useAlert(addError || "Succesfully added to your bookcase", 3000, addError ? "error" : "success");
   const [removeError, setRemoveError] = useState();
+  const [readMore, setReadMore] = useState(false);
   const [showRemoveAlert, removeAlertComponent] = useAlert(
     removeError || "Succesfully removed from your bookcase",
     3000,
@@ -115,6 +116,23 @@ export default function Detailpage({ setLoggedIn }) {
     showRemoveAlert();
   }
 
+  function handleReadMore(summary){
+    if(summary.length > 200){
+      return (
+      <Stack alignItems="center">
+        <Typography variant="body1" width="85%" sx={{overflowWrap: "anywhere"}}>{!readMore ? summary.substr(0, 200) + "..." : summary}</Typography>
+        <Button onClick={() => setReadMore(!readMore)}>
+          {!readMore ? "Read more" : "Read less"}
+        </Button>
+      </Stack>
+      )
+    } else {
+      return (
+        <Typography variant="body1" width="85%" sx={{overflowWrap: "anywhere"}}>{summary}</Typography>
+      )
+    }
+  }
+
   return (
     <>
       {addAlertComponent}
@@ -123,24 +141,6 @@ export default function Detailpage({ setLoggedIn }) {
         <Header setLoggedIn={setLoggedIn} backButton />
       </Stack>
       <Stack alignItems="center">
-        {loggedIn && username ? (
-          shelfInfo.bookcase.find((book) => book._id === isbn) ? (
-            <Button onClick={() => removeFromBookcase(isbn)}>Remove from bookcase</Button>
-          ) : (
-            <Button
-              onClick={() =>
-                addToBookcase({
-                  _id: isbn,
-                  cover_image: book.cover ? book.cover.medium : undefined,
-                  title: book.title,
-                  authors: book.authors.map((author) => author.name),
-                })
-              }
-            >
-              Add to bookcase
-            </Button>
-          )
-        ) : null}
         <Box sx={{ margin: "10px", height: "280px" }}>
           <Bookcover isbn={isbn} cover_image={book.cover ? book.cover.medium : undefined} large />
         </Box>
@@ -176,12 +176,33 @@ export default function Detailpage({ setLoggedIn }) {
             )}
           </Stack>
         </Box>
-        <Chip
-          onClick={handleOpen}
-          sx={{ margin: "10px", fontSize: "14px", bgcolor: "#000000", color: "#FFFFFF" }}
-          icon={<Add style={{ transform: "scale(0.7)", color: "#FFFFFF" }} />}
-          label="Add to shelf"
-        />
+        <Stack flexDirection="row" alignItems="center" gap={1}>
+          <Chip
+            onClick={handleOpen}
+            sx={{ margin: "10px", fontSize: "14px", bgcolor: "#000000", color: "#FFFFFF" }}
+            icon={<Add style={{ transform: "scale(0.7)", color: "#FFFFFF" }} />}
+            label="Add to shelf"
+          />
+          {loggedIn && username ? (
+            shelfInfo.bookcase.find((book) => book._id === isbn) ?
+            <Bookmark
+              color="success"
+              fontSize="large"
+              onClick={() => removeFromBookcase(isbn)}
+              sx={{cursor: "pointer"}}
+            /> :
+            <BookmarkBorder
+              fontSize="large"
+              onClick={() => addToBookcase({
+                _id: isbn,
+                cover_image: book.cover ? book.cover.medium : undefined,
+                title: book.title,
+                authors: book.authors.map((author) => author.name),
+              })}
+              sx={{cursor: "pointer"}}
+            />
+          ) : null}
+        </Stack>
 
         <ModalShelf
           shelfInfo={shelfInfo}
@@ -208,9 +229,7 @@ export default function Detailpage({ setLoggedIn }) {
               <Typography align="center" variant="h4" fontWeight="700" gutterBottom>
                 Summary
               </Typography>
-              <Typography variant="body1" width="85%">
-                {typeof bookWorks.description === "string" ? bookWorks.description : bookWorks.description.value}
-              </Typography>
+                {typeof bookWorks.description === "string" ? handleReadMore(bookWorks.description) : handleReadMore(bookWorks.description.value)}
             </Stack>
           </Box>
         ) : null}

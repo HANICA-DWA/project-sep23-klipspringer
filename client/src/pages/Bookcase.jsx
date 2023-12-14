@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import { ImageList, ImageListItem, Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import Bookcover from "../components/Bookcover";
+import getProfileData from "../data/getProfileData";
 
 export default function Bookcase({ setLoggedIn }) {
   const userName = useParams().userName;
@@ -13,27 +14,11 @@ export default function Bookcase({ setLoggedIn }) {
   const matchDownMd = useMediaQuery(theme.breakpoints.down("sm"));
 
   useEffect(() => {
-    fetch(
-      import.meta.env.VITE_BACKEND_HOST +
-        "/user/" +
-        userName +
-        "?" +
-        new URLSearchParams({
-          fields: ["_id", "profile_picture", "name", "bookcase"],
-        }),
-      {
-        method: "GET",
-      }
-    )
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        setProfileInfo(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+       const getFunction = async () => {
+         const profileData = await getProfileData(userName, ["_id", "profile_picture", "name", "bookcase"]);
+         setProfileInfo(profileData);
+       };
+       getFunction();
   }, [userName]);
 
   return (
@@ -44,6 +29,11 @@ export default function Bookcase({ setLoggedIn }) {
         <Typography variant="h4" fontWeight="700" textAlign="center">
           My bookcase
         </Typography>
+          {(profileInfo.bookcase && profileInfo.bookcase.length > 0)?null:(
+              <Typography variant="h5" textAlign="center">
+                  No books in the bookcase, <Link to={"/find"}>add now!</Link>
+              </Typography>
+          )}
         <ImageList cols={matchDownMd ? 3 : 10} rowHeight={matchDownMd ? 150 : 200} gap={8} sx={{ px: 5 }}>
           {profileInfo.bookcase.map((book) => {
             return (

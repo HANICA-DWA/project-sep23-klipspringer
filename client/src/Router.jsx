@@ -19,6 +19,7 @@ import AuthorContainer from "./containers/AuthorContainer";
 import ShelfContainer from "./containers/ShelfContainer";
 import ProfileContainer from "./containers/ProfileContainer";
 import Barcode from "./pages/Barcode";
+import EditProfilePage from "./pages/EditProfilePage";
 import TermsOfServicePage from "./pages/TermsOfServicePage.jsx";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage.jsx";
 
@@ -53,7 +54,6 @@ export default function Router() {
           <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/find" element={<Search setLoggedIn={setLoggedIn} />} />
-          <Route path="/find/scan" element={<Barcode />} />
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
           <Route path="/register" element={<Register setLoggedIn={setLoggedIn} />} />
           <Route path="/linkedin" element={<LinkedInCallback />} />
@@ -70,7 +70,8 @@ export default function Router() {
             }
           />
           <Route exact path="/:userName" element={<ProfileContainer />}>
-            {<Route path="" element={<Profilepage setLoggedIn={setLoggedIn} />} />}
+            <Route path="" element={<Profilepage setLoggedIn={setLoggedIn} />} />
+            <Route path="edit" element={<EditProfilePage setLoggedIn={setLoggedIn} />} />
             <Route
               path="shelf"
               element={

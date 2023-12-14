@@ -1,7 +1,9 @@
 import express from "express";
+import multer from "multer";
 
 import User from "../model/user.js";
 import { createError } from "../functions/errorCreation.js";
+import { createFileFilter, customName } from "../functions/fileUpload.js";
 
 const router = express.Router();
 
@@ -60,6 +62,29 @@ router.use("/:username", (req, res, next) => {
   next();
 });
 
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "./public/avatars");
+  },
+  filename: customName,
+});
+const upload = multer({ storage: storage, fileFilter: createFileFilter("image/"), limits: { fileSize: 1024 * 1024 * 2 } });
+
+router.patch("/:username", upload.single("image"), async (req, res, next) => {
+  const { name } = req.body;
+  try {
+    if (req.file) req.user.profile_picture = req.file.path;
+    if (!name) throw createError("Name is required", 400);
+    req.user.name = name;
+    await req.user.save();
+    res.status(200).json({ message: "Succesfully updated" });
+  } catch (err) {
+    let error = err;
+    if (err.errors) error = createError(err.errors[Object.keys(err.errors)[0]].message, 400);
+    next(error);
+  }
+});
+
 router.post("/:username/shelf", async (req, res, next) => {
   try {
     req.user.shelf.push(req.body);
@@ -114,8 +139,8 @@ router.put("/:username/shelves/:shelf", async (req, res, next) => {
       }
       res.status(200).json(book);
     } catch (err) {
-       let error = createError("Invalid book or shelf", 400);
-       if (err.errors) error = createError(err.errors[Object.keys(err.errors)[0]].message, 400);
+      let error = createError("Invalid book or shelf", 400);
+      if (err.errors) error = createError(err.errors[Object.keys(err.errors)[0]].message, 400);
       next(error);
     }
   }
@@ -195,5 +220,45 @@ router.put("/:username/bookcase", async (req, res, next) => {
     }
   }
 });
+
+router.put("/:username/follow", async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.username);
+    const account = await User.findById(req.body.account);
+    if(!user || !account){
+      const error = createError("User not found", 404);
+      throw error;
+    } else {
+      user.following.push({_id: account._id, profile_picture: account.profile_picture});
+      account.followers.push({_id: user._id, profile_picture: user.profile_picture});
+
+      await user.save();
+      await account.save();
+      res.status(200).json(account);
+    }
+  } catch (err) {
+    next(createError("cann't follow", 400))
+  }
+});
+
+router.delete("/:username/unfollow", async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.username);
+    const account = await User.findById(req.body.account);
+    if(!user || !account){
+      const error = createError("User not found", 404);
+      throw error;
+    } else {
+      user.following.pull(account._id)
+      account.followers.pull(user._id)
+
+      await user.save();
+      await account.save();
+      res.status(200).json(account);
+    }
+  } catch {
+    next(createError("cann't unfollow", 400))
+  }
+})
 
 export default router;

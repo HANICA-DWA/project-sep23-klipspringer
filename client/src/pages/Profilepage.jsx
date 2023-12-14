@@ -1,51 +1,119 @@
-import { Button, Stack } from "@mui/material";
+import { Button, Stack, Typography, Box } from "@mui/material";
 import Bookshelf from "../components/Bookshelf";
 import {useContext, useEffect, useRef, useState} from "react";
-import { useParams, Link } from "react-router-dom";
 import { LoggedInContext } from "../Contexts";
+import { useParams, Link, useLocation, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import ProfileInfo from "../components/ProfileInfo";
 import CreateShelfButton from "../components/CreateShelfButton";
+import getProfileData from "../data/getProfileData";
+import ModalFollowers from "../components/ModalFollowers";
+import { LoggedInContext } from "../Contexts";
 
 function Profilepage({ setLoggedIn }) {
   const userName = useParams().userName;
+  const location = useLocation();
   const { loggedIn, username } = useContext(LoggedInContext);
+  const navigate = useNavigate();
   const [profileInfo, setProfileInfo] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [valueTabs, setValueTabs] = useState("");
+
+  const handleOpen = (tab) => {
+    setOpen(true);
+    setValueTabs(tab);
+  };
+  const handleClose = () => setOpen(false);
 
 
   useEffect(() => {
-    getProfileData();
-  }, []);
+    const getFunction = async () => {
+      const profileData = await getProfileData(userName, ["_id", "profile_picture", "name", "top_three", "shelf", "followers", "following"]);
+      setProfileInfo(profileData);
+    };
+    getFunction();
+  }, [userName, location]);
 
-  function getProfileData() {
-    fetch(
-      import.meta.env.VITE_BACKEND_HOST +
-        "/user/" +
-        userName +
-        "?" +
-        new URLSearchParams({
-          fields: ["_id", "profile_picture", "name", "top_three", "shelf"],
-        }),
-      {
-        method: "GET",
-      }
-    )
-      .then((res) => {
-        return res.json();
+  function handleFollow() {
+    if (profileInfo.followers.find((name) => name._id === username)) {
+      fetch(import.meta.env.VITE_BACKEND_HOST + "/user/" + username + "/unfollow", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        mode: "cors",
+        body: JSON.stringify({ account: userName }),
       })
-      .then((res) => {
-        setProfileInfo(res);
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
+          setProfileInfo(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      fetch(import.meta.env.VITE_BACKEND_HOST + "/user/" + username + "/follow", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        mode: "cors",
+        body: JSON.stringify({ account: userName }),
       })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
+          setProfileInfo(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }
 
   return (
     <>
       <Stack justifyContent="flex-start" alignItems="center" sx={{ minHeight: "100vh" }} spacing={3} useFlexGap>
         <Header setLoggedIn={setLoggedIn} shareButton={true} profileInfo={profileInfo}/>
-        <ProfileInfo name={profileInfo.name} avatar={profileInfo.profile_picture} handle={profileInfo._id} />
+        <Stack direction="row" justifyContent="space-evenly" width="100vw">
+          <ProfileInfo name={profileInfo.name} avatar={profileInfo.profile_picture} handle={profileInfo._id} />
+          <Stack justifyContent="center">
+            <Stack direction="row">
+              <Stack alignItems="center" margin="5px" onClick={() => handleOpen("followers")}>
+                <Typography variant="caption">Followers</Typography>
+                <Typography>{profileInfo.followers ? profileInfo.followers.length : null}</Typography>
+              </Stack>
+              <Stack alignItems="center" margin="5px" onClick={() => handleOpen("following")}>
+                <Typography variant="caption">Following</Typography>
+                <Typography>{profileInfo.following ? profileInfo.following.length : null}</Typography>
+              </Stack>
+            </Stack>
+            {username !== userName && loggedIn ? (
+              <Button variant="contained" onClick={handleFollow}>
+                {profileInfo.followers ? (profileInfo.followers.find((name) => name._id === username) ? "Unfollow" : "Follow") : null}
+              </Button>
+            ) : !loggedIn ? (
+              <Button variant="contained" onClick={() => navigate("/login")}>
+                Follow
+              </Button>
+            ) : null}
+            <ModalFollowers
+              open={open}
+              handleClose={handleClose}
+              valueTabs={valueTabs}
+              setValueTabs={setValueTabs}
+              followers={profileInfo.followers}
+              following={profileInfo.following}
+              profile={userName}
+            />
+          </Stack>
+        </Stack>
+
         {profileInfo.top_three ? (
           <Bookshelf
             key={"top_three"}
