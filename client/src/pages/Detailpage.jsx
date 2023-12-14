@@ -195,7 +195,7 @@ export default function Detailpage({ setLoggedIn }) {
               fontSize="large"
               onClick={() => addToBookcase({
                 _id: isbn,
-                cover_image: book.cover ? book.cover.medium : undefined,
+                cover_image: book.cover ? book.cover.medium : "",
                 title: book.title,
                 authors: book.authors.map((author) => author.name),
               })}
