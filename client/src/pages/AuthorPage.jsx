@@ -1,9 +1,10 @@
 import { Box, CircularProgress, ImageList, ImageListItem, Pagination, Stack, Typography, useMediaQuery } from "@mui/material";
 import { useEffect, useState } from "react";
-import { Link, useParams, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import Bookcover from "../components/Bookcover";
 import { useTheme } from "@emotion/react";
 import Header from "../components/Header";
+import { ArrowBackIos } from "@mui/icons-material";
 
 export default function AuthorPage() {
   const { author } = useParams();
@@ -14,6 +15,7 @@ export default function AuthorPage() {
   const itemsOnPage = 30;
   const theme = useTheme();
   const matchDownLg = useMediaQuery(theme.breakpoints.down("lg"));
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchAuthorWorks = async () => {
@@ -63,6 +65,7 @@ export default function AuthorPage() {
   return (
     <>
       <Header />
+      <ArrowBackIos onClick={() => navigate(-1)} sx={{paddingLeft: "15px"}}/>
       <Stack direction="column" alignItems="center" my={6} gap={1}>
         <Typography variant="h4" fontWeight="700">
           Books by
