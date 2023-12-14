@@ -31,7 +31,13 @@ export default function ModalShare({alert, open, handleClose, profileInfo}) {
 			})
 			.then((img)=>{
 				elementRef.current.style.display = "none";
-				elementRef.current.parentNode.appendChild(img);
+				if(document.body.querySelector(`img#${img.id}`)){
+					document.body.querySelector(`img#${img.id}`).replaceWith(img);
+				}
+				else{
+					elementRef.current.parentNode.appendChild(img);
+				}
+
 				return img;
 			})
 			.then((img)=>{
