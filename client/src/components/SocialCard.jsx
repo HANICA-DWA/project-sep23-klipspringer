@@ -2,7 +2,7 @@ import {Box, Stack} from "@mui/material";
 import ProfileInfo from "./ProfileInfo.jsx";
 import Bookshelf from "./Bookshelf.jsx";
 
-export default function SocialCard({elementRef, name, avatar, handle, top_three = [] }) {
+export default function SocialCard({elementRef, name, avatar, handle, top_three = {} }) {
 
     return (
         <>
@@ -12,7 +12,7 @@ export default function SocialCard({elementRef, name, avatar, handle, top_three 
                 <Bookshelf
                     key={"top_three"}
                     id={"top_three"}
-                    title={top_three.name??""}
+                    title={top_three.name??"My Top Three"}
                     books={top_three.books??[]}
                     user={top_three._id??""}
                     hideAdding

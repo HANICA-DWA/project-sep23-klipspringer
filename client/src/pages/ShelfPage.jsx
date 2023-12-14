@@ -19,7 +19,7 @@ export default function ShelfPage({ setLoggedIn }) {
   const [setDeleteShelfAlertOn, deleteShelfAlert] = useAlert(errMessage ? errMessage : "Shelf deleted!", 3000, errMessage ? "error" : "success");
   useEffect(() => {
     const getFunction = async () => {
-      const profileData = await getProfileData(userName, ["_id", "profile_picture", "shelf"]);
+      const profileData = await getProfileData(userName, ["_id", "profile_picture", "shelf","top_three"]);
       setProfileInfo(profileData);
       setShelfInfo(profileData.shelf.find((shelfFromUser) => shelfFromUser._id === shelf));
     };
@@ -44,7 +44,7 @@ export default function ShelfPage({ setLoggedIn }) {
   return (
     <Stack justifyContent="flex-start" alignItems="center" sx={{ minHeight: "100vh" }} spacing={3} useFlexGap>
       {deleteShelfAlert}
-      <Header setLoggedIn={setLoggedIn} shareButton />
+      <Header setLoggedIn={setLoggedIn} shareButton profileInfo={profileInfo} />
       <ProfileInfo name={profileInfo.name} avatar={profileInfo.profile_picture} handle={profileInfo._id} />
       {shelfInfo && Object.keys(shelfInfo).length > 0 ? (
         <Bookshelf
