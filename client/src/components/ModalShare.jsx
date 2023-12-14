@@ -6,7 +6,7 @@ import {useRef} from "react";
 import {toPng} from "html-to-image";
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 
-export default function ModalShare({ alert, open, handleClose, profileInfo}) {
+export default function ModalShare({alert, open, handleClose, profileInfo}) {
 	const elementRef = useRef(null);
 
 	const handleClick = () => {
@@ -15,17 +15,29 @@ export default function ModalShare({ alert, open, handleClose, profileInfo}) {
 	};
 
 	function htmlToImageConvert() {
-		toPng(elementRef.current, { cacheBust: true })
+		elementRef.current.style.display = "flex";
+		toPng(elementRef.current, {
+			cacheBust: true,
+			fetchRequestInit: {referrerPolicy: "no-referrer"}})
 			.then((dataUrl) => {
 				const img = document.createElement("img");
 				img.src = dataUrl;
-				img.style.width = "100%";
+				img.style.height = "50vh";
+				img.style.justifyContent = "center";
+				img.style.display = "flex";
+				img.id = "socialCardPNG";
+
+				return img;
+			})
+			.then((img)=>{
 				elementRef.current.style.display = "none";
 				elementRef.current.parentNode.appendChild(img);
-
+				return img;
+			})
+			.then((img)=>{
 				const link = document.createElement("a");
-				link.href = dataUrl;
-				link.download = `BKS - ${profileInfo.name??""}.png`;
+				link.href = img.src;
+				link.download = `BKS - ${profileInfo.name ?? ""}.png`;
 				link.click();
 			})
 			.catch((err) => {
@@ -44,69 +56,70 @@ export default function ModalShare({ alert, open, handleClose, profileInfo}) {
 
 	return (
 		<>
-
 			<Modal open={open} onClose={handleClose}>
 				<Box sx={styleModal}>
 					<Stack
 						direction="row"
 						justifyContent="center"
 						alignItems="center"
-						sx={{ padding: "15px", borderBottom: "2px solid #EFEFEF" }}
+						sx={{padding: "15px", borderBottom: "2px solid #EFEFEF"}}
 					>
 						<Typography fontWeight="600" align="center">
 							Share
 						</Typography>
-						<Close onClick={handleClose} sx={{ position: "absolute", right: "10px", transform: "scale(0.8)" }} />
+						<Close onClick={handleClose} sx={{position: "absolute", right: "10px", transform: "scale(0.8)"}}/>
 					</Stack>
-					<Box sx={{padding: "2px", height: "40vh",}}>
-						{/*<Stack*/}
-						{/*	direction="row"*/}
-						{/*	justifyContent="center"*/}
-						{/*	alignItems="center"*/}
-						{/*	>*/}
-						<IconButton onClick={htmlToImageConvert} sx={{
-							position: "fixed",
-							color: "black",
-							top: "0",
-							left: "0",
-							bgcolor: "white",
-							borderRadius: "8px",
-							boxShadow: "0px 1px 2px 1px rgba(0, 0, 0, 0.1)",
-							padding: "2px",
-						}}>
-							<ArrowCircleDownIcon fontSize={"large"}/>
-						</IconButton>
-						<SocialCard
-							sx={{display: "none"}}
-							elementRef={elementRef} name={profileInfo.name??""} avatar={profileInfo.profile_picture??""} handle={profileInfo._id??""} top_three={profileInfo.top_three} />
 
-						{/*</Stack>*/}
-					</Box>
-					<Box sx={{padding: "15px",height: "10vh" }}>
-						<FormControl fullWidth>
-							<TextField
-								value={window.location.href}
-								placeholder="BKS/..."
-								readOnly
-								onClick={handleClick}
-								InputProps={{
-									startAdornment: (
-										<InputAdornment position="start">
-											<IconButton type="submit" edge="end">
-												<ContentPasteIcon />
-											</IconButton>
-										</InputAdornment>
-									),
-									sx: {
-										borderRadius: "8px",
-										outline: "0px",
-										"& fieldset": { border: "none" },
-										backgroundColor: "rgba(0, 0, 0, 0.082)",
-									},
-								}}
-							/>
-						</FormControl>
-					</Box>
+					<IconButton onClick={htmlToImageConvert} sx={{
+						position: "static",
+						color: "black",
+						top: "0",
+						left: "0",
+						bgcolor: "white",
+						borderRadius: "8px",
+						boxShadow: "0px 1px 2px 1px rgba(0, 0, 0, 0.1)",
+						padding: "2px",
+					}}>
+						<ArrowCircleDownIcon fontSize={"large"}/>
+					</IconButton>
+
+						<Box sx={{padding: "2px", height: "50vh",}}>
+							<Stack
+								direction="column"
+								alignItems="center"
+							>
+							<SocialCard
+								sx={{display: "none"}}
+								elementRef={elementRef} name={profileInfo.name ?? ""}
+								avatar={profileInfo.profile_picture ?? ""} handle={profileInfo._id ?? ""}
+								top_three={profileInfo.top_three}/>
+							</Stack>
+						</Box>
+						<Box sx={{padding: "15px", height: "50vh", width: "95%"}}>
+							<FormControl fullWidth>
+								<TextField
+									value={window.location.href}
+									placeholder="BKS/..."
+									readOnly
+									onClick={handleClick}
+									InputProps={{
+										startAdornment: (
+											<InputAdornment position="start">
+												<IconButton type="submit" edge="end">
+													<ContentPasteIcon/>
+												</IconButton>
+											</InputAdornment>
+										),
+										sx: {
+											borderRadius: "8px",
+											outline: "0px",
+											"& fieldset": {border: "none"},
+											backgroundColor: "rgba(0, 0, 0, 0.082)",
+										},
+									}}
+								/>
+							</FormControl>
+						</Box>
 				</Box>
 			</Modal>
 		</>

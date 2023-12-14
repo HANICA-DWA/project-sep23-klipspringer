@@ -6,7 +6,7 @@ export default function SocialCard({elementRef, name, avatar, handle, top_three 
 
     return (
         <>
-        <Stack id="socialCard" ref={elementRef} justifyContent="flex-start" sx={{minHeight: "100vh"}} spacing={3} useFlexGap>
+        <Stack id="socialCard" ref={elementRef} sx={{minHeight: "50vh"}} spacing={3} useFlexGap justifyContent="center">
             <Box sx={{bgcolor: "white"}}>
                 <ProfileInfo name={name??""} avatar={avatar??""} handle={handle??""}/>
                 <Bookshelf
