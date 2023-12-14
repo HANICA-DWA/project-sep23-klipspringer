@@ -24,6 +24,10 @@ export default function NotificationTray() {
           break;
         case "new_shelf":
           setNotifications(notifications.concat({ ...data, message: `@${data.person._id} created a new shelf!` }));
+          break;
+        case "new_book":
+          setNotifications(notifications.concat({ ...data, message: `@${data.person._id} added a new book!` }));
+          break;
         default:
           console.log("Unknown message type");
       }
