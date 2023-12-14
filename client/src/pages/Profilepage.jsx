@@ -1,13 +1,14 @@
 import { Button, Stack, Typography, Box } from "@mui/material";
 import Bookshelf from "../components/Bookshelf";
 import {useContext, useEffect, useRef, useState} from "react";
-import { LoggedInContext } from "../Contexts";
 import { useParams, Link, useLocation, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import ProfileInfo from "../components/ProfileInfo";
 import CreateShelfButton from "../components/CreateShelfButton";
 import getProfileData from "../data/getProfileData";
 import ModalFollowers from "../components/ModalFollowers";
+import { LoggedInContext } from "../Contexts";
+import { getWebSocket } from "../data/websockets";
 
 function Profilepage({ setLoggedIn }) {
   const userName = useParams().userName;
@@ -49,6 +50,7 @@ function Profilepage({ setLoggedIn }) {
         })
         .then((res) => {
           setProfileInfo(res);
+          getWebSocket().send(JSON.stringify({ type: "notification_unfollow", following: userName, link: `/${username}` }));
         })
         .catch((err) => {
           console.log(err);
@@ -68,6 +70,7 @@ function Profilepage({ setLoggedIn }) {
         })
         .then((res) => {
           setProfileInfo(res);
+          getWebSocket().send(JSON.stringify({ type: "notification_follow", following: userName, link: `/${username}` }));
         })
         .catch((err) => {
           console.log(err);
