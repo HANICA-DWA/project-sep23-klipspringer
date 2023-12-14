@@ -44,7 +44,7 @@ export default function ShelfPage({ setLoggedIn }) {
   return (
     <Stack justifyContent="flex-start" alignItems="center" sx={{ minHeight: "100vh" }} spacing={3} useFlexGap>
       {deleteShelfAlert}
-      <Header setLoggedIn={setLoggedIn} shareButton />
+      <Header setLoggedIn={setLoggedIn} shareButton profileInfo={profileInfo} />
       <ProfileInfo name={profileInfo.name} avatar={profileInfo.profile_picture} handle={profileInfo._id} />
       {shelfInfo && Object.keys(shelfInfo).length > 0 ? (
         <Bookshelf

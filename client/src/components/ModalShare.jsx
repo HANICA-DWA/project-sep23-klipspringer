@@ -6,7 +6,7 @@ import {useRef} from "react";
 import {toPng} from "html-to-image";
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 
-export default function ModalShare({alert, open, handleClose, profileInfo}) {
+export default function ModalShare({alert, open, handleClose, profileInfo = {}}) {
 	const elementRef = useRef(null);
 
 	const handleClick = () => {
