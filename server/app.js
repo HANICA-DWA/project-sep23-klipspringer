@@ -99,10 +99,14 @@ wsServer.on("connection", async (ws, request) => {
     data = JSON.parse(data);
     data.person = { _id: ws.user, profile_picture: ws.profile_picture };
 
-    if (data.type === "notification_follow") {
+    if (data.type === "notification_follow" || data.type === "notification_unfollow") {
       wsServer.clients.forEach((client) => {
         if (client.user === data.following) {
-          client.followers.push(data.person);
+          if (data.type === "notification_follow") {
+            client.followers.push(data.person);
+          } else {
+            client.followers = client.followers.filter((follower) => follower._id !== data.person._id);
+          }
           wsServer.sendToUser(client, data);
         }
       });

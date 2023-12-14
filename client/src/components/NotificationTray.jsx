@@ -9,18 +9,18 @@ export default function NotificationTray() {
   useEffect(() => {
     getWebSocket().onmessage = (event) => {
       const data = JSON.parse(event.data);
-      console.log(data);
       switch (data.type) {
         case "notification_follow":
-          setNotifications(notifications.concat({ link: data.link, person: data.person, message: `@${data.person._id} has followed you!` }));
+          setNotifications(notifications.concat({ ...data, message: `@${data.person._id} has followed you!` }));
+          break;
+        case "notification_unfollow":
+          setNotifications(notifications.concat({ ...data, message: `@${data.person._id} stopped following you` }));
           break;
         case "edited_top_three":
-          setNotifications(
-            notifications.concat({ link: data.link, person: data.person, message: `@${data.person._id} made changes to their top three!` })
-          );
+          setNotifications(notifications.concat({ ...data, message: `@${data.person._id} made changes to their top three!` }));
           break;
         case "edited_shelf":
-          setNotifications(notifications.concat({ link: data.link, person: data.person, message: `@${data.person._id} made changes to a shelf!` }));
+          setNotifications(notifications.concat({ ...data, message: `@${data.person._id} made changes to a shelf!` }));
           break;
         case "new_shelf":
           setNotifications(notifications.concat({ ...data, message: `@${data.person._id} created a new shelf!` }));

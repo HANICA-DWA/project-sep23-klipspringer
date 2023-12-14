@@ -49,6 +49,7 @@ function Profilepage({ setLoggedIn }) {
         })
         .then((res) => {
           setProfileInfo(res);
+          getWebSocket().send(JSON.stringify({ type: "notification_unfollow", following: userName, link: `/${username}` }));
         })
         .catch((err) => {
           console.log(err);
