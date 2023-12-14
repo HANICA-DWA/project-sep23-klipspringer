@@ -8,7 +8,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useAlert } from "../hooks/useAlert";
 import Bookcover from "./Bookcover";
 
-export default function Bookshelf({ id, title, books = [], hideAdding, user, unclickable, onDelete, edit, onBookDelete, nrOfColums = 3, placeholder }) {
+export default function Bookshelf({ id, title, books = [], hideAdding, user, unclickable, onDelete, edit, onBookDelete, nrOfColums = 3, placeholder, hideDesc }) {
   const { loggedIn, username } = useContext(LoggedInContext);
   const [errMessage, setErrMessage] = useState("");
   const [showAlert, alertComponent] = useAlert(errMessage, 3000, "warning");
@@ -153,14 +153,14 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
         <Stack direction="row" justifyContent="center" sx={{ height: "20px", width: `100%`, maxWidth: "98vw", position: "relative", overflow: "hidden" }}>
           <img style={{ width: "100%" }} src="/images/bookshelf.jpg" alt="bookshelf"></img>
         </Stack>
-        <Stack direction="row">
-          {books.map((item) => (
-            <Stack margin="2px">
-              <Typography width="85px" variant="caption" fontWeight="600" sx={{overflowWrap: "anywhere"}}>{item.title}</Typography>
-              <Typography width="85px" variant="caption" sx={{overflowWrap: "anywhere"}}>{item.authors[0]}</Typography>
-            </Stack>
-          ))}
-        </Stack>
+          {!hideDesc?(<Stack direction="row">
+            {books.map((item) => (
+                <Stack key={"D"+item._id} margin="2px">
+                  <Typography width="85px" variant="caption" fontWeight="600" sx={{overflowWrap: "anywhere"}}>{item.title}</Typography>
+                  <Typography width="85px" variant="caption" sx={{overflowWrap: "anywhere"}}>{item.authors[0]}</Typography>
+                </Stack>
+            ))}
+          </Stack>):null}
         </Stack>)}
         )}
       </Stack>
