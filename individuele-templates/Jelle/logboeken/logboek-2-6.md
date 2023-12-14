@@ -56,6 +56,7 @@
 | 0.5 | review                                                                                   | N.V.T. | review pull request van roos niet goedgekeurd          |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/279) |
 | 0.5 | review                                                                                   | N.V.T. | review pull request van roos nu wel goedgekeurd        |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/7b45757982164472f9ed0a10fa1b9db70e73e964) |
 | 0.5 | social card                                                                              | N.V.T. | fix shelf book title  social card                      |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/7c61c68cf07cd8a70ff9c76492ff281f17603d79) |
+| 0.5 | search bar                                                                               | N.V.T. | fix infinite loader                                    |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/109af4cfe0a2734edd304f2bd4aaa14699fe0827) |
 |    |                                                                                          | |                                                        | | |
 
 ## Vrijdag 15 december

@@ -15,8 +15,10 @@ export default function SearchBar({ onClick, fullSearch, genreChips, deleteChip,
   const [isScanning, setIsScanning] = useState(false);
 
   function popperContents() {
-    if (isLoading) {
+    if (isLoading && searchText.length >= 1) {
       return <LinearProgress sx={{ width: "100%" }} />;
+    } else if (isLoading && searchResults.length < 1) {
+      return <Typography variant="body1">Nothing to search.</Typography>;
     } else if (searchResults && searchResults.length >= 1 && searchText.startsWith("@") && fullSearch && !isLoading) {
       return searchResults.map((person) => {
         return <SearchResultPerson closePopper={closepopper} person={person} onClick={onClick} key={person._id} />;
