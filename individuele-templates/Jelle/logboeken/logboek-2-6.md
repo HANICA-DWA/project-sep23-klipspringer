@@ -53,6 +53,7 @@
 | 0.5  | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/254) | N.V.T. | bugs oplossen                                          |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/3d04db8e3e456e22da9c2cbbf7380c63bfc85358) |
 | 0.5  | book toevoegen aan boekenkast op detailpage                                              | N.V.T. | bugs oplossen                                          |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/d18a72732c553bbd9d58664bb469b619e181bdb9) |
 | 0.5  | review                                                                                   | N.V.T. | review pull request van niels auteur pagina backbutton |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/79ef4abb4ff79d31562f27a3415b5b1a555d9f3e) |
+| 0.5  | review                                                                                   | N.V.T. | review pull request van roos niet goedgekeurd          |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/279) |
 |      |                                                                                          | |                                                        | | |
 
 ## Vrijdag 15 december
