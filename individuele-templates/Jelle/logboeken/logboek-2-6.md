@@ -47,10 +47,15 @@
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
+| Uren | Taak                                                                                     | Met Wie | Resultaten                                             | Emotie | Link |
+|------|------------------------------------------------------------------------------------------|---|--------------------------------------------------------|---|---|
+| 2    | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/254) | N.V.T. | centreren van de afbeelding was wel even puzzelen      |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/67ed96c03f85694c551f84b0d3ba59a02ed7b681) |
+| 0.5  | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/254) | N.V.T. | bugs oplossen                                          |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/3d04db8e3e456e22da9c2cbbf7380c63bfc85358) |
+| 0.5  | book toevoegen aan boekenkast op detailpage                                              | N.V.T. | bugs oplossen                                          |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/d18a72732c553bbd9d58664bb469b619e181bdb9) |
+| 0.5  | review                                                                                   | N.V.T. | review pull request van niels auteur pagina backbutton |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/79ef4abb4ff79d31562f27a3415b5b1a555d9f3e) |
+| 0.5  | review                                                                                   | N.V.T. | review pull request van roos niet goedgekeurd          |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/279) |
+| 0.5  | review                                                                                   | N.V.T. | review pull request van roos nu wel goedgekeurd        |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/7b45757982164472f9ed0a10fa1b9db70e73e964) |
+|      |                                                                                          | |                                                        | | |
 
 ## Vrijdag 15 december
 

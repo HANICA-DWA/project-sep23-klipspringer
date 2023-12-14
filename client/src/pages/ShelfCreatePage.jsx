@@ -167,7 +167,7 @@ export default function ShelfCreatePage({ edit = false }) {
             {edit ? (
               <Bookshelf onBookDelete={handleBookDelete} id={shelf} user={username} books={books} edit={edit} hideAdding unclickable />
             ) : (
-              <Bookshelf books={books} hideAdding unclickable />
+              <Bookshelf books={books} hideAdding unclickable placeholder/>
             )}
             <Box sx={{ display: "flex", alignItems: "flex-end" }}>
               <Title sx={{ color: "action.active", mr: 1, my: 0.5 }} />

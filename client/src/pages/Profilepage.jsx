@@ -1,6 +1,7 @@
 import { Button, Stack, Typography, Box } from "@mui/material";
 import Bookshelf from "../components/Bookshelf";
-import { useEffect, useState, useContext } from "react";
+import {useContext, useEffect, useRef, useState} from "react";
+import { LoggedInContext } from "../Contexts";
 import { useParams, Link, useLocation, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import ProfileInfo from "../components/ProfileInfo";
@@ -24,6 +25,7 @@ function Profilepage({ setLoggedIn }) {
     setValueTabs(tab);
   };
   const handleClose = () => setOpen(false);
+
 
   useEffect(() => {
     const getFunction = async () => {
@@ -80,7 +82,7 @@ function Profilepage({ setLoggedIn }) {
   return (
     <>
       <Stack justifyContent="flex-start" alignItems="center" sx={{ minHeight: "100vh" }} spacing={3} useFlexGap>
-        <Header setLoggedIn={setLoggedIn} shareButton={true} />
+        <Header setLoggedIn={setLoggedIn} shareButton={true} profileInfo={profileInfo}/>
         <Stack direction="row" justifyContent="space-evenly" width="100vw">
           <ProfileInfo name={profileInfo.name} avatar={profileInfo.profile_picture} handle={profileInfo._id} />
           <Stack justifyContent="center">

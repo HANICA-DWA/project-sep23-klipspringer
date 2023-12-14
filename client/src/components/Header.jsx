@@ -9,7 +9,7 @@ import { HamburgerMenu } from "./HamburgerMenu.jsx";
 import NotificationTray from "./NotificationTray.jsx";
 
 
-export default function Header({ setLoggedIn, shareButton, backButton }) {
+export default function Header({ setLoggedIn, shareButton, backButton, profileInfo }) {
     const { loggedIn, username } = useContext(LoggedInContext);
     const { userName } = useParams();
     const navigate = useNavigate();
