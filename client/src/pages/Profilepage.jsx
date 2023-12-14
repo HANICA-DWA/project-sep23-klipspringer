@@ -8,6 +8,7 @@ import CreateShelfButton from "../components/CreateShelfButton";
 import getProfileData from "../data/getProfileData";
 import ModalFollowers from "../components/ModalFollowers";
 import { LoggedInContext } from "../Contexts";
+import { getWebSocket } from "../data/websockets";
 
 function Profilepage({ setLoggedIn }) {
   const userName = useParams().userName;
@@ -67,6 +68,8 @@ function Profilepage({ setLoggedIn }) {
         })
         .then((res) => {
           setProfileInfo(res);
+          console.log(JSON.stringify({ type: "notification_follow", following: userName, person: { _id: username } }));
+          getWebSocket().send(JSON.stringify({ type: "notification_follow", following: userName }));
         })
         .catch((err) => {
           console.log(err);

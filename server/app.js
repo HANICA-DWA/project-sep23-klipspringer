@@ -84,6 +84,7 @@ wsServer.sendToUser = (wsClient, data) => {
 wsServer.on("connection", async (ws, request) => {
   ws.user = request.session.user;
   const user = await User.findById(request.session.user);
+  ws.profile_picture = user.profile_picture;
   ws.followers = user.followers;
 
   ws.on("message", (data) => {
@@ -92,18 +93,23 @@ wsServer.on("connection", async (ws, request) => {
         throw err;
       }
     });
-    data = JSON.parse(data);
     if (!request.session.user) {
       return;
     }
+    data = JSON.parse(data);
+    data.person = { _id: ws.user, profile_picture: ws.profile_picture };
 
     if (data.type === "notification_follow") {
-      const client = wsServer.clients.find((client) => client.user === data.following);
-      client.followers.push({ _id: data.person, profile_picture: data.profile_picture });
-      wsServer.sendToUser(client, data);
+      wsServer.clients.forEach((client) => {
+        if (client.user === data.following) {
+          client.followers.push(data.person);
+          wsServer.sendToUser(client, data);
+        }
+      });
+    } else {
+      wsServer.broadcastToFollowers(ws, data);
     }
-    wsServer.broadcastToFollowers(ws, data);
-    req.session.save();
+    request.session.save();
   });
 });
 
