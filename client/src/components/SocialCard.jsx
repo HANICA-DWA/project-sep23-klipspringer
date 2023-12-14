@@ -15,6 +15,7 @@ export default function SocialCard({elementRef, name, avatar, handle, top_three 
                     title={top_three.name??""}
                     books={top_three.books??[]}
                     user={top_three._id??""}
+                    hideAdding
                 />
             </Box>
         </Stack>

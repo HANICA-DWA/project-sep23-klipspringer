@@ -8,7 +8,6 @@ import ProfileInfo from "../components/ProfileInfo";
 import CreateShelfButton from "../components/CreateShelfButton";
 import getProfileData from "../data/getProfileData";
 import ModalFollowers from "../components/ModalFollowers";
-import { LoggedInContext } from "../Contexts";
 
 function Profilepage({ setLoggedIn }) {
   const userName = useParams().userName;

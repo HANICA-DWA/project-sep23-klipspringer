@@ -58,10 +58,17 @@ export default function ModalShare({ alert, open, handleClose, profileInfo}) {
 						</Typography>
 						<Close onClick={handleClose} sx={{ position: "absolute", right: "10px", transform: "scale(0.8)" }} />
 					</Stack>
-					<Box sx={{padding: "2px",overflowY: "scroll", height: "40vh"}}>
+					<Box sx={{padding: "2px", height: "40vh",}}>
+						{/*<Stack*/}
+						{/*	direction="row"*/}
+						{/*	justifyContent="center"*/}
+						{/*	alignItems="center"*/}
+						{/*	>*/}
 						<IconButton onClick={htmlToImageConvert} sx={{
 							position: "fixed",
 							color: "black",
+							top: "0",
+							left: "0",
 							bgcolor: "white",
 							borderRadius: "8px",
 							boxShadow: "0px 1px 2px 1px rgba(0, 0, 0, 0.1)",
@@ -73,6 +80,7 @@ export default function ModalShare({ alert, open, handleClose, profileInfo}) {
 							sx={{display: "none"}}
 							elementRef={elementRef} name={profileInfo.name??""} avatar={profileInfo.profile_picture??""} handle={profileInfo._id??""} top_three={profileInfo.top_three} />
 
+						{/*</Stack>*/}
 					</Box>
 					<Box sx={{padding: "15px",height: "10vh" }}>
 						<FormControl fullWidth>
