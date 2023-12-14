@@ -19,7 +19,7 @@ export default function ModalShare({alert, open, handleClose, profileInfo}) {
 
 		elementRef.current.style.display = "flex";
 		if(document.body.querySelector(`img#${imageId}`)) {
-			document.body.querySelector(`img#${imageId}}`).style.display = "none";
+			document.body.querySelector(`img#${imageId}`).style.display = "none";
 		}
 		toPng(elementRef.current, {
 			cacheBust: true,
