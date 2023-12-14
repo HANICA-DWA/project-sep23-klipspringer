@@ -15,7 +15,12 @@ export default function ModalShare({alert, open, handleClose, profileInfo}) {
 	};
 
 	function htmlToImageConvert() {
+		const imageId = "socialCardPNG";
+
 		elementRef.current.style.display = "flex";
+		if(document.body.querySelector(`img#${imageId}`)) {
+			document.body.querySelector(`img#${imageId}}`).style.display = "none";
+		}
 		toPng(elementRef.current, {
 			cacheBust: true,
 			fetchRequestInit: {referrerPolicy: "no-referrer"}})
@@ -23,15 +28,15 @@ export default function ModalShare({alert, open, handleClose, profileInfo}) {
 				const img = document.createElement("img");
 				img.src = dataUrl;
 				img.style.height = "50vh";
-				img.style.justifyContent = "center";
-				img.style.display = "flex";
-				img.id = "socialCardPNG";
+				img.id = imageId;
 
 				return img;
 			})
 			.then((img)=>{
 				elementRef.current.style.display = "none";
 				if(document.body.querySelector(`img#${img.id}`)){
+					img.style.display = "flex";
+					img.style.justifyContent = "center";
 					document.body.querySelector(`img#${img.id}`).replaceWith(img);
 				}
 				else{
