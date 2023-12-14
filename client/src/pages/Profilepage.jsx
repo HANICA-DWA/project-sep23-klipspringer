@@ -1,7 +1,6 @@
 import { Button, Stack, Typography, Box } from "@mui/material";
 import Bookshelf from "../components/Bookshelf";
 import {useContext, useEffect, useRef, useState} from "react";
-import { LoggedInContext } from "../Contexts";
 import { useParams, Link, useLocation, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import ProfileInfo from "../components/ProfileInfo";
