@@ -84,7 +84,24 @@ const seed = async () => {
         ],
         name: "Aan te raden",
       },
-      bookcase: [],
+      bookcase: [
+        {
+          "_id": "0870706837",
+          "cover_image": "https://covers.openlibrary.org/b/isbn/0870706837-M.jpg?default=false",
+          "title": "D.W. Griffith",
+          "authors": [
+            "Barry, Iris"
+          ]
+        },
+        {
+          "_id": "1787556921",
+          "cover_image": "https://covers.openlibrary.org/b/id/10544254-M.jpg?default=false",
+          "title": "Moby Dick",
+          "authors": [
+            "Herman Melville"
+          ]
+        },
+      ],
       followers: [],
       following: [],
     },
