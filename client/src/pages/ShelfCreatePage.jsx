@@ -7,6 +7,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { LoggedInContext } from "../Contexts";
 import { useAlert } from "../hooks/useAlert";
 import ModalBookcase from "../components/ModalBookcase";
+import { getWebSocket } from "../data/websockets";
+import getProfileData from "../data/getProfileData";
 
 export default function ShelfCreatePage({ edit = false }) {
   const navigate = useNavigate();
@@ -32,17 +34,15 @@ export default function ShelfCreatePage({ edit = false }) {
     } else {
       handleClose();
       if (!Array.isArray(book)) {
-        setBooks((prevBooks) => [...prevBooks, book])
+        setBooks((prevBooks) => [...prevBooks, book]);
       } else {
         book.forEach((item) => {
           if (Array.isArray(item)) {
-            item.forEach((book) =>
-              setBooks((prevBooks) => [...prevBooks, book])
-            )
+            item.forEach((book) => setBooks((prevBooks) => [...prevBooks, book]));
           } else {
-            setBooks((prevBooks) => [...prevBooks, item])
+            setBooks((prevBooks) => [...prevBooks, item]);
           }
-        })
+        });
       }
       setErrMessage("");
     }
@@ -62,7 +62,13 @@ export default function ShelfCreatePage({ edit = false }) {
           body: JSON.stringify({ name: title, books: books, type: "editshelf" }),
         }).then((res) => {
           if (res.ok) {
-            shelf === "top_three" ? navigate(`/${username}`) : navigate(`/${username}/${shelf}`);
+            if (shelf === "top_three") {
+              getWebSocket().send(JSON.stringify({ type: "edited_top_three", link: `/${username}` }));
+              navigate(`/${username}`);
+            } else {
+              getWebSocket().send(JSON.stringify({ type: "edited_shelf", link: `/${username}/${shelf}` }));
+              navigate(`/${username}/${shelf}`);
+            }
           } else {
             res.json().then((message) => setErrMessage(message.error));
           }
@@ -95,6 +101,7 @@ export default function ShelfCreatePage({ edit = false }) {
           body: JSON.stringify({ name: title, books: books }),
         }).then((res) => {
           if (res.ok) {
+            res.json().then((message) => getWebSocket().send(JSON.stringify({ type: "new_shelf", link: `/${username}/${message._id}` })));
             navigate(`/${username}`);
           } else {
             res.json().then((message) => setErrMessage(message.error));
@@ -111,41 +118,21 @@ export default function ShelfCreatePage({ edit = false }) {
   };
 
   useEffect(() => {
-    if (edit) {
-      getProfileData();
-    }
-  }, []);
-
-  function getProfileData() {
-    fetch(
-      import.meta.env.VITE_BACKEND_HOST +
-      "/user/" +
-      username +
-      "?" +
-      new URLSearchParams({
-        fields: ["shelf", "top_three"],
-      }),
-      {
-        method: "GET",
+    const getFunction = async () => {
+      const profileData = await getProfileData(usernameParams, ["shelf", "top_three"]);
+      let editShelf;
+      if (shelf !== "top_three") {
+        editShelf = profileData.shelf.find((e) => e._id === shelf);
+      } else {
+        editShelf = profileData.top_three;
       }
-    )
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        let editShelf;
-        if (shelf !== "top_three") {
-          editShelf = res.shelf.find((e) => e._id === shelf);
-        } else {
-          editShelf = res.top_three;
-        }
-        setBooks(editShelf.books);
-        setTitle(editShelf.name);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+      setBooks(editShelf.books);
+      setTitle(editShelf.name);
+    };
+    if (edit) {
+      getFunction();
+    }
+  }, [usernameParams, shelf]);
 
   return (
     <>

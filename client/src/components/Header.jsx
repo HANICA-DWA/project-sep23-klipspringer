@@ -17,26 +17,23 @@ export default function Header({ setLoggedIn, shareButton, backButton, profileIn
     const [setShareLinkAlertOn, shareLinkAlert] = useAlert("Link copied to clipboard!");
 
     return (
-        <>
-            <Stack direction="row" justifyContent="space-between" alignItems="center" width="100%">
-                <Box sx={{ margin: "10px" }}>
-                    <Stack flex flexDirection="row">
-                        <HamburgerMenu setLoggedIn={setLoggedIn} />
-                        {backButton ? (
-                            <ArrowBackIosNew sx={{marginTop: "5px"}} onClick={() => navigate(-1)} />
-                        ) : null}
-                        <NotificationTray />
-                    </Stack>
-                </Box>
-                {loggedIn && username === userName && shareButton ? (
-                    <Box>
-                        <ProfileLink alert={setShareLinkAlertOn} profileInfo={profileInfo}/>
-                    </Box>
-                ) : null
-                }
+      <>
+        <Stack direction="row" justifyContent="space-between" alignItems="center" width="100%">
+          <Box sx={{ margin: "10px" }}>
+            <Stack flex flexDirection="row">
+              <HamburgerMenu setLoggedIn={setLoggedIn} />
+              {backButton ? <ArrowBackIosNew sx={{ marginTop: "5px" }} onClick={() => navigate(-1)} /> : null}
+              {loggedIn ? <NotificationTray /> : null}
             </Stack>
-            {shareLinkAlert}
-        </>
+          </Box>
+          {loggedIn && username === userName && shareButton ? (
+            <Box>
+              <ProfileLink alert={setShareLinkAlertOn} />
+            </Box>
+          ) : null}
+        </Stack>
+        {shareLinkAlert}
+      </>
     );
 }
 

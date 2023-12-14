@@ -8,6 +8,7 @@ import { ArrowBackIos, Add } from "@mui/icons-material";
 import ModalBookcase from "../components/ModalBookcase.jsx";
 import { useAlert } from "../hooks/useAlert.jsx";
 import getProfileData from "../data/getProfileData.js";
+import { getWebSocket } from "../data/websockets.js";
 
 export default function SearchPage() {
   const navigate = useNavigate();
@@ -37,6 +38,7 @@ export default function SearchPage() {
       .then((res) => {
         if (res.ok) {
           showAlert();
+          getWebSocket().send(JSON.stringify({ type: "new_book", link: shelf === "top_three" ? `/${username}` : `/${username}/${shelf}` }));
           navigate(-1);
         } else {
           res
