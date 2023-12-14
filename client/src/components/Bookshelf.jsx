@@ -16,18 +16,44 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
   const [bookshelfBooks, setBookshelfBooks] = useState(books);
   const placeholderBooks = [];
   const [setDialogOpen, dialog] = useDialog(null, "Are you sure that you want to delete this shelf?", "No", "Yes", onDelete, id);
+  const [groupedBooks, setGroupedBooks] = useState([]);
 
   useEffect(() => {
     setBookshelfBooks(books);
   }, [books]);
 
+  useEffect(() => {
+    if (id === 'top_three'){
+      setGroupedBooks([[...bookshelfBooks]]);
+      return;
+    }
+
+    if (bookshelfBooks.length === 0) {
+      setGroupedBooks([[]]);
+      return;
+    }
+
+    const result = bookshelfBooks.reduce((resultArray, item, index) => { 
+      const chunkIndex = Math.floor(index/ nrOfColums)
+    
+      if(!resultArray[chunkIndex]) {
+        resultArray[chunkIndex] = []
+      }
+    
+      resultArray[chunkIndex].push(item)
+    
+      return resultArray
+    }, [])  
+    setGroupedBooks(result)
+  }, [bookshelfBooks])
+
   if ((bookshelfBooks.length === 0 && !loggedIn) || (bookshelfBooks.length === 0 && hideAdding)) {
+    console.log("HOI")
     placeholderBooks.push(<div key="p1"></div>);
     placeholderBooks.push(
       <Typography key="p2" variant="h5" order="2">
         No books on this shelf
-      </Typography>
-    );
+      </Typography>);
   }
 
   for (let i = bookshelfBooks.length; i < 3; i++) {
@@ -70,9 +96,12 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
             ) : null}
           </>
         ) : null}
-        <Stack direction="row" justifyContent="center" spacing={2}>
+        {groupedBooks.map((books, i) => {
+        return (
+        <Stack justifyContent="center" key={i}>
+        <Stack direction="row" justifyContent="center" spacing={1}>
           <ImageList cols={nrOfColums}>
-            {bookshelfBooks.map((item) => (
+            {books.map((item) => (
               <>
                 <Card key={item._id}>
                   <Box sx={{ width: "85px", height: "160px", display: "flex", justifyContent: "flex-end" }}>
@@ -111,7 +140,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
             ))}
             {placeholderBooks.length !== 0 ? (
               placeholderBooks
-            ) : loggedIn && username === user && !hideAdding && id !== "top_three" ? (
+            ) : loggedIn && username === user && !hideAdding && id !== "top_three" && books.length < 4 ? (
               <Card key={id} style={{ width: "85px", height: "160px" }}>
                 <Link to={`/${user}/${id}/add`}>
                   <CardMedia shelf={id} height="160" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" />
@@ -122,22 +151,19 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
             )}
           </ImageList>
         </Stack>
-        <Stack direction="row" sx={{ height: "20px", width: `${nrOfColums * 100}px`, maxWidth: "98vw", position: "relative", overflow: "hidden" }}>
-          <img style={{ bottom: 0, left: 0, top: 0, right: 0, position: "absolute", width: "100%" }} src="/images/bookshelf.jpg" alt="bookshelf"></img>
+        <Stack direction="row" justifyContent="center" sx={{ height: "20px", width: `100%`, maxWidth: "98vw", position: "relative", overflow: "hidden" }}>
+          <img style={{ width: "100%" }} src="/images/bookshelf.jpg" alt="bookshelf"></img>
         </Stack>
         <Stack direction="row">
-          {bookshelfBooks.map((item) => (
-            <Stack margin="3px">
+          {books.map((item) => (
+            <Stack margin="2px">
               <Typography width="85px" variant="caption" fontWeight="600" >{item.title}</Typography>
               <Typography width="85px" variant="caption" >{item.authors[0]}</Typography>
             </Stack>
           ))}
-          {placeholderBooks !== 0 ? placeholderBooks.map((item) => (
-            <div style={{width: "85px"}}></div>
-          )) : null}
-          {loggedIn && username === user && !hideAdding && id !== "top_three" ?
-          <div style={{width: "85px"}}></div> : null}
         </Stack>
+        </Stack>)}
+        )}
       </Stack>
     </>
   );
