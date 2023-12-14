@@ -8,6 +8,7 @@ import { LoggedInContext } from "../Contexts";
 import { useAlert } from "../hooks/useAlert";
 import ModalBookcase from "../components/ModalBookcase";
 import { getWebSocket } from "../data/websockets";
+import getProfileData from "../data/getProfileData";
 
 export default function ShelfCreatePage({ edit = false }) {
   const navigate = useNavigate();
@@ -117,41 +118,21 @@ export default function ShelfCreatePage({ edit = false }) {
   };
 
   useEffect(() => {
-    if (edit) {
-      getProfileData();
-    }
-  }, []);
-
-  function getProfileData() {
-    fetch(
-      import.meta.env.VITE_BACKEND_HOST +
-        "/user/" +
-        username +
-        "?" +
-        new URLSearchParams({
-          fields: ["shelf", "top_three"],
-        }),
-      {
-        method: "GET",
+    const getFunction = async () => {
+      const profileData = await getProfileData(usernameParams, ["shelf", "top_three"]);
+      let editShelf;
+      if (shelf !== "top_three") {
+        editShelf = profileData.shelf.find((e) => e._id === shelf);
+      } else {
+        editShelf = profileData.top_three;
       }
-    )
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        let editShelf;
-        if (shelf !== "top_three") {
-          editShelf = res.shelf.find((e) => e._id === shelf);
-        } else {
-          editShelf = res.top_three;
-        }
-        setBooks(editShelf.books);
-        setTitle(editShelf.name);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+      setBooks(editShelf.books);
+      setTitle(editShelf.name);
+    };
+    if (edit) {
+      getFunction();
+    }
+  }, [usernameParams, shelf]);
 
   return (
     <>
