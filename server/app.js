@@ -71,7 +71,7 @@ httpServer.on("upgrade", (request, socket, head) => {
 
 wsServer.broadcastToFollowers = (ws, data) => {
   wsServer.clients.forEach((client) => {
-    if (ws.followers.findIndex((follower) => follower._id === client.user)) {
+    if (ws.followers.findIndex((follower) => follower._id == client.user) !== -1) {
       client.send(JSON.stringify(data));
     }
   });

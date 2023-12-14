@@ -68,8 +68,7 @@ function Profilepage({ setLoggedIn }) {
         })
         .then((res) => {
           setProfileInfo(res);
-          console.log(JSON.stringify({ type: "notification_follow", following: userName, person: { _id: username } }));
-          getWebSocket().send(JSON.stringify({ type: "notification_follow", following: userName }));
+          getWebSocket().send(JSON.stringify({ type: "notification_follow", following: userName, link: `/${username}` }));
         })
         .catch((err) => {
           console.log(err);

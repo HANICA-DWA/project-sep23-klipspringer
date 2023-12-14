@@ -192,6 +192,7 @@ describe("connection", () => {
       };
 
       const res = await request(app).post(`/user/${username}/shelf`).send(bookData).expect(201);
+      delete res.body._id;
 
       assert.deepStrictEqual(res.body, bookData);
     });

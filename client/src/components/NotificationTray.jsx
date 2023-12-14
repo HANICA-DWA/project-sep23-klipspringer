@@ -1,16 +1,31 @@
 import { Circle, NotificationsOutlined } from "@mui/icons-material";
-import { Avatar, Button, Divider, Menu, MenuItem, Stack } from "@mui/material";
+import { Button, Divider, Menu, MenuItem, Stack } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createWebSocket, getWebSocket } from "../data/websockets";
+import { getWebSocket } from "../data/websockets";
 import ProfileAvatar from "./ProfileAvatar";
 
 export default function NotificationTray() {
   useEffect(() => {
     getWebSocket().onmessage = (event) => {
       const data = JSON.parse(event.data);
-      if (data.type === "notification_follow") {
-        setNotifications(notifications.concat(data.person));
+      console.log(data);
+      switch (data.type) {
+        case "notification_follow":
+          setNotifications(notifications.concat({ link: data.link, person: data.person, message: `@${data.person._id} has followed you!` }));
+          break;
+        case "edited_top_three":
+          setNotifications(
+            notifications.concat({ link: data.link, person: data.person, message: `@${data.person._id} made changes to their top three!` })
+          );
+          break;
+        case "edited_shelf":
+          setNotifications(notifications.concat({ link: data.link, person: data.person, message: `@${data.person._id} made changes to a shelf!` }));
+          break;
+        case "new_shelf":
+          setNotifications(notifications.concat({ ...data, message: `@${data.person._id} created a new shelf!` }));
+        default:
+          console.log("Unknown message type");
       }
     };
   }, []);
@@ -67,12 +82,12 @@ function NotificationItem({ item, setNotificationAnchor }) {
       <MenuItem
         onClick={() => {
           setNotificationAnchor(null);
-          navigate("/" + item._id);
+          navigate(item.link);
         }}
       >
         <Stack flexDirection="row" alignItems="center">
-          <ProfileAvatar alt={item._id} image={item.profile_picture} border={false} size={40} />
-          <span style={{ paddingLeft: "10px" }}>@{item._id} has followed you!</span>
+          <ProfileAvatar alt={item.person._id} image={item.person.profile_picture} border={false} size={40} />
+          <span style={{ paddingLeft: "10px" }}>{item.message}</span>
         </Stack>
       </MenuItem>
       <Divider />
