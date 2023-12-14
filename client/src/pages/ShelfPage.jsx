@@ -19,7 +19,7 @@ export default function ShelfPage({ setLoggedIn }) {
   const [setDeleteShelfAlertOn, deleteShelfAlert] = useAlert(errMessage ? errMessage : "Shelf deleted!", 3000, errMessage ? "error" : "success");
   useEffect(() => {
     const getFunction = async () => {
-      const profileData = await getProfileData(userName, ["_id", "profile_picture", "shelf"]);
+      const profileData = await getProfileData(userName, ["_id", "profile_picture", "shelf","top_three"]);
       setProfileInfo(profileData);
       setShelfInfo(profileData.shelf.find((shelfFromUser) => shelfFromUser._id === shelf));
     };
