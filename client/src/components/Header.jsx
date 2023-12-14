@@ -9,7 +9,7 @@ import { HamburgerMenu } from "./HamburgerMenu.jsx";
 import NotificationTray from "./NotificationTray.jsx";
 
 
-export default function Header({ setLoggedIn, shareButton, backButton }) {
+export default function Header({ setLoggedIn, shareButton, backButton, profileInfo }) {
     const { loggedIn, username } = useContext(LoggedInContext);
     const { userName } = useParams();
     const navigate = useNavigate();
@@ -30,13 +30,10 @@ export default function Header({ setLoggedIn, shareButton, backButton }) {
                 </Box>
                 {loggedIn && username === userName && shareButton ? (
                     <Box>
-                        <ProfileLink alert={setShareLinkAlertOn} />
+                        <ProfileLink alert={setShareLinkAlertOn} profileInfo={profileInfo}/>
                     </Box>
                 ) : null
                 }
-                {/* <Box sx={{ flex: "1 1 0px", width: "0px", textAlign: "center" }}>
-
-                </Box> */}
             </Stack>
             {shareLinkAlert}
         </>
