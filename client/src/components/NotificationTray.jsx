@@ -2,8 +2,18 @@ import { Circle, NotificationsOutlined } from "@mui/icons-material";
 import { Avatar, Button, Divider, Menu, MenuItem, Stack } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getWebSocket } from "../data/websockets";
 
 export default function NotificationTray() {
+
+    getWebSocket().onmessage = (msg) => {
+        const data = JSON.parse(msg);
+
+        if (data.type === 'notification_follow') {
+            setNotifications(notifications.concat(data.person));
+        }
+    }
+
     const [notifications, setNotifications] = useState([
         {
             _id: "janwillem",
