@@ -31,9 +31,6 @@ export default function Header({ setLoggedIn, shareButton, backButton }) {
               <ProfileLink alert={setShareLinkAlertOn} />
             </Box>
           ) : null}
-          {/* <Box sx={{ flex: "1 1 0px", width: "0px", textAlign: "center" }}>
-
-                </Box> */}
         </Stack>
         {shareLinkAlert}
       </>
