@@ -1,7 +1,6 @@
 # Quality Attributes
 
-- Applicatie moet mobile-first zijn. Wij gebruiken de iphone SE tijdens development voor het testen.
-- Applicatie moet responsive zijn, voor zowel mobiel als desktop en alles daar tussen in.
+- Responsiveness, de applicatie wordt mobile first gebouwd maar moet responsive zijn voor mobile en desktop.
 - Applicatie moet snel zijn. Pagina's moeten laden binnen 2 seconden.
 - Inloggen wordt geregeld via Google en LinkdIn SSO.
 - Authenticatie wordt op de backend server verwerkt.
