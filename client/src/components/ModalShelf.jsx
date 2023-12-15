@@ -1,13 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import { LoggedInContext } from "../Contexts";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Modal, Typography, Stack, Box } from "@mui/material";
 import { Add, ArrowForward, Close } from "@mui/icons-material";
 import { useAlert } from "../hooks/useAlert";
 import { useDispatch, useSelector } from "react-redux";
+import { addBookToShelf } from "../redux/reducers/profileReducer";
 
 export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
-  const { loggedIn, username } = useContext(LoggedInContext);
   const profile = useSelector((state) => state.profile);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -29,30 +28,12 @@ export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
   }
 
   function addToShelf(shelfName, book) {
-    dispatch();
-
-    fetch(import.meta.env.VITE_BACKEND_HOST + `/user/${username}/shelves/${shelfName}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      mode: "cors",
-      body: JSON.stringify({ book: book }),
-    })
-      .then((res) => {
-        if (res.ok) {
-          setErrMessage(null);
-          showAlert();
-          handleClose();
-        } else {
-          res.json().then((message) => setErrMessage(message.error));
-          showAlert();
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const cb = (error) => {
+      setErrMessage(error);
+      showAlert();
+      if (!error) handleClose();
+    };
+    dispatch(addBookToShelf({ shelf: shelfName, book, cb }));
   }
 
   return (

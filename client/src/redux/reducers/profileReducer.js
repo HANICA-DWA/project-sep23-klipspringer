@@ -118,7 +118,7 @@ export const editProfile = createAsyncThunk("profile/edit", async ({ name, image
   return data;
 });
 
-const addBookToShelf = createAsyncThunk("profile/addBookToShelf", async ({ shelf, book, cb }, { getState }) => {
+export const addBookToShelf = createAsyncThunk("profile/addBookToShelf", async ({ shelf, book, cb }, { getState }) => {
   const response = await fetch(import.meta.env.VITE_BACKEND_HOST + `/user/${getState().profile._id}/shelves/${shelf}`, {
     method: "PUT",
     headers: {
@@ -135,7 +135,23 @@ const addBookToShelf = createAsyncThunk("profile/addBookToShelf", async ({ shelf
   } else {
     cb && cb(null);
   }
-  return { ...data, shelf };
+  return { book: data, shelf };
+});
+
+export const deleteShelf = createAsyncThunk("profile/deleteShelf", async ({ shelf, cb }, { getState }) => {
+  const response = await fetch(import.meta.env.VITE_BACKEND_HOST + `/user/${getState().profile._id}/shelves/${shelf}`, {
+    method: "DELETE",
+    credentials: "include",
+    mode: "cors",
+  });
+  const data = await response.json();
+  if (data.error) {
+    cb && cb(data.error);
+    throw new Error(data.error);
+  } else {
+    cb && cb(null);
+  }
+  return { message: data, shelf };
 });
 
 const initialState = {
@@ -206,7 +222,12 @@ export const profileSlice = createSlice({
     });
     builder.addCase(addBookToShelf.fulfilled, (state, action) => {
       const { shelf, book } = action.payload;
-      
+      const books = Array.isArray(book) ? book : [book];
+
+      books.forEach((book) => {
+        if (!state.bookcase.find((element) => element._id === book._id)) state.bookcase.push(book);
+      });
+
       if (shelf === "top_three") {
         if (Array.isArray(book)) {
           book.forEach((item) => {
@@ -229,6 +250,14 @@ export const profileSlice = createSlice({
     builder.addCase(addBookToShelf.rejected, (state, action) => {
       state.error = action.error.message;
     });
+    builder.addCase(deleteShelf.fulfilled, (state, action) => {
+      const { shelf } = action.payload;
+      const index = state.shelf.findIndex((shelfFromState) => shelfFromState._id === shelf);
+      state.shelf.splice(index, 1);
+    });
+    builder.addCase(deleteShelf.rejected), (state, action) => {
+        state.error = action.error.message;
+      };
   },
 });
 
