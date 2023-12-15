@@ -69,4 +69,5 @@
 | 0.5  | leerdoelen van niels opgesomd | Met Niels | het samenvatten van het leerdoel            |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/de0c87b025a9d948c987b39fac2159bed4701852) |
 | 1    | bug fix                       | N.V.T.    | bug fix boeken zonder isbn voor suggestions |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/22230b7829d1846abfcd3cbcb84bca0976757b4d) |
 | 0.5  | bug fix                       | N.V.T.    | bug fix boekdetail zonder auteur            |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/d0984310aeb406a3636486e67f1baccc4fce7a1a) |
+| 1    | review                        | N.V.T.    | reviewen van pull request van Niels         |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/73d39013a167eb0cc37368e797a713963cd0f2a6) |
 |      |                               |           |                                             | | |
