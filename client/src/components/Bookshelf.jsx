@@ -44,6 +44,19 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
     
       return resultArray
     }, [])  
+
+    if (bookshelfBooks.length % nrOfColums === 0 && !hideAdding) {
+      result.push([])
+      placeholderBooks.push(
+        <Card key="extra" style={{ width: "85px", height: "160px" }}>
+          <Link to={`/${user}/${id}/add`}>
+            <CardMedia shelf={id} height="160" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" />
+          </Link>
+        </Card>
+      )
+    }
+      
+
     setGroupedBooks(result)
   }, [bookshelfBooks])
 
