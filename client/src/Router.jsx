@@ -34,8 +34,8 @@ export default function Router() {
           credentials: "include",
           mode: "cors",
         });
-        if (!response.ok) throw new Error("Fetch failed");
         const result = await response.json();
+        if (!response.ok || !result.loggedIn) throw new Error("Fetch failed");
         if (result.username) {
           dispatch(
             logUserIn({

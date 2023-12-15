@@ -220,7 +220,7 @@ export const profileSlice = createSlice({
       state.error = action.error.message;
     });
     builder.addCase(unFollowAccount.fulfilled, (state, action) => {
-      const index = state.following.indexOf((follow) => follow._id === action.payload._id);
+      const index = state.following.findIndex((follow) => follow._id === action.payload._id);
       state.following.splice(index, 1);
     });
     builder.addCase(unFollowAccount.rejected, (state, action) => {
@@ -239,7 +239,7 @@ export const profileSlice = createSlice({
       state.error = action.error.message;
     });
     builder.addCase(removeFromBookcase.fulfilled, (state, action) => {
-      const index = state.bookcase.indexOf((book) => book._id === action.payload);
+      const index = state.bookcase.findIndex((book) => book._id == action.payload);
       state.bookcase.splice(index, 1);
     });
     builder.addCase(removeFromBookcase.rejected, (state, action) => {
