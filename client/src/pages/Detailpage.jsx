@@ -7,6 +7,7 @@ import React, { useContext, useEffect, useState } from "react";
 import ModalShelf from "../components/ModalShelf";
 import Bookcover from "../components/Bookcover";
 import { useAlert } from "../hooks/useAlert";
+import {isArray} from "eslint-plugin-react-refresh";
 
 export default function Detailpage({ setLoggedIn }) {
   const { loggedIn, username } = useContext(LoggedInContext);
@@ -198,7 +199,7 @@ export default function Detailpage({ setLoggedIn }) {
                 _id: isbn,
                 cover_image: book.cover ? book.cover.medium : "",
                 title: book.title,
-                authors: book.authors.map((author) => author.name),
+                authors: book.authors != undefined?book.authors.map((author) => author.name):[],
               })}
               sx={{cursor: "pointer"}}
             />
@@ -213,7 +214,7 @@ export default function Detailpage({ setLoggedIn }) {
             _id: isbn,
             cover_image: book.cover != undefined ? book.cover.medium : null,
             title: book.title,
-            authors: book.authors.map((author) => author.name),
+            authors: book.authors != undefined?book.authors.map((author) => author.name):[],
           }}
         />
 
