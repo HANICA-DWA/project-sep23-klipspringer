@@ -85,13 +85,17 @@ function Profilepage({ setLoggedIn }) {
         <Stack direction="row" justifyContent="space-evenly" width="100%">
           <ProfileInfo name={profileInfo.name} avatar={profileInfo.profile_picture} handle={profileInfo._id} />
           <Stack justifyContent="center">
-            <Stack direction="row">
+            <Stack direction="row" sx={{ cursor: "pointer" }}>
               <Stack alignItems="center" margin="5px" onClick={() => handleOpen("followers")}>
-                <Typography variant="caption">Followers</Typography>
+                <Typography variant="body1" fontWeight={700}>
+                  Followers
+                </Typography>
                 <Typography>{profileInfo.followers ? profileInfo.followers.length : null}</Typography>
               </Stack>
               <Stack alignItems="center" margin="5px" onClick={() => handleOpen("following")}>
-                <Typography variant="caption">Following</Typography>
+                <Typography variant="body1" fontWeight={700}>
+                  Following
+                </Typography>
                 <Typography>{profileInfo.following ? profileInfo.following.length : null}</Typography>
               </Stack>
             </Stack>

@@ -111,9 +111,9 @@ export default function ModalShare({alert, open, handleClose, profileInfo = {}})
 								<TextField
 									value={window.location.href}
 									placeholder="BKS/..."
-									readOnly
 									onClick={handleClick}
 									InputProps={{
+										readOnly: true,
 										startAdornment: (
 											<InputAdornment position="start">
 												<IconButton type="submit" edge="end">

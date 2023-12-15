@@ -101,7 +101,6 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
         <Stack direction="row" justifyContent="center" spacing={1}>
           <ImageList cols={nrOfColums}>
             {books.map((item) => (
-              <>
                 <Card key={item._id}>
                   <Box sx={{ width: "85px", height: "160px", display: "flex", justifyContent: "flex-end" }}>
                     {loggedIn && username === user && edit ? (
@@ -135,7 +134,6 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
                     </Link>
                   </Box>
                 </Card>
-              </>
             ))}
             {placeholderBooks.length !== 0 ? (
               placeholderBooks
@@ -153,14 +151,14 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
         <Stack direction="row" justifyContent="center" sx={{ height: "20px", width: `100%`, maxWidth: "98vw", position: "relative", overflow: "hidden" }}>
           <img style={{ width: "100%" }} src="/images/bookshelf.jpg" alt="bookshelf"></img>
         </Stack>
-          {!hideDesc?(<Stack direction="row">
+          {!hideDesc ? (<Stack direction="row">
             {books.map((item) => (
-                <Stack key={"D"+item._id} margin="2px">
+                <Stack margin="2px" key={item._id}>
                   <Typography width="85px" variant="caption" fontWeight="600" sx={{overflowWrap: "anywhere"}}>{item.title}</Typography>
                   <Typography width="85px" variant="caption" sx={{overflowWrap: "anywhere"}}>{item.authors[0]}</Typography>
                 </Stack>
             ))}
-          </Stack>):null}
+          </Stack>) : null}
         </Stack>)}
         )}
       </Stack>
