@@ -5,7 +5,7 @@ export function createFileFilter(type) {
     if (file.mimetype.startsWith(type)) {
       cb(null, true);
     } else {
-      cb(new Error("Invalid file type. Only images are allowed"));
+      cb("Invalid file type. Only images are allowed");
     }
   };
 }
