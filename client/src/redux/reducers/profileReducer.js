@@ -193,7 +193,15 @@ export const initialState = {
 export const profileSlice = createSlice({
   name: "profile",
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    addFollower: (state, action) => {
+      state.followers.push(action.payload);
+    },
+    removeFollower: (state, action) => {
+      const index = state.followers.findIndex((follower) => follower._id === action.payload);
+      state.followers.splice(index, 1);
+    },
+  },
   extraReducers(builder) {
     builder.addCase(logUserIn.fulfilled, (state, action) => {
       return (state = { ...action.payload, loggedIn: true });
@@ -273,3 +281,4 @@ export const profileSlice = createSlice({
 });
 
 export default profileSlice.reducer;
+export const { addFollower, removeFollower } = profileSlice.actions;
