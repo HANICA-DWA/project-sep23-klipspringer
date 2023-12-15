@@ -52,6 +52,15 @@ export default function Suggestions() {
     setLoading(false);
   }
 
+  useEffect(() => {
+    if(suggestions.some((item)=>item.isbn === undefined) && suggestions.length > 0){
+      console.log(suggestions);
+    }
+  }, [suggestions]);
+
+
+
+
   return (
     <>
       <Typography variant="h6" sx={{ fontWeight: "700" }}>
@@ -60,7 +69,7 @@ export default function Suggestions() {
       <ImageList sx={{ display: "flex", justifyContent: "center" }} cols={3} gap={10} >
         {loading ? suggestionNumber.map((item) => <Skeleton key={item} animation="wave" variant="rectangular" width={75} height={120} sx={{ marginRight: "10px" }} />) :
         suggestions.map((item) => (
-          item.isbn[0] && 
+            item.isbn && item.isbn[0] &&
           <ImageListItem sx={{ width: "85px", height: "130px", cursor: "pointer" }} key={item.isbn[0]} onClick={() => navigate(`/book/${item.isbn[0]}`)}>
             <Bookcover isbn={item.isbn[0]} cover_image={`https://covers.openlibrary.org/b/id/${item.cover_i}-M.jpg?default=false`} />
           </ImageListItem>
