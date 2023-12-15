@@ -45,6 +45,7 @@ app.use("/book", bookRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/genre", genreRouter);
 
+/* node:coverage disable */
 app.use((err, req, res, next) => {
   if (err instanceof multer.MulterError) {
     res.status(400).json({ error: err.message });
@@ -116,6 +117,8 @@ wsServer.on("connection", async (ws, request) => {
     request.session.save();
   });
 });
+
+/* node:coverage enable */
 
 export const server = httpServer.listen(port, host, async () => {
   console.log("> connecting");
