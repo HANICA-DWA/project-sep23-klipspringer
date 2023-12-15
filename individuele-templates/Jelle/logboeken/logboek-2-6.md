@@ -71,4 +71,5 @@
 | 0.5  | bug fix                       | N.V.T.    | bug fix boekdetail zonder auteur                    |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/d0984310aeb406a3636486e67f1baccc4fce7a1a) |
 | 1    | review                        | N.V.T.    | reviewen van pull request van Niels                 |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/73d39013a167eb0cc37368e797a713963cd0f2a6) |
 | 0.5  | review                        | N.V.T.    | reviewen van pull request van Roos over unit testen |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/0d6dbf9f0eb3abb3d0cdad94785b4a47684fbcf1) |
+| 0.5  | review                        | Met Niels | reviewen van pull request van Yannick over redux    |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/d887c8d45da32f8d962cfbe3a5fdd34e01159a22) |
 |      |                               |           |                                                     | | |

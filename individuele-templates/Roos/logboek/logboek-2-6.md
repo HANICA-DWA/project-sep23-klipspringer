@@ -55,3 +55,4 @@
 | Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
 |---|---|---|---|---|---|
 | 2 uur | [link naar taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/244) | Met Niels | Het ging dit keer allemaal vrij gemakkelijk | :hankey: | [link naar resultaat](https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/286) |
+| 3 uur | ervoor zorgen dat bij boek zoeken je nu ook meerdere kan selecteren net zoals bij kiezen ui boekenkast | Alleen | het was even veel werk om te doen, maar ik heb de code nu zo gemaakt dat het herbruikbaar is | :t-rex: | [link naar resultaat](https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/292) |
