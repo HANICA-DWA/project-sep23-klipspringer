@@ -45,7 +45,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
       return resultArray
     }, [])  
 
-    if (bookshelfBooks.length % nrOfColums === 0 && !hideAdding) {
+    if (bookshelfBooks.length % nrOfColums === 0 && !hideAdding && loggedIn) {
       result.push([])
       placeholderBooks.push(
         <Card key="extra" style={{ width: "85px", height: "160px" }}>
@@ -110,28 +110,28 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
         ) : null}
         {groupedBooks.map((books, i) => {
         return (
-        <Stack justifyContent="center" key={i}>
-        <Stack direction="row" justifyContent="center" spacing={1}>
-          <ImageList cols={nrOfColums}>
-            {books.map((item) => (
-                <Card key={item._id}>
-                  <Box sx={{ width: "85px", height: "160px", display: "flex", justifyContent: "flex-end" }}>
-                    {loggedIn && username === user && edit ? (
-                      <IconButton
-                        sx={{
-                          position: "absolute",
-                          marginTop: "-0.6rem",
-                          marginRight: "-0.6rem",
-                          bgcolor: "black",
-                          borderRadius: "50%",
-                          width: "1.7rem",
-                          height: "1.7rem",
-                          "&:hover": {
-                            bgcolor: "primary.main",
-                          },
-                        }}
-                        onClick={() => onBookDelete(item._id)}
-                      >
+          <Stack justifyContent="center" key={i}>
+            <Stack direction="row" justifyContent="center" spacing={1}>
+              <ImageList cols={nrOfColums}>
+                {books.map((item) => (
+                  <Card key={item._id}>
+                    <Box sx={{ width: "85px", height: "160px", display: "flex", justifyContent: "flex-end" }}>
+                      {loggedIn && username === user && edit ? (
+                        <IconButton
+                          sx={{
+                            position: "absolute",
+                            marginTop: "-0.6rem",
+                            marginRight: "-0.6rem",
+                            bgcolor: "black",
+                            borderRadius: "50%",
+                            width: "1.7rem",
+                            height: "1.7rem",
+                            "&:hover": {
+                              bgcolor: "primary.main",
+                            },
+                          }}
+                          onClick={() => onBookDelete(item._id)}
+                        >
                         <DeleteIcon
                           sx={{
                             position: "relative",
@@ -140,40 +140,42 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
                             height: "1rem",
                           }}
                         />
-                      </IconButton>
-                    ) : null}
-                    <Link to={unclickable ? null : `/book/${item._id}`} style={{ textDecoration: "none", color: "black" }}>
-                      <Bookcover isbn={item._id} cover_image={item.cover_image} />
+                        </IconButton>
+                      ) : null}
+                      <Link to={unclickable ? null : `/book/${item._id}`} style={{ textDecoration: "none", color: "black" }}>
+                        <Bookcover isbn={item._id} cover_image={item.cover_image} />
+                      </Link>
+                    </Box>
+                  </Card>
+                ))}
+                {placeholderBooks.length !== 0 ? (
+                  placeholderBooks
+                ) : loggedIn && username === user && !hideAdding && id !== "top_three" && books.length < 4 ? (
+                  <Card key={id} style={{ width: "85px", height: "160px" }}>
+                    <Link to={`/${user}/${id}/add`}>
+                      <CardMedia shelf={id} height="160" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" />
                     </Link>
-                  </Box>
-                </Card>
-            ))}
-            {placeholderBooks.length !== 0 ? (
-              placeholderBooks
-            ) : loggedIn && username === user && !hideAdding && id !== "top_three" && books.length < 4 ? (
-              <Card key={id} style={{ width: "85px", height: "160px" }}>
-                <Link to={`/${user}/${id}/add`}>
-                  <CardMedia shelf={id} height="160" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" />
-                </Link>
-              </Card>
-            ) : (
-              ""
-            )}
-          </ImageList>
-        </Stack>
-        <Stack direction="row" justifyContent="center" sx={{ height: "20px", width: `100%`, maxWidth: "98vw", position: "relative", overflow: "hidden" }}>
-          <img style={{ width: "100%" }} src="/images/bookshelf.jpg" alt="bookshelf"></img>
-        </Stack>
-          {!hideDesc ? (<Stack direction="row">
-            {books.map((item) => (
-                <Stack margin="2px" key={item._id}>
-                  <Typography width="85px" variant="caption" fontWeight="600" sx={{overflowWrap: "anywhere"}}>{item.title}</Typography>
-                  <Typography width="85px" variant="caption" sx={{overflowWrap: "anywhere"}}>{item.authors[0]}</Typography>
-                </Stack>
-            ))}
-          </Stack>) : null}
-        </Stack>)}
-        )}
+                  </Card>
+                ) : (
+                  ""
+                )}
+              </ImageList>
+            </Stack>
+            <Stack direction="row" justifyContent="center" sx={{ height: "20px", width: `100%`, maxWidth: "98vw", position: "relative", overflow: "hidden" }}>
+              <img style={{ width: "100%" }} src="/images/bookshelf.jpg" alt="bookshelf"></img>
+            </Stack>
+            {!hideDesc ? (
+              <Stack direction="row">
+                {books.map((item) => (
+                  <Stack margin="2px" key={item._id}>
+                    <Typography width="85px" variant="caption" fontWeight="600" sx={{overflowWrap: "anywhere"}}>{item.title}</Typography>
+                    <Typography width="85px" variant="caption" sx={{overflowWrap: "anywhere"}}>{item.authors[0]}</Typography>
+                  </Stack>
+                ))}
+              </Stack>
+            ) : null}
+          </Stack>)
+        })}
       </Stack>
     </>
   );
