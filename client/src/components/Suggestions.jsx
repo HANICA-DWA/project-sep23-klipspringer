@@ -52,15 +52,6 @@ export default function Suggestions() {
     setLoading(false);
   }
 
-  useEffect(() => {
-    if(suggestions.some((item)=>item.isbn === undefined) && suggestions.length > 0){
-      console.log(suggestions);
-    }
-  }, [suggestions]);
-
-
-
-
   return (
     <>
       <Typography variant="h6" sx={{ fontWeight: "700" }}>
