@@ -110,7 +110,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
         ) : null}
         {groupedBooks.map((books, i) => {
         return (
-          <Stack justifyContent="center" key={i}>
+          <Stack alignItems="center" key={i}>
             <Stack direction="row" justifyContent="center" spacing={1}>
               <ImageList cols={nrOfColums}>
                 {books.map((item) => (
@@ -161,7 +161,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
                 )}
               </ImageList>
             </Stack>
-            <Stack direction="row" justifyContent="center" sx={{ height: "20px", width: `100%`, maxWidth: "98vw", position: "relative", overflow: "hidden" }}>
+            <Stack direction="row" alignItems="center" sx={{ height: "20px", width: `${nrOfColums*100}px`, maxWidth: "98vw", overflow: "hidden" }}>
               <img style={{ width: "100%" }} src="/images/bookshelf.jpg" alt="bookshelf"></img>
             </Stack>
             {!hideDesc ? (
