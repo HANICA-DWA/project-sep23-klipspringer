@@ -7,7 +7,6 @@ import React, { useContext, useEffect, useState } from "react";
 import ModalShelf from "../components/ModalShelf";
 import Bookcover from "../components/Bookcover";
 import { useAlert } from "../hooks/useAlert";
-import {isArray} from "eslint-plugin-react-refresh";
 
 export default function Detailpage({ setLoggedIn }) {
   const { loggedIn, username } = useContext(LoggedInContext);
