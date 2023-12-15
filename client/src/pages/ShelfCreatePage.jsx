@@ -1,20 +1,21 @@
 import { Box, Button, Container, FormControl, Stack, TextField, Typography } from "@mui/material";
 import SearchBar from "../components/SearchBar";
 import Bookshelf from "../components/Bookshelf";
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { ArrowBackIos, Title, Add } from "@mui/icons-material";
 import { useNavigate, useParams } from "react-router-dom";
-import { LoggedInContext } from "../Contexts";
 import { useAlert } from "../hooks/useAlert";
 import ModalBookcase from "../components/ModalBookcase";
 import { getWebSocket } from "../data/websockets";
-import getProfileData from "../data/getProfileData";
+import { useDispatch, useSelector } from "react-redux";
+import { addShelf, editBooksShelf } from "../redux/reducers/profileReducer";
 
 export default function ShelfCreatePage({ edit = false }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { shelf } = useParams();
   const usernameParams = useParams().userName;
-  const { loggedIn, username } = useContext(LoggedInContext);
+  const profile = useSelector((state) => state.profile);
 
   const localStorageBook = localStorage.getItem("book") != undefined ? [JSON.parse(localStorage.getItem("book"))] : [];
   const [books, setBooks] = useState(localStorageBook);
@@ -49,30 +50,19 @@ export default function ShelfCreatePage({ edit = false }) {
   };
 
   const handleEdit = () => {
-    if (loggedIn && username === usernameParams) {
+    if (profile.loggedIn && profile._id === usernameParams) {
       if ((shelf === "top_three" && books.length <= 3) || (shelf !== "top_three" && books.length >= 3)) {
-        setErrMessage("");
-        fetch(import.meta.env.VITE_BACKEND_HOST + "/user/" + username + "/shelves/" + shelf, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          mode: "cors",
-          body: JSON.stringify({ name: title, books: books, type: "editshelf" }),
-        }).then((res) => {
-          if (res.ok) {
-            if (shelf === "top_three") {
-              getWebSocket().send(JSON.stringify({ type: "edited_top_three", link: `/${username}` }));
-              navigate(`/${username}`);
-            } else {
-              getWebSocket().send(JSON.stringify({ type: "edited_shelf", link: `/${username}/${shelf}` }));
-              navigate(`/${username}/${shelf}`);
-            }
+        const cb = (error) => {
+          setErrMessage(error);
+          if (shelf === "top_three") {
+            getWebSocket().send(JSON.stringify({ type: "edited_top_three", link: `/${profile._id}` }));
+            navigate(`/${profile._id}`);
           } else {
-            res.json().then((message) => setErrMessage(message.error));
+            getWebSocket().send(JSON.stringify({ type: "edited_shelf", link: `/${profile._id}/${shelf}` }));
+            navigate(`/${profile._id}/${shelf}`);
           }
-        });
+        };
+        dispatch(editBooksShelf({ shelf, body: { name: title, books: books, type: "editshelf" }, cb }));
       } else {
         shelf === "top_three" ? setErrMessage("A top three has a max. of 3 books") : setErrMessage("You need to add min 3 books");
         showAlert();
@@ -88,25 +78,16 @@ export default function ShelfCreatePage({ edit = false }) {
   };
 
   const handleCreate = () => {
-    if (loggedIn && username === usernameParams) {
+    if (profile.loggedIn && profile._id === usernameParams) {
       if (books.length >= 3) {
-        setErrMessage("");
-        fetch(import.meta.env.VITE_BACKEND_HOST + "/user/" + username + "/shelf", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          mode: "cors",
-          body: JSON.stringify({ name: title, books: books }),
-        }).then((res) => {
-          if (res.ok) {
-            res.json().then((message) => getWebSocket().send(JSON.stringify({ type: "new_shelf", link: `/${username}/${message._id}` })));
-            navigate(`/${username}`);
-          } else {
-            res.json().then((message) => setErrMessage(message.error));
+        const cb = (message) => {
+          setErrMessage(message.error);
+          if (!message.error) {
+            getWebSocket().send(JSON.stringify({ type: "new_shelf", link: `/${profile._id}/${message._id}` }));
+            navigate(`/${profile._id}`);
           }
-        });
+        };
+        dispatch(addShelf({ name: title, books, cb }));
       } else {
         setErrMessage("You need to add min 3 books");
         showAlert();
@@ -118,21 +99,17 @@ export default function ShelfCreatePage({ edit = false }) {
   };
 
   useEffect(() => {
-    const getFunction = async () => {
-      const profileData = await getProfileData(usernameParams, ["shelf", "top_three"]);
-      let editShelf;
-      if (shelf !== "top_three") {
-        editShelf = profileData.shelf.find((e) => e._id === shelf);
-      } else {
-        editShelf = profileData.top_three;
-      }
-      setBooks(editShelf.books);
-      setTitle(editShelf.name);
-    };
     if (edit) {
-      getFunction();
+      let editshelf;
+      if (shelf !== "top_three") {
+        editshelf = profile.shelf.find((e) => e._id === shelf);
+      } else {
+        editshelf = profile.top_three;
+      }
+      setBooks(editshelf.books);
+      setTitle(editshelf.name);
     }
-  }, [usernameParams, shelf]);
+  }, [usernameParams, profile.shelf, profile.top_three, shelf]);
 
   return (
     <>
@@ -165,9 +142,9 @@ export default function ShelfCreatePage({ edit = false }) {
 
           <Stack gap={2} direction="column" alignItems="center" width="100%">
             {edit ? (
-              <Bookshelf onBookDelete={handleBookDelete} id={shelf} user={username} books={books} edit={edit} hideAdding unclickable />
+              <Bookshelf onBookDelete={handleBookDelete} id={shelf} user={profile._id} books={books} edit={edit} hideAdding unclickable />
             ) : (
-              <Bookshelf books={books} hideAdding unclickable placeholder/>
+              <Bookshelf books={books} hideAdding unclickable placeholder />
             )}
             <Box sx={{ display: "flex", alignItems: "flex-end" }}>
               <Title sx={{ color: "action.active", mr: 1, my: 0.5 }} />

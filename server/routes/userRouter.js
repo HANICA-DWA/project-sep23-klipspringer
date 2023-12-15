@@ -138,7 +138,7 @@ router.put("/:username/shelves/:shelf", async (req, res, next) => {
         }
         await req.user.save();
       }
-      res.status(200).json(book);
+      res.status(200).json(book || books);
     } catch (err) {
       let error = createError("Invalid book or shelf", 400);
       if (err.errors) error = createError(err.errors[Object.keys(err.errors)[0]].message, 400);

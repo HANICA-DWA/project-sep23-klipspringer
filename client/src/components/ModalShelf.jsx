@@ -4,7 +4,7 @@ import { Modal, Typography, Stack, Box } from "@mui/material";
 import { Add, ArrowForward, Close } from "@mui/icons-material";
 import { useAlert } from "../hooks/useAlert";
 import { useDispatch, useSelector } from "react-redux";
-import { addBookToShelf } from "../redux/reducers/profileReducer";
+import { editBooksShelf } from "../redux/reducers/profileReducer";
 
 export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
   const profile = useSelector((state) => state.profile);
@@ -33,7 +33,7 @@ export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
       showAlert();
       if (!error) handleClose();
     };
-    dispatch(addBookToShelf({ shelf: shelfName, book, cb }));
+    dispatch(editBooksShelf({ shelf: shelfName, body: { book }, cb }));
   }
 
   return (

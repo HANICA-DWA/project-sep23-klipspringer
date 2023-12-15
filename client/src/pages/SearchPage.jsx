@@ -8,7 +8,7 @@ import ModalBookcase from "../components/ModalBookcase.jsx";
 import { useAlert } from "../hooks/useAlert.jsx";
 import { getWebSocket } from "../data/websockets.js";
 import { useDispatch, useSelector } from "react-redux";
-import { addBookToShelf } from "../redux/reducers/profileReducer.js";
+import { editBooksShelf } from "../redux/reducers/profileReducer.js";
 
 export default function SearchPage() {
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ export default function SearchPage() {
         navigate(-1);
       }
     };
-    dispatch(addBookToShelf({ shelf, book, cb }));
+    dispatch(editBooksShelf({ shelf, body: { book }, cb }));
   };
 
   useEffect(() => {

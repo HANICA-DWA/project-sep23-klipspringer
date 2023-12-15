@@ -118,7 +118,7 @@ export const editProfile = createAsyncThunk("profile/edit", async ({ name, image
   return data;
 });
 
-export const addBookToShelf = createAsyncThunk("profile/addBookToShelf", async ({ shelf, book, cb }, { getState }) => {
+export const editBooksShelf = createAsyncThunk("profile/editBooksShelf", async ({ shelf, body, cb }, { getState }) => {
   const response = await fetch(import.meta.env.VITE_BACKEND_HOST + `/user/${getState().profile._id}/shelves/${shelf}`, {
     method: "PUT",
     headers: {
@@ -126,7 +126,7 @@ export const addBookToShelf = createAsyncThunk("profile/addBookToShelf", async (
     },
     credentials: "include",
     mode: "cors",
-    body: JSON.stringify({ book: book }),
+    body: JSON.stringify(body),
   });
   const data = await response.json();
   if (data.error) {
@@ -135,7 +135,7 @@ export const addBookToShelf = createAsyncThunk("profile/addBookToShelf", async (
   } else {
     cb && cb(null);
   }
-  return { book: data, shelf };
+  return { body, shelf };
 });
 
 export const deleteShelf = createAsyncThunk("profile/deleteShelf", async ({ shelf, cb }, { getState }) => {
@@ -154,7 +154,27 @@ export const deleteShelf = createAsyncThunk("profile/deleteShelf", async ({ shel
   return { message: data, shelf };
 });
 
-const initialState = {
+export const addShelf = createAsyncThunk("profile/addShelf", async ({ name, books, cb }, { getState }) => {
+  const response = await fetch(import.meta.env.VITE_BACKEND_HOST + "/user/" + getState().profile._id + "/shelf", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    mode: "cors",
+    body: JSON.stringify({ name, books }),
+  });
+  const data = await response.json();
+  if (data.error) {
+    cb && cb({ error: data.error });
+    throw new Error(data.error);
+  } else {
+    cb && cb({ _id: data._id });
+  }
+  return data;
+});
+
+export const initialState = {
   loggedIn: false,
   _id: "",
   name: "",
@@ -220,34 +240,47 @@ export const profileSlice = createSlice({
     builder.addCase(editProfile.rejected, (state, action) => {
       state.error = action.error.message;
     });
-    builder.addCase(addBookToShelf.fulfilled, (state, action) => {
-      const { shelf, book } = action.payload;
-      const books = Array.isArray(book) ? book : [book];
-
-      books.forEach((book) => {
-        if (!state.bookcase.find((element) => element._id === book._id)) state.bookcase.push(book);
-      });
-
-      if (shelf === "top_three") {
-        if (Array.isArray(book)) {
-          book.forEach((item) => {
-            state.top_three.books.push(item);
-          });
+    builder.addCase(editBooksShelf.fulfilled, (state, action) => {
+      const { shelf, body } = action.payload;
+      if (body.type === "editshelf") {
+        const { name, books } = body;
+        if (shelf === "top_three") {
+          state.top_three.name = name;
+          state.top_three.books = books;
         } else {
-          state.top_three.books.push(book);
+          const index = state.shelf.findIndex((stateShelf) => stateShelf._id === shelf);
+          state.shelf[index].name = name;
+          state.shelf[index].books = books;
         }
       } else {
-        const userShelfIndex = state.shelf.findIndex((shelfFromState) => shelfFromState._id === shelf);
-        if (Array.isArray(book)) {
-          book.forEach((item) => {
-            state.shelf[userShelfIndex].books.push(item);
-          });
+        const { book } = body;
+        const books = Array.isArray(book) ? book : [book];
+
+        books.forEach((book) => {
+          if (!state.bookcase.find((element) => element._id === book._id)) state.bookcase.push(book);
+        });
+
+        if (shelf === "top_three") {
+          if (Array.isArray(book)) {
+            book.forEach((item) => {
+              state.top_three.books.push(item);
+            });
+          } else {
+            state.top_three.books.push(book);
+          }
         } else {
-          state.shelf[userShelfIndex].books.push(book);
+          const userShelfIndex = state.shelf.findIndex((shelfFromState) => shelfFromState._id === shelf);
+          if (Array.isArray(book)) {
+            book.forEach((item) => {
+              state.shelf[userShelfIndex].books.push(item);
+            });
+          } else {
+            state.shelf[userShelfIndex].books.push(book);
+          }
         }
       }
     });
-    builder.addCase(addBookToShelf.rejected, (state, action) => {
+    builder.addCase(editBooksShelf.rejected, (state, action) => {
       state.error = action.error.message;
     });
     builder.addCase(deleteShelf.fulfilled, (state, action) => {
@@ -255,9 +288,16 @@ export const profileSlice = createSlice({
       const index = state.shelf.findIndex((shelfFromState) => shelfFromState._id === shelf);
       state.shelf.splice(index, 1);
     });
-    builder.addCase(deleteShelf.rejected), (state, action) => {
+    builder.addCase(deleteShelf.rejected),
+      (state, action) => {
         state.error = action.error.message;
       };
+    builder.addCase(addShelf.fulfilled, (state, action) => {
+      state.shelf.push(action.payload);
+    });
+    builder.addCase(addShelf.rejected, (state, action) => {
+      state.error = action.error.message;
+    });
   },
 });
 
