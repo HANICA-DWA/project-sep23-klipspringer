@@ -165,7 +165,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
               <img style={{ width: "100%" }} src="/images/bookshelf.jpg" alt="bookshelf"></img>
             </Stack>
             {!hideDesc ? (
-              <Stack direction="row">
+              <Stack direction="row" justifyContent="start" sx={{marginLeft: "5px", width: `${nrOfColums * 88}px`}}>
                 {books.map((item) => (
                   <Stack margin="2px" key={item._id}>
                     <Typography width="85px" variant="caption" fontWeight="600" sx={{overflowWrap: "anywhere"}}>{item.title}</Typography>
