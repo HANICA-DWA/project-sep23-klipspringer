@@ -110,7 +110,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
         ) : null}
         {groupedBooks.map((books, i) => {
         return (
-        <Stack justifyContent="center" key={i}>
+        <Stack alignItems="center" key={i}>
         <Stack direction="row" justifyContent="center" spacing={1}>
           <ImageList cols={nrOfColums}>
             {books.map((item) => (
