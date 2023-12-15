@@ -1,18 +1,33 @@
-import { FormControl, InputAdornment, IconButton, TextField, Popper, Paper, Button, Typography, LinearProgress, Chip, Divider } from "@mui/material";
+import { FormControl, InputAdornment, IconButton, TextField, Popper, Paper, Button, Typography, LinearProgress, Chip, Divider, Stack } from "@mui/material";
 import SearchResult from "./SearchResult";
 import { useEffect, useRef, useState } from "react";
 import { Cancel, QrCodeScanner, Search } from "@mui/icons-material";
 import SearchResultPerson from "./SearchResultPerson";
 import { useNavigate } from "react-router-dom";
 import Barcode from "../pages/Barcode";
+import { useAlert } from "../hooks/useAlert";
 
-export default function SearchBar({ onClick, fullSearch, genreChips, deleteChip, setChips }) {
+export default function SearchBar({ onClick, fullSearch, genreChips, deleteChip, setChips, booksOnShelf, topThreeLength, setTopThreeLength }) {
   const [searchText, setSearchText] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isOnCooldown, setIsOnCooldown] = useState(false);
   const [lastSearched, setLastSearched] = useState("");
   const [isScanning, setIsScanning] = useState(false);
+  const [books, setBooks] = useState([]);
+  const [errMessage, setErrMessage] = useState("")
+  const [showAlert, alertComponent] = useAlert(errMessage, 3000, "warning");
+
+  function addBooks(book) {
+    if (books.length == 0) {
+        setErrMessage("You need to pick min 1 book");
+        showAlert();
+    } else {
+        onClick(book);
+        setBooks([]);
+        closepopper();
+    }
+}
 
   function popperContents() {
     if (isLoading && searchText.length >= 1) {
@@ -24,9 +39,21 @@ export default function SearchBar({ onClick, fullSearch, genreChips, deleteChip,
         return <SearchResultPerson closePopper={closepopper} person={person} onClick={onClick} key={person._id} />;
       });
     } else if (searchResults && searchResults.length >= 1 && !isLoading) {
-      return searchResults.map((book) => {
-        return <SearchResult closePopper={closepopper} book={book} onClick={onClick} key={book.key} fullSearch={fullSearch} />;
-      });
+      return (
+        <>
+            {!fullSearch ? 
+             <Stack alignItems="center" sx={{paddingTop: "3px"}}>
+              <Button onClick={() => addBooks(books)} variant="contained" sx={{width: "80vw"}}>Add to shelf</Button>
+             </Stack> 
+            : null}
+          {searchResults.map((book) => {
+            return <SearchResult closePopper={closepopper} book={book} onClick={onClick} key={book.key} fullSearch={fullSearch}
+              booksOnShelf={booksOnShelf} topThreeLength={topThreeLength} setTopThreeLength={setTopThreeLength} 
+              books={books} setBooks={setBooks} setErrMessage={setErrMessage} showAlert={showAlert}
+              />;
+          })}
+        </>
+      )
     } else if (searchResults.length < 1 && !isLoading) {
       return <Typography variant="body1">No results found.</Typography>;
     }
@@ -37,7 +64,7 @@ export default function SearchBar({ onClick, fullSearch, genreChips, deleteChip,
       (!isOnCooldown && searchText.length >= 3 && !searchText.startsWith("@")) ||
       (!isOnCooldown && searchText.length >= 2 && searchText.startsWith("@"))
     ) {
-      if (lastSearched !== searchText){
+      if (lastSearched !== searchText) {
         updateSearch();
         setIsOnCooldown(true);
         setTimeout(() => setIsOnCooldown(false), 1000);
@@ -70,11 +97,11 @@ export default function SearchBar({ onClick, fullSearch, genreChips, deleteChip,
   async function getBookSearchResults() {
     let data = null
     setIsLoading(true);
-    if(searchText){
+    if (searchText) {
       const urlTitle = searchText.replace(/([\s])/g, "+");
       const result = await fetch(`https://openlibrary.org/search.json?q=${urlTitle}&limit=10`);
       data = await result.json();
-    } else if (genreChips){
+    } else if (genreChips) {
       setIsLoading(true);
       const result = await fetch(`https://openlibrary.org/search.json?subject=${genreChips.join("+")}&limit=10`);
       data = await result.json();
@@ -98,7 +125,7 @@ export default function SearchBar({ onClick, fullSearch, genreChips, deleteChip,
   const id = open ? "simple-popper" : undefined;
 
   if (isScanning)
-    return <Barcode onAdd={onClick} closeScanner={() => setIsScanning(false)} setIsScanning={setIsScanning}/>
+    return <Barcode onAdd={onClick} closeScanner={() => setIsScanning(false)} setIsScanning={setIsScanning} />
 
   return (
     <>
@@ -107,8 +134,9 @@ export default function SearchBar({ onClick, fullSearch, genreChips, deleteChip,
           e.preventDefault();
           updateSearch();
         }}
-        style={{ marginBottom: "0px", width: "100%" }}
+        style={{ marginBottom: "5px", width: "100%" }}
       >
+        {alertComponent}
         <FormControl ref={spanRef} fullWidth>
           <TextField
             value={searchText}
@@ -118,34 +146,34 @@ export default function SearchBar({ onClick, fullSearch, genreChips, deleteChip,
               readOnly: genreChips && genreChips.length > 0 ? true : false,
               startAdornment: (
                 <>
-                <InputAdornment position="start">
-                  <IconButton type="submit" edge="end">
-                    <Search />
-                  </IconButton>
-                </InputAdornment>
-                <div style={{display: "flex", flexWrap: "wrap"}}>
-                  {genreChips && genreChips.map((g) => {
-                    return <Chip size="small" sx={{margin: "5px 5px 5px 0px"}} key={g} label={g} onDelete={() => deleteChip(g) }/> 
-                  })}
-                </div>
+                  <InputAdornment position="start">
+                    <IconButton type="submit" edge="end">
+                      <Search />
+                    </IconButton>
+                  </InputAdornment>
+                  <div style={{ display: "flex", flexWrap: "wrap" }}>
+                    {genreChips && genreChips.map((g) => {
+                      return <Chip size="small" sx={{ margin: "5px 5px 5px 0px" }} key={g} label={g} onDelete={() => deleteChip(g)} />
+                    })}
+                  </div>
                 </>
               ),
               endAdornment: (
                 <InputAdornment position="end">
                   <Cancel
-                    
+
                     onClick={() => {
                       closepopper();
                       setSearchText("");
                       setChips([])
                     }}
-                    sx={{cursor: "pointer", borderRight: "1px solid", padding: "0.25rem 0.5rem"}}
+                    sx={{ cursor: "pointer", borderRight: "1px solid", padding: "0.25rem 0.5rem" }}
                   />
-                  <QrCodeScanner 
-                    onClick={()=> {
+                  <QrCodeScanner
+                    onClick={() => {
                       setIsScanning(true);
                     }}
-                    sx={{cursor: "pointer", padding: "0.25rem 0rem 0.25rem 0.7rem"}}
+                    sx={{ cursor: "pointer", padding: "0.25rem 0rem 0.25rem 0.7rem" }}
                   />
                 </InputAdornment>
               ),

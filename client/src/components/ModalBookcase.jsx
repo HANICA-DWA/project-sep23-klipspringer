@@ -4,8 +4,9 @@ import { useContext, useEffect, useState } from "react";
 import { LoggedInContext } from "../Contexts";
 import Bookcover from "./Bookcover";
 import { useAlert } from "../hooks/useAlert";
+import MultipleBooks from "./MultipleBooks";
 
-export default function ModalBookcase({ open, handleClose, handleAdd, booksOnShelf, topThreeLength, setTopThreeLength}) {
+export default function ModalBookcase({ open, handleClose, handleAdd, booksOnShelf, topThreeLength, setTopThreeLength }) {
   const [bookcase, setBookcase] = useState([]);
   const [books, setBooks] = useState([])
   const [errMessage, setErrMessage] = useState("");
@@ -24,10 +25,10 @@ export default function ModalBookcase({ open, handleClose, handleAdd, booksOnShe
   useEffect(() => {
     fetch(
       import.meta.env.VITE_BACKEND_HOST +
-        `/user/${username}?` +
-        new URLSearchParams({
-          fields: ["bookcase"],
-        }),
+      `/user/${username}?` +
+      new URLSearchParams({
+        fields: ["bookcase"],
+      }),
       {
         method: "GET",
       }
@@ -42,44 +43,6 @@ export default function ModalBookcase({ open, handleClose, handleAdd, booksOnShe
         console.log(err);
       });
   }, [username]);
-
-  function handlePick(book) {
-    if (booksOnShelf) {
-      if (!booksOnShelf.find((item) => item._id === book._id)) {
-        if (books.find((item) => item._id === book._id)) {
-          handleBookDeselection(book);
-        } else {
-          handleBookSelect(book);
-        }
-      } else {
-        setErrMessage("Book already on shelf");
-        showAlert();
-      }
-    } else if (books.find((item) => item._id === book._id)) {
-      handleBookDeselection(book);
-    } else {
-      handleBookSelect(book);
-    }
-  }
-
-  function handleBookSelect(book) {
-    if (topThreeLength && topThreeLength === 3) {
-      setErrMessage("You can only have 3 books on this shelf");
-      showAlert();
-    } else {
-      if (topThreeLength != undefined) {
-        setTopThreeLength(topThreeLength + 1);
-      }
-      setBooks((prevBooks) => [...prevBooks, book]);
-    }
-  }
-
-  function handleBookDeselection(book) {
-    if (topThreeLength != undefined) {
-      setTopThreeLength(topThreeLength - 1);
-    }
-    setBooks((prevBooks) => prevBooks.filter((item) => item._id !== book._id));
-  }
 
   function addBooks(book) {
     if (books.length == 0) {
@@ -103,15 +66,12 @@ export default function ModalBookcase({ open, handleClose, handleAdd, booksOnShe
             <Close onClick={handleClose} sx={{ position: "absolute", right: "10px", transform: "scale(0.8)" }} />
           </Stack>
           <Box sx={{ height: "85%", overflowY: "scroll" }}>
-            {bookcase.length > 0?bookcase.map((book) => (
+            {bookcase.length > 0 ? bookcase.map((book) => (
               <Stack
                 key={book._id}
                 direction="row"
                 justifyContent="space-between"
                 alignItems="center"
-                onClick={() => {
-                  if (!booksOnShelf.find((shelfBook) => shelfBook._id === book._id)) handlePick(book);
-                }}
                 sx={{ margin: "5px 12px 5px 12px", opacity: booksOnShelf.find((shelfBook) => shelfBook._id === book._id) ? 0.3 : 1 }}
               >
                 <Stack direction="row">
@@ -123,18 +83,16 @@ export default function ModalBookcase({ open, handleClose, handleAdd, booksOnShe
                     <Typography>{book.authors.join(", ")}</Typography>
                   </Stack>
                 </Stack>
-                {!booksOnShelf.find((shelfBook) => shelfBook._id === book._id) ? (
-                  books.find((item) => item._id == book._id) ? (
-                    <Check sx={{ color: "white", borderRadius: "20px", bgcolor: "black", transform: "scale(0.7)", padding: "5px" }} />
-                  ) : (
-                    <Add sx={{ border: "1px solid black", borderRadius: "20px", transform: "scale(0.7)", padding: "5px" }} />
-                  )
-                ) : null}
+                <MultipleBooks
+                  booksOnShelf={booksOnShelf} books={books} setBooks={setBooks} book={book}
+                  setErrMessage={setErrMessage} showAlert={showAlert}
+                  topThreeLength={topThreeLength} setTopThreeLength={setTopThreeLength}
+                />
               </Stack>
-            )):(
-                <Typography variant="h5" order="2" align="center" margin="5px">
-                  No books in the bookcase
-                </Typography>
+            )) : (
+              <Typography variant="h5" order="2" align="center" margin="5px">
+                No books in the bookcase
+              </Typography>
             )}
           </Box>
           <Stack justifyContent="center" sx={{ bgcolor: "white", width: "100vw" }}>

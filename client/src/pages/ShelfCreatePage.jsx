@@ -152,7 +152,7 @@ export default function ShelfCreatePage({ edit = false }) {
             </Stack>
             <Stack direction="row" alignItems="center" width="100%">
               <ArrowBackIos onClick={() => navigate(-1)} />
-              <SearchBar onClick={handleAdd} />
+              <SearchBar onClick={handleAdd} booksOnShelf={books} />
             </Stack>
             {!edit ? (
               <Stack direction="row" sx={{ margin: "5px" }} onClick={handleOpen}>
