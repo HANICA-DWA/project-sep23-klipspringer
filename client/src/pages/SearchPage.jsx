@@ -2,19 +2,19 @@ import { Container, Stack, Typography } from "@mui/material";
 import SearchBar from "../components/SearchBar";
 import Suggestions from "../components/Suggestions";
 import { useNavigate, useParams } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import { LoggedInContext } from "../Contexts.jsx";
+import { useEffect, useState } from "react";
 import { ArrowBackIos, Add } from "@mui/icons-material";
 import ModalBookcase from "../components/ModalBookcase.jsx";
 import { useAlert } from "../hooks/useAlert.jsx";
-import getProfileData from "../data/getProfileData.js";
 import { getWebSocket } from "../data/websockets.js";
+import { useDispatch, useSelector } from "react-redux";
+import { editBooksShelf } from "../redux/reducers/profileReducer.js";
 
 export default function SearchPage() {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const shelf = useParams().shelf;
-  const { username } = useContext(LoggedInContext);
+  const profile = useSelector((state) => state.profile);
 
   const [errMessage, setErrMessage] = useState("");
   const [open, setOpen] = useState(false);
@@ -26,47 +26,27 @@ export default function SearchPage() {
   const handleClose = () => setOpen(false);
 
   const handleAdd = (book) => {
-    fetch(import.meta.env.VITE_BACKEND_HOST + "/user/" + username + "/shelves/" + shelf, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      mode: "cors",
-      body: JSON.stringify({ book: book }),
-    })
-      .then((res) => {
-        if (res.ok) {
-          showAlert();
-          getWebSocket().send(JSON.stringify({ type: "new_book", link: shelf === "top_three" ? `/${username}` : `/${username}/${shelf}` }));
-          navigate(-1);
-        } else {
-          res
-            .json()
-            .then((message) => setErrMessage(message.error))
-            .then(() => showAlert());
-        }
-        console.log("succes", res);
-      })
-      .catch((err) => {
-        console.log("error", err);
-      });
+    const cb = (error) => {
+      setErrMessage(error);
+      showAlert();
+      if (!error) {
+        getWebSocket().send(JSON.stringify({ type: "new_book", link: shelf === "top_three" ? `/${profile._id}` : `/${profile._id}/${shelf}` }));
+        navigate(-1);
+      }
+    };
+    dispatch(editBooksShelf({ shelf, body: { book }, cb }));
   };
 
   useEffect(() => {
-    const getFunction = async () => {
-      const profileData = await getProfileData(username, ["top_three", "shelf"]);
-      let currentShelf;
-      if (shelf === "top_three") {
-        currentShelf = profileData.top_three;
-        setTopThreeLength(currentShelf.books.length);
-      } else {
-        currentShelf = profileData.shelf.find((item) => item._id == shelf);
-      }
-      setBooksOnShelf(currentShelf.books);
-    };
-    getFunction();
-  }, [shelf, username]);
+    let currentShelf;
+    if (shelf === "top_three") {
+      currentShelf = profile.top_three;
+      setTopThreeLength(currentShelf.books.length);
+    } else {
+      currentShelf = profile.shelf.find((item) => item._id == shelf);
+    }
+    setBooksOnShelf(currentShelf.books);
+  }, [shelf, profile.shelf, profile.top_three]);
 
   return (
     <Container

@@ -392,14 +392,23 @@ describe("connection", () => {
     it("Regular PUT on shelf", async () => {
       const username = "janwillem";
       const shelfId = "655b323165c31f3c397b6753";
+      const bookToAdd = { _id: "4321", cover_image: "myimage", title: "hoi", authors: [] };
 
+      const userBeforePut = await User.findById("janwillem").lean();
       const res = await request(app)
         .put(`/user/${username}/shelves/${shelfId}`)
-        .send({ book: { _id: "4321", cover_image: "myimage", title: "hoi", authors: [] } })
+        .send({ book: bookToAdd })
         .set("Content-Type", "application/json")
         .expect(200);
 
-      assert.deepEqual(res.body, { _id: "4321", cover_image: "myimage", title: "hoi", authors: [] });
+      const bookcase = [bookToAdd];
+      const shelf = {
+        _id: "655b323165c31f3c397b6753",
+        name: "hallo",
+        books: [...userBeforePut.shelf.find((e) => e._id == shelfId).books, bookToAdd],
+      };
+
+      assert.deepEqual(res.body, { shelf, bookcase });
     });
 
     it("PUT on shelf with array", async () => {
@@ -473,14 +482,23 @@ describe("connection", () => {
     it("PUT on top_three", async () => {
       const username = "janwillem";
       const shelfId = "top_three";
+      const bookToAdd = { _id: "4321", cover_image: "myimage", title: "hoi", authors: [] };
 
+      const userBeforePut = await User.findById("janwillem").lean();
       const res = await request(app)
         .put(`/user/${username}/shelves/${shelfId}`)
-        .send({ book: { _id: "4321", cover_image: "myimage", title: "hoi", authors: [] } })
+        .send({ book: bookToAdd })
         .set("Content-Type", "application/json")
         .expect(200);
 
-      assert.deepEqual(res.body, { _id: "4321", cover_image: "myimage", title: "hoi", authors: [] });
+      const bookcase = [bookToAdd];
+      const topThree = {
+        _id: "655b323165c31f3c397b6754",
+        name: "My top three",
+        books: [...userBeforePut.top_three.books, bookToAdd],
+      };
+
+      assert.deepEqual(res.body, { bookcase, shelf: topThree });
     });
   });
 

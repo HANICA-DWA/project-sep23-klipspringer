@@ -1,22 +1,27 @@
 import { Circle, NotificationsOutlined } from "@mui/icons-material";
 import { Button, Divider, Menu, MenuItem, Stack } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getWebSocket } from "../data/websockets";
 import ProfileAvatar from "./ProfileAvatar";
+import { useDispatch } from "react-redux";
+import { addFollower, removeFollower } from "../redux/reducers/profileReducer";
 
 export default function NotificationTray() {
   const [notifications, setNotifications] = useState([]);
   const [notificationAnchor, setNotificationAnchor] = useState(null);
+  const dispatch = useDispatch();
 
   getWebSocket().onmessage = (event) => {
     const data = JSON.parse(event.data);
     switch (data.type) {
       case "notification_follow":
         setNotifications(notifications.concat({ ...data, message: `@${data.person._id} has followed you!` }));
+        dispatch(addFollower({ _id: data.person._id, profile_picture: data.person.profile_picture }));
         break;
       case "notification_unfollow":
         setNotifications(notifications.concat({ ...data, message: `@${data.person._id} stopped following you` }));
+        dispatch(removeFollower(data.person._id));
         break;
       case "edited_top_three":
         setNotifications(notifications.concat({ ...data, message: `@${data.person._id} made changes to their top three!` }));

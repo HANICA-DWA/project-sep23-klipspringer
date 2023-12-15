@@ -5,12 +5,9 @@ import Suggestions from "../components/Suggestions";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Genres from "../components/Genres";
-import {HamburgerMenu} from "../components/HamburgerMenu.jsx";
 
-export default function Search({ setLoggedIn }) {
-
+export default function Search() {
     const navigate = useNavigate()
-
     const [errMessage, setErrMessage] = useState("");
     const [selectedGenreChips, setSelectedGenreChips] = useState([]);
 
@@ -57,8 +54,6 @@ export default function Search({ setLoggedIn }) {
             deleteChip={deleteGenreChip}
             setActiveSearchFilterPage={setActiveSearchFilterPage}
             />
-              {// <HamburgerMenu setLoggedIn={setLoggedIn}/> Waiting for design
-              }
           </Stack>
           <Typography align="center" variant="body1" style={{ color: "red" }}>
             {errMessage}
