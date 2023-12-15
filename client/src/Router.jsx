@@ -29,7 +29,6 @@ export default function Router() {
 
   useEffect(() => {
     const setLoggedInStatus = async () => {
-      console.log("EFFECT");
       try {
         const response = await fetch(import.meta.env.VITE_BACKEND_HOST + "/sessions/current", {
           credentials: "include",
@@ -78,7 +77,14 @@ export default function Router() {
         />
         <Route exact path="/:userName" element={<ProfileContainer />}>
           <Route path="" element={<Profilepage />} />
-          <Route path="edit" element={<EditProfilePage />} />
+          <Route
+            path="edit"
+            element={
+              <ProtectedRoute loading={loading}>
+                <EditProfilePage />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="shelf"
             element={

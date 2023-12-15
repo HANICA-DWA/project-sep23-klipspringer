@@ -276,7 +276,9 @@ export const profileSlice = createSlice({
         state.error = action.error.message;
       };
     builder.addCase(addShelf.fulfilled, (state, action) => {
-      state.shelf.push(action.payload);
+      const { name, books, _id, bookcase } = action.payload;
+      state.shelf.push({ _id, name, books });
+      state.bookcase = bookcase;
     });
     builder.addCase(addShelf.rejected, (state, action) => {
       state.error = action.error.message;
