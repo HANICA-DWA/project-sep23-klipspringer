@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const logUserIn = createAsyncThunk("profile/getProfileData", async ({ username }) => {
+export const logUserIn = createAsyncThunk("profile/getProfileData", async ({ username, cb }) => {
   const response = await fetch(
     import.meta.env.VITE_BACKEND_HOST +
       "/user/" +
@@ -16,7 +16,11 @@ export const logUserIn = createAsyncThunk("profile/getProfileData", async ({ use
     }
   );
   const data = await response.json();
-  if (data.error) throw new Error(data.error);
+  if (data.error) {
+    throw new Error(data.error);
+  } else {
+    cb && cb();
+  }
   return data;
 });
 

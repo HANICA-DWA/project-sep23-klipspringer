@@ -5,14 +5,14 @@ import { Link } from "react-router-dom";
 import Bookcover from "../components/Bookcover";
 import { useSelector } from "react-redux";
 
-export default function Bookcase({ setLoggedIn }) {
+export default function Bookcase() {
   const profileInfo = useSelector(state => state.profile)
   const theme = useTheme();
   const matchDownMd = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <Stack justifyContent="flex-start" sx={{ minHeight: "100vh" }} spacing={3} useFlexGap>
-      <Header setLoggedIn={setLoggedIn} shareButton={false} />
+      <Header shareButton={false} />
       <ProfileInfo name={profileInfo.name} avatar={profileInfo.profile_picture} handle={profileInfo._id} />
       <Stack>
         <Typography variant="h4" fontWeight="700" textAlign="center">

@@ -11,7 +11,7 @@ import { getWebSocket } from "../data/websockets";
 import { useDispatch, useSelector } from "react-redux";
 import { followAccount, unFollowAccount } from "../redux/reducers/profileReducer";
 
-function Profilepage({ setLoggedIn }) {
+function Profilepage() {
   const userName = useParams().userName;
   const profile = useSelector((state) => state.profile);
   const navigate = useNavigate();
@@ -51,7 +51,7 @@ function Profilepage({ setLoggedIn }) {
   return (
     <>
       <Stack justifyContent="flex-start" alignItems="center" sx={{ minHeight: "100vh" }} spacing={3} useFlexGap>
-        <Header setLoggedIn={setLoggedIn} shareButton={true} profileInfo={profileInfo} />
+        <Header shareButton={true} profileInfo={profileInfo} />
         <Stack direction="row" justifyContent="space-evenly" width="100%" maxWidth="800px">
           <ProfileInfo name={profileInfo.name} avatar={profileInfo.profile_picture} handle={profileInfo._id} />
           <Stack justifyContent="center">

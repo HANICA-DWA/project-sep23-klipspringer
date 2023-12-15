@@ -9,7 +9,7 @@ import { useAlert } from "../hooks/useAlert";
 import { useDispatch, useSelector } from "react-redux";
 import { addToBookcase, removeFromBookcase } from "../redux/reducers/profileReducer";
 
-export default function Detailpage({ setLoggedIn }) {
+export default function Detailpage() {
   const profile = useSelector((state) => state.profile);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -95,7 +95,7 @@ export default function Detailpage({ setLoggedIn }) {
       {addAlertComponent}
       {removeAlertComponent}
       <Stack direction="row" alignItems="center" justifyContent="space-between">
-        <Header setLoggedIn={setLoggedIn} />
+        <Header />
       </Stack>
       <ArrowBackIos onClick={() => navigate(-1)} sx={{ paddingLeft: "15px" }} />
       <Stack alignItems="center">
@@ -143,7 +143,7 @@ export default function Detailpage({ setLoggedIn }) {
           />
           {profile.loggedIn && profile._id ? (
             <Bookmark
-              color={profile.bookcase.find((book) => book._id === isbn) ? "primary" : "disabled"}
+              color={profile.bookcase.find((book) => book._id == isbn) ? "primary" : "disabled"}
               fontSize="large"
               onClick={() =>
                 bookcaseHandler({
@@ -166,7 +166,7 @@ export default function Detailpage({ setLoggedIn }) {
             _id: isbn,
             cover_image: book.cover != undefined ? book.cover.medium : null,
             title: book.title,
-            authors: book.authors != undefined?book.authors.map((author) => author.name):[],
+            authors: book.authors != undefined ? book.authors.map((author) => author.name) : [],
           }}
         />
 

@@ -5,7 +5,6 @@ import SearchPage from "./pages/SearchPage";
 import ShelfCreatePage from "./pages/ShelfCreatePage";
 import { LinkedInCallback } from "react-linkedin-login-oauth2";
 import { useEffect, useState } from "react";
-import { LoggedInContext } from "./Contexts";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Unauthorized from "./pages/Unauthorized";
@@ -18,7 +17,6 @@ import AuthorPage from "./pages/AuthorPage";
 import AuthorContainer from "./containers/AuthorContainer";
 import ShelfContainer from "./containers/ShelfContainer";
 import ProfileContainer from "./containers/ProfileContainer";
-import Barcode from "./pages/Barcode";
 import EditProfilePage from "./pages/EditProfilePage";
 import TermsOfServicePage from "./pages/TermsOfServicePage.jsx";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage.jsx";
@@ -27,11 +25,11 @@ import { logUserIn } from "./redux/reducers/profileReducer.js";
 
 export default function Router() {
   const dispatch = useDispatch();
-  const [loggedIn, setLoggedIn] = useState({ loggedIn: false, username: undefined });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const setLoggedInStatus = async () => {
+      console.log("EFFECT");
       try {
         const response = await fetch(import.meta.env.VITE_BACKEND_HOST + "/sessions/current", {
           credentials: "include",
@@ -39,10 +37,15 @@ export default function Router() {
         });
         if (!response.ok) throw new Error("Fetch failed");
         const result = await response.json();
-        setLoggedIn(result);
-        setLoading(false);
         if (result.username) {
-          dispatch(logUserIn({ username: result.username }));
+          dispatch(
+            logUserIn({
+              username: result.username,
+              cb: () => {
+                setLoading(false);
+              },
+            })
+          );
         }
         return result;
       } catch (err) {
@@ -54,68 +57,66 @@ export default function Router() {
   }, []);
 
   return (
-    <LoggedInContext.Provider value={loggedIn}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Navigate to="/login" />} />
-          <Route path="/find" element={<Search setLoggedIn={setLoggedIn} />} />
-          <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
-          <Route path="/register" element={<Register setLoggedIn={setLoggedIn} />} />
-          <Route path="/linkedin" element={<LinkedInCallback />} />
-          <Route path="/unauthorized" element={<Unauthorized />} />
-          <Route path="/terms-of-service" element={<TermsOfServicePage />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-          <Route path="/book/:isbn" element={<Detailpage setLoggedIn={setLoggedIn} />} />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/find" element={<Search />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/linkedin" element={<LinkedInCallback />} />
+        <Route path="/unauthorized" element={<Unauthorized />} />
+        <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+        <Route path="/book/:isbn" element={<Detailpage />} />
+        <Route
+          path="/author/:author"
+          element={
+            <AuthorContainer>
+              <AuthorPage />
+            </AuthorContainer>
+          }
+        />
+        <Route exact path="/:userName" element={<ProfileContainer />}>
+          <Route path="" element={<Profilepage />} />
+          <Route path="edit" element={<EditProfilePage />} />
           <Route
-            path="/author/:author"
+            path="shelf"
             element={
-              <AuthorContainer>
-                <AuthorPage />
-              </AuthorContainer>
+              <ProtectedRoute loading={loading}>
+                <ShelfCreatePage />
+              </ProtectedRoute>
             }
           />
-          <Route exact path="/:userName" element={<ProfileContainer />}>
-            <Route path="" element={<Profilepage setLoggedIn={setLoggedIn} />} />
-            <Route path="edit" element={<EditProfilePage setLoggedIn={setLoggedIn} />} />
+          <Route path=":shelf" element={<ShelfContainer />}>
+            <Route path="" element={<ShelfPage />} />
             <Route
-              path="shelf"
+              path="add"
               element={
                 <ProtectedRoute loading={loading}>
-                  <ShelfCreatePage />
+                  <SearchPage />
                 </ProtectedRoute>
               }
             />
-            <Route path=":shelf" element={<ShelfContainer />}>
-              <Route path="" element={<ShelfPage setLoggedIn={setLoggedIn} />} />
-              <Route
-                path="add"
-                element={
-                  <ProtectedRoute loading={loading}>
-                    <SearchPage />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="edit"
-                element={
-                  <ProtectedRoute loading={loading}>
-                    <ShelfCreatePage edit={true} />
-                  </ProtectedRoute>
-                }
-              />
-            </Route>
             <Route
-              path="bookcase"
+              path="edit"
               element={
                 <ProtectedRoute loading={loading}>
-                  <Bookcase setLoggedIn={setLoggedIn} />
+                  <ShelfCreatePage edit={true} />
                 </ProtectedRoute>
               }
             />
           </Route>
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </LoggedInContext.Provider>
+          <Route
+            path="bookcase"
+            element={
+              <ProtectedRoute loading={loading}>
+                <Bookcase />
+              </ProtectedRoute>
+            }
+          />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
 }

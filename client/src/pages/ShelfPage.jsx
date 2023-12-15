@@ -10,7 +10,7 @@ import getProfileData from "../data/getProfileData";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteShelf } from "../redux/reducers/profileReducer";
 
-export default function ShelfPage({ setLoggedIn }) {
+export default function ShelfPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.profile);
@@ -48,7 +48,7 @@ export default function ShelfPage({ setLoggedIn }) {
   return (
     <Stack justifyContent="flex-start" alignItems="center" sx={{ minHeight: "100vh" }} spacing={3} useFlexGap>
       {deleteShelfAlert}
-      <Header setLoggedIn={setLoggedIn} shareButton profileInfo={profileInfo} />
+      <Header shareButton profileInfo={profileInfo} />
       <ProfileInfo name={profileInfo.name} avatar={profileInfo.profile_picture} handle={profileInfo._id} />
       {shelfInfo && Object.keys(shelfInfo).length > 0 ? (
         <Bookshelf
