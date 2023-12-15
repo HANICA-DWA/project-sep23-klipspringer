@@ -63,11 +63,12 @@
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak                          | Met Wie   | Resultaten                                  | Emotie | Link |
-|------|-------------------------------|-----------|---------------------------------------------|---|---|
-| 1    | leerdoelen                    | N.V.T.    | bedenken hoe ik had aangepakt               |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/e33f6d91838878131fc9ec94e65cefeedb8559c1) |
-| 0.5  | leerdoelen van niels opgesomd | Met Niels | het samenvatten van het leerdoel            |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/de0c87b025a9d948c987b39fac2159bed4701852) |
-| 1    | bug fix                       | N.V.T.    | bug fix boeken zonder isbn voor suggestions |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/22230b7829d1846abfcd3cbcb84bca0976757b4d) |
-| 0.5  | bug fix                       | N.V.T.    | bug fix boekdetail zonder auteur            |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/d0984310aeb406a3636486e67f1baccc4fce7a1a) |
-| 1    | review                        | N.V.T.    | reviewen van pull request van Niels         |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/73d39013a167eb0cc37368e797a713963cd0f2a6) |
-|      |                               |           |                                             | | |
+| Uren | Taak                          | Met Wie   | Resultaten                                          | Emotie | Link |
+|------|-------------------------------|-----------|-----------------------------------------------------|---|---|
+| 1    | leerdoelen                    | N.V.T.    | bedenken hoe ik had aangepakt                       |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/e33f6d91838878131fc9ec94e65cefeedb8559c1) |
+| 0.5  | leerdoelen van niels opgesomd | Met Niels | het samenvatten van het leerdoel                    |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/de0c87b025a9d948c987b39fac2159bed4701852) |
+| 1    | bug fix                       | N.V.T.    | bug fix boeken zonder isbn voor suggestions         |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/22230b7829d1846abfcd3cbcb84bca0976757b4d) |
+| 0.5  | bug fix                       | N.V.T.    | bug fix boekdetail zonder auteur                    |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/d0984310aeb406a3636486e67f1baccc4fce7a1a) |
+| 1    | review                        | N.V.T.    | reviewen van pull request van Niels                 |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/73d39013a167eb0cc37368e797a713963cd0f2a6) |
+| 0.5  | review                        | N.V.T.    | reviewen van pull request van Roos over unit testen |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/0d6dbf9f0eb3abb3d0cdad94785b4a47684fbcf1) |
+|      |                               |           |                                                     | | |
