@@ -28,7 +28,8 @@ export default function Genres({setChips, selectedChips}){
                                                 size="small"
                                                 sx={chipStyle} 
                                                 disabled={selectedChips.find((e) => e === g._id) ? true : false } 
-                                                key={g._id} label={g._id} 
+                                                key={g._id} 
+                                                label={g._id} 
                                                 variant="outlined" 
                                                 onClick={() =>{
                                                     setChips([...selectedChips, g._id])

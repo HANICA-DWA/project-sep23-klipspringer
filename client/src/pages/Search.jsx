@@ -14,13 +14,23 @@ export default function Search({ setLoggedIn }) {
     const [errMessage, setErrMessage] = useState("");
     const [selectedGenreChips, setSelectedGenreChips] = useState([]);
 
+    const [activeSearchFilterPage, setActiveSearchFilterPage] = useState("")
+
     const handleClick = (searched) => {
-        if (!searched.type)
-            navigate(`/book/${searched._id}`)
-        if (searched.type === "book")
-            navigate(`/book/${searched.book._id}`)
-        if (searched.type === "person")
-            navigate(`/${searched.person._id}`)
+      switch (searched.type) {
+        case "book":
+          navigate(`/book/${searched.book._id}`)
+          break;
+        case "person":
+          navigate(`/${searched.person._id}`)
+          break;
+        case "author":
+          navigate(`/author/${searched.author._id}`)
+          break;
+        default:
+          navigate(`/book/${searched._id}`)
+          break;
+      }
     }
 
     function deleteGenreChip(a){
@@ -39,14 +49,21 @@ export default function Search({ setLoggedIn }) {
         >
           <Stack direction="row" alignItems="center" style={{ marginBottom: "25px" }}>
             <ArrowBackIos onClick={() => navigate(-1)} />
-            <SearchBar fullSearch onClick={handleClick} genreChips={selectedGenreChips} setChips={setSelectedGenreChips} deleteChip={deleteGenreChip}/>
+            <SearchBar 
+            fullSearch 
+            onClick={handleClick} 
+            genreChips={selectedGenreChips} 
+            setChips={setSelectedGenreChips} 
+            deleteChip={deleteGenreChip}
+            setActiveSearchFilterPage={setActiveSearchFilterPage}
+            />
               {// <HamburgerMenu setLoggedIn={setLoggedIn}/> Waiting for design
               }
           </Stack>
           <Typography align="center" variant="body1" style={{ color: "red" }}>
             {errMessage}
           </Typography>
-          <Genres setChips={setSelectedGenreChips} selectedChips={selectedGenreChips}/>
+          {activeSearchFilterPage == "Books" ? <Genres setChips={setSelectedGenreChips} selectedChips={selectedGenreChips}/> : null }
           <Suggestions />
         </Container>
       );
