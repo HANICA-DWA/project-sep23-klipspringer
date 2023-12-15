@@ -49,3 +49,4 @@
 | Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
 |---|---|---|---|---|---|
 | 2   | https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/244 | Met Roos | Het ging dit keer allemaal vrij gemakkelijk | :hankey: | https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/286 |
+| 2    |                                                                     |         | Many minor fixes   | :alien: | https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/289 |

@@ -1,6 +1,5 @@
-import { useContext, useState } from "react";
-import { LoggedInContext } from "../Contexts.jsx";
-import { useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu.js";
 import { IconButton, Menu, MenuItem } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home.js";
@@ -8,9 +7,10 @@ import { Search, LibraryBooks, ManageAccounts } from "@mui/icons-material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle.js";
 import LogoutButton from "./LogoutButton.jsx";
 import LoginButton from "./LoginButton.jsx";
+import { useSelector } from "react-redux";
 
-export function HamburgerMenu({ setLoggedIn }) {
-  const { loggedIn, username } = useContext(LoggedInContext);
+export function HamburgerMenu() {
+  const profile = useSelector((state) => state.profile);
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const handleClick = (event) => {
@@ -29,8 +29,8 @@ export function HamburgerMenu({ setLoggedIn }) {
         }}
       />
       <Menu id="basic-menu" anchorEl={anchorEl} open={anchorEl ? true : false} onClose={() => setAnchorEl(null)}>
-        {loggedIn ? (
-          <MenuItem onClick={() => navigate("/" + username)}>
+        {profile.loggedIn ? (
+          <MenuItem onClick={() => navigate("/" + profile._id)}>
             <IconButton sx={{ color: "black" }}>
               <AccountCircleIcon fontSize="medium" />
             </IconButton>
@@ -44,8 +44,8 @@ export function HamburgerMenu({ setLoggedIn }) {
             Home
           </MenuItem>
         )}
-        {loggedIn && (
-          <MenuItem onClick={() => navigate(`/${username}/edit`)}>
+        {profile.loggedIn && (
+          <MenuItem onClick={() => navigate(`/${profile._id}/edit`)}>
             <IconButton sx={{ color: "black" }}>
               <ManageAccounts />
             </IconButton>
@@ -58,15 +58,15 @@ export function HamburgerMenu({ setLoggedIn }) {
           </IconButton>
           Search
         </MenuItem>
-        {loggedIn ? (
-          <MenuItem onClick={() => navigate("/" + username + "/bookcase")}>
+        {profile.loggedIn ? (
+          <MenuItem onClick={() => navigate("/" + profile._id + "/bookcase")}>
             <IconButton sx={{ color: "black" }}>
               <LibraryBooks fontSize="medium" />
             </IconButton>
             Bookcase
           </MenuItem>
         ) : null}
-        <MenuItem>{loggedIn ? <LogoutButton setLoggedIn={setLoggedIn} /> : <LoginButton />}</MenuItem>
+        <MenuItem>{profile.loggedIn ? <LogoutButton /> : <LoginButton />}</MenuItem>
       </Menu>
     </>
   );

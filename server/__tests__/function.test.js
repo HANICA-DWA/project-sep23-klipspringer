@@ -2,8 +2,10 @@ import { it, before, after, beforeEach, afterEach, describe } from "node:test";
 import assert from "node:assert";
 import { createError } from "../functions/errorCreation.js";
 import { getUserByUsername, getUserBySSOId, getUniqueId } from "../functions/users.js";
+import { createFileFilter } from "../functions/fileUpload.js";
 import mongoose from "mongoose";
 import User from "../model/user.js";
+import { customName } from "../functions/fileUpload.js";
 
 describe("connection", () => {
   before(async () => {
@@ -109,4 +111,30 @@ describe("connection", () => {
       assert.strictEqual(userInfo, "doesnotExist");
     });
   });
+
+  describe("createFileFilter function", () => {
+    it("should return function fileFilter", () => {
+      const filter = createFileFilter("image/")
+      
+      filter({}, {mimetype: "image/png"}, (err, res) => {
+        assert.equal(res, true)
+      });
+    })
+
+    it("should return error invalid type" , () => {
+      const filter = createFileFilter("image/")
+      
+      filter({}, {mimetype: "application/json"}, (err, res) => {
+        assert.equal(err, "Invalid file type. Only images are allowed")
+      });
+    })
+  })
+
+  describe("customName function", () => {
+    it("should create the right file name", () => {
+      customName({params: {username: "jan"}}, {mimetype: "image/png"}, (err, res) => {
+        assert.equal(res, "jan.png")
+      })
+    })
+  })
 });

@@ -379,26 +379,63 @@ describe("connection", () => {
         }).expect(200);
 
       const user = await User.findById("janwillem").lean();
-      assert.deepEqual(user.top_three, {name: "My top three", _id: new mongoose.Types.ObjectId("655b323165c31f3c397b6754"), books: [{
-        _id: 132,
-        cover_image: "url",
-        title: "hoi",
-        authors: [],
-      }]})
+      assert.deepEqual(user.top_three, {
+        name: "My top three", _id: new mongoose.Types.ObjectId("655b323165c31f3c397b6754"), books: [{
+          _id: 132,
+          cover_image: "url",
+          title: "hoi",
+          authors: [],
+        }]
+      })
     });
 
     it("Regular PUT on shelf", async () => {
       const username = "janwillem";
       const shelfId = "655b323165c31f3c397b6753";
+      const bookToAdd = { _id: "4321", cover_image: "myimage", title: "hoi", authors: [] };
 
+      const userBeforePut = await User.findById("janwillem").lean();
       const res = await request(app)
         .put(`/user/${username}/shelves/${shelfId}`)
-        .send({ book: { _id: "4321", cover_image: "myimage", title: "hoi", authors: [] } })
+        .send({ book: bookToAdd })
         .set("Content-Type", "application/json")
         .expect(200);
 
-      assert.deepEqual(res.body, { _id: "4321", cover_image: "myimage", title: "hoi", authors: [] });
+      const bookcase = [bookToAdd];
+      const shelf = {
+        _id: "655b323165c31f3c397b6753",
+        name: "hallo",
+        books: [...userBeforePut.shelf.find((e) => e._id == shelfId).books, bookToAdd],
+      };
+
+      assert.deepEqual(res.body, { shelf, bookcase });
     });
+
+    it("PUT on shelf with array", async () => {
+      const username = "janwillem";
+      const shelfId = "655b323165c31f3c397b6753";
+
+      const res = await request(app)
+        .put(`/user/${username}/shelves/${shelfId}`)
+        .send({book: [{ _id: "4321", cover_image: "myimage", title: "hoi", authors: [] }]})
+        .set("Content-Type", "application/json")
+        .expect(200);
+        
+      assert.deepEqual(res.body, [{ _id: "4321", cover_image: "myimage", title: "hoi", authors: [] }]);
+    })
+    
+    it("PUT on top three shelf with array", async () => {
+      const username = "janwillem";
+      const shelfId = "top_three";
+
+      const res = await request(app)
+        .put(`/user/${username}/shelves/${shelfId}`)
+        .send({book: [{ _id: "4321", cover_image: "myimage", title: "hoi", authors: [] }]})
+        .set("Content-Type", "application/json")
+        .expect(200);
+        
+      assert.deepEqual(res.body, [{ _id: "4321", cover_image: "myimage", title: "hoi", authors: [] }]);
+    })
 
     it("Empty body", async () => {
       const username = "janwillem";
@@ -445,14 +482,23 @@ describe("connection", () => {
     it("PUT on top_three", async () => {
       const username = "janwillem";
       const shelfId = "top_three";
+      const bookToAdd = { _id: "4321", cover_image: "myimage", title: "hoi", authors: [] };
 
+      const userBeforePut = await User.findById("janwillem").lean();
       const res = await request(app)
         .put(`/user/${username}/shelves/${shelfId}`)
-        .send({ book: { _id: "4321", cover_image: "myimage", title: "hoi", authors: [] } })
+        .send({ book: bookToAdd })
         .set("Content-Type", "application/json")
         .expect(200);
 
-      assert.deepEqual(res.body, { _id: "4321", cover_image: "myimage", title: "hoi", authors: [] });
+      const bookcase = [bookToAdd];
+      const topThree = {
+        _id: "655b323165c31f3c397b6754",
+        name: "My top three",
+        books: [...userBeforePut.top_three.books, bookToAdd],
+      };
+
+      assert.deepEqual(res.body, { bookcase, shelf: topThree });
     });
   });
 
@@ -687,7 +733,7 @@ describe("connection", () => {
 
     it("Should error with status 404", async () => {
       const res = await request(app)
-        .delete ("/user/unittester2/bookcase/undefined")
+        .delete("/user/unittester2/bookcase/undefined")
         .expect(404);
 
       assert.deepEqual(res.body, { error: "Specified book does not exist" })
@@ -726,12 +772,14 @@ describe("connection", () => {
     it("Should put a book on bookcase status 200", async () => {
       const res = await request(app)
         .put("/user/unittester2/bookcase")
-        .send({book: {
-          _id: 134,
-          cover_image: "url",
-          title: "hoi",
-          authors: [],
-        }})
+        .send({
+          book: {
+            _id: 134,
+            cover_image: "url",
+            title: "hoi",
+            authors: [],
+          }
+        })
         .expect(200);
 
       assert.deepEqual(res.body, {
@@ -773,8 +821,125 @@ describe("connection", () => {
     it("Should error on non book", async () => {
       await request(app)
         .put("/user/unittester2/bookcase")
-        .send({book: "geen boek"})
+        .send({ book: "geen boek" })
         .expect(400);
+    })
+  })
+
+  describe("PATCH /:username", () => {
+    beforeEach(async () => {
+      await User.deleteOne({ _id: "janwillem" });
+      await User.create({
+        _id: "janwillem",
+        name: "Jan Willem",
+        profile_picture: "https://yt3.ggpht.com/yti/ADpuP3Pg_aDqzJqgvkj6wSF_s-1ERdm5tS9DEegXejKT=s88-c-k-c0x00ffffff-no-rj",
+      });
+    })
+
+    it("Succesfully updates profile with name and picture", async () => {
+      await request(app)
+        .patch("/user/janwillem")
+        .send({ name: "pietje", image: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" })
+        .expect(200)
+    })
+
+    it("should get error with name required", async () => {
+      const res = await request(app)
+        .patch("/user/janwillem")
+        .send({image: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"})
+        .expect(400)
+        
+        assert.deepEqual(res.body, {error: "Name is required"});
+    })
+  })
+
+  describe("PUT /:username/follow", () => {
+    beforeEach(async () => {
+      await User.deleteMany();
+      await User.create({
+        _id: "test1",
+        name: "Jan Willem",
+      });
+
+      await User.create({
+        _id: "test2",
+        name: "Jan Willem",
+        profile_picture: "hoi"
+      });
+    })
+
+    it("Should follow and give code 200", async () => {
+      const res = await request(app)
+        .put("/user/test1/follow")
+        .send({ account: "test2" })
+        .expect(200);
+
+      assert.deepEqual(res.body.followers, [
+        {
+          _id: 'test1',
+          profile_picture: 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'
+        }
+      ]);
+      const user = await User.findById("test1").lean();
+      assert.deepEqual(user.following, [{ _id: "test2", profile_picture: "hoi" }])
+    })
+
+    it("Should not find the user and error 404", async () => {
+      const res = await request(app)
+        .put("/user/test1/follow")
+        .send({account: "test3"})
+        .expect(400);
+
+      assert.deepEqual(res.body, { error: "Cannot follow, maybe user doesnt exist"})
+    })
+  })
+
+  describe("DELETE /:username/unfollow", () => {
+    beforeEach(async () => {
+      await User.deleteMany();
+      await User.create({
+        _id: "test1",
+        name: "Jan Willem",
+        following: [
+          {
+            _id: "test2",
+            profile_picture: "hoi"
+          }
+        ]
+      });
+
+      await User.create({
+        _id: "test2",
+        name: "Jan Willem",
+        profile_picture: "hoi"
+      });
+    })
+
+    it("Should unfollow test2 and 200.", async () => {
+      await request(app)
+        .delete("/user/test1/unfollow")
+        .send({ account: "test2" })
+        .expect(200);
+      
+      const user = await User.findById("test1").lean();
+      assert.deepEqual(user.following, [])
+    })
+
+    it("Should unfollow test3 and 400.", async () => {
+      const res = await request(app)
+        .delete("/user/test2/unfollow")
+        .send({ account: "test3" })
+        .expect(400);
+      
+      assert.deepEqual(res.body, { error: "Cannot unfollow, maybe user doesnt exist" })
+    })
+  })
+
+  describe("GET genre", () => {
+    it("return array with all genres", async () => {
+      const res = await request(app)
+        .get("/genre/")
+        .expect(200);
     })
   })
 });
