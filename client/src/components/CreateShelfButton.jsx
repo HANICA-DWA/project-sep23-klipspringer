@@ -1,17 +1,16 @@
 import { Button, Stack } from "@mui/material";
-import { useContext } from "react";
-import { LoggedInContext } from "../Contexts";
 import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function CreateShelfButton() {
   const navigate = useNavigate();
-  const { loggedIn, username } = useContext(LoggedInContext);
+  const profile = useSelector(state => state.profile)
   const { userName } = useParams();
 
-  const shelfClickHandler = loggedIn
+  const shelfClickHandler = profile.loggedIn
     ? () => {
         localStorage.removeItem("book");
-        navigate("/" + username + "/shelf");
+        navigate("/" + profile._id + "/shelf");
       }
     : () => navigate("/login");
 
@@ -22,7 +21,7 @@ export default function CreateShelfButton() {
         style={{ fontSize: "12px", marginBottom: "10px", backgroundColor: "#5B5B5B", color: "#FFFFFF" }}
         onClick={shelfClickHandler}
       >
-        {loggedIn && userName === username ? "Create another shelf" : "Create your own shelf"}
+        {profile.loggedIn && userName === profile._id ? "Create another shelf" : "Create your own shelf"}
       </Button>
     </Stack>
   );

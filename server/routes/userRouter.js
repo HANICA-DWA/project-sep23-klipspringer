@@ -77,7 +77,7 @@ router.patch("/:username", upload.single("image"), async (req, res, next) => {
     if (!name) throw createError("Name is required", 400);
     req.user.name = name;
     await req.user.save();
-    res.status(200).json({ message: "Succesfully updated" });
+    res.status(200).json({ message: "Succesfully updated", profile_picture: req.user.profile_picture, name: req.user.name });
   } catch (err) {
     let error = err;
     if (err.errors) error = createError(err.errors[Object.keys(err.errors)[0]].message, 400);

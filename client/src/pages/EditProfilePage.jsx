@@ -1,19 +1,16 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import getProfileData from "../data/getProfileData.js";
+import { useNavigate } from "react-router-dom";
 import { Box, Button, CircularProgress, Divider, FormControl, IconButton, InputAdornment, Stack, TextField, Typography } from "@mui/material";
 import { AlternateEmail, ArrowBackIosNew, Edit } from "@mui/icons-material";
 import ProfileAvatar from "../components/ProfileAvatar.jsx";
-import logout from "../data/logout.js";
 import imageCompression from "browser-image-compression";
 import { useAlert } from "../hooks/useAlert.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { logOut } from "../redux/reducers/profileReducer.js";
+import { editProfile, logOut } from "../redux/reducers/profileReducer.js";
 
 export default function EditProfilePage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { userName } = useParams();
   const profile = useSelector((state) => state.profile);
   const [edits, setEdits] = useState({ imageUrl: "", imageFile: "", nameInput: "" });
   const [message, setMessage] = useState({ type: "", message: "" });
@@ -28,12 +25,11 @@ export default function EditProfilePage() {
     e.preventDefault();
 
     const selectedFile = e.target.files.item(0);
-    setEdits({ ...edits, imageFile: selectedFile });
     if (selectedFile && selectedFile.type.match("image.*")) {
       const reader = new FileReader();
       reader.onloadend = (event) => {
         const dataUrl = event.target.result;
-        setEdits({ ...edits, imageUrl: dataUrl });
+        setEdits({ ...edits, imageUrl: dataUrl, imageFile: selectedFile });
       };
       reader.readAsDataURL(selectedFile);
     }
@@ -47,32 +43,21 @@ export default function EditProfilePage() {
 
   const onSave = async (e) => {
     const { imageFile, nameInput } = edits;
-    const formData = new FormData();
+    let compressedImage;
 
-    if (image) {
-      const compressedImage = await imageCompression(imageFile, {
+    if (imageFile) {
+      compressedImage = await imageCompression(imageFile, {
         maxSizeMB: 2,
         onProgress: (percentage) => setProgress(percentage),
       });
-      formData.append("image", compressedImage);
     }
-    formData.append("name", nameInput);
 
-    try {
-      const response = await fetch(import.meta.env.VITE_BACKEND_HOST + `/user/${userName}`, {
-        method: "PATCH",
-        body: formData,
-        credentials: "include",
-        mode: "cors",
-      });
-      const result = await response.json();
-      if (!response.ok) throw new Error(result.error);
-      setMessage({ type: "success", message: result.message });
-    } catch (err) {
-      setMessage({ type: "error", message: err.message });
-    } finally {
+    const cb = (messageObj) => {
+      setMessage(messageObj);
       setAlertOn();
-    }
+    };
+
+    dispatch(editProfile({ name: nameInput, image: compressedImage, cb }));
   };
 
   return (

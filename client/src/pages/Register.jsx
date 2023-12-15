@@ -1,17 +1,18 @@
-import { Box, Button, FormControl, FormHelperText, InputAdornment, Stack, TextField, Typography, Link } from "@mui/material";
+import { Box, Button, FormControl, FormHelperText, InputAdornment, Stack, TextField, Typography } from "@mui/material";
 import { AlternateEmail, Cancel, CheckCircleOutline } from "@mui/icons-material";
 import { ArrowBackIos } from "@mui/icons-material";
 import { GoogleLogin } from "@react-oauth/google";
 import { LinkedIn } from "react-linkedin-login-oauth2";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logUserIn } from "../redux/reducers/profileReducer";
 
 export default function Register() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const profile = useSelector((state) => state.profile);
   const [usernameInput, setUsernameInput] = useState("");
   const [inputError, setInputError] = useState(null);
   const [fetchError, setFetchError] = useState(null);
@@ -48,14 +49,8 @@ export default function Register() {
 
   return (
     <Stack
-      // useFlexGap
-      // gap={4}
       alignItems="center"
       sx={{
-        // mt: {
-        //   xs: "10vh",
-        //   md: "5vh",
-        // },
         height: "100vh",
       }}
       justifyContent="space-between"
@@ -253,7 +248,7 @@ export default function Register() {
       <Stack alignItems="center" sx={{ marginBottom: "10px" }}>
         <Stack direction="row" useFlexGap gap={0.5} sx={{ color: "success.main" }}>
           <Typography>Already on BKS?</Typography>
-          <Typography component={Link} href="/login" sx={{ textDecoration: "none", color: "success.main" }}>
+          <Typography component={Link} to="/login" sx={{ textDecoration: "none", color: "success.main" }}>
             Sign In
           </Typography>
         </Stack>

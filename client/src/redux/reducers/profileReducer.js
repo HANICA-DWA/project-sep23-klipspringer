@@ -97,6 +97,47 @@ export const logOut = createAsyncThunk("profile/logout", async () => {
   return data;
 });
 
+export const editProfile = createAsyncThunk("profile/edit", async ({ name, image, cb }, { getState }) => {
+  const formData = new FormData();
+  if (image) formData.append("image", image);
+  formData.append("name", name);
+
+  const response = await fetch(import.meta.env.VITE_BACKEND_HOST + `/user/${getState().profile._id}`, {
+    method: "PATCH",
+    body: formData,
+    credentials: "include",
+    mode: "cors",
+  });
+  const data = await response.json();
+  if (data.error) {
+    cb && cb({ type: "error", message: data.error });
+    throw new Error(data.error);
+  } else {
+    cb && cb({ type: "success", message: data.message });
+  }
+  return data;
+});
+
+const addBookToShelf = createAsyncThunk("profile/addBookToShelf", async ({ shelf, book, cb }, { getState }) => {
+  const response = await fetch(import.meta.env.VITE_BACKEND_HOST + `/user/${getState().profile._id}/shelves/${shelf}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    mode: "cors",
+    body: JSON.stringify({ book: book }),
+  });
+  const data = await response.json();
+  if (data.error) {
+    cb && cb(data.error);
+    throw new Error(data.error);
+  } else {
+    cb && cb(null);
+  }
+  return { ...data, shelf };
+});
+
 const initialState = {
   loggedIn: false,
   _id: "",
@@ -153,6 +194,39 @@ export const profileSlice = createSlice({
       state.bookcase.splice(index, 1);
     });
     builder.addCase(removeFromBookcase.rejected, (state, action) => {
+      state.error = action.error.message;
+    });
+    builder.addCase(editProfile.fulfilled, (state, action) => {
+      const { profile_picture, name } = action.payload;
+      state.profile_picture = profile_picture;
+      state.name = name;
+    });
+    builder.addCase(editProfile.rejected, (state, action) => {
+      state.error = action.error.message;
+    });
+    builder.addCase(addBookToShelf.fulfilled, (state, action) => {
+      const { shelf, book } = action.payload;
+      
+      if (shelf === "top_three") {
+        if (Array.isArray(book)) {
+          book.forEach((item) => {
+            state.top_three.books.push(item);
+          });
+        } else {
+          state.top_three.books.push(book);
+        }
+      } else {
+        const userShelfIndex = state.shelf.findIndex((shelfFromState) => shelfFromState._id === shelf);
+        if (Array.isArray(book)) {
+          book.forEach((item) => {
+            state.shelf[userShelfIndex].books.push(item);
+          });
+        } else {
+          state.shelf[userShelfIndex].books.push(book);
+        }
+      }
+    });
+    builder.addCase(addBookToShelf.rejected, (state, action) => {
       state.error = action.error.message;
     });
   },

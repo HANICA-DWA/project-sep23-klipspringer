@@ -1,15 +1,15 @@
 import { Typography, Card, Stack, CardMedia, ImageList, Box, IconButton } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import { LoggedInContext } from "../Contexts";
+import {  useEffect, useState } from "react";
 import { Edit, Delete } from "@mui/icons-material";
 import { useDialog } from "../hooks/useDialog";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useAlert } from "../hooks/useAlert";
 import Bookcover from "./Bookcover";
+import { useSelector } from "react-redux";
 
 export default function Bookshelf({ id, title, books = [], hideAdding, user, unclickable, onDelete, edit, onBookDelete, nrOfColums = 3, placeholder, hideDesc }) {
-  const { loggedIn, username } = useContext(LoggedInContext);
+  const profile = useSelector(state => state.profile)
   const [errMessage, setErrMessage] = useState("");
   const [showAlert, alertComponent] = useAlert(errMessage, 3000, "warning");
   const navigate = useNavigate();
@@ -47,7 +47,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
     setGroupedBooks(result)
   }, [bookshelfBooks])
 
-  if ((bookshelfBooks.length === 0 && !loggedIn) || (bookshelfBooks.length === 0 && hideAdding)) {
+  if ((bookshelfBooks.length === 0 && (!profile.loggedIn || profile._id !== user)) || (bookshelfBooks.length === 0 && hideAdding)) {
     placeholderBooks.push(<div key="p1"></div>);
     placeholderBooks.push(
       <Typography key="p2" variant="h5" order="2">
@@ -56,7 +56,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
   }
 
   for (let i = bookshelfBooks.length; i < 3; i++) {
-    if (loggedIn && username === user && !hideAdding) {
+    if (profile.loggedIn && profile._id === user && !hideAdding) {
       placeholderBooks.push(
         <Card key={i} style={{ width: "85px", height: "160px" }}>
           <Link to={`/${user}/${id}/add`}>
@@ -75,11 +75,11 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
         <Typography gutterBottom variant="h5" fontWeight="800" sx={{ overflowWrap: "anywhere", maxWidth: "100%", textAlign: "center" }}>
           {title}
         </Typography>
-        {unclickable ? null : loggedIn && username === user && !edit ? (
+        {unclickable ? null : profile.loggedIn && profile._id === user && !edit ? (
           <>
             <IconButton
               onClick={() => {
-                navigate(`/${username}/${id}/edit`);
+                navigate(`/${profile._id}/${id}/edit`);
               }}
             >
               <Edit />
@@ -103,7 +103,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
             {books.map((item) => (
                 <Card key={item._id}>
                   <Box sx={{ width: "85px", height: "160px", display: "flex", justifyContent: "flex-end" }}>
-                    {loggedIn && username === user && edit ? (
+                    {profile.loggedIn && profile._id === user && edit ? (
                       <IconButton
                         sx={{
                           position: "absolute",
@@ -137,7 +137,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
             ))}
             {placeholderBooks.length !== 0 ? (
               placeholderBooks
-            ) : loggedIn && username === user && !hideAdding && id !== "top_three" && books.length < 4 ? (
+            ) : profile.loggedIn && profile._id === user && !hideAdding && id !== "top_three" && books.length < 4 ? (
               <Card key={id} style={{ width: "85px", height: "160px" }}>
                 <Link to={`/${user}/${id}/add`}>
                   <CardMedia shelf={id} height="160" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" />
