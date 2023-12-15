@@ -1,7 +1,7 @@
 import { Avatar, Box } from "@mui/material";
 import { Link } from "react-router-dom";
 
-export default function ProfileAvatar({ alt, image, handle, clickable, border = true, onLoad }) {
+export default function ProfileAvatar({ alt, image, handle, clickable, border = true, onLoad, onError }) {
   const link = handle ? `/${handle}` : "";
   const imageLink = getAvatarUrl(image);
   const borderObject = border ? { padding: "3px", border: "1px solid grey", borderRadius: "50px" } : {};
@@ -15,6 +15,7 @@ export default function ProfileAvatar({ alt, image, handle, clickable, border = 
             src={imageLink && imageLink.href}
             imgProps={{ referrerPolicy: "no-referrer" }}
             onLoad={() => onLoad && onLoad()}
+            onError={() => onError && onError()}
           />
         </Link>
       ) : (
@@ -24,6 +25,7 @@ export default function ProfileAvatar({ alt, image, handle, clickable, border = 
           src={imageLink && imageLink.href}
           imgProps={{ referrerPolicy: "no-referrer" }}
           onLoad={() => onLoad && onLoad()}
+          onError={() => onError && onError()}
         />
       )}
     </Box>
