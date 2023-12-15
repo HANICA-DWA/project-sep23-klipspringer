@@ -1,6 +1,6 @@
 import { Button, Stack, Typography, Box } from "@mui/material";
 import Bookshelf from "../components/Bookshelf";
-import { useEffect, useState, useContext } from "react";
+import {useContext, useEffect, useRef, useState} from "react";
 import { useParams, Link, useLocation, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import ProfileInfo from "../components/ProfileInfo";
@@ -8,6 +8,7 @@ import CreateShelfButton from "../components/CreateShelfButton";
 import getProfileData from "../data/getProfileData";
 import ModalFollowers from "../components/ModalFollowers";
 import { LoggedInContext } from "../Contexts";
+import { getWebSocket } from "../data/websockets";
 
 function Profilepage({ setLoggedIn }) {
   const userName = useParams().userName;
@@ -23,6 +24,7 @@ function Profilepage({ setLoggedIn }) {
     setValueTabs(tab);
   };
   const handleClose = () => setOpen(false);
+
 
   useEffect(() => {
     const getFunction = async () => {
@@ -48,6 +50,7 @@ function Profilepage({ setLoggedIn }) {
         })
         .then((res) => {
           setProfileInfo(res);
+          getWebSocket().send(JSON.stringify({ type: "notification_unfollow", following: userName, link: `/${username}` }));
         })
         .catch((err) => {
           console.log(err);
@@ -67,6 +70,7 @@ function Profilepage({ setLoggedIn }) {
         })
         .then((res) => {
           setProfileInfo(res);
+          getWebSocket().send(JSON.stringify({ type: "notification_follow", following: userName, link: `/${username}` }));
         })
         .catch((err) => {
           console.log(err);
@@ -77,17 +81,21 @@ function Profilepage({ setLoggedIn }) {
   return (
     <>
       <Stack justifyContent="flex-start" alignItems="center" sx={{ minHeight: "100vh" }} spacing={3} useFlexGap>
-        <Header setLoggedIn={setLoggedIn} shareButton={true} />
-        <Stack direction="row" justifyContent="space-evenly" width="100vw">
+        <Header setLoggedIn={setLoggedIn} shareButton={true} profileInfo={profileInfo} />
+        <Stack direction="row" justifyContent="space-evenly" width="100%">
           <ProfileInfo name={profileInfo.name} avatar={profileInfo.profile_picture} handle={profileInfo._id} />
           <Stack justifyContent="center">
-            <Stack direction="row">
+            <Stack direction="row" sx={{ cursor: "pointer" }}>
               <Stack alignItems="center" margin="5px" onClick={() => handleOpen("followers")}>
-                <Typography variant="caption">Followers</Typography>
+                <Typography variant="body1" fontWeight={700}>
+                  Followers
+                </Typography>
                 <Typography>{profileInfo.followers ? profileInfo.followers.length : null}</Typography>
               </Stack>
               <Stack alignItems="center" margin="5px" onClick={() => handleOpen("following")}>
-                <Typography variant="caption">Following</Typography>
+                <Typography variant="body1" fontWeight={700}>
+                  Following
+                </Typography>
                 <Typography>{profileInfo.following ? profileInfo.following.length : null}</Typography>
               </Stack>
             </Stack>

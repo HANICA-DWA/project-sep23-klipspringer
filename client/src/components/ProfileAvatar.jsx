@@ -1,7 +1,7 @@
 import { Avatar, Box } from "@mui/material";
 import { Link } from "react-router-dom";
 
-export default function ProfileAvatar({ alt, image, handle, clickable, border = true, onLoad, onError }) {
+export default function ProfileAvatar({ alt, image, handle, clickable, border = true, onLoad, onError, size = 56 }) {
   const link = handle ? `/${handle}` : "";
   const imageLink = getAvatarUrl(image);
   const borderObject = border ? { padding: "3px", border: "1px solid grey", borderRadius: "50px" } : {};
@@ -10,7 +10,7 @@ export default function ProfileAvatar({ alt, image, handle, clickable, border = 
       {clickable ? (
         <Link to={link} style={{ textDecoration: "none" }}>
           <Avatar
-            sx={{ width: 56, height: 56 }}
+            sx={{ width: size, height: size }}
             alt={alt}
             src={imageLink && imageLink.href}
             imgProps={{ referrerPolicy: "no-referrer" }}
@@ -20,7 +20,7 @@ export default function ProfileAvatar({ alt, image, handle, clickable, border = 
         </Link>
       ) : (
         <Avatar
-          sx={{ width: 56, height: 56 }}
+          sx={{ width: size, height: size }}
           alt={alt}
           src={imageLink && imageLink.href}
           imgProps={{ referrerPolicy: "no-referrer" }}

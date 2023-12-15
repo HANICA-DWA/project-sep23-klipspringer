@@ -22,10 +22,12 @@ export default function SearchBar({ onClick, fullSearch, genreChips, deleteChip,
   const [activeSearchFilter, setActiveSearchFilter] = useState(fullSearch ? searchFilters[0] : searchFilters[1])
 
   function popperContents() {
-    if (isLoading) {
+    if (isLoading && searchText.length >= 1) {
       return <LinearProgress sx={{ width: "100%" }} />;
     } else if (searchResults.length < 1 && !isLoading && activeSearchFilter !== searchFilters[0]) {
       return <Typography variant="body1">No results found.</Typography>;
+    } else if (isLoading && searchResults.length < 1) {
+      return <Typography variant="body1">Nothing to search.</Typography>;
     }  else { 
       switch (activeSearchFilter) {
         case searchFilters[0]:

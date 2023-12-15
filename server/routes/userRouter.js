@@ -90,7 +90,8 @@ router.post("/:username/shelf", async (req, res, next) => {
     req.user.shelf.push(req.body);
     req.user.addToBookcase(req.body.books);
     await req.user.save();
-    res.status(201).send(req.body);
+    const newShelfItemId = req.user.shelf[req.user.shelf.length - 1]._id;
+    res.status(201).send({ ...req.body, _id: newShelfItemId });
   } catch (err) {
     let error = err;
     if (err.errors) error = createError(err.errors[Object.keys(err.errors)[0]].message, 400);

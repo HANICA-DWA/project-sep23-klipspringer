@@ -2,6 +2,9 @@ import express from "express";
 import mongoose from "mongoose";
 import session from "express-session";
 import cors from "cors";
+import http from "http";
+import { WebSocketServer } from "ws";
+import User from "./model/user.js";
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -13,6 +16,8 @@ import multer from "multer";
 import genreRouter from "./routes/genreRouter.js";
 
 const app = express();
+const httpServer = http.createServer(app);
+const wsServer = new WebSocketServer({ noServer: true });
 
 const sessionParser = session({
   saveUninitialized: true,
@@ -51,7 +56,68 @@ app.use((err, req, res, next) => {
 
 export default app;
 
-export const server = app.listen(port, host, async () => {
+//handle upgrades from http requests to websocket
+httpServer.on("upgrade", (request, socket, head) => {
+  sessionParser(request, {}, () => {
+    if (!request.session.loggedIn || !request.session.user) {
+      socket.destroy();
+      return;
+    }
+    wsServer.handleUpgrade(request, socket, head, (ws) => {
+      wsServer.emit("connection", ws, request);
+    });
+  });
+});
+
+wsServer.broadcastToFollowers = (ws, data) => {
+  wsServer.clients.forEach((client) => {
+    if (ws.followers.findIndex((follower) => follower._id == client.user) !== -1) {
+      client.send(JSON.stringify(data));
+    }
+  });
+};
+
+wsServer.sendToUser = (wsClient, data) => {
+  wsClient.send(JSON.stringify(data));
+};
+
+wsServer.on("connection", async (ws, request) => {
+  ws.user = request.session.user;
+  const user = await User.findById(request.session.user);
+  ws.profile_picture = user.profile_picture;
+  ws.followers = user.followers;
+
+  ws.on("message", (data) => {
+    request.session.reload((err) => {
+      if (err) {
+        throw err;
+      }
+    });
+    if (!request.session.user) {
+      return;
+    }
+    data = JSON.parse(data);
+    data.person = { _id: ws.user, profile_picture: ws.profile_picture };
+
+    if (data.type === "notification_follow" || data.type === "notification_unfollow") {
+      wsServer.clients.forEach((client) => {
+        if (client.user === data.following) {
+          if (data.type === "notification_follow") {
+            client.followers.push(data.person);
+          } else {
+            client.followers = client.followers.filter((follower) => follower._id !== data.person._id);
+          }
+          wsServer.sendToUser(client, data);
+        }
+      });
+    } else {
+      wsServer.broadcastToFollowers(ws, data);
+    }
+    request.session.save();
+  });
+});
+
+export const server = httpServer.listen(port, host, async () => {
   console.log("> connecting");
   if (process.env.NODE_ENV === "test") {
     console.log("Connecting to test db");

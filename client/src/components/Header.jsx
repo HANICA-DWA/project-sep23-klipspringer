@@ -9,7 +9,7 @@ import { HamburgerMenu } from "./HamburgerMenu.jsx";
 import NotificationTray from "./NotificationTray.jsx";
 
 
-export default function Header({ setLoggedIn, shareButton, backButton }) {
+export default function Header({ setLoggedIn, shareButton, backButton, profileInfo }) {
     const { loggedIn, username } = useContext(LoggedInContext);
     const { userName } = useParams();
     const navigate = useNavigate();
@@ -17,29 +17,23 @@ export default function Header({ setLoggedIn, shareButton, backButton }) {
     const [setShareLinkAlertOn, shareLinkAlert] = useAlert("Link copied to clipboard!");
 
     return (
-        <>
-            <Stack direction="row" justifyContent="space-between" alignItems="center" width="100%">
-                <Box sx={{ margin: "10px" }}>
-                    <Stack flex flexDirection="row">
-                        <HamburgerMenu setLoggedIn={setLoggedIn} />
-                        {backButton ? (
-                            <ArrowBackIosNew sx={{marginTop: "5px"}} onClick={() => navigate(-1)} />
-                        ) : null}
-                        <NotificationTray />
-                    </Stack>
-                </Box>
-                {loggedIn && username === userName && shareButton ? (
-                    <Box>
-                        <ProfileLink alert={setShareLinkAlertOn} />
-                    </Box>
-                ) : null
-                }
-                {/* <Box sx={{ flex: "1 1 0px", width: "0px", textAlign: "center" }}>
-
-                </Box> */}
+      <>
+        <Stack direction="row" justifyContent="space-between" alignItems="center" width="100%">
+          <Box sx={{ margin: "10px" }}>
+            <Stack flex flexDirection="row">
+              <HamburgerMenu setLoggedIn={setLoggedIn} />
+              {backButton ? <ArrowBackIosNew sx={{ marginTop: "5px" }} onClick={() => navigate(-1)} /> : null}
+              {loggedIn ? <NotificationTray /> : null}
             </Stack>
-            {shareLinkAlert}
-        </>
+          </Box>
+          {loggedIn && username === userName && shareButton ? (
+            <Box>
+              <ProfileLink alert={setShareLinkAlertOn} profileInfo={profileInfo} />
+            </Box>
+          ) : null}
+        </Stack>
+        {shareLinkAlert}
+      </>
     );
 }
 
