@@ -166,7 +166,7 @@ export default function Detailpage({ setLoggedIn }) {
             _id: isbn,
             cover_image: book.cover != undefined ? book.cover.medium : null,
             title: book.title,
-            authors: book.authors.map((author) => author.name),
+            authors: book.authors != undefined?book.authors.map((author) => author.name):[],
           }}
         />
 

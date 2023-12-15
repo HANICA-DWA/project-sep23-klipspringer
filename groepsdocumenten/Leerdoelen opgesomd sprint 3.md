@@ -8,7 +8,8 @@ Wilt luisteren naar wat anderen willen en wanneer er naar gevraagt wordt en op d
 
 
 ## Niels
-
+"Ik wil meer het iniatief nemen om een leidinggevende rol te nemen tijdens groepmeetings om hier ook beter in te worden."
+Wilt meer het iniatief nemen om een leidinggevende rol te nemen om zo iedereen meer aan het woord te laten en ook anderen meer de kans geven om hun mening te geven.
 
 
 ## Roos

@@ -44,6 +44,19 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
     
       return resultArray
     }, [])  
+
+    if (bookshelfBooks.length % nrOfColums === 0 && !hideAdding && loggedIn) {
+      result.push([])
+      placeholderBooks.push(
+        <Card key="extra" style={{ width: "85px", height: "160px" }}>
+          <Link to={`/${user}/${id}/add`}>
+            <CardMedia shelf={id} height="160" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" />
+          </Link>
+        </Card>
+      )
+    }
+      
+
     setGroupedBooks(result)
   }, [bookshelfBooks])
 
@@ -127,10 +140,20 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
                             height: "1rem",
                           }}
                         />
-                      </IconButton>
-                    ) : null}
-                    <Link to={unclickable ? null : `/book/${item._id}`} style={{ textDecoration: "none", color: "black" }}>
-                      <Bookcover isbn={item._id} cover_image={item.cover_image} />
+                        </IconButton>
+                      ) : null}
+                      <Link to={unclickable ? null : `/book/${item._id}`} style={{ textDecoration: "none", color: "black" }}>
+                        <Bookcover isbn={item._id} cover_image={item.cover_image} />
+                      </Link>
+                    </Box>
+                  </Card>
+                ))}
+                {placeholderBooks.length !== 0 ? (
+                  placeholderBooks
+                ) : loggedIn && username === user && !hideAdding && id !== "top_three" && books.length < 4 ? (
+                  <Card key={id} style={{ width: "85px", height: "160px" }}>
+                    <Link to={`/${user}/${id}/add`}>
+                      <CardMedia shelf={id} height="160" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" />
                     </Link>
                   </Box>
                 </Card>
@@ -148,10 +171,10 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
             )}
           </ImageList>
         </Stack>
-        <Stack direction="row" justifyContent="center" sx={{ height: "20px", width: `100%`, maxWidth: "98vw", position: "relative", overflow: "hidden" }}>
+        <Stack direction="row" justifyContent="center" sx={{ height: "20px", width: `${nrOfColums*100}px`, maxWidth: "98vw", overflow: "hidden" }}>
           <img style={{ width: "100%" }} src="/images/bookshelf.jpg" alt="bookshelf"></img>
         </Stack>
-          {!hideDesc ? (<Stack direction="row">
+          {!hideDesc ? (<Stack direction="row" justifyContent="start" sx={{marginLeft: "5px", width: `${nrOfColums * 88}px`}}>
             {books.map((item) => (
                 <Stack margin="2px" key={item._id}>
                   <Typography width="85px" variant="caption" fontWeight="600" sx={{overflowWrap: "anywhere"}}>{item.title}</Typography>

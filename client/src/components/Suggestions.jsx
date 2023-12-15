@@ -52,7 +52,7 @@ export default function Suggestions() {
             ))
           : suggestions.map(
               (item) =>
-                item.isbn[0] && (
+                item.isbn && item.isbn[0] && (
                   <ImageListItem
                     sx={{ width: "85px", height: "130px", cursor: "pointer" }}
                     key={item.isbn[0]}

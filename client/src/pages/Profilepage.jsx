@@ -52,7 +52,7 @@ function Profilepage({ setLoggedIn }) {
     <>
       <Stack justifyContent="flex-start" alignItems="center" sx={{ minHeight: "100vh" }} spacing={3} useFlexGap>
         <Header setLoggedIn={setLoggedIn} shareButton={true} profileInfo={profileInfo} />
-        <Stack direction="row" justifyContent="space-evenly" width="100%">
+        <Stack direction="row" justifyContent="space-evenly" width="100%" maxWidth="800px">
           <ProfileInfo name={profileInfo.name} avatar={profileInfo.profile_picture} handle={profileInfo._id} />
           <Stack justifyContent="center">
             <Stack direction="row" sx={{ cursor: "pointer" }}>
