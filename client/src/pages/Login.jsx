@@ -3,18 +3,20 @@ import { GoogleLogin } from "@react-oauth/google";
 import { LinkedIn } from "react-linkedin-login-oauth2";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { Link, useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import { LoggedInContext } from "../Contexts";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { logUserIn } from "../redux/reducers/profileReducer";
 
-export default function Login({ setLoggedIn }) {
+export default function Login() {
   const navigate = useNavigate();
-  const { loggedIn, username } = useContext(LoggedInContext);
+  const dispatch = useDispatch();
+  const profile = useSelector((state) => state.profile);
   const [fetchError, setFetchError] = useState(null);
   const redirectURI = `${window.location.origin}/linkedin`;
 
   useEffect(() => {
-    if (loggedIn) navigate(`/${username}`);
-  }, [loggedIn, username, navigate]);
+    if (profile.loggedIn) navigate(`/${profile._id}`);
+  }, [profile.loggedIn, profile._id, navigate]);
 
   return (
     <Stack
@@ -67,7 +69,7 @@ export default function Login({ setLoggedIn }) {
             const responseData = await restResponse.json();
             if (restResponse.ok) {
               if (responseData.status === "LOGGED_IN") {
-                setLoggedIn({ loggedIn: true, username: responseData.username });
+                dispatch(logUserIn({ username: responseData.username }));
                 navigate(`/${responseData.username}`);
               }
             } else {
@@ -93,7 +95,7 @@ export default function Login({ setLoggedIn }) {
             const responseData = await response.json();
             if (response.ok) {
               if (responseData.status === "LOGGED_IN") {
-                setLoggedIn({ loggedIn: true, username: responseData.username });
+                dispatch(logUserIn({ username: responseData.username }));
                 navigate(`/${responseData.username}`);
               }
             } else {
@@ -116,8 +118,8 @@ export default function Login({ setLoggedIn }) {
           )}
         </LinkedIn>
       </Stack>
-      <Stack direction="row" useFlexGap gap={0.5} sx={{color: "success.main"}}>
-        <Typography >No account yet?</Typography>
+      <Stack direction="row" useFlexGap gap={0.5} sx={{ color: "success.main" }}>
+        <Typography>No account yet?</Typography>
         <Typography component={Link} to="/register" sx={{ textDecoration: "none", color: "success.main" }}>
           Sign Up
         </Typography>

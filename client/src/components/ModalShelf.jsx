@@ -1,12 +1,14 @@
 import { useNavigate } from "react-router-dom";
-import { LoggedInContext } from "../Contexts";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Modal, Typography, Stack, Box } from "@mui/material";
 import { Add, ArrowForward, Close } from "@mui/icons-material";
 import { useAlert } from "../hooks/useAlert";
+import { useDispatch, useSelector } from "react-redux";
+import { editBooksShelf } from "../redux/reducers/profileReducer";
 
 export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
-  const { loggedIn, username } = useContext(LoggedInContext);
+  const profile = useSelector((state) => state.profile);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [errMessage, setErrMessage] = useState("");
   const [showAlert, alertComponent] = useAlert(errMessage || "Book succesfully added", 3000, errMessage ? "warning" : "success");
@@ -22,32 +24,16 @@ export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
 
   function newShelf() {
     localStorage.setItem("book", JSON.stringify(book));
-    loggedIn ? navigate(`/${username}/shelf`) : navigate("/login");
+    profile.loggedIn ? navigate(`/${profile._id}/shelf`) : navigate("/login");
   }
 
   function addToShelf(shelfName, book) {
-    fetch(import.meta.env.VITE_BACKEND_HOST + `/user/${username}/shelves/${shelfName}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      mode: "cors",
-      body: JSON.stringify({ book: book }),
-    })
-      .then((res) => {
-        if (res.ok) {
-          setErrMessage(null);
-          showAlert();
-          handleClose();
-        } else {
-          res.json().then((message) => setErrMessage(message.error));
-          showAlert();
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const cb = (error) => {
+      setErrMessage(error);
+      showAlert();
+      if (!error) handleClose();
+    };
+    dispatch(editBooksShelf({ shelf: shelfName, body: { book }, cb }));
   }
 
   return (
@@ -55,12 +41,7 @@ export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
       {alertComponent}
       <Modal open={open} onClose={handleClose}>
         <Box sx={styleModal}>
-          <Stack
-            direction="row"
-            justifyContent="center"
-            alignItems="center"
-            sx={{ padding: "15px", borderBottom: "2px solid #EFEFEF" }}
-          >
+          <Stack direction="row" justifyContent="center" alignItems="center" sx={{ padding: "15px", borderBottom: "2px solid #EFEFEF" }}>
             <Typography fontWeight="600" align="center">
               What shelf?
             </Typography>
@@ -104,7 +85,7 @@ export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
           </Box>
           <Stack direction="row" justifyContent="center" sx={{ margin: "20px" }} onClick={newShelf}>
             <Add sx={{ transform: "scale(0.6)" }} />
-            <Typography >Create a new shelf</Typography>
+            <Typography>Create a new shelf</Typography>
           </Stack>
         </Box>
       </Modal>

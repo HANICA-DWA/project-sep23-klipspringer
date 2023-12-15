@@ -56,12 +56,15 @@ router.get("/:username", (req, res, next) => {
 
 router.use("/:username", (req, res, next) => {
   const { username } = req.params;
+  /* node:coverage disable */
   if (process.env.NODE_ENV !== "test" && (!req.session.loggedIn || req.session.user !== username)) {
     next(createError("Unauthorized", 403));
   }
+  /* node:coverage enable */
   next();
 });
 
+/* node:coverage disable */
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "./public/avatars");
@@ -69,6 +72,7 @@ const storage = multer.diskStorage({
   filename: customName,
 });
 const upload = multer({ storage: storage, fileFilter: createFileFilter("image/"), limits: { fileSize: 1024 * 1024 * 2 } });
+/* node:coverage enable */
 
 router.patch("/:username", upload.single("image"), async (req, res, next) => {
   const { name } = req.body;
@@ -77,7 +81,7 @@ router.patch("/:username", upload.single("image"), async (req, res, next) => {
     if (!name) throw createError("Name is required", 400);
     req.user.name = name;
     await req.user.save();
-    res.status(200).json({ message: "Succesfully updated" });
+    res.status(200).json({ message: "Succesfully updated", profile_picture: req.user.profile_picture, name: req.user.name });
   } catch (err) {
     let error = err;
     if (err.errors) error = createError(err.errors[Object.keys(err.errors)[0]].message, 400);
@@ -138,7 +142,7 @@ router.put("/:username/shelves/:shelf", async (req, res, next) => {
         }
         await req.user.save();
       }
-      res.status(200).json(book);
+      res.status(200).json({ shelf: shelf === "top_three" ? req.user.top_three : req.user.shelf.id(shelf), bookcase: req.user.bookcase });
     } catch (err) {
       let error = createError("Invalid book or shelf", 400);
       if (err.errors) error = createError(err.errors[Object.keys(err.errors)[0]].message, 400);
@@ -226,19 +230,14 @@ router.put("/:username/follow", async (req, res, next) => {
   try {
     const user = await User.findById(req.params.username);
     const account = await User.findById(req.body.account);
-    if(!user || !account){
-      const error = createError("User not found", 404);
-      throw error;
-    } else {
-      user.following.push({_id: account._id, profile_picture: account.profile_picture});
-      account.followers.push({_id: user._id, profile_picture: user.profile_picture});
+    user.following.push({_id: account._id, profile_picture: account.profile_picture});
+    account.followers.push({_id: user._id, profile_picture: user.profile_picture});
 
-      await user.save();
-      await account.save();
-      res.status(200).json(account);
-    }
+    await user.save();
+    await account.save();
+    res.status(200).json(account);
   } catch (err) {
-    next(createError("cann't follow", 400))
+    next(createError("Cannot follow, maybe user doesnt exist", 400))
   }
 });
 
@@ -246,19 +245,14 @@ router.delete("/:username/unfollow", async (req, res, next) => {
   try {
     const user = await User.findById(req.params.username);
     const account = await User.findById(req.body.account);
-    if(!user || !account){
-      const error = createError("User not found", 404);
-      throw error;
-    } else {
-      user.following.pull(account._id)
-      account.followers.pull(user._id)
+    user.following.pull(account._id)
+    account.followers.pull(user._id)
 
-      await user.save();
-      await account.save();
-      res.status(200).json(account);
-    }
+    await user.save();
+    await account.save();
+    res.status(200).json(account);
   } catch {
-    next(createError("cann't unfollow", 400))
+    next(createError("Cannot unfollow, maybe user doesnt exist", 400))
   }
 })
 

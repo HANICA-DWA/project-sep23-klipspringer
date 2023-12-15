@@ -1,17 +1,17 @@
 import { Add, Check, Close } from "@mui/icons-material";
 import { Modal, Typography, Stack, Box, Button } from "@mui/material";
-import { useContext, useEffect, useState } from "react";
-import { LoggedInContext } from "../Contexts";
+import { useState } from "react";
 import Bookcover from "./Bookcover";
 import { useAlert } from "../hooks/useAlert";
 import MultipleBooks from "./MultipleBooks";
+import { useSelector } from "react-redux";
 
 export default function ModalBookcase({ open, handleClose, handleAdd, booksOnShelf, topThreeLength, setTopThreeLength }) {
   const [bookcase, setBookcase] = useState([]);
   const [books, setBooks] = useState([])
   const [errMessage, setErrMessage] = useState("");
   const [showAlert, alertComponent] = useAlert(errMessage, 1500, "warning");
-  const { username } = useContext(LoggedInContext);
+  const profile = useSelector(state => state.profile)
 
   const styleModal = {
     position: "absolute",
@@ -22,27 +22,43 @@ export default function ModalBookcase({ open, handleClose, handleAdd, booksOnShe
     bgcolor: "white",
   };
 
-  useEffect(() => {
-    fetch(
-      import.meta.env.VITE_BACKEND_HOST +
-      `/user/${username}?` +
-      new URLSearchParams({
-        fields: ["bookcase"],
-      }),
-      {
-        method: "GET",
+  function handlePick(book) {
+    if (booksOnShelf) {
+      if (!booksOnShelf.find((item) => item._id === book._id)) {
+        if (books.find((item) => item._id === book._id)) {
+          handleBookDeselection(book);
+        } else {
+          handleBookSelect(book);
+        }
+      } else {
+        setErrMessage("Book already on shelf");
+        showAlert();
       }
-    )
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        setBookcase(res.bookcase);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [username]);
+    } else if (books.find((item) => item._id === book._id)) {
+      handleBookDeselection(book);
+    } else {
+      handleBookSelect(book);
+    }
+  }
+
+  function handleBookSelect(book) {
+    if (topThreeLength && topThreeLength === 3) {
+      setErrMessage("You can only have 3 books on this shelf");
+      showAlert();
+    } else {
+      if (topThreeLength != undefined) {
+        setTopThreeLength(topThreeLength + 1);
+      }
+      setBooks((prevBooks) => [...prevBooks, book]);
+    }
+  }
+
+  function handleBookDeselection(book) {
+    if (topThreeLength != undefined) {
+      setTopThreeLength(topThreeLength - 1);
+    }
+    setBooks((prevBooks) => prevBooks.filter((item) => item._id !== book._id));
+  }
 
   function addBooks(book) {
     if (books.length == 0) {
@@ -66,7 +82,7 @@ export default function ModalBookcase({ open, handleClose, handleAdd, booksOnShe
             <Close onClick={handleClose} sx={{ position: "absolute", right: "10px", transform: "scale(0.8)" }} />
           </Stack>
           <Box sx={{ height: "85%", overflowY: "scroll" }}>
-            {bookcase.length > 0 ? bookcase.map((book) => (
+            {profile.bookcase && profile.bookcase.length > 0 ? profile.bookcase.map((book) => (
               <Stack
                 key={book._id}
                 direction="row"
