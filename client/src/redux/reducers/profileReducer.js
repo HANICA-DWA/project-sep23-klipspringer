@@ -135,7 +135,8 @@ export const editBooksShelf = createAsyncThunk("profile/editBooksShelf", async (
   } else {
     cb && cb(null);
   }
-  return { body, shelf };
+  // return { body, shelf };
+  return { ...data, shelfId: shelf };
 });
 
 export const deleteShelf = createAsyncThunk("profile/deleteShelf", async ({ shelf, cb }, { getState }) => {
@@ -241,43 +242,13 @@ export const profileSlice = createSlice({
       state.error = action.error.message;
     });
     builder.addCase(editBooksShelf.fulfilled, (state, action) => {
-      const { shelf, body } = action.payload;
-      if (body.type === "editshelf") {
-        const { name, books } = body;
-        if (shelf === "top_three") {
-          state.top_three.name = name;
-          state.top_three.books = books;
-        } else {
-          const index = state.shelf.findIndex((stateShelf) => stateShelf._id === shelf);
-          state.shelf[index].name = name;
-          state.shelf[index].books = books;
-        }
+      const { shelf, bookcase, shelfId } = action.payload;
+      state.bookcase = bookcase;
+      if (shelfId === "top_three") {
+        state.top_three = shelf;
       } else {
-        const { book } = body;
-        const books = Array.isArray(book) ? book : [book];
-
-        books.forEach((book) => {
-          if (!state.bookcase.find((element) => element._id === book._id)) state.bookcase.push(book);
-        });
-
-        if (shelf === "top_three") {
-          if (Array.isArray(book)) {
-            book.forEach((item) => {
-              state.top_three.books.push(item);
-            });
-          } else {
-            state.top_three.books.push(book);
-          }
-        } else {
-          const userShelfIndex = state.shelf.findIndex((shelfFromState) => shelfFromState._id === shelf);
-          if (Array.isArray(book)) {
-            book.forEach((item) => {
-              state.shelf[userShelfIndex].books.push(item);
-            });
-          } else {
-            state.shelf[userShelfIndex].books.push(book);
-          }
-        }
+        const index = state.shelf.findIndex((stateShelf) => stateShelf._id === shelfId);
+        state.shelf[index] = shelf;
       }
     });
     builder.addCase(editBooksShelf.rejected, (state, action) => {
