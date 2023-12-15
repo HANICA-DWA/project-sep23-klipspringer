@@ -65,6 +65,6 @@
 
 | Uren | Taak                          | Met Wie   | Resultaten                       | Emotie | Link |
 |------|-------------------------------|-----------|----------------------------------|---|---|
-| 0.5  | leerdoelen                    | N.V.T.    | bedenken hoe ik had aangepakt    |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/e33f6d91838878131fc9ec94e65cefeedb8559c1) |
+| 1    | leerdoelen                    | N.V.T.    | bedenken hoe ik had aangepakt    |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/e33f6d91838878131fc9ec94e65cefeedb8559c1) |
 | 0.5  | leerdoelen van niels opgesomd | Met Niels | het samenvatten van het leerdoel |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/de0c87b025a9d948c987b39fac2159bed4701852) |
 |      |                               |           |                                  | | |
