@@ -1,21 +1,22 @@
-import { Button, Stack, Typography, Box } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 import Bookshelf from "../components/Bookshelf";
-import {useContext, useEffect, useRef, useState} from "react";
-import { useParams, Link, useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import ProfileInfo from "../components/ProfileInfo";
 import CreateShelfButton from "../components/CreateShelfButton";
 import getProfileData from "../data/getProfileData";
 import ModalFollowers from "../components/ModalFollowers";
-import { LoggedInContext } from "../Contexts";
 import { getWebSocket } from "../data/websockets";
+import { useDispatch, useSelector } from "react-redux";
+import { followAccount, unFollowAccount } from "../redux/reducers/profileReducer";
 
 function Profilepage({ setLoggedIn }) {
   const userName = useParams().userName;
-  const location = useLocation();
-  const { loggedIn, username } = useContext(LoggedInContext);
+  const profile = useSelector((state) => state.profile);
   const navigate = useNavigate();
-  const [profileInfo, setProfileInfo] = useState([]);
+  const dispatch = useDispatch();
+  const [profileInfo, setProfileInfo] = useState({});
   const [open, setOpen] = useState(false);
   const [valueTabs, setValueTabs] = useState("");
 
@@ -25,56 +26,25 @@ function Profilepage({ setLoggedIn }) {
   };
   const handleClose = () => setOpen(false);
 
-
   useEffect(() => {
     const getFunction = async () => {
       const profileData = await getProfileData(userName, ["_id", "profile_picture", "name", "top_three", "shelf", "followers", "following"]);
       setProfileInfo(profileData);
     };
-    getFunction();
-  }, [userName, location]);
+    if (profile._id == userName) {
+      setProfileInfo(profile);
+    } else {
+      getFunction();
+    }
+  }, [profile, userName]);
 
   function handleFollow() {
-    if (profileInfo.followers.find((name) => name._id === username)) {
-      fetch(import.meta.env.VITE_BACKEND_HOST + "/user/" + username + "/unfollow", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        mode: "cors",
-        body: JSON.stringify({ account: userName }),
-      })
-        .then((res) => {
-          return res.json();
-        })
-        .then((res) => {
-          setProfileInfo(res);
-          getWebSocket().send(JSON.stringify({ type: "notification_unfollow", following: userName, link: `/${username}` }));
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    if (profileInfo.followers.find((name) => name._id === profile._id)) {
+      dispatch(unFollowAccount({ accountToUnFollow: userName }));
+      getWebSocket().send(JSON.stringify({ type: "notification_unfollow", following: userName, link: `/${profile._id}` }));
     } else {
-      fetch(import.meta.env.VITE_BACKEND_HOST + "/user/" + username + "/follow", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        mode: "cors",
-        body: JSON.stringify({ account: userName }),
-      })
-        .then((res) => {
-          return res.json();
-        })
-        .then((res) => {
-          setProfileInfo(res);
-          getWebSocket().send(JSON.stringify({ type: "notification_follow", following: userName, link: `/${username}` }));
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      dispatch(followAccount({ accountToFollow: userName }));
+      getWebSocket().send(JSON.stringify({ type: "notification_follow", following: userName, link: `/${profile._id}` }));
     }
   }
 
@@ -99,11 +69,11 @@ function Profilepage({ setLoggedIn }) {
                 <Typography>{profileInfo.following ? profileInfo.following.length : null}</Typography>
               </Stack>
             </Stack>
-            {username !== userName && loggedIn ? (
+            {profile._id !== userName && profile.loggedIn ? (
               <Button variant="contained" onClick={handleFollow}>
-                {profileInfo.followers ? (profileInfo.followers.find((name) => name._id === username) ? "Unfollow" : "Follow") : null}
+                {profileInfo.followers ? (profileInfo.followers.find((name) => name._id === profile._id) ? "Unfollow" : "Follow") : null}
               </Button>
-            ) : !loggedIn ? (
+            ) : !profile.loggedIn ? (
               <Button variant="contained" onClick={() => navigate("/login")}>
                 Follow
               </Button>

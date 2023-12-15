@@ -7,35 +7,33 @@ import ProfileAvatar from "../components/ProfileAvatar.jsx";
 import logout from "../data/logout.js";
 import imageCompression from "browser-image-compression";
 import { useAlert } from "../hooks/useAlert.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import { logOut } from "../redux/reducers/profileReducer.js";
 
-export default function EditProfilePage({ setLoggedIn }) {
+export default function EditProfilePage() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { userName } = useParams();
-  const [profileInfo, setProfileInfo] = useState({ _id: "" });
-  const [edits, setEdits] = useState({ image: "", nameInput: "" });
+  const profile = useSelector((state) => state.profile);
+  const [edits, setEdits] = useState({ imageUrl: "", imageFile: "", nameInput: "" });
   const [message, setMessage] = useState({ type: "", message: "" });
   const [setAlertOn, alert] = useAlert(message.message, 3000, message.type === "error" ? "error" : "success");
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const getFunction = async () => {
-      const data = await getProfileData(userName, ["_id", "profile_picture", "name", "sso_provider"]);
-      setProfileInfo(data);
-      setEdits({ image: data.profile_picture, nameInput: data.name || "" });
-    };
-    getFunction();
-  }, [userName]);
+    setEdits({ ...edits, imageUrl: profile.profile_picture, nameInput: profile.name || "" });
+  }, [profile]);
 
   const uploadHandler = (e) => {
     e.preventDefault();
 
     const selectedFile = e.target.files.item(0);
-    setEdits({ ...edits, image: selectedFile });
+    setEdits({ ...edits, imageFile: selectedFile });
     if (selectedFile && selectedFile.type.match("image.*")) {
       const reader = new FileReader();
       reader.onloadend = (event) => {
         const dataUrl = event.target.result;
-        setProfileInfo({ ...profileInfo, profile_picture: dataUrl });
+        setEdits({ ...edits, imageUrl: dataUrl });
       };
       reader.readAsDataURL(selectedFile);
     }
@@ -48,11 +46,11 @@ export default function EditProfilePage({ setLoggedIn }) {
   };
 
   const onSave = async (e) => {
-    const { image, nameInput } = edits;
+    const { imageFile, nameInput } = edits;
     const formData = new FormData();
 
     if (image) {
-      const compressedImage = await imageCompression(image, {
+      const compressedImage = await imageCompression(imageFile, {
         maxSizeMB: 2,
         onProgress: (percentage) => setProgress(percentage),
       });
@@ -92,7 +90,7 @@ export default function EditProfilePage({ setLoggedIn }) {
         <Box position="relative">
           <CircularProgress variant="determinate" value={progress} size={70} sx={{ position: "absolute", zIndex: 0, top: -3, left: -3.5 }} />
 
-          <ProfileAvatar name={profileInfo.name} image={profileInfo.profile_picture} />
+          <ProfileAvatar name={profile.profile_picture} image={edits.imageUrl} />
           <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" hidden onChange={uploadHandler} />
           <label htmlFor="avatar">
             <IconButton
@@ -115,7 +113,7 @@ export default function EditProfilePage({ setLoggedIn }) {
         <form>
           <FormControl sx={{ gap: 3 }}>
             <TextField
-              value={profileInfo._id}
+              value={profile._id}
               disabled
               InputProps={{
                 readOnly: true,
@@ -134,9 +132,9 @@ export default function EditProfilePage({ setLoggedIn }) {
         </Button>
       </Stack>
       <Stack mt="auto" alignItems="center" useFlexGap gap={1}>
-        {profileInfo.sso_provider && (
+        {profile.sso_provider && (
           <Typography variant="body1" fontWeight={500}>
-            Connected via {profileInfo.sso_provider}
+            Connected via {profile.sso_provider}
           </Typography>
         )}
         <Typography
@@ -145,8 +143,9 @@ export default function EditProfilePage({ setLoggedIn }) {
           color="#6A9D8A"
           sx={{ cursor: "pointer" }}
           onClick={() => {
-            logout(setLoggedIn);
-            navigate(`/${userName}`);
+            const linkToRedirect = `/${profile._id}`;
+            dispatch(logOut());
+            navigate(linkToRedirect);
           }}
         >
           Log Out

@@ -22,8 +22,11 @@ import Barcode from "./pages/Barcode";
 import EditProfilePage from "./pages/EditProfilePage";
 import TermsOfServicePage from "./pages/TermsOfServicePage.jsx";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage.jsx";
+import { useDispatch } from "react-redux";
+import { logUserIn } from "./redux/reducers/profileReducer.js";
 
 export default function Router() {
+  const dispatch = useDispatch();
   const [loggedIn, setLoggedIn] = useState({ loggedIn: false, username: undefined });
   const [loading, setLoading] = useState(true);
 
@@ -38,6 +41,9 @@ export default function Router() {
         const result = await response.json();
         setLoggedIn(result);
         setLoading(false);
+        if (result.username) {
+          dispatch(logUserIn({ username: result.username }));
+        }
         return result;
       } catch (err) {
         setLoading(false);

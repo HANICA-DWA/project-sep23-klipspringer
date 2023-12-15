@@ -5,12 +5,13 @@ import { GoogleLogin } from "@react-oauth/google";
 import { LinkedIn } from "react-linkedin-login-oauth2";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import { LoggedInContext } from "../Contexts";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { logUserIn } from "../redux/reducers/profileReducer";
 
-export default function Register({ setLoggedIn }) {
+export default function Register() {
   const navigate = useNavigate();
-  const { loggedIn, username } = useContext(LoggedInContext);
+  const dispatch = useDispatch();
   const [usernameInput, setUsernameInput] = useState("");
   const [inputError, setInputError] = useState(null);
   const [fetchError, setFetchError] = useState(null);
@@ -42,8 +43,8 @@ export default function Register({ setLoggedIn }) {
   };
 
   useEffect(() => {
-    if (loggedIn) navigate(`/${username}`);
-  }, [loggedIn, username]);
+    if (profile.loggedIn) navigate(`/${profile._id}`);
+  }, [profile.loggedIn, profile._id, navigate]);
 
   return (
     <Stack
@@ -55,13 +56,13 @@ export default function Register({ setLoggedIn }) {
         //   xs: "10vh",
         //   md: "5vh",
         // },
-        height: "100vh"
+        height: "100vh",
       }}
       justifyContent="space-between"
     >
       {!submitted ? (
         <>
-          <Stack useFlexGap gap={2} alignItems="center"  sx={{marginTop: "30px"}}>
+          <Stack useFlexGap gap={2} alignItems="center" sx={{ marginTop: "30px" }}>
             <Box
               display="flex"
               component="img"
@@ -139,18 +140,18 @@ export default function Register({ setLoggedIn }) {
           </Stack>
         </>
       ) : (
-        <Stack useFlexGap gap={2} alignItems="center" sx={{marginTop: "30px"}}>
+        <Stack useFlexGap gap={2} alignItems="center" sx={{ marginTop: "30px" }}>
           <Box
-              display="flex"
-              component="img"
-              src="/images/bookicon.png"
-              sx={{
-                width: {
-                  xs: "90vw",
-                  md: "30vw",
-                },
-              }}
-            ></Box>
+            display="flex"
+            component="img"
+            src="/images/bookicon.png"
+            sx={{
+              width: {
+                xs: "90vw",
+                md: "30vw",
+              },
+            }}
+          ></Box>
           <Stack direction="row" alignItems="center" useFlexGap gap={2}>
             <ArrowBackIos
               onClick={() => {
@@ -198,7 +199,7 @@ export default function Register({ setLoggedIn }) {
                 const responseData = await restResponse.json();
                 if (restResponse.ok) {
                   if (responseData.status === "LOGGED_IN") {
-                    setLoggedIn({ loggedIn: true, username: responseData.username });
+                    dispatch(logUserIn({ username: responseData.username }));
                     navigate(`/${responseData.username}`);
                   }
                 } else {
@@ -224,7 +225,7 @@ export default function Register({ setLoggedIn }) {
                 const responseData = await response.json();
                 if (response.ok) {
                   if (responseData.status === "LOGGED_IN") {
-                    setLoggedIn({ loggedIn: true, username: responseData.username });
+                    dispatch(logUserIn({ username: responseData.username }));
                     navigate(`/${responseData.username}`);
                   }
                 } else {
@@ -249,16 +250,23 @@ export default function Register({ setLoggedIn }) {
           </Stack>
         </Stack>
       )}
-      <Stack alignItems="center" sx={{marginBottom: "10px"}}>
-        <Stack direction="row" useFlexGap gap={0.5} sx={{color: "success.main"}}>
-          <Typography >Already on BKS?</Typography>
+      <Stack alignItems="center" sx={{ marginBottom: "10px" }}>
+        <Stack direction="row" useFlexGap gap={0.5} sx={{ color: "success.main" }}>
+          <Typography>Already on BKS?</Typography>
           <Typography component={Link} href="/login" sx={{ textDecoration: "none", color: "success.main" }}>
             Sign In
           </Typography>
         </Stack>
         <Box>
           <Typography align="center" color="#666666" variant="caption">
-            By signing up, you agree to our <Link color="#666666" href={"/terms-of-service"}>Terms of Service</Link> and <Link color="#666666" href={"/privacy-policy"}>Privacy Policy</Link>
+            By signing up, you agree to our{" "}
+            <Link color="#666666" href={"/terms-of-service"}>
+              Terms of Service
+            </Link>{" "}
+            and{" "}
+            <Link color="#666666" href={"/privacy-policy"}>
+              Privacy Policy
+            </Link>
           </Typography>
         </Box>
       </Stack>
