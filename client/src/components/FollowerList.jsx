@@ -1,5 +1,6 @@
 import { Avatar, Box, Button, Stack, Typography } from "@mui/material";
 import { useNavigate } from "react-router";
+import ProfileAvatar from "./ProfileAvatar";
 
 export default function FollowerList({ list, handleClose }) {
     const navigate = useNavigate();
@@ -11,7 +12,7 @@ export default function FollowerList({ list, handleClose }) {
                 key={item._id}
             >
                 <Stack direction="row" alignItems="center">
-                    <Avatar sx={{ width: 45, height: 45 }} alt={item._id} src={item.profile_picture} imgProps={{ referrerPolicy: "no-referrer" }} />
+                    <ProfileAvatar alt={item._id} handle={item._id} image={item.profile_picture} size={45} border={false}/>
                     <Typography fontWeight="600" sx={{ margin: "5px" }}>@{item._id}</Typography>
                 </Stack>
                 <Button variant="contained" onClick={() => {navigate(`/${item._id}`); handleClose();}}>View</Button>

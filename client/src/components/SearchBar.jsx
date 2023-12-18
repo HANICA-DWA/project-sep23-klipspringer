@@ -77,7 +77,7 @@ export default function SearchBar({ onClick, fullSearch, genreChips, deleteChip,
                     setTopThreeLength={setTopThreeLength}
                     books={books}
                     setBooks={setBooks}
-                    setErrMessage={setErrMessage}
+                    setErrMessage={(error) => {setErrMessage(error); showAlert();}}
                     showAlert={showAlert}
                   />
                 );
@@ -221,6 +221,7 @@ export default function SearchBar({ onClick, fullSearch, genreChips, deleteChip,
 
   return (
     <>
+    {alertComponent}
       <Stack style={{width: "100%" }}>
         <form
           onSubmit={(e) => {
