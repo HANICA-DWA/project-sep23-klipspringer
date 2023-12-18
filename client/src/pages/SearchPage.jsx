@@ -44,7 +44,7 @@ export default function SearchPage() {
       setTopThreeLength(currentShelf.books.length);
     } else {
       profile.shelf.forEach((item) => {
-        if (item._id)
+        if (item._id === shelf)
           currentShelf = item;
       })
     }
