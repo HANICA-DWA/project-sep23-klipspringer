@@ -71,7 +71,7 @@ const storage = multer.diskStorage({
   },
   filename: customName,
 });
-const upload = multer({ storage: storage, fileFilter: createFileFilter("image/"), limits: { fileSize: 1024 * 1024 * 2 } });
+const upload = multer({ storage: storage, fileFilter: createFileFilter("image/"), limits: { fileSize: 1024 * 1024 * 0.5 } });
 /* node:coverage enable */
 
 router.patch("/:username", upload.single("image"), async (req, res, next) => {

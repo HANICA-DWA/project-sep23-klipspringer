@@ -38,61 +38,59 @@ export default function SearchBar({ onClick, fullSearch, genreChips, deleteChip,
   function popperContents() {
     if (isLoading && searchText.length >= 1) {
       return <LinearProgress sx={{ width: "100%" }} />;
-    } else if (searchResults.length < 1 && !isLoading && activeSearchFilter !== searchFilters[0]) {
+    } else if (!isLoading && ((searchResults.length < 1 && activeSearchFilter !== searchFilters[0]) || (activeSearchFilter === searchFilters[0] && bookResults.length < 1 && personResults.length < 1 && authorResults.length < 1))) {
       return <Typography variant="body1">No results found.</Typography>;
-    } else if (isLoading && searchResults.length < 1) {
-      return <Typography variant="body1">Nothing to search.</Typography>;
-    } else if (searchResults && searchResults.length >= 1 && !isLoading) {
-      return (
-        <>
-            {!fullSearch ? 
-             <Stack alignItems="center" sx={{paddingTop: "3px"}}>
-              <Button onClick={() => addBooks(books)} variant="contained" sx={{width: "80vw"}}>Add to shelf</Button>
-             </Stack> 
-            : null}
-          {searchResults.map((book) => {
-            return <SearchResult closePopper={closepopper} book={book} onClick={onClick} key={book.key} fullSearch={fullSearch}
-              booksOnShelf={booksOnShelf} topThreeLength={topThreeLength} setTopThreeLength={setTopThreeLength} 
-              books={books} setBooks={setBooks} setErrMessage={setErrMessage} showAlert={showAlert}
-              />;
-          })}
-        </>
-      )
-    } else if (searchResults.length < 1 && !isLoading) {
-      return <Typography variant="body1">No results found.</Typography>;
-    }  else { 
+    } else {
       switch (activeSearchFilter) {
         case searchFilters[0]:
           const booksRes = bookResults.map((b) => {
-            return <SearchResult closePopper={closepopper} book={b} onClick={onClick} fullSearch={fullSearch} key={b.key}/>;
-          })
+            return <SearchResult closePopper={closepopper} book={b} onClick={onClick} fullSearch={fullSearch} key={b.key} />;
+          });
           const author = authorResults.map((a) => {
-            const person ={_id: a.name, profile_picture: `https://covers.openlibrary.org/a/olid/${a.key}-M.jpg?default=false`, key: a.key}
-            return <SearchResultPerson author closePopper={closepopper} person={person} onClick={onClick} key={person.key}/>;
-          })
+            const person = { _id: a.name, profile_picture: `https://covers.openlibrary.org/a/olid/${a.key}-M.jpg?default=false`, key: a.key };
+            return <SearchResultPerson author closePopper={closepopper} person={person} onClick={onClick} key={person.key} />;
+          });
           const person = personResults.map((p) => {
-            return <SearchResultPerson closePopper={closepopper} person={p} onClick={onClick} key={p._id}/>;
-          })
-          return booksRes.concat(author, person)
+            return <SearchResultPerson closePopper={closepopper} person={p} onClick={onClick} key={p._id} />;
+          });
+          return booksRes.concat(author, person);
         case searchFilters[1]:
           return (
             <>
-                {!fullSearch ? 
-                 <Stack alignItems="center" sx={{paddingTop: "3px"}}>
-                  <Button onClick={() => addBooks(books)} variant="contained" sx={{width: "80vw"}}>Add to shelf</Button>
-                 </Stack> 
-                : null}
+              {!fullSearch ? (
+                <Stack alignItems="center" sx={{ paddingTop: "3px" }}>
+                  <Button onClick={() => addBooks(books)} variant="contained" sx={{ width: "80vw" }}>
+                    Add to shelf
+                  </Button>
+                </Stack>
+              ) : null}
               {searchResults.map((book) => {
-                return <SearchResult closePopper={closepopper} book={book} onClick={onClick} key={book.key} fullSearch={fullSearch}
-                  booksOnShelf={booksOnShelf} topThreeLength={topThreeLength} setTopThreeLength={setTopThreeLength} 
-                  books={books} setBooks={setBooks} setErrMessage={setErrMessage} showAlert={showAlert}
-                  />;
+                return (
+                  <SearchResult
+                    closePopper={closepopper}
+                    book={book}
+                    onClick={onClick}
+                    key={book.key}
+                    fullSearch={fullSearch}
+                    booksOnShelf={booksOnShelf}
+                    topThreeLength={topThreeLength}
+                    setTopThreeLength={setTopThreeLength}
+                    books={books}
+                    setBooks={setBooks}
+                    setErrMessage={setErrMessage}
+                    showAlert={showAlert}
+                  />
+                );
               })}
             </>
-          )
+          );
         case searchFilters[2]:
           return searchResults.map((author) => {
-            const person ={_id: author.name, profile_picture: `https://covers.openlibrary.org/a/olid/${author.key}-M.jpg?default=false`, key: author.key}
+            const person = {
+              _id: author.name,
+              profile_picture: `https://covers.openlibrary.org/a/olid/${author.key}-M.jpg?default=false`,
+              key: author.key,
+            };
             return <SearchResultPerson author closePopper={closepopper} person={person} onClick={onClick} key={person.key} />;
           });
         case searchFilters[3]:
