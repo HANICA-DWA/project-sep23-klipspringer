@@ -1,18 +1,32 @@
-import { FormControl, InputAdornment, IconButton, TextField, Popper, 
-  Paper, Typography, LinearProgress, Chip, Stack } from "@mui/material";
+import { FormControl, InputAdornment, IconButton, TextField, Popper, Paper, Button, Typography, LinearProgress, Chip, Divider, Stack } from "@mui/material";
 import SearchResult from "./SearchResult";
 import { useEffect, useRef, useState } from "react";
 import { Cancel, QrCodeScanner, Search } from "@mui/icons-material";
 import SearchResultPerson from "./SearchResultPerson";
 import Barcode from "../pages/Barcode";
+import { useAlert } from "../hooks/useAlert";
 
-export default function SearchBar({ onClick, fullSearch, genreChips, deleteChip, setChips, setActiveSearchFilterPage}) {
+export default function SearchBar({ onClick, fullSearch, genreChips, deleteChip, setChips, booksOnShelf, topThreeLength, setTopThreeLength, setActiveSearchFilterPage }) {
   const [searchText, setSearchText] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isOnCooldown, setIsOnCooldown] = useState(false);
   const [lastSearched, setLastSearched] = useState("");
   const [isScanning, setIsScanning] = useState(false);
+  const [books, setBooks] = useState([]);
+  const [errMessage, setErrMessage] = useState("")
+  const [showAlert, alertComponent] = useAlert(errMessage, 3000, "warning");
+
+  function addBooks(book) {
+    if (books.length == 0) {
+        setErrMessage("You need to pick min 1 book");
+        showAlert();
+    } else {
+        onClick(book);
+        setBooks([]);
+        closepopper();
+    }
+}
   
   const [bookResults, setBookResults] = useState([])
   const [personResults, setPersonResults] = useState([])
@@ -28,10 +42,28 @@ export default function SearchBar({ onClick, fullSearch, genreChips, deleteChip,
       return <Typography variant="body1">No results found.</Typography>;
     } else if (isLoading && searchResults.length < 1) {
       return <Typography variant="body1">Nothing to search.</Typography>;
+    } else if (searchResults && searchResults.length >= 1 && !isLoading) {
+      return (
+        <>
+            {!fullSearch ? 
+             <Stack alignItems="center" sx={{paddingTop: "3px"}}>
+              <Button onClick={() => addBooks(books)} variant="contained" sx={{width: "80vw"}}>Add to shelf</Button>
+             </Stack> 
+            : null}
+          {searchResults.map((book) => {
+            return <SearchResult closePopper={closepopper} book={book} onClick={onClick} key={book.key} fullSearch={fullSearch}
+              booksOnShelf={booksOnShelf} topThreeLength={topThreeLength} setTopThreeLength={setTopThreeLength} 
+              books={books} setBooks={setBooks} setErrMessage={setErrMessage} showAlert={showAlert}
+              />;
+          })}
+        </>
+      )
+    } else if (searchResults.length < 1 && !isLoading) {
+      return <Typography variant="body1">No results found.</Typography>;
     }  else { 
       switch (activeSearchFilter) {
         case searchFilters[0]:
-          const books = bookResults.map((b) => {
+          const booksRes = bookResults.map((b) => {
             return <SearchResult closePopper={closepopper} book={b} onClick={onClick} fullSearch={fullSearch} key={b.key}/>;
           })
           const author = authorResults.map((a) => {
@@ -41,11 +73,23 @@ export default function SearchBar({ onClick, fullSearch, genreChips, deleteChip,
           const person = personResults.map((p) => {
             return <SearchResultPerson closePopper={closepopper} person={p} onClick={onClick} key={p._id}/>;
           })
-          return books.concat(author, person)
+          return booksRes.concat(author, person)
         case searchFilters[1]:
-          return searchResults.map((book) => {
-            return <SearchResult closePopper={closepopper} book={book} onClick={onClick} key={book.key} fullSearch={fullSearch} />;
-          });
+          return (
+            <>
+                {!fullSearch ? 
+                 <Stack alignItems="center" sx={{paddingTop: "3px"}}>
+                  <Button onClick={() => addBooks(books)} variant="contained" sx={{width: "80vw"}}>Add to shelf</Button>
+                 </Stack> 
+                : null}
+              {searchResults.map((book) => {
+                return <SearchResult closePopper={closepopper} book={book} onClick={onClick} key={book.key} fullSearch={fullSearch}
+                  booksOnShelf={booksOnShelf} topThreeLength={topThreeLength} setTopThreeLength={setTopThreeLength} 
+                  books={books} setBooks={setBooks} setErrMessage={setErrMessage} showAlert={showAlert}
+                  />;
+              })}
+            </>
+          )
         case searchFilters[2]:
           return searchResults.map((author) => {
             const person ={_id: author.name, profile_picture: `https://covers.openlibrary.org/a/olid/${author.key}-M.jpg?default=false`, key: author.key}
@@ -66,7 +110,7 @@ export default function SearchBar({ onClick, fullSearch, genreChips, deleteChip,
       (!isOnCooldown && searchText.length >= 3 && activeSearchFilter != searchFilters[3]) ||
       (!isOnCooldown && searchText.length >= 2 && activeSearchFilter == searchFilters[3])
     ) {
-      if (lastSearched !== searchText){
+      if (lastSearched !== searchText) {
         updateSearch();
         setIsOnCooldown(true);
         setTimeout(() => setIsOnCooldown(false), 1000);
@@ -175,7 +219,7 @@ export default function SearchBar({ onClick, fullSearch, genreChips, deleteChip,
   // end
 
   if (isScanning)
-    return <Barcode onAdd={onClick} closeScanner={() => setIsScanning(false)} setIsScanning={setIsScanning}/>
+    return <Barcode onAdd={onClick} closeScanner={() => setIsScanning(false)} setIsScanning={setIsScanning} />
 
   return (
     <>

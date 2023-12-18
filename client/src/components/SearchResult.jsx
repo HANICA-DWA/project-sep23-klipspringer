@@ -1,12 +1,23 @@
+import { Add, Check } from "@mui/icons-material";
 import { Button, Paper, Typography, Skeleton } from "@mui/material";
 import { useState } from "react";
+import MultipleBooks from "./MultipleBooks";
+import { useAlert } from "../hooks/useAlert";
 
-export default function SearchResult({ book, onClick, closePopper, fullSearch }) {
+export default function SearchResult({ book, onClick, closePopper, fullSearch, booksOnShelf, topThreeLength, setTopThreeLength, books, setBooks, setErrMessage, showAlert }) {
   const [loading, setLoading] = useState(true);
   const [show, setShow] = useState("none");
   const [coverImage, setCoverImage] = useState(`https://covers.openlibrary.org/b/isbn/${book.isbn[0]}-M.jpg?default=false`);
   let authors = "";
   let title = "";
+
+  const bookObject = {
+    cover_image: coverImage,
+    _id: book.isbn[0] ?? book.isbn,
+    title: book.title,
+    authors: book.author_name
+  }
+
 
   function onImageError() {
     if (book.cover_i) {
@@ -38,14 +49,15 @@ export default function SearchResult({ book, onClick, closePopper, fullSearch })
         height: "100px",
         margin: "14px 14px 0px 14px",
         padding: "0px 0px 0px 8px",
-        border: "solid 3px #DAEADB",
+        border: "solid 3px #D3D3D3",
         borderRadius: "8px",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
+        opacity: !fullSearch ? booksOnShelf.find((shelfBook) => shelfBook._id === bookObject._id) ? 0.3 : 1 : 1
       }}
     >
-      <div style={{ display: "flex", alignItems: "center" }}>
+      <div style={{ display: "flex", alignItems: "center", }}>
         {loading ? <Skeleton animation="wave" variant="rectangular" width={50} height={85} sx={{ marginRight: "10px" }} /> : <></>}
         <img
           style={{
@@ -66,20 +78,23 @@ export default function SearchResult({ book, onClick, closePopper, fullSearch })
           <Typography variant="caption">{authors}</Typography>
         </div>
       </div>
-      <Button
-        onClick={() => {
-          if (fullSearch) {
+      {fullSearch ?
+        <Button
+          onClick={() => {
             onClick({ type: "book", book: { _id: book.isbn[0] ?? book.isbn } });
-          } else {
-            onClick({ cover_image: coverImage, _id: book.isbn[0] ?? book.isbn, title: book.title, authors: book.author_name });
-          }
-          closePopper();
-        }}
-        sx={{ marginRight: "10px" }}
-        variant="contained"
-      >
-        <Typography variant="button">{fullSearch ? "View" : "Add"}</Typography>
-      </Button>
+            closePopper();
+          }}
+          sx={{ marginRight: "10px" }}
+          variant="contained"
+        >
+          <Typography variant="button">View</Typography>
+        </Button> :
+        <MultipleBooks
+          booksOnShelf={booksOnShelf} books={books} setBooks={setBooks} book={bookObject}
+          setErrMessage={setErrMessage} showAlert={showAlert}
+          topThreeLength={topThreeLength} setTopThreeLength={setTopThreeLength}
+        />
+      }
     </Paper>
   );
 }

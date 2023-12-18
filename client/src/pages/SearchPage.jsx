@@ -43,9 +43,13 @@ export default function SearchPage() {
       currentShelf = profile.top_three;
       setTopThreeLength(currentShelf.books.length);
     } else {
-      currentShelf = profile.shelf.find((item) => item._id == shelf);
+      profile.shelf.forEach((item) => {
+        if (item._id === shelf)
+          currentShelf = item;
+      })
     }
-    setBooksOnShelf(currentShelf.books);
+    if (currentShelf)
+      setBooksOnShelf(currentShelf.books);
   }, [shelf, profile.shelf, profile.top_three]);
 
   return (
@@ -60,7 +64,7 @@ export default function SearchPage() {
         <Stack direction="column" alignItems="center" width="100%">
           <Stack direction="row" alignItems="center" width="100%" sx={{ marginBottom: "5px" }}>
             <ArrowBackIos onClick={() => navigate(-1)} />
-            <SearchBar onClick={handleAdd} />
+            <SearchBar onClick={handleAdd} booksOnShelf={booksOnShelf} topThreeLength={topThreeLength} setTopThreeLength={setTopThreeLength}/>
           </Stack>
           <Stack direction="row" alignItems="center" sx={{ margin: "5px", marginBottom: "20px" }} onClick={handleOpen}>
             <Add />

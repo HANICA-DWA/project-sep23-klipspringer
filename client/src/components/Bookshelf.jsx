@@ -168,7 +168,7 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
             {books.map((item) => (
                 <Stack margin="2px" key={item._id}>
                   <Typography width="85px" variant="caption" fontWeight="600" sx={{overflowWrap: "anywhere"}}>{item.title}</Typography>
-                  <Typography width="85px" variant="caption" sx={{overflowWrap: "anywhere"}}>{item.authors[0]}</Typography>
+                  <Typography width="85px" variant="caption" sx={{overflowWrap: "anywhere"}}>{item.authors ? item.authors[0] : null}</Typography>
                 </Stack>
             ))}
           </Stack>) : null}
