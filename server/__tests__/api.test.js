@@ -194,7 +194,7 @@ describe("connection", () => {
       const res = await request(app).post(`/user/${username}/shelf`).send(bookData).expect(201);
       delete res.body._id;
 
-      assert.deepStrictEqual(res.body, bookData);
+      assert.deepStrictEqual(res.body, { ...bookData, bookcase: bookData.books });
     });
 
     it("should return a 404 status if the user is not found", async () => {
@@ -332,7 +332,7 @@ describe("connection", () => {
               cover_image: "url",
               title: "hoi",
               authors: [],
-            }
+            },
           ],
         },
         shelf: [
@@ -369,24 +369,31 @@ describe("connection", () => {
         .put("/user/janwillem/shelves/top_three")
         .send({
           name: "My top three",
-          books: [{
+          books: [
+            {
+              _id: 132,
+              cover_image: "url",
+              title: "hoi",
+              authors: [],
+            },
+          ],
+          type: "editshelf",
+        })
+        .expect(200);
+
+      const user = await User.findById("janwillem").lean();
+      assert.deepEqual(user.top_three, {
+        name: "My top three",
+        _id: new mongoose.Types.ObjectId("655b323165c31f3c397b6754"),
+        books: [
+          {
             _id: 132,
             cover_image: "url",
             title: "hoi",
             authors: [],
-          }],
-          type: "editshelf"
-        }).expect(200);
-
-      const user = await User.findById("janwillem").lean();
-      assert.deepEqual(user.top_three, {
-        name: "My top three", _id: new mongoose.Types.ObjectId("655b323165c31f3c397b6754"), books: [{
-          _id: 132,
-          cover_image: "url",
-          title: "hoi",
-          authors: [],
-        }]
-      })
+          },
+        ],
+      });
     });
 
     it("Regular PUT on shelf", async () => {
@@ -414,28 +421,46 @@ describe("connection", () => {
     it("PUT on shelf with array", async () => {
       const username = "janwillem";
       const shelfId = "655b323165c31f3c397b6753";
+      const booksToAdd = [{ _id: "4321", cover_image: "myimage", title: "hoi", authors: [] }];
 
+      const userBeforePut = await User.findById("janwillem").lean();
       const res = await request(app)
         .put(`/user/${username}/shelves/${shelfId}`)
-        .send({book: [{ _id: "4321", cover_image: "myimage", title: "hoi", authors: [] }]})
+        .send({ book: booksToAdd })
         .set("Content-Type", "application/json")
         .expect(200);
-        
-      assert.deepEqual(res.body, [{ _id: "4321", cover_image: "myimage", title: "hoi", authors: [] }]);
-    })
-    
+
+      const bookcase = [...booksToAdd];
+      const shelf = {
+        _id: "655b323165c31f3c397b6753",
+        name: "hallo",
+        books: [...userBeforePut.shelf.find((e) => e._id == shelfId).books, ...booksToAdd],
+      };
+
+      assert.deepEqual(res.body, { shelf, bookcase });
+    });
+
     it("PUT on top three shelf with array", async () => {
       const username = "janwillem";
       const shelfId = "top_three";
+      const booksToAdd = [{ _id: "4321", cover_image: "myimage", title: "hoi", authors: [] }];
 
+      const userBeforePut = await User.findById("janwillem").lean();
       const res = await request(app)
         .put(`/user/${username}/shelves/${shelfId}`)
-        .send({book: [{ _id: "4321", cover_image: "myimage", title: "hoi", authors: [] }]})
+        .send({ book: booksToAdd })
         .set("Content-Type", "application/json")
         .expect(200);
-        
-      assert.deepEqual(res.body, [{ _id: "4321", cover_image: "myimage", title: "hoi", authors: [] }]);
-    })
+
+      const bookcase = [...booksToAdd];
+      const shelf = {
+        _id: "655b323165c31f3c397b6754",
+        name: "My top three",
+        books: [...userBeforePut.top_three.books, ...booksToAdd],
+      };
+
+      assert.deepEqual(res.body, { shelf, bookcase });
+    });
 
     it("Empty body", async () => {
       const username = "janwillem";

@@ -95,7 +95,7 @@ router.post("/:username/shelf", async (req, res, next) => {
     req.user.addToBookcase(req.body.books);
     await req.user.save();
     const newShelfItemId = req.user.shelf[req.user.shelf.length - 1]._id;
-    res.status(201).send({ ...req.body, _id: newShelfItemId });
+    res.status(201).send({ ...req.body, _id: newShelfItemId, bookcase: req.user.bookcase });
   } catch (err) {
     let error = err;
     if (err.errors) error = createError(err.errors[Object.keys(err.errors)[0]].message, 400);
@@ -124,7 +124,8 @@ router.put("/:username/shelves/:shelf", async (req, res, next) => {
         if (Array.isArray(book)) {
           book.forEach((item) => {
             topThree.books.push(item);
-          })
+          });
+          req.user.addToBookcase(book);
         } else {
           topThree.books.push(book);
           req.user.addToBookcase([book]);
@@ -135,7 +136,8 @@ router.put("/:username/shelves/:shelf", async (req, res, next) => {
         if (Array.isArray(book)) {
           book.forEach((item) => {
             userShelf.books.push(item);
-          })
+          });
+          req.user.addToBookcase(book);
         } else {
           userShelf.books.push(book);
           req.user.addToBookcase([book]);
