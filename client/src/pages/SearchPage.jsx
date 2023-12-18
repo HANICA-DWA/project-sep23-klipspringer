@@ -43,9 +43,13 @@ export default function SearchPage() {
       currentShelf = profile.top_three;
       setTopThreeLength(currentShelf.books.length);
     } else {
-      currentShelf = profile.shelf.find((item) => item._id == shelf);
+      profile.shelf.forEach((item) => {
+        if (item._id)
+          currentShelf = item;
+      })
     }
-    setBooksOnShelf(currentShelf.books);
+    if (currentShelf)
+      setBooksOnShelf(currentShelf.books);
   }, [shelf, profile.shelf, profile.top_three]);
 
   return (
