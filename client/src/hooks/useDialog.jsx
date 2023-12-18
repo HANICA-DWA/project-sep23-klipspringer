@@ -28,7 +28,7 @@ export function useDialog(dialogTitle, dialogText, disagreeText, agreeText, agre
 
     <DialogContent>
       <DialogContentText id="alert-dialog-description">
-        <Typography>{dialogText}</Typography>
+        {dialogText}
       </DialogContentText>
     </DialogContent>
     <DialogActions>

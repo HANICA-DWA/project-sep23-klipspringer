@@ -59,7 +59,7 @@ export default function SearchBar({ onClick, fullSearch, genreChips, deleteChip,
             <>
               {!fullSearch ? (
                 <Stack alignItems="center" sx={{ paddingTop: "3px" }}>
-                  <Button onClick={() => addBooks(books)} variant="contained" sx={{ width: "80vw" }}>
+                  <Button onClick={() => addBooks(books)} variant="contained" sx={{ width: "100%" }}>
                     Add to shelf
                   </Button>
                 </Stack>

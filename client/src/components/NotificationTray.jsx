@@ -68,7 +68,7 @@ export default function NotificationTray() {
         sx={{ margin: "10px 10px 10px -10px" }}
       >
         {hasNotification() &&
-          notifications.toReversed().map((item) => <NotificationItem key={item._id} item={item} setNotificationAnchor={setNotificationAnchor} />)}
+          notifications.toReversed().map((item, index) => <NotificationItem key={`${item.person._id}${index}`} item={item} setNotificationAnchor={setNotificationAnchor} />)}
         {hasNotification() && (
           <Stack>
             <Button onClick={clearNotifications}>Clear notifications</Button>
