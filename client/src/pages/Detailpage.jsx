@@ -1,7 +1,7 @@
 import {Link, useNavigate, useParams} from "react-router-dom";
 import Header from "../components/Header";
 import { Add, ArrowBackIos, ArrowOutward, Bookmark } from "@mui/icons-material";
-import { Box, Button, Chip, Stack, Typography } from "@mui/material";
+import { Box, Button, Chip, Stack, Typography, Link as LinkMUI } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import ModalShelf from "../components/ModalShelf";
 import Bookcover from "../components/Bookcover";
@@ -171,13 +171,13 @@ export default function Detailpage() {
         />
 
         {book.identifiers && book.identifiers.amazon ? (
-          <Link to={"https://www.amazon.com/gp/product/" + book.identifiers.amazon[0]}>
+          <LinkMUI href={"https://www.amazon.com/gp/product/" + book.identifiers.amazon[0]} target="_blank">
             <Chip sx={{ margin: "10px", fontSize: "14px" }} color="primary" icon={<ArrowOutward style={{ transform: "scale(0.7)" }} />} label="Buy" />
-          </Link>
+          </LinkMUI>
         ) : (
-          <Link to={"https://www.amazon.com/s?k=" + isbn}>
+          <LinkMUI href={"https://www.amazon.com/s?k=" + isbn} target="_blank">
             <Chip sx={{ margin: "10px", fontSize: "14px" }} color="primary" icon={<ArrowOutward style={{ transform: "scale(0.7)" }} />} label="Buy" />
-          </Link>
+          </LinkMUI>
         )}
         {bookWorks.description ? (
           <Box sx={{ margin: "10px" }}>

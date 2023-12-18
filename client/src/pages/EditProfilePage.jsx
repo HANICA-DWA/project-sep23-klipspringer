@@ -47,7 +47,7 @@ export default function EditProfilePage() {
 
     if (imageFile) {
       compressedImage = await imageCompression(imageFile, {
-        maxSizeMB: 2,
+        maxSizeMB: 0.5,
         onProgress: (percentage) => setProgress(percentage),
       });
     }

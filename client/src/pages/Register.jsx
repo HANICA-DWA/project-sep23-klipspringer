@@ -255,11 +255,11 @@ export default function Register() {
         <Box>
           <Typography align="center" color="#666666" variant="caption">
             By signing up, you agree to our{" "}
-            <Link color="#666666" href={"/terms-of-service"}>
+            <Link color="#666666" to={"/terms-of-service"}>
               Terms of Service
             </Link>{" "}
             and{" "}
-            <Link color="#666666" href={"/privacy-policy"}>
+            <Link color="#666666" to={"/privacy-policy"}>
               Privacy Policy
             </Link>
           </Typography>
