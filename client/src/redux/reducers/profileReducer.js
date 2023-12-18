@@ -139,7 +139,6 @@ export const editBooksShelf = createAsyncThunk("profile/editBooksShelf", async (
   } else {
     cb && cb(null);
   }
-  // return { body, shelf };
   return { ...data, shelfId: shelf };
 });
 
@@ -214,7 +213,7 @@ export const profileSlice = createSlice({
       state.error = action.error.message;
     });
     builder.addCase(followAccount.fulfilled, (state, action) => {
-      state.following.push({ _id: action.payload._id, profile_picture: action.payload.profile_picture });
+      state.following.push(action.payload);
     });
     builder.addCase(followAccount.rejected, (state, action) => {
       state.error = action.error.message;

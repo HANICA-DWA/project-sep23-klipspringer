@@ -884,6 +884,7 @@ describe("connection", () => {
       await User.create({
         _id: "test1",
         name: "Jan Willem",
+        following: [{_id: "duplicate", name: "duplicate following"}]
       });
 
       await User.create({
@@ -891,6 +892,11 @@ describe("connection", () => {
         name: "Jan Willem",
         profile_picture: "hoi"
       });
+
+      await User.create({
+        _id: "duplicate",
+        name: "duplicate following"
+      })
     })
 
     it("Should follow and give code 200", async () => {
@@ -899,23 +905,36 @@ describe("connection", () => {
         .send({ account: "test2" })
         .expect(200);
 
-      assert.deepEqual(res.body.followers, [
+      assert.deepEqual(res.body, 
         {
-          _id: 'test1',
-          profile_picture: 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'
+          _id: 'test2',
+          profile_picture: 'hoi'
         }
-      ]);
-      const user = await User.findById("test1").lean();
-      assert.deepEqual(user.following, [{ _id: "test2", profile_picture: "hoi" }])
+      );
+      const user1 = await User.findById("test2").lean();
+      assert.deepEqual(user1.followers, [{ _id: "test1", profile_picture: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" }])
+
+      const user2 = await User.findById("test1").lean();
+      assert.deepEqual(user2.following, [{ _id: "duplicate" }, { _id: "test2", profile_picture: "hoi" }])
     })
 
-    it("Should not find the user and error 404", async () => {
+    it("Should not find the user and error 400", async () => {
       const res = await request(app)
         .put("/user/test1/follow")
         .send({account: "test3"})
         .expect(400);
 
       assert.deepEqual(res.body, { error: "Cannot follow, maybe user doesnt exist"})
+    })
+
+    it("Should not follow already following and error 400", async () => {
+      const res = await request(app)
+        .put("/user/test1/follow")
+        .send({ account: "duplicate" })
+        .expect(400);
+
+      assert.deepEqual(res.body, { error: "Can't have duplicate following" }
+      );
     })
   })
 

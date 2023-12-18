@@ -23,6 +23,11 @@ function validatorUsername(val) {
   return regex.test(val);
 }
 
+function validateUniqueFollowers(val) {
+  const uniqueSet = new Set(val.map(v => v._id));
+  return uniqueSet.size === val.length;
+}
+
 const name = "User";
 
 const schema = new mongoose.Schema(
@@ -63,8 +68,8 @@ const schema = new mongoose.Schema(
       ],
     },
     bookcase: { type: [Book.schema], required: true, default: [] },
-    followers: { type: [{ _id: {type: String}, profile_picture: {type: String} }]},
-    following: { type: [{ _id: {type: String}, profile_picture: {type: String} }]},
+    followers: { type: [{ _id: {type: String}, profile_picture: {type: String} }], validate: [validateUniqueFollowers, "Can't have duplicate followers"]},
+    following: { type: [{ _id: {type: String}, profile_picture: {type: String} }], validate: [validateUniqueFollowers, "Can't have duplicate following"]},
   },
   {
     methods: {

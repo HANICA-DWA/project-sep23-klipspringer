@@ -237,9 +237,11 @@ router.put("/:username/follow", async (req, res, next) => {
 
     await user.save();
     await account.save();
-    res.status(200).json(account);
+    res.status(200).json({_id: account._id, profile_picture: account.profile_picture});
   } catch (err) {
-    next(createError("Cannot follow, maybe user doesnt exist", 400))
+    let error = createError("Cannot follow, maybe user doesnt exist", 400);
+    if (err.errors) error = createError(err.errors[Object.keys(err.errors)[0]].message, 400);
+    next(error);
   }
 });
 
@@ -252,9 +254,9 @@ router.delete("/:username/unfollow", async (req, res, next) => {
 
     await user.save();
     await account.save();
-    res.status(200).json(account);
+    res.status(200).json({_id: account._id, profile_picture: account.profile_picture});
   } catch {
-    next(createError("Cannot unfollow, maybe user doesnt exist", 400))
+    next(createError("Cannot unfollow, maybe user doesnt exist", 400));
   }
 })
 
