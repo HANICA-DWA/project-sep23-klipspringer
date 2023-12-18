@@ -54,7 +54,7 @@ export default function Suggestions() {
               (item) =>
                 item.isbn && item.isbn[0] && (
                   <ImageListItem
-                    sx={{ width: "85px", height: "130px", cursor: "pointer" }}
+                    sx={{ width: "85px", height: "130px !important", cursor: "pointer" }}
                     key={item.isbn[0]}
                     onClick={() => navigate(`/book/${item.isbn[0]}`)}
                   >

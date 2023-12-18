@@ -48,7 +48,7 @@ export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
             <Close onClick={handleClose} sx={{ position: "absolute", right: "10px", transform: "scale(0.8)" }} />
           </Stack>
           <Box sx={{ height: "50vh", overflowY: "scroll" }}>
-            {shelfInfo.top_three != undefined ? (
+            {profile.loggedIn && shelfInfo.top_three != undefined ? (
               <Stack
                 direction="row"
                 justifyContent="space-between"
