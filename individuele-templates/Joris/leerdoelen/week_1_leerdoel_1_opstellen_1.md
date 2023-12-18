@@ -35,6 +35,7 @@ het projectteam en eventueel docenten indien nodig.
 
 ### Ik heb mijn leerdoel bereikt als (formuleer meetbare criteria):
 - we tests hebben geschreven voor de volledige backend (backend van deze sprint).
-- test geschreven/uitvoegerd zijn op de frontend.
+- test geschreven/uitgevoerd zijn op de frontend.
 - ik code heb gereviewed.
 
+En ik heb ingezien dat testen en code checken op kwaliteit wel degelijk de kwaliteit beter maakt en geen weg gegooide tijd is.
