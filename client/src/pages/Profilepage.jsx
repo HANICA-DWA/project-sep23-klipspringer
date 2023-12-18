@@ -10,6 +10,7 @@ import ModalFollowers from "../components/ModalFollowers";
 import { getWebSocket } from "../data/websockets";
 import { useDispatch, useSelector } from "react-redux";
 import { followAccount, unFollowAccount } from "../redux/reducers/profileReducer";
+import { useAlert } from "../hooks/useAlert";
 
 function Profilepage() {
   const userName = useParams().userName;
@@ -19,6 +20,8 @@ function Profilepage() {
   const [profileInfo, setProfileInfo] = useState({});
   const [open, setOpen] = useState(false);
   const [valueTabs, setValueTabs] = useState("");
+  const [followMessage, setFollowMessage] = useState({ message: "", type: "" });
+  const [setFollowAlertOn, followAlert] = useAlert(followMessage.message, 3000, followMessage.type === "error" ? "error" : "success");
 
   const handleOpen = (tab) => {
     setOpen(true);
@@ -39,17 +42,22 @@ function Profilepage() {
   }, [profile, userName]);
 
   function handleFollow() {
+    const cb = (message) => {
+      setFollowMessage(message);
+      setFollowAlertOn();
+    };
     if (profileInfo.followers.find((name) => name._id === profile._id)) {
-      dispatch(unFollowAccount({ accountToUnFollow: userName }));
+      dispatch(unFollowAccount({ accountToUnFollow: userName, cb }));
       getWebSocket().send(JSON.stringify({ type: "notification_unfollow", following: userName, link: `/${profile._id}` }));
     } else {
-      dispatch(followAccount({ accountToFollow: userName }));
+      dispatch(followAccount({ accountToFollow: userName, cb }));
       getWebSocket().send(JSON.stringify({ type: "notification_follow", following: userName, link: `/${profile._id}` }));
     }
   }
 
   return (
     <>
+      {followAlert}
       <Stack justifyContent="flex-start" alignItems="center" sx={{ minHeight: "100vh" }} spacing={3} useFlexGap>
         <Header shareButton={true} profileInfo={profileInfo} />
         <Stack direction="row" justifyContent="space-evenly" width="100%" maxWidth="800px">

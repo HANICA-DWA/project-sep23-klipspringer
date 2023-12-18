@@ -24,7 +24,7 @@ export const logUserIn = createAsyncThunk("profile/getProfileData", async ({ use
   return data;
 });
 
-export const followAccount = createAsyncThunk("profile/followAccount", async ({ accountToFollow }, { getState }) => {
+export const followAccount = createAsyncThunk("profile/followAccount", async ({ accountToFollow, cb }, { getState }) => {
   const response = await fetch(import.meta.env.VITE_BACKEND_HOST + "/user/" + getState().profile._id + "/follow", {
     method: "PUT",
     headers: {
@@ -35,11 +35,16 @@ export const followAccount = createAsyncThunk("profile/followAccount", async ({ 
     body: JSON.stringify({ account: accountToFollow }),
   });
   const data = await response.json();
-  if (data.error) throw new Error(data.error);
+  if (data.error) {
+    cb && cb({ message: data.error, type: "error" });
+    throw new Error(data.error);
+  } else {
+    cb && cb({ message: "Following user!", type: "success" });
+  }
   return data;
 });
 
-export const unFollowAccount = createAsyncThunk("profile/unfollowAccount", async ({ accountToUnFollow }, { getState }) => {
+export const unFollowAccount = createAsyncThunk("profile/unfollowAccount", async ({ accountToUnFollow, cb }, { getState }) => {
   const response = await fetch(import.meta.env.VITE_BACKEND_HOST + "/user/" + getState().profile._id + "/unfollow", {
     method: "DELETE",
     headers: {
@@ -50,7 +55,12 @@ export const unFollowAccount = createAsyncThunk("profile/unfollowAccount", async
     body: JSON.stringify({ account: accountToUnFollow }),
   });
   const data = await response.json();
-  if (data.error) throw new Error(data.error);
+  if (data.error) {
+    cb && cb({ message: data.error, type: "error" });
+    throw new Error(data.error);
+  } else {
+    cb && cb({ message: "Unfollowed user!", type: "success" });
+  }
   return data;
 });
 
