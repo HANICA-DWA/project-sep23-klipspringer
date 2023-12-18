@@ -27,5 +27,5 @@ code die geen bugs (of minder) bugs veroorzaakt. en indien er een bug is wordt d
 
 ### Welke acties zijn de komende 2 weken nodig om (nog meer) voortgang te boeken?
 - aankomende week gaan we beginnen met unit testen schrijven. dit is ook goed om de kwaliteit te verbeteren/waarborgen
-- nog meer reviewen.
+- nog meer reviewen (met de theorie van de DOD en acceptatiecriteria van een taak).
 - eigen code ook laten reviewen.

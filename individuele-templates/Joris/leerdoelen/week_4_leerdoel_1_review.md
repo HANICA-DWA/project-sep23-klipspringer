@@ -2,8 +2,10 @@
 
 ### Ik heb op de volgende manier aan mijn leerdoel gewerkt (vermeld afwijkingen op de planning):
 - acceptatie criteria geschreven voor userstory's
+  - dit hebben we samen met de groep gedaan tijdens het voorbereiden op de sprint planning. we hebben samen nagedacht aan welke eisen de userstory's moeten voldoen
 - code reviewen en daarbij kijken naar code naast de DOD en acceptatiecriteria van taak/userstory
 - als ik code geschreven heb kijken of dit voldoet aan de kwaliteit die we zijn aangeleerd in de courses.
+  - van de courses SWD en CWD. De kennis welke functie of manier om iets te gebruiken beter (of duidelijker is).
 - mijn code laten reviewen door andere, om zo ook mijn eigen geschreven code op kwaliteit te laten checken.
 - unit tests geschreven.
 
@@ -14,13 +16,13 @@
 - userstorys met acceptatiecriteria [link naar userstory's](https://github.com/orgs/HANICA-DWA/projects/19/views/1?filterQuery=type%3A%22User+Story%22)
 
 ### Dit ging goed:
-de code reviewen ging goed door de opgestelde DOD en acceptatiecriteria.
-tests schrijven was ook redelijk te doen na de workshop over testen.
-acceptatiecriteria schrijven was makkelijk omdat we de userstorys goed hadden uitgewerkt en rik goed hebben bevraagd.
+- de code reviewen ging goed door de opgestelde DOD en acceptatiecriteria. Onze DOD was voldoende voor dit project en de acceptatiecriteria waren duidelijk waardoor een userstory goed uitgewerkt kon worden en er geen discussies ontstonden over de eisen.
+- tests schrijven was ook redelijk te doen na de workshop over testen.
+- acceptatiecriteria schrijven was makkelijk omdat we de userstorys goed hadden uitgewerkt en rik goed hebben bevraagd.
 
 ### Dit kon beter:
-duidlijkere comments bij github code reviews
-meer tests schrijven om hier nog mee te oefenen.
+- duidlijkere comments bij github code reviews
+- meer tests schrijven om hier nog mee te oefenen.
 
 ### Ik heb mijn leerdoel wel/niet bereikt omdat, onderbouw aan de hand van concrete voorbeelden/situaties uit praktijk (STARRT):
 Er is altijd ruimte voor verbetering zeker bij dit leerdoel kan je veel nog beter doen. zoals ik heb aangegeven met voorbeelden bij [resultaten](#dit-heeft-de-volgende-resultaten-opgeleverd) heb ik mij goed ingezet om de kwaliteit van mijn eigen en iemands anders code te verbeteren. Ik kan hier altijd nog dingen aan verbeteren zoals de punten die ik bij [dit kon beter](#dit-kon-beter) vermeld heb.
