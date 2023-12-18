@@ -52,7 +52,7 @@ export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
               <Stack
                 direction="row"
                 justifyContent="space-between"
-                sx={{ padding: "10px", margin: "10px", border: "1px solid black", borderRadius: "5px" }}
+                sx={{ padding: "10px", margin: "10px", border: "1px solid black", borderRadius: "5px", cursor: "pointer" }}
                 onClick={() => addToShelf("top_three", book)}
               >
                 <Stack direction="row">
@@ -69,7 +69,7 @@ export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
                 <Stack
                   direction="row"
                   justifyContent="space-between"
-                  sx={{ padding: "10px", margin: "10px", border: "1px solid black", borderRadius: "5px" }}
+                  sx={{ padding: "10px", margin: "10px", border: "1px solid black", borderRadius: "5px", cursor: "pointer" }}
                   onClick={() => addToShelf(shelf._id, book)}
                   key={`${shelf.name}${index}`}
                 >
@@ -83,7 +83,7 @@ export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
                 </Stack>
               ))}
           </Box>
-          <Stack direction="row" justifyContent="center" sx={{ margin: "20px" }} onClick={newShelf}>
+          <Stack direction="row" justifyContent="center" sx={{ margin: "20px", cursor: "pointer" }} onClick={newShelf}>
             <Add sx={{ transform: "scale(0.6)" }} />
             <Typography>Create a new shelf</Typography>
           </Stack>
