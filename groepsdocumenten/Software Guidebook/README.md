@@ -2,36 +2,37 @@
 
 - [**Inhoudsopgave**](#inhoudsopgave)
 - [Context](#context)
-  - [Domain terms](#domain-terms)
+    - [Domain terms](#domain-terms)
 - [Functional Overview](#functional-overview)
-  - [Link met meer informatie](#link-met-meer-informatie)
+    - [Link met meer informatie](#link-met-meer-informatie)
 - [Quality Attributes](#quality-attributes)
 - [Constraints](#constraints)
-  - [Tijd](#tijd)
-  - [Toegestane technologieën](#toegestane-technologieën)
-  - [Bestaande systemen](#bestaande-systemen)
-  - [Implementatieplatform](#implementatieplatform)
-  - [Publieke standaarden](#publieke-standaarden)
-  - [Kennis van het software-development team](#kennis-van-het-software-development-team)
+    - [Tijd](#tijd)
+    - [Toegestane technologieën](#toegestane-technologieën)
+    - [Bestaande systemen](#bestaande-systemen)
+    - [Implementatieplatform](#implementatieplatform)
+    - [Publieke standaarden](#publieke-standaarden)
+    - [Kennis van het software-development team](#kennis-van-het-software-development-team)
 - [Principles](#principles)
 - [Software Architecture](#software-architecture)
-  - [Container diagram](#container-diagram)
-  - [Component MongoDB Diagram](#component-mongodb-diagram)
-  - [Component REST API Diagram](#component-rest-api-diagram)
-  - [Component React/Vite Diagram](#component-reactvite-diagram)
+    - [Container diagram](#container-diagram)
+    - [Component MongoDB Diagram](#component-mongodb-diagram)
+    - [Component REST API Diagram](#component-rest-api-diagram)
+    - [Component React/Vite Diagram](#component-reactvite-diagram)
+    - [Component Websocketserver Diagram](#component-websocketserver-diagram)
 - [External Interfaces](#external-interfaces)
 - [Code](#code)
-  - [Architectural layering](#architectural-layering)
-  - [JWT Verificatie](#jwt-verificatie)
+    - [Architectural layering](#architectural-layering)
+    - [JWT Verificatie](#jwt-verificatie)
 - [Data](#data)
-  - [User schema](#user-schema)
-  - [Book schema](#book-schema)
+    - [User schema](#user-schema)
+    - [Book schema](#book-schema)
 - [Infrastructure Architecture](#infrastructure-architecture)
 - [Deployment](#deployment)
 - [Operatie en support](#operatie-en-support)
-  - [Configuratie](#configuratie)
-  - [Diagnostiek](#diagnostiek)
-  - [Monitoring](#monitoring)
+    - [Configuratie](#configuratie)
+    - [Diagnostiek](#diagnostiek)
+    - [Monitoring](#monitoring)
 - [Decision Log](#decision-log)
 
 # Context
@@ -153,25 +154,34 @@ Kennis van het software-development team over React, Express.js en MongoDB, heef
 
 ![Container](C4-models/C4-model%20container.png)
 
-In dit container diagram is een overzicht te zien van de containers die in de architectuur te vinden zijn. Gebruikers maken via HTTP verbindinging met de React/Vite frontend via een browser. Deze frontend fetcht via HTTP naar de REST API om CRUD operaties uit te voeren. De REST API maakt verbinding met een aantal systemen. Data die in de MongoDB database opgeslagen is, kan via de API gelezen en geschreven worden. Verder maakt de API verbinding met de externe systemen van Google en LinkedIn via HTTP voor authenticatie van gebruikers. En met het systeem van OpenLibrary via HTTP voor het ophalen van boekendata.
+In dit container diagram is een overzicht te zien van de containers die in de architectuur te vinden zijn. Gebruikers maken via HTTP verbindinging met de React/Vite frontend via een browser. Deze frontend fetcht via HTTP naar de REST API om CRUD operaties uit te voeren. Ook krijgt de frontend data via het externe systeem van OpenLibrary via HTTP en wordt er verbinding gemaakt met de websocketserver voor realtime berichten. De REST API maakt verbinding met een aantal systemen. Data die in de MongoDB database opgeslagen is, kan via de API gelezen en geschreven worden. Verder maakt de API verbinding met de externe systemen van Google en LinkedIn via HTTP voor authenticatie van gebruikers. En met het systeem van OpenLibrary via HTTP voor het ophalen van boekendata.
 
 ### Component MongoDB Diagram
 
-![Component MongoDB](C4-models/C4-model%20component%20MongoDB.png)
+![Component MongoDB](C4-models/Component%20MongoDB.png)
 
 De REST API communiceert met de MongoDB database via het Mongo protocol. Deze container bestaat uit een documentenopslag, waarin JSON objecten zijn opgeslagen.
 
 ### Component REST API Diagram
 
-![Component REST API](C4-models/C4-model%20component%20REST%20API.png)
+![Component REST API](C4-models/Component%20REST%20API.png)
 
-De React/Vite container communiceert met het Express component in de REST API. Dit component maakt de verbinding tussen de frontend en backend mogelijk. Express gebruikt het mongoose component om verbinding te maken met de MongoDB container. Verder gebruikt Express een authenticatie component die ieder via een connector verbinding maakt met het externe systeem voor authenticatie. Er is nog een connector voor boeken die verbinding maakt met het OpenLibrary systeem. En een profielbewerk component, waarin aanpassingen aan een gebruiker worden gedaan.
+De React/Vite container communiceert met het Express component in de REST API, dat wordt gerund met nodejs. Dit component gebruikt het mongoose component om verbinding te maken met de MongoDB database. Verder worden CRUD operaties met betrekking tot het profiel, een plank en boeken uitgevoerd door de desbetreffende componenten, waar het Express component gebruik van maakt. Het lezen van profielinformatie en de authenticatie gebeurt door middel van de Google en LinkedIn connectors die respectievelijk gebruik maken van de externe systemen van Google en LinkedIn. Het lezen van boekinformatie gebeurt via de books connector, dat gebruik maakt van het externe systeem van OpenLibrary.
+Tot slot worden volgers en gevolgde accounts nog geüpdatet in het eigen component.
 
 ### Component React/Vite Diagram
 
-![Component React/Vite](C4-models/C4-model%20component%20react+vite.png)
+![Component React/Vite](C4-models/Component%20React+Vite.png)
 
-De Pages component communiceert via HTTP met de REST API en de externe systemen voor authenticatie en boekeninformatie. Dit component bevat de pagina's die de gebruiker te zien krijgt. Er wordt gebruik gemaakt van het Material UI component die veel React componenten bevat die worden gebruikt. De Router component bepaalt de URL's die worden gebruikt voor de verschillende pagina's.
+Op de frontend is een gebruiker die interacteert met de beschikbare pagina's. Er is een main script component die zorgt voor de setup van React, Redux en websockets. Dit component maakt gebruik van React Router voor de correcte rendering van pagina's bij een route. Het Router component maakt gebruik van alle beschikbare pagina's. Er zijn componenten voor het zoeken van profielen, de authenticatie, de boekendetailpagina, het zoeken van boeken, het zoeken van auteurs, de boekenkast van de gebruiker en voor de profielinformatie. 
+Het authenticatiecomponent maakt gebruik van de externe systemen van LinkedIn en Google. De boekendetailpagina maakt gebruik van het systeem van Amazon via een Amazon connector, voor het linken naar de webshop en van OpenLibrary. Het zoeken van boeken en auteurs maakt ook gebruik van OpenLibrary en van het component voor het scannen van boeken. 
+De profielinformatie fetcht data van en naar de REST API. Verder is dit component nog verder verdeeld in het delen van je profiel (waarbij een social card wordt gegenereerd), het weergeven van boekenplanken, het volgen van gebruikers en het weergeven van notificaties. Deze laatste twee gebruiken de websocket component om live berichten te sturen en te ontvangen van de websocketserver.
+
+### Component Websocketserver Diagram
+
+![Component Websocketserver](C4-models/C4-model%20component%20websocketserver.png)
+
+De frontend "React + Vite" maakt gebruik van de websocket server. De "server setup" component zorgt ervoor dat er een websocketserver beschikbaar is waar clients mee kunnen verbinden. Er wordt hier een handler aan gekoppeld die inkomende berichten afhandelt. Dit component gebruikt een broadcast component die ervoor zorgt dat een uitgaand bericht wordt verstuurd naar de volgers van de client waarvan het bericht afkomstig is.
 
 # External Interfaces
 
@@ -378,22 +388,23 @@ Naast het runnen van de applicatie via de terminal, is er geen expliciete plek w
 
 We hebben gekozen om de volgende technologieën te gebruiken:
 
-Wij gebruiken als frontend framework React met MUI (Material UI) als component library, omdat we snel een frontend in elkaar wilden zetten wat lightweight en makkelijk te gebruiken is. Dit hebben we onderzocht door op google te zoeken naar frameworks voor react dat voldeed aan de criteria. Semantic UI hebben we ook overwogen, maar deze bleek lastiger bij gebruik en personalisatie.
+Wij gebruiken als frontend framework React met Material UI (MUI) als component library, omdat we snel een frontend in elkaar wilden zetten wat lightweight en makkelijk te gebruiken is. Dit hebben we onderzocht door op google te zoeken naar frameworks voor react die voldoen aan deze criteria. Semantic UI hebben we ook overwogen, maar deze bleek lastiger bij gebruik en personalisatie.
 
-Wij gebruiken als code framework React, omdat we verplicht door school React moesten gebruiken. In combinatie met sessions op de backend is React makkelijker te gebruiken dan Next.js, wat we ook hebben overwogen.
+Wij gebruiken als code framework React, omdat het gebruik van een React framework verplicht is. In combinatie met sessions op de backend is React makkelijker te gebruiken dan Next.js, wat we ook hebben overwogen. Next.js heeft ook een eigen backend en cached fetch calls, waardoor sessions op onze eigen backend server niet makkelijk te gebruiken zijn.
 
 Wij gebruiken React-Router voor client-side routing, omdat dit niet standaard aanwezig is in React. Daarnaast is React-Router een populaire keuze voor client-side routing.
 
-Wij gebruiken als database MongoDB, omdat we verplicht door school een NoSQL database moesten gebruiken en we ervaring hebben in MongoDB.
+Wij gebruiken als backend framework Express, omdat het team ervaring heeft in Express als gebruik voor een API Framework. Ook is Express een veelgebruikt framework voor het opzetten van een API.
 
-Wij gebruiken als backend framework Express, omdat we ervaring hebben in Express als gebruik voor een API Framework.
+Wij gebruiken REST als API architectuur, omdat we voor onze communicatie HTTP gebruiken en het team ervaring heeft met REST en REST een veelgebruikte standaard is voor API's. Express heeft daarnaast goede ondersteuning voor het verwerken van JSON data en het versturen van JSON data, wat veel wordt gebruikt bij het maken van REST API's.
 
-Wij gebruiken REST als API architectuur, omdat we voor onze communicatie HTTP gebruiken en REST ons is aangeleerd door school en verplicht REST of SOAP van school moeten gebruiken.
+Wij gebruiken als database MongoDB, omdat een NoSQL database verplicht is om te gebruiken. Daarnaast heeft het team ervaring met MongoDB vanuit de courses, en is MongoDB een populaire keuze voor NoSQL databases. Ook is er een goede ondersteuning van MongoDB databases met npm libraries.
 
-Wij gebruiken als database schema Mongoose op de backend, omdat dit ons is aangeleerd door school en het hierdoor eenvoudiger wordt om de database te manipuleren.
+Wij gebruiken als database schema Mongoose op de backend, omdat het hierdoor eenvoudiger wordt om de database te manipuleren. Ook zorgt dit voor een consistentere database, wat het schrijven van code voor de database makkelijker maakt.
 
-Wij hebben ervoor gekozen om geen websockets te gebruiken, omdat dit niet nodig is voor onze applicatie. Dit hebben we onderzocht door aandachtig na te denken wat er nodig was voor de requirements van de applicatie.
+Wij hebben ervoor gekozen om ook websockets te gebruiken tussen de backend en frontend. Een aantal functies op de frontend zijn ervoor geschikt om live data te sturen en weer te geven. Websockets is hierin een veelgebruikt protocol.
 
-Wij hebben ervoor gekozen om Vite te gebruiken, omdat Vite sneller is dan create_react_app (CRA), dit hebben we onderzocht uit ervaring en opgezocht op google.
+Wij hebben ervoor gekozen om Vite te gebruiken voor het opzetten van het React-project, omdat Vite sneller is dan create_react_app (CRA). Vite gebruikt Hot Module Replacement (HMR), wat zorgt voor snellere updates tijdens het ontwikkelen. Het scherm wordt niet volledig gerefresht, alleen de code die is veranderd wordt geüpdatet tijdens het runnen van de applicatie. Daarnaast gebruikt Vite Rollup als bundling tool in plaats van Webpack. Rollup is beter in het verminderen van bundle groottes en zorgt voor een hogere performance bij het bundelen dan webpack.
 
-Kortom gebruiken wij de MERN stack (MongoDB, Express.js, React, Node.js). Wij zijn tevreden met de keuzes die we hebben gemaakt. Dit zijn ook veelgebruikte, populaire technologieën. Hierdoor krijgen de keuzes meer credibiliteit.
+Kortom gebruiken wij de MERN stack (MongoDB, Express.js, React, Node.js). Wij zijn tevreden met de keuzes die we hebben gemaakt. Dit zijn ook veelgebruikte, populaire technologieën. Hierdoor krijgen deze keuzes meer credibiliteit.
+
