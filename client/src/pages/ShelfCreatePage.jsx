@@ -157,7 +157,7 @@ export default function ShelfCreatePage({ edit = false }) {
                 <FormControl sx={{ flexDirection: "row", alignItems: "flex-end" }}>
                   <TextField id="input-with-sx" label="Title" variant="standard" value={title} onChange={(e) => setTitle(e.target.value)} />
                   <Button sx={{ ml: 1, height: "80%" }} variant="contained" type="submit">
-                    {edit ? "Save Shelf" : "Create Shelf"}
+                    {edit ? "Save shelf" : "Create shelf"}
                   </Button>
                 </FormControl>
               </form>

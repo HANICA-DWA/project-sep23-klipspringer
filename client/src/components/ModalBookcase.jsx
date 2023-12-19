@@ -22,44 +22,6 @@ export default function ModalBookcase({ open, handleClose, handleAdd, booksOnShe
     bgcolor: "white",
   };
 
-  function handlePick(book) {
-    if (booksOnShelf) {
-      if (!booksOnShelf.find((item) => item._id === book._id)) {
-        if (books.find((item) => item._id === book._id)) {
-          handleBookDeselection(book);
-        } else {
-          handleBookSelect(book);
-        }
-      } else {
-        setErrMessage("Book already on shelf");
-        showAlert();
-      }
-    } else if (books.find((item) => item._id === book._id)) {
-      handleBookDeselection(book);
-    } else {
-      handleBookSelect(book);
-    }
-  }
-
-  function handleBookSelect(book) {
-    if (topThreeLength && topThreeLength === 3) {
-      setErrMessage("You can only have 3 books on this shelf");
-      showAlert();
-    } else {
-      if (topThreeLength != undefined) {
-        setTopThreeLength(topThreeLength + 1);
-      }
-      setBooks((prevBooks) => [...prevBooks, book]);
-    }
-  }
-
-  function handleBookDeselection(book) {
-    if (topThreeLength != undefined) {
-      setTopThreeLength(topThreeLength - 1);
-    }
-    setBooks((prevBooks) => prevBooks.filter((item) => item._id !== book._id));
-  }
-
   function addBooks(book) {
     if (books.length == 0) {
       setErrMessage("You need to pick min 1 book");
@@ -94,7 +56,7 @@ export default function ModalBookcase({ open, handleClose, handleAdd, booksOnShe
                   <div style={{ margin: "5px", height: "104px", width: "68px" }}>
                     <Bookcover isbn={book._id} cover_image={book.cover_image} />
                   </div>
-                  <Stack justifyContent="center">
+                  <Stack justifyContent="center" maxWidth="70%">
                     <Typography fontWeight="700">{book.title}</Typography>
                     <Typography>{book.authors.join(", ")}</Typography>
                   </Stack>

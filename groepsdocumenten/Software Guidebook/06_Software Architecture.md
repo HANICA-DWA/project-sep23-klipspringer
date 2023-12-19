@@ -23,3 +23,7 @@ De React/Vite container communiceert met het Express component in de REST API. D
 ![Component React/Vite](C4-models/C4-model%20component%20react+vite.png)
 
 De Pages component communiceert via HTTP met de REST API en de externe systemen voor authenticatie en boekeninformatie. Dit component bevat de pagina's die de gebruiker te zien krijgt. Er wordt gebruik gemaakt van het Material UI component die veel React componenten bevat die worden gebruikt. De Router component bepaalt de URL's die worden gebruikt voor de verschillende pagina's.
+
+### Component Websocketserver Diagram
+
+![Component Websocketserver](C4-models/C4-model%20component%20websocketserver.png)
