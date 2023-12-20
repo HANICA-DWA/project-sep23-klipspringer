@@ -21,6 +21,7 @@ Het gebruik van externe authenticatieproviders (Google en LinkedIn), verplicht h
 ### Implementatieplatform
 
 De app moet toegankelijk zijn via het internet en moet dus ondersteuning hebben voor de bekendste webbrowsers (Google Chrome, Firefox, Safari, Microsoft Edge), ook voor oudere versies. Er wordt daarom ViteJS gebruikt voor de ondersteuning van oudere syntaxen.
+Daarnaast moet de app goed toegankelijk zijn voor andere apparaten dan desktops, de applicatie wordt daarom mobile-first onwtikkeld.
 
 ### Publieke standaarden
 

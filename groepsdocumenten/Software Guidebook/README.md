@@ -6,6 +6,13 @@
 - [Functional Overview](#functional-overview)
     - [Link met meer informatie](#link-met-meer-informatie)
 - [Quality Attributes](#quality-attributes)
+    - [Responsiveness en Portability](#responsiveness-en-portability)
+    - [Performance](#performance)
+    - [Security](#security)
+    - [Stability](#stability)
+    - [Robustness](#robustness)
+    - [Accessibility](#accessibility)
+    - [Language Localisation (L10n)](#language-localisation-l10n)
 - [Constraints](#constraints)
     - [Tijd](#tijd)
     - [Toegestane technologieën](#toegestane-technologieën)
@@ -75,16 +82,31 @@ Het kopen van boeken moet via een affiliate link gaan van bijvoorbeeld bol.com o
 
 # Quality Attributes
 
-- Applicatie moet mobile-first zijn. Wij gebruiken de iphone SE tijdens development voor het testen.
-- Applicatie moet responsive zijn, voor zowel mobiel als desktop en alles daar tussen in.
-- Applicatie moet snel zijn. Pagina's moeten laden binnen 2 seconden.
-- Inloggen wordt geregeld via Google en LinkdIn SSO.
-- Authenticatie wordt op de backend server verwerkt.
+### Responsiveness en Portability
+- De applicatie wordt mobile first gebouwd maar moet responsive zijn voor mobile en desktop. Hierdoor is de applicatie op een breed scala apparaten te gebruiken.
+
+### Performance
 - API requests naar de backend server duren niet langer dan 500ms.
+- Applicatie moet snel zijn. Pagina's moeten laden binnen 2 seconden.
+
+### Security
+- Inloggen, ofwel authenthicatie, wordt veilig gedaan via Google en LinkedIn SSO zodat we geen wachtwoorden hoeven op te slaan.
+
+### Stability
 - Testcoverage is minimaal 90%.
 - Voor de boeken wordt de externe (gratis) API gebruikt van OpenLibrary.
-- Frontend wordt volgens de designs van Rik gemaakt.
-- Teksten zijn in het engels.
+
+### Robustness
+- De applicatie is bestand tegen het optreden van fouten, inclusief verkeerde user input.
+- De applicatie is geschikt om in de toekomst te veranderen van externe API voor de boekinformatie.
+
+### Accessibility
+- Frontend wordt volgens de designs van Rik gemaakt, een UX expert.
+- Gebruikte kleuren worden getest op voldoende contrast.
+- HTML volgt accessability guidelines.
+
+### Language Localisation (L10n)
+- De applicatie wordt gelokaliseerd voor de Engelse taal.
 
 # Constraints
 
@@ -109,6 +131,7 @@ Het gebruik van externe authenticatieproviders (Google en LinkedIn), verplicht h
 ### Implementatieplatform
 
 De app moet toegankelijk zijn via het internet en moet dus ondersteuning hebben voor de bekendste webbrowsers (Google Chrome, Firefox, Safari, Microsoft Edge), ook voor oudere versies. Er wordt daarom ViteJS gebruikt voor de ondersteuning van oudere syntaxen.
+Daarnaast moet de app goed toegankelijk zijn voor andere apparaten dan desktops, de applicatie wordt daarom mobile-first onwtikkeld.
 
 ### Publieke standaarden
 
@@ -117,6 +140,7 @@ De publieke standaarden HTTP, JSON en REST hebben invloed op de architectuur die
 ### Kennis van het software-development team
 
 Kennis van het software-development team over React, Express.js en MongoDB, heeft invloed op de keuze om deze technologieën te gebruiken.
+
 
 # Principles
 
