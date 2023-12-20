@@ -65,7 +65,7 @@ export default function AuthorPage() {
   return (
     <>
       <Header />
-      <ArrowBackIos onClick={() => navigate(-1)} sx={{paddingLeft: "15px"}}/>
+      <ArrowBackIos onClick={() => navigate(-1)} sx={{ paddingLeft: "15px" }} />
       <Stack direction="column" alignItems="center" my={6} gap={1}>
         <Typography variant="h4" fontWeight="700">
           Books by
@@ -83,7 +83,7 @@ export default function AuthorPage() {
               {authorWorks.works.map((work, index) => (
                 <ImageListItem
                   key={`${work.isbn}${index}`}
-                  component={Link}
+                  component={work.isbn && Link}
                   to={work.isbn && `/book/${work.isbn}`}
                   sx={{ textDecoration: "none", color: "inherit" }}
                 >
