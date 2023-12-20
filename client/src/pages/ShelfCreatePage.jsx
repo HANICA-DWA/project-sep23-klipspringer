@@ -1,7 +1,7 @@
 import { Box, Button, Container, FormControl, Stack, TextField, Typography } from "@mui/material";
 import SearchBar from "../components/SearchBar";
 import Bookshelf from "../components/Bookshelf";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { ArrowBackIos, Title, Add } from "@mui/icons-material";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAlert } from "../hooks/useAlert";
@@ -9,6 +9,7 @@ import ModalBookcase from "../components/ModalBookcase";
 import { getWebSocket } from "../data/websockets";
 import { useDispatch, useSelector } from "react-redux";
 import { addShelf, editBooksShelf } from "../redux/reducers/profileReducer";
+const MemoizedBookshelf = React.memo(Bookshelf);
 
 export default function ShelfCreatePage({ edit = false }) {
   const navigate = useNavigate();
@@ -73,9 +74,12 @@ export default function ShelfCreatePage({ edit = false }) {
     }
   };
 
-  const handleBookDelete = (bookID) => {
-    setBooks(books.filter((e) => e._id !== bookID));
-  };
+  const handleBookDelete = useCallback(
+    (bookID) => {
+      setBooks(books.filter((e) => e._id !== bookID));
+    },
+    [books]
+  );
 
   const handleCreate = () => {
     if (profile.loggedIn && profile._id === usernameParams) {
@@ -142,9 +146,9 @@ export default function ShelfCreatePage({ edit = false }) {
 
           <Stack gap={2} direction="column" alignItems="center" width="100%">
             {edit ? (
-              <Bookshelf onBookDelete={handleBookDelete} id={shelf} user={profile._id} books={books} edit={edit} hideAdding unclickable />
+              <MemoizedBookshelf onBookDelete={handleBookDelete} id={shelf} user={profile._id} books={books} edit={edit} hideAdding unclickable />
             ) : (
-              <Bookshelf books={books} hideAdding unclickable placeholder />
+              <MemoizedBookshelf books={books} hideAdding unclickable placeholder />
             )}
             <Box sx={{ display: "flex", alignItems: "flex-end" }}>
               <Title sx={{ color: "action.active", mr: 1, my: 0.5 }} />
