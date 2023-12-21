@@ -7,6 +7,8 @@ Het kopen van boeken moet via een affiliate link gaan van bijvoorbeeld bol.com o
 
 ### Link met meer informatie
 
-[Link naar userstory's](../Projectplan/Product%20Backlog.md)
+[Link naar userstory's van projectplan](../Projectplan/Product%20Backlog.md)
+
+[Link naar userstory's op projectbord (dit is geüpdatet tijdens het project)](https://github.com/orgs/HANICA-DWA/projects/19/views/1?filterQuery=type%3A%22User+Story%22)
 
 [Link naar wireframe's](https://www.sketch.com/s/a50a2622-b344-4f1d-afd9-7f2bf52a80a1)
