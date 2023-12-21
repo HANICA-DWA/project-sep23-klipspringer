@@ -136,13 +136,15 @@ export default function ShelfCreatePage({ edit = false }) {
               <SearchBar onClick={handleAdd} booksOnShelf={books} />
             </Stack>
             {!edit ? (
-              <Stack direction="row" sx={{ margin: "5px" }} onClick={handleOpen}>
-                <Add />
-                <Typography>Choose from bookcase</Typography>
-              </Stack>
+              <>
+                <Stack direction="row" sx={{ margin: "5px" }} onClick={handleOpen}>
+                  <Add />
+                  <Typography>Choose from bookcase</Typography>
+                </Stack>
+                <ModalBookcase open={open} handleClose={handleClose} handleAdd={handleAdd} booksOnShelf={books} />
+              </>
             ) : null}
           </Stack>
-          <ModalBookcase open={open} handleClose={handleClose} handleAdd={handleAdd} booksOnShelf={books} />
 
           <Stack gap={2} direction="column" alignItems="center" width="100%">
             {edit ? (
