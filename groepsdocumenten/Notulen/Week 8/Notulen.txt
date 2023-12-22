@@ -1,0 +1,15 @@
+in post game:
+is puntjes op de i
+tests schrijven
+geen tijd voor grote features
+documentatie afwerken.
+
+paar enhanchements van rik:
+niet veel verschillende loaders of spinners.
+trek nog een beetje recht kwa frontend
+bijvoorbeeld following in het midden
+
+overleggen met rik over frontend voor de puntjes op de i
+maandag is dan een goet moment voor een meeting om door de forntend te lopen.
+
+opengraph kan niet worden getest maar de standaard tags kunnen wel gewoon worden toegevoegd zoals afbeelding, titel en description.
