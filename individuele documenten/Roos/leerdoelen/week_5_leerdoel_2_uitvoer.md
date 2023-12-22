@@ -4,6 +4,8 @@ _Beschrijf wat je -tot nu toe- hebt gedaan om te werken aan je persoonlijke leer
 
 ### Hoe heb je het aangepakt?
 
+80/20 regel
+
 
 ### Welke acties op welke momenten heb je uitgevoerd? 
 
@@ -14,6 +16,7 @@ _Beschrijf wat je -tot nu toe- hebt gedaan om te werken aan je persoonlijke leer
 
 
 ### Tot welke inzichten ben je gekomen?
+
 
 
 ### Heb je iets bijgesteld? Waarom?
