@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logUserIn } from "../redux/reducers/profileReducer";
+import { createWebSocket } from "../data/websockets";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -69,7 +70,7 @@ export default function Login() {
             const responseData = await restResponse.json();
             if (restResponse.ok) {
               if (responseData.status === "LOGGED_IN") {
-                dispatch(logUserIn({ username: responseData.username }));
+                dispatch(logUserIn({ username: responseData.username, cb: () => createWebSocket() }));
                 navigate(`/${responseData.username}`);
               }
             } else {
@@ -95,7 +96,7 @@ export default function Login() {
             const responseData = await response.json();
             if (response.ok) {
               if (responseData.status === "LOGGED_IN") {
-                dispatch(logUserIn({ username: responseData.username }));
+                dispatch(logUserIn({ username: responseData.username, cb: () => createWebSocket() }));
                 navigate(`/${responseData.username}`);
               }
             } else {
