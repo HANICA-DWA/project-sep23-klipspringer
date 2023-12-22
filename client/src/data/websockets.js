@@ -15,3 +15,7 @@ export function getWebSocket() {
 
   return createWebSocket();
 }
+
+export function closeWebSocket() {
+  if (socket) socket.close();
+}

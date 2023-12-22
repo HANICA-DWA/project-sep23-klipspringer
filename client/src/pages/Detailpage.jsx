@@ -150,7 +150,7 @@ export default function Detailpage() {
                   _id: isbn,
                   cover_image: book.cover ? book.cover.medium : "",
                   title: book.title,
-                  authors: book.authors.map((author) => author.name),
+                  authors: book.authors ? book.authors.map((author) => author.name) : [],
                 })
               }
               sx={{ cursor: "pointer" }}

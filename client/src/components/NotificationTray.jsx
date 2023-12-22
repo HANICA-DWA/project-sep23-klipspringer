@@ -2,43 +2,43 @@ import { Circle, NotificationsOutlined } from "@mui/icons-material";
 import { Button, Divider, Menu, MenuItem, Stack } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getWebSocket } from "../data/websockets";
 import ProfileAvatar from "./ProfileAvatar";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addFollower, removeFollower } from "../redux/reducers/profileReducer";
+import useWebsocket from "../hooks/useWebsocket";
+import { addNotification, clearAllNotifications, removeNotification } from "../redux/reducers/notificationsReducer";
 
 export default function NotificationTray() {
-  const [notifications, setNotifications] = useState([]);
+  const notifications = useSelector((state) => state.notifications);
   const [notificationAnchor, setNotificationAnchor] = useState(null);
   const dispatch = useDispatch();
 
-  getWebSocket().onmessage = (event) => {
-    const data = JSON.parse(event.data);
+  useWebsocket((data) => {
     switch (data.type) {
       case "notification_follow":
-        setNotifications(notifications.concat({ ...data, message: `@${data.person._id} has followed you!` }));
+        dispatch(addNotification({ ...data, message: `@${data.person._id} has followed you!` }));
         dispatch(addFollower({ _id: data.person._id, profile_picture: data.person.profile_picture }));
         break;
       case "notification_unfollow":
-        setNotifications(notifications.concat({ ...data, message: `@${data.person._id} stopped following you` }));
+        dispatch(addNotification({ ...data, message: `@${data.person._id} stopped following you` }));
         dispatch(removeFollower(data.person._id));
         break;
       case "edited_top_three":
-        setNotifications(notifications.concat({ ...data, message: `@${data.person._id} made changes to their top three!` }));
+        dispatch(addNotification({ ...data, message: `@${data.person._id} made changes to their top three!` }));
         break;
       case "edited_shelf":
-        setNotifications(notifications.concat({ ...data, message: `@${data.person._id} made changes to a shelf!` }));
+        dispatch(addNotification({ ...data, message: `@${data.person._id} made changes to a shelf!` }));
         break;
       case "new_shelf":
-        setNotifications(notifications.concat({ ...data, message: `@${data.person._id} created a new shelf!` }));
+        dispatch(addNotification({ ...data, message: `@${data.person._id} created a new shelf!` }));
         break;
       case "new_book":
-        setNotifications(notifications.concat({ ...data, message: `@${data.person._id} added a new book!` }));
+        dispatch(addNotification({ ...data, message: `@${data.person._id} added a new book!` }));
         break;
       default:
         console.log("Unknown message type");
     }
-  };
+  });
 
   const hasNotification = () => notifications.length > 0;
 
@@ -48,7 +48,7 @@ export default function NotificationTray() {
 
   const clearNotifications = () => {
     setNotificationAnchor(null);
-    setTimeout(() => setNotifications([]), 200);
+    setTimeout(() => dispatch(clearAllNotifications()), 200);
   };
 
   return (
@@ -68,7 +68,8 @@ export default function NotificationTray() {
         sx={{ margin: "10px 10px 10px -10px" }}
       >
         {hasNotification() &&
-          notifications.toReversed().map((item, index) => <NotificationItem key={`${item.person._id}${index}`} item={item} setNotificationAnchor={setNotificationAnchor} />)}
+          notifications
+            .map((item, index) => <NotificationItem key={`${item.person._id}${index}`} item={item} index={index} setNotificationAnchor={setNotificationAnchor} />)}
         {hasNotification() && (
           <Stack>
             <Button onClick={clearNotifications}>Clear notifications</Button>
@@ -80,14 +81,16 @@ export default function NotificationTray() {
   );
 }
 
-function NotificationItem({ item, setNotificationAnchor }) {
+function NotificationItem({ item, index, setNotificationAnchor }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   return (
     <>
       <MenuItem
         onClick={() => {
           setNotificationAnchor(null);
+          dispatch(removeNotification(index));
           navigate(item.link);
         }}
       >
