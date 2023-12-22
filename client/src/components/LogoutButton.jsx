@@ -3,6 +3,7 @@ import { Button, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../redux/reducers/profileReducer.js";
 import { useNavigate } from "react-router-dom";
+import { closeWebSocket } from "../data/websockets.js";
 
 export default function LogoutButton() {
   const dispatch = useDispatch();
@@ -11,6 +12,7 @@ export default function LogoutButton() {
 
   const clickHandler = async () => {
     const linkToRedirect = `/${profile._id}`;
+    closeWebSocket();
     dispatch(logOut());
     navigate(linkToRedirect);
   };
