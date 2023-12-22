@@ -14,7 +14,7 @@ export default function Suggestions() {
   useEffect(() => {
     const suggestionsFunction = async () => {
       let array = ["Fantasy", "History", "Thriller", "Humor", "Literature"];
-      if (profile.loggedIn && profile._id) {
+      if (profile.loggedIn && profile._id && profile.bookcase.length > 0) {
         const randomBook = profile.bookcase[Math.floor(Math.random() * profile.bookcase.length)];
 
         const subjectsResponse = await fetch(`https://openlibrary.org/api/books?bibkeys=ISBN:${randomBook._id}&format=json&jscmd=data`);
