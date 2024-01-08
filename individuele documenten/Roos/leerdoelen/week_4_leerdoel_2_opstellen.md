@@ -29,5 +29,5 @@ Ik zal aan mijn teamleden vragen of ze willen opletten of het hen opvalt of ik t
 
 
 ### Ik heb mijn leerdoel bereikt als (formuleer meetbare criteria):
-ik mijn front-end taken sneller afrond, maar de kwaliteit hier niet ten onder van gaat.
+Ik mijn front-end taken sneller afrond, maar de kwaliteit hier niet ten onder van gaat.
 
