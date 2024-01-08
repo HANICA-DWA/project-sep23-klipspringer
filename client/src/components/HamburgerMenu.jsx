@@ -24,6 +24,7 @@ export function HamburgerMenu() {
         aria-haspopup="true"
         aria-controls={anchorEl ? "basic-menu" : undefined}
         aria-expanded={anchorEl ? "true" : undefined}
+        data-testid="hamburger-menu-icon"
         sx={{
           marginRight: "10px",
         }}
