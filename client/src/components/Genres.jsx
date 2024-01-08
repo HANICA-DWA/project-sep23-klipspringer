@@ -5,8 +5,8 @@ export default function Genres({setChips, selectedChips}){
     const [genres, setGenres] = useState([])
     const chipStyle = {margin: "0px 5px 5px 0px"}
 
-    useEffect(() => {
-        getGenres()
+    useEffect(async () => {
+        await getGenres()
       }, []);
 
     async function getGenres(){
@@ -14,6 +14,7 @@ export default function Genres({setChips, selectedChips}){
         const data = await result.json();
         setGenres(data);
     }
+
     return(
         <>
             <Typography variant="h6" sx={{ fontWeight: "700" }}>Genres</Typography>
