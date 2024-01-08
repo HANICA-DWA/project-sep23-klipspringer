@@ -8,7 +8,16 @@
 
 > [Hier is een lijstje met alle GitHub emojis](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md)
 
-## Maandag 10 januari
+## Maandag 8 januari
+
+| **Uren** | **Taak**                              | **Met Wie**          | **Resultaten**                                                                                                                                                                                                           | **Emotie**              | **Link**                                                                                                                                                                                                                                                                                                                                                                                                    |
+|----------|---------------------------------------|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1h       | Testomgeving frontend opzetten        | Alleen ik            | Zorgen dat de jest testomgeving op de frontend werkt en gebruikt kan worden.                                                                                                                                             | :slightly_smiling_face: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/e73c717de2f65d5951b57a5fc3cda69a4418f943)                                                                                                                                                                                                                                                                         |
+| 1h       | Design afstemmen met de opdrachtgeven | Het hele team en Rik | Er is nog een aantal punten op de frontend die de opdrachtgever anders wil zien,<br>wij hebben hier nu een beeld bij.                                                                                                    | :upside_down_face:      | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/8a432cdcfad5579a4533a5196b25860fcf62697c)                                                                                                                                                                                                                                                                         |
+| 4h       | Tests schrijven voor de frontend      | Alleen ik            | Ik heb voor een aantal componenten de tests op de frontend geschreven. Dit was vanwege de nieuwe<br>manier van testen nog best lastig, er gingen veel dingen niet in een keer goed, dus ik heb veel op moeten<br>zoeken. | :hot_face:              | [link naar resultaat 1](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/05ade6734b72ed6dea62a6af018ebdc27957f9f0)<br>[link naar resultaat 2](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/ba1310601184ec450e54ffefe32d48f201a23b3e)<br>[link naar resultaat 3](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/3c090f6750a7686274a791ef8741ba6ecf71c8d5) |
+
+
+## Dinsdag 9 januari
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
@@ -17,17 +26,7 @@
 | rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
 | | | | | | |
 
-
-## Dinsdag 11 januari
-
-> Eventueel informatieve algemene opmerkingen over deze dag.
-
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
-
-## Woensdag 12 januari
+## Woensdag 10 januari
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
@@ -36,7 +35,7 @@
 | rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
 | | | | | | |
 
-## Donderdag 13 januari
+## Donderdag 11 januari
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
@@ -45,7 +44,7 @@
 | rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
 | | | | | | |
 
-## Vrijdag 14 januari
+## Vrijdag 12 januari
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
