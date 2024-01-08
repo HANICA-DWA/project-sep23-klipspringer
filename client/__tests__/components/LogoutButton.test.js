@@ -1,6 +1,7 @@
 import {cleanup, render} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import CreateShelfButton from "../../src/components/CreateShelfButton.jsx";
+import LogoutButton from "../../src/components/LogoutButton.jsx";
+
 import store from "../../src/redux/store/store.js";
 import { MemoryRouter } from "react-router-dom";
 import {Provider} from "react-redux";
@@ -16,30 +17,11 @@ beforeEach(() => {
 
 afterEach(cleanup);
 
-it("CreateShelfButton should render without problems", () => {
-	render(<Provider store={store}><MemoryRouter><CreateShelfButton /></MemoryRouter></Provider>);
+it("LogoutButton should render without problems", () => {
+	render(<Provider store={store}><MemoryRouter><LogoutButton /></MemoryRouter></Provider>);
 });
 
-it("CreateShelfButton not loggedin should redirect to /login", async () => {
-	const user = userEvent.setup();
-	const { getByRole } = render(
-		<Provider store={store}>
-			<MemoryRouter initialEntries={["/"]}>
-				<CreateShelfButton />
-			</MemoryRouter>
-		</Provider>
-	);
-
-	const input = getByRole("button");
-
-	const expectedResult = "/login";
-
-	await user.click(input);
-
-	await expect(navigate).toHaveBeenCalledWith(expectedResult);
-});
-
-it("CreateShelfButton loggedin should redirect to /shelf", async () => {
+it("LogoutButton should redirect to /login", async () => {
 	store.dispatch(logUserIn.fulfilled({
 		_id: "1234567890",
 		name: "test",
@@ -58,14 +40,14 @@ it("CreateShelfButton loggedin should redirect to /shelf", async () => {
 	const { getByRole } = render(
 		<Provider store={store}>
 			<MemoryRouter initialEntries={["/"]}>
-				<CreateShelfButton />
+				<LogoutButton />
 			</MemoryRouter>
 		</Provider>
 	);
 
 	const input = getByRole("button");
 
-	const expectedResult = "/1234567890/shelf";
+	const expectedResult = "/1234567890";
 
 	await user.click(input);
 
