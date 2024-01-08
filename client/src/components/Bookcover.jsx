@@ -29,6 +29,7 @@ export default function Bookcover({ isbn, coverId, cover_image, border, large })
       justifyContent="center"
       alignItems="center"
       sx={{ border: border ? "1px solid black" : "", borderRadius: "5px" }}
+      data-testid="flexbox-no-image"
     >
       <Stack alignItems="center" justifyContent="center">
         <ImageNotSupported sx={{ fontSize: large ? 100 : 80 }} />
