@@ -5,7 +5,7 @@ _Beschrijf wat je -tot nu toe- hebt gedaan om te werken aan je persoonlijke leer
 ### Hoe heb je het aangepakt?
 Ik heb gekeken naar hoe ik meer assertief kan zijn, dus meer mijn mening geven, maar ook het luisteren naar de andere groepsleden.
 [media assertief](https://wijzijnmind.nl/psychische-klachten/psychipedia/stress/zelf-iets-doen-bij-stress/assertiviteit)
-[media assertief](https://mentaalbeter.nl/artikelen/9-tips-om-je-assertiviteit-te-vergroten/#:~:text=Assertiviteit%20is%20een%20begrip%20uit,je%20gesprekspartner%20agressief%20te%20benaderen.)
+[media assertief](https://mentaalbeter.nl/artikelen/9-tips-om-je-assertiviteit-te-vergroten/#:~:text=Assertiviteit%20is%20een%20begrip%20uit,je%20gesprekspartner%20agressief%20te%20benaderen.). Zie week 4 meer over mijn aanpak.
 
 
 
