@@ -10,11 +10,11 @@ Vaak als ik klaar ben met mijn taak en een nieuwe oppak. Pak ik een taak uit de 
 
 ### Dit leerdoel leveren het volgende op voor mij:
 
-Ik daag mijzelf hierdoor uit om nieuwe en moeilijkere dingen te oefenen. Hierdoor word ik uiteindelijk een betere web developer.
+Ik daag mijzelf hierdoor uit om nieuwe en moeilijkere dingen te oefenen. Bijvoorbeeld zal ik vaker aan de gang gaan met back-end, omdat ik dit lastiger vind. Hierdoor word ik uiteindelijk een betere web developer.
 
 ### Dit leerdoel levert het volgende op voor mijn team:
 
-Mijn team hoeft hierdoor minder zorgen te maken of de taken met de hoogste prioriteit af komt omdat ik die dan eerder zelf oppak.
+Mijn team hoeft hierdoor minder zorgen te maken of de taken met de hoogste prioriteit af komt omdat ik die dan eerder zelf oppak. Ook heeft mijn team hierdoor meer vertrouwen in mij als teamlid, omdat ze weten dat ik taken oppak gebaseerd op prioriteit.
 
 ### Ik ga op de volgende manier(en) werken aan mijn leerdoel:
 
