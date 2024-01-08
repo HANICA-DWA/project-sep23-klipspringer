@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "test": "jest"
+    "test": "jest --setupFiles dotenv/config"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -21,6 +21,7 @@
     "@zxing/library": "^0.20.0",
     "babel-jest": "^29.7.0",
     "browser-image-compression": "^2.0.2",
+    "dotenv": "^16.3.1",
     "html-to-image": "^1.11.11",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
