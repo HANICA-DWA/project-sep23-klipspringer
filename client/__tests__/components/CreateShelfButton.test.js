@@ -1,4 +1,4 @@
-import {cleanup, render, waitFor} from "@testing-library/react";
+import {cleanup, render} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import CreateShelfButton from "../../src/components/CreateShelfButton.jsx";
 import store from "../../src/redux/store/store.js";
