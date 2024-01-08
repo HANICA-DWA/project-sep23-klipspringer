@@ -1,0 +1,5 @@
+edit knopje + prullenbakicoontje weg/ergens anders, klikken dan editable
+avatar met naam in het midden, followers en following onder elkaar
+op profile, dan edit mogelijkheid ipv in hamburgermenu
+titel boek op boekenplank afbreken op 3 regels
+plankje even lang als de button eronder (uitlijning correct)

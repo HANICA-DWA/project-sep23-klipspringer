@@ -24,9 +24,9 @@
 ## Opdracht 2: Projectplan schrijven
 
 - Schrijf de 1e versie van jullie projectplan. Gebruik daarbij het template projectplan DWA.
-- Deadline: _uiterlijk maandag 8 november 17:00_ inleveren bij PS-docent. Mail de link naar de GitHub-folder naar de PS-docent.
-- Het assessment over jullie projectplan (toets Individuele Projectvoorbereiding) vindt plaats op dinsdag 9 november. Daarna projectplan aanscherpen tot definitieve versie.
-- Deadline definitieve versie: _vrijdag 12 november inleveren via iSas._
+- Deadline: _uiterlijk maandag 6 november 17:00_ inleveren bij PS-docent. Mail de link naar de GitHub-folder naar de PS-docent.
+- Het assessment over jullie projectplan (toets Individuele Projectvoorbereiding) vindt plaats op dinsdag 7 november. Daarna projectplan aanscherpen tot definitieve versie.
+- Deadline definitieve versie: _vrijdag 10 november inleveren via iSas._
 
 ## Beoordelingscriteria eerste gesprek Product Owner
 
