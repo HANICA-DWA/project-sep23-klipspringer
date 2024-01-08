@@ -5,8 +5,8 @@ export default function Genres({setChips, selectedChips}){
     const [genres, setGenres] = useState([])
     const chipStyle = {margin: "0px 5px 5px 0px"}
 
-    useEffect(async () => {
-        await getGenres()
+    useEffect(() => {
+        getGenres()
       }, []);
 
     async function getGenres(){
