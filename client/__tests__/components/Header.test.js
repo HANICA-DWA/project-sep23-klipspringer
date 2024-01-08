@@ -36,7 +36,7 @@ it("Should render all subcomponents", () => {
         </GoogleOAuthProvider>
     );
     
-    expect(getByTestId("MenuIcon")).toBeInTheDocument();
+    expect(getByTestId("hamburger-menu-icon")).toBeInTheDocument();
     expect(getByTestId("ArrowBackIosNewIcon")).toBeInTheDocument();
 
 });
