@@ -39,23 +39,35 @@ it("CreateShelfButton not loggedin should redirect to /login", async () => {
 	await expect(navigate).toHaveBeenCalledWith(expectedResult);
 });
 
-// it("CreateShelfButton loggedin should redirect to /shelf", async () => {
-// 	store.dispatch({type:"logUserIn/fulfilled",payload:{_id: "1234567890", name: "test", profile_picture: "test"}});
-//
-// 	const user = userEvent.setup();
-// 	const { getByRole } = render(
-// 		<Provider store={store}>
-// 			<MemoryRouter initialEntries={["/"]}>
-// 				<CreateShelfButton />
-// 			</MemoryRouter>
-// 		</Provider>
-// 	);
-//
-// 	const input = getByRole("button");
-//
-// 	const expectedResult = "/1234567890/shelf";
-//
-// 	await user.click(input);
-//
-// 	await expect(navigate).toHaveBeenCalledWith(expectedResult);
-// });
+it("CreateShelfButton loggedin should redirect to /shelf", async () => {
+	store.dispatch(logUserIn.fulfilled({
+		_id: "1234567890",
+		name: "test",
+		profile_picture: "test",
+		top_three: {
+			name: "test",
+			books: [],
+		},
+		shelf: [],
+		bookcase: [],
+		followers: [],
+		following: [],
+	}, "fulfilled"));
+
+	const user = userEvent.setup();
+	const { getByRole } = render(
+		<Provider store={store}>
+			<MemoryRouter initialEntries={["/"]}>
+				<CreateShelfButton />
+			</MemoryRouter>
+		</Provider>
+	);
+
+	const input = getByRole("button");
+
+	const expectedResult = "/1234567890/shelf";
+
+	await user.click(input);
+
+	await expect(navigate).toHaveBeenCalledWith(expectedResult);
+});
