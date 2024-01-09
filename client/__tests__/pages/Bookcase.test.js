@@ -53,5 +53,5 @@ it('should redirect to detailpage when clicking on book', async () => {
     await user.click(book);
 
     const expectedResult = "/book/1";
-    expect(navigate).toHaveBeenCalledWith(expectedResult);
+    expect(navigate).toHaveBeenCalledWith(expectedResult, expect.anything());
 });
