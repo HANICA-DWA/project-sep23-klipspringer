@@ -70,6 +70,7 @@ export default function SearchResult({ book, onClick, closePopper, fullSearch, b
           onError={onImageError}
           alt={`cover image for ${book.title}`}
           onLoad={() => showImage()}
+          data-testid="search-result-image"
         />
         <div>
           <Typography variant="body1" sx={{ fontWeight: "700" }}>
