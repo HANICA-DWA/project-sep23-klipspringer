@@ -243,7 +243,7 @@ Voor de verificatie van Google JWT's wordt een library van Google gebruikt. De d
 
 ```js
 import { OAuth2Client } from "google-auth-library";
-function googleVerifyIdToken(token) {
+async function googleVerifyIdToken(token) {
   const client = new OAuth2Client();
   const ticket = await client.verifyIdToken({
     idToken: token,
@@ -262,7 +262,7 @@ De verificatie van LinkedIn JWT's is wel geïmplementeerd. De token wordt eerst 
 import jwt from "jsonwebtoken";
 import jwkToPem from "jwk-to-pem";
 import { createError } from "./errorCreation.js";
-function linkedInVerifyIdToken(token) {
+async function linkedInVerifyIdToken(token) {
   const response = await fetch("https://www.linkedin.com/oauth/openid/jwks");
   const jwks = await response.json();
   // Find the correct key in the JWKS based on the key ID (kid) from your JWT header
