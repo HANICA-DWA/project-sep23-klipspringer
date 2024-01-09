@@ -29,10 +29,10 @@ export default function SearchResultPerson({author, closePopper, onClick, person
         {loading ? <Skeleton animation="wave" variant="circular" width={50} height={50} sx={{ margin: "10px" }} /> : <></>}
         <ProfileAvatar alt={person._id} image={person.profile_picture} border={false} onLoad={showImage} onError={showImage} noCache={false} />
         <div>
-          <Typography variant="body1" sx={{ fontWeight: "700", marginX: "10px" }}>
+          <Typography variant="body1" sx={{ fontWeight: "700", marginX: "10px" }} data-testid="person-id">
             {person._id}
           </Typography>
-          <Typography variant="caption" sx={{ marginX: "10px" }}>
+          <Typography variant="caption" sx={{ marginX: "10px" }} data-testid="person-type">
             {author ? "Author" : "Profile"}
           </Typography>
         </div>
