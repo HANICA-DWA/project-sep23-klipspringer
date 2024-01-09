@@ -86,6 +86,7 @@ export default function SearchResult({ book, onClick, closePopper, fullSearch, b
           }}
           sx={{ marginRight: "10px" }}
           variant="contained"
+          data-testid="search-result-button"
         >
           <Typography variant="button">View</Typography>
         </Button> :

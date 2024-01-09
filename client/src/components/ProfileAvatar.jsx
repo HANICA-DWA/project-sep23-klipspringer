@@ -6,9 +6,9 @@ export default function ProfileAvatar({ alt, image, handle, clickable, border = 
   const imageLink = getAvatarUrl(image, noCache);
   const borderObject = border ? { padding: "3px", border: "1px solid grey", borderRadius: "50px" } : {};
   return (
-    <Box sx={borderObject}>
+    <Box sx={borderObject} data-testid="avatar-div">
       {clickable ? (
-        <Link to={link} style={{ textDecoration: "none" }}>
+        <Link to={link} style={{ textDecoration: "none" }} data-testid="avatar-link">
           <Avatar
             sx={{ width: size, height: size }}
             alt={alt}
