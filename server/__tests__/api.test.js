@@ -18,7 +18,6 @@ describe("connection", () => {
     console.log("finished");
   });
 
-  // TODO fetch("/book/:id")
   describe("GET /book/:id", { skip: false }, () => {
     beforeEach(async () => {
       await Book.deleteMany();
@@ -107,7 +106,6 @@ describe("connection", () => {
     });
   });
 
-  // TODO fetch("/user/:username")
   describe("GET /user/:username", { skip: false }, () => {
     beforeEach(async () => {
       await User.deleteOne({ _id: "janwillem" });
@@ -154,7 +152,6 @@ describe("connection", () => {
     });
   });
 
-  // TODO fetch("/user/:username/shelf")
   describe("POST /user/:username/shelf", { skip: false }, () => {
     beforeEach(async () => {
       await User.deleteOne({ _id: "janwillem" });
@@ -310,7 +307,6 @@ describe("connection", () => {
     });
   });
 
-  // TODO fetch("/user/:username/shelves/:shelf")
   describe("PUT /user/:username/shelves/:shelf", { skip: false }, () => {
     beforeEach(async () => {
       await User.deleteOne({ _id: "janwillem" });
