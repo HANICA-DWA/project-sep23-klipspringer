@@ -12,20 +12,21 @@
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren                                         | Taak  | Met Wie | Resultaten | Emotie | Link |
-|----------------------------------------------|---|---|---|---|---|
-| 09:00 - 16:00 (vergadering,testen schrijven) | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-|                                              | | | | | |
+| Uren               | Taak                           | Met Wie       | Resultaten                           | Emotie | Link |
+|--------------------|--------------------------------|---------------|--------------------------------------|---|---|
+| 1                  | meeting met rik                | Groepsgenoten | voorstellen over design aanpassingen |:smiley: | [link naar de resultaten](https://github.com/link-naar-de-commit) |
+| 5 testen schrijven | E2E component testen schrijven | N.V.T.        | jest werkt niet altijd fijn          |:satisfied:| [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/8c128bef37ce537ca0d7d2b970d4db5556e4ccf9) |
+|                    |                                |               |                                      | | |
 
 
 ## Dinsdag 9 januari
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren                            | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---------------------------------|---|---|---|---|---|
-| 09:00 - 13:30 (tests schrijven) | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-|                                 | | | | | |
+| Uren | Taak  | Met Wie | Resultaten      | Emotie | Link |
+|------|---|---|-----------------|---|---|
+| 4.5  | E2E component testen schrijven |  N.V.T.  | nog steeds jest |:smiley:| [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/7a9505cfb15baadfc92eb68465b29262c7918509) |
+|      | | |                 | | |
 
 ## Woensdag 10 januari
 
