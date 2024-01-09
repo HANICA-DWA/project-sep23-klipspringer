@@ -18,6 +18,7 @@ export default function ModalShare({alert, open, handleClose, profileInfo = {}})
 		const imageId = "socialCardPNG";
 
 		elementRef.current.style.display = "flex";
+		elementRef.current.dataset.testid="socialCard";
 		if(document.body.querySelector(`img#${imageId}`)) {
 			document.body.querySelector(`img#${imageId}`).style.display = "none";
 		}
@@ -29,7 +30,7 @@ export default function ModalShare({alert, open, handleClose, profileInfo = {}})
 				img.src = dataUrl;
 				img.style.height = "50vh";
 				img.id = imageId;
-
+				img.dataset.testid = "socialCardPNG";
 				return img;
 			})
 			.then((img)=>{
@@ -81,7 +82,7 @@ export default function ModalShare({alert, open, handleClose, profileInfo = {}})
 						<Close onClick={handleClose} sx={{position: "absolute", right: "10px", transform: "scale(0.8)"}}/>
 					</Stack>
 
-					<IconButton onClick={htmlToImageConvert} sx={{
+					<IconButton data-testid={"DownloadButton"} onClick={htmlToImageConvert} sx={{
 						position: "static",
 						color: "black",
 						top: "0",
@@ -103,7 +104,10 @@ export default function ModalShare({alert, open, handleClose, profileInfo = {}})
 								sx={{display: "none"}}
 								elementRef={elementRef} name={profileInfo.name ?? ""}
 								avatar={profileInfo.profile_picture ?? ""} handle={profileInfo._id ?? ""}
-								top_three={profileInfo.top_three}/>
+								top_three={profileInfo.top_three}
+								data-testid={"socialCard"}
+							/>
+
 							</Stack>
 						</Box>
 						<Box sx={{padding: "15px", height: "50vh", width: "95%"}}>
