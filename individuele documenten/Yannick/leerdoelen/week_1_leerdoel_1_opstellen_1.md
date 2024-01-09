@@ -2,8 +2,7 @@
 
 ### De komende 4 weken ga ik met het volgende leerdoel aan de slag:
 
-Ik wil vaker om hulp vragen aan mijn groepsgenoten wanneer ik tegen problemen aanloop.
-= pro-actief werken?
+Ik wil vaker om hulp vragen aan mijn groepsgenoten wanneer ik tegen problemen aanloop. (Oftewel, proactiever te werk gaan met het vragen om hulp)
 
 ### Mijn motivatie om aan dit leerdoel te werken is:
 
@@ -22,7 +21,6 @@ Het team krijgt beter en meer inzicht in moeilijkheden in het project. Ze krijge
 Ik zal proberen een actief bewustzijn te creëren, zodra ik ergens op vastloop, noteer ik dit in het logboek.
 Ik bespreek problemen die ik ben tegengekomen sowieso tijdens de daily standup of tijdens de gezamenlijke afsluiting aan het einde van de dag.
 Ik ga proberen mijn communicatie te verbeteren, door te noteren waar ik precies op vastloop, voordat ik hulp vraag.
-Lijkt me een prima aanpak!
 
 ### Om mijn leerdoel te bereiken ga ik de volgende acties op de volgende momenten uitvoeren:
 

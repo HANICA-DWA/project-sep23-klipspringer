@@ -51,6 +51,7 @@ export default function ModalBookcase({ open, handleClose, handleAdd, booksOnShe
                 justifyContent="space-between"
                 alignItems="center"
                 sx={{ margin: "5px 12px 5px 12px", opacity: booksOnShelf.find((shelfBook) => shelfBook._id === book._id) ? 0.3 : 1 }}
+                data-testid="modal-bookcase-item"
               >
                 <Stack direction="row">
                   <div style={{ margin: "5px", height: "104px", width: "68px" }}>

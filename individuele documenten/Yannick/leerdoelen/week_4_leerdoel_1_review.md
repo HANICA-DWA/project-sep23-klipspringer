@@ -69,9 +69,7 @@ Ik neem mezelf voor voor de volgende keer om om direct om hulp en uitleg te vrag
 ### Het effect op mijn eigen ontwikkeling was:
 
 Ik ben me bewuster geworden van het aantal moeilijkheden dat ik tegen kom tijdens het werken aan mijn taken. Ik vraag nu ook wat sneller om hulp als ik ergens echt niet uit kom en dit heeft een positieve invloed op de efficiëntie van mijn werk.
-
-op zich een redelijk aannemelijk verhaal. Ik zie dat je serieus aan de slag bent gegaan. Ga je nu anders te werk als het gaat om hulpvragen? Is het nog steeds een onderwerp waarbij je uit je comfortzone moet komen? Heeft theorie je kunnen helpen (en welke?).
-
+Ik moet hiervoor nog wel af en toe uit mijn comfortzone stappen om daadwerkelijk wat aan mijn team te vragen. Door de ervaring die ik met dit leerdoel heb opgedaan, is dit echter wel minder geworden. Mijn manier van hulp vragen is deels anders geworden, ik probeer eerst na te denken over wat ik precies van de anderen zou willen weten/vragen. Dit helpt mij om uit mij comfortzone te stappen.
 
 ### Het effect op het groepsproces was:
 

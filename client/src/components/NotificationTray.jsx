@@ -75,7 +75,7 @@ export default function NotificationTray() {
             <Button onClick={clearNotifications}>Clear notifications</Button>
           </Stack>
         )}
-        {!hasNotification() && <span style={{ padding: "5px" }}>You are up to date!</span>}
+        {!hasNotification() && <span data-testid="no-notifications-message" style={{ padding: "5px" }}>You are up to date!</span>}
       </Menu>
     </div>
   );
