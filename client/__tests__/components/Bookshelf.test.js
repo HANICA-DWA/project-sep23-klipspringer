@@ -1,4 +1,4 @@
-import { cleanup, render, screen, waitFor } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import '@testing-library/jest-dom'
 import Bookshelf from "../../src/components/Bookshelf";
@@ -11,7 +11,11 @@ import * as router from 'react-router';
 const navigate = jest.fn()
 
 beforeEach(() => {
-	jest.spyOn(router, 'useNavigate').mockImplementation(() => navigate)
+	jest.spyOn(router, 'useNavigate').mockImplementation(() => navigate);
+    store.dispatch(logUserIn.fulfilled({
+        _id: "testUser",
+        loggedIn: true
+    }, "fulfilled"));
 })
 
 afterEach(cleanup);
@@ -67,11 +71,6 @@ describe('Bookshelf Component', () => {
     });
 
     it('opens delete dialog when clicking on delete button', async () => {
-        store.dispatch(logUserIn.fulfilled({
-            _id: "testUser",
-            loggedIn: true
-        }, "fulfilled"));
-
         const user = userEvent.setup();
 
         render(
@@ -94,11 +93,7 @@ describe('Bookshelf Component', () => {
     });
 
     it('calls onDelete prop when confirming deletion', async () => {
-        store.dispatch(logUserIn.fulfilled({
-            _id: "testUser",
-            loggedIn: true
-        }, "fulfilled"));
-
+       
         const user = userEvent.setup();
 
         render(
@@ -125,10 +120,6 @@ describe('Bookshelf Component', () => {
     });
 
     it('redirect to the right page when clicking on edit', async () => {
-        store.dispatch(logUserIn.fulfilled({
-            _id: "testUser",
-            loggedIn: true
-        }, "fulfilled"));
 
         const user = userEvent.setup();
 
@@ -153,10 +144,6 @@ describe('Bookshelf Component', () => {
     });
 
     it("doesn't show edit and delete button when not logged in", () => {
-        store.dispatch(logUserIn.fulfilled({
-            _id: "testUser",
-            loggedIn: true
-        }, "fulfilled"));
 
         const {queryByTestId} = render(
             <Provider store={store}>
@@ -199,11 +186,6 @@ describe('Bookshelf Component', () => {
     })
 
     it('should redirect to /add when clicking on plus sign', async () => {
-        store.dispatch(logUserIn.fulfilled({
-            _id: "testUser",
-            loggedIn: true
-        }, "fulfilled"));
-
         const user = userEvent.setup();
 
         render(
