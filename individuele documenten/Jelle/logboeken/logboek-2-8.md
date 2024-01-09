@@ -23,10 +23,11 @@
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak  | Met Wie | Resultaten      | Emotie | Link |
-|------|---|---|-----------------|---|---|
-| 4.5  | E2E component testen schrijven |  N.V.T.  | nog steeds jest |:smiley:| [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/7a9505cfb15baadfc92eb68465b29262c7918509) |
-|      | | |                 | | |
+| Uren | Taak                               | Met Wie | Resultaten       | Emotie | Link |
+|------|------------------------------------|---|------------------|---|---|
+| 4.5  | E2E component testen schrijven     |  N.V.T.  | nog steeds jest  |:smiley:| [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/7a9505cfb15baadfc92eb68465b29262c7918509) |
+| 0.5  | E2E component test Suggestions fix |  N.V.T.  | jest act en mock |:smiley:| [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/84338a0be4bbb5ad487a5948b4852c092451f104) |
+|      |                                    | |                  | | |
 
 ## Woensdag 10 januari
 
