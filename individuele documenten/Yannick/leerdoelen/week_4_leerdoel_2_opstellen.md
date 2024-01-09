@@ -2,9 +2,7 @@
 
 ### De komende 4 weken ga ik met het volgende leerdoel aan de slag:
 
-Ik wil mijn vaardigheden verbeteren in het geven van effectieve feedback op producten die door mijn teamgenoten zijn ontwikkeld.
-
-welke THEORIE / MODEK ga je inzetten/ gebruiken?
+Ik wil mijn vaardigheden verbeteren in het geven van effectieve KOET-feedback op producten die door mijn teamgenoten zijn ontwikkeld.
 
 ### Mijn motivatie om aan dit leerdoel te werken is:
 
