@@ -6,7 +6,7 @@ import * as router from 'react-router';
 import { Provider } from "react-redux";
 import store from "../../src/redux/store/store";
 import { MemoryRouter } from "react-router-dom";
-import {logUserIn} from "../../src/redux/reducers/profileReducer.js";
+import { logUserIn } from "../../src/redux/reducers/profileReducer.js";
 
 const navigate = jest.fn();
 
@@ -25,7 +25,7 @@ beforeEach(() => {
 afterEach(cleanup);
 
 it('should render bookcase with books', () => {
-    const {getByAltText} = render(
+    const { getByAltText } = render(
         <Provider store={store}>
             <MemoryRouter>
                 <Bookcase />
@@ -41,7 +41,7 @@ it('should render bookcase with books', () => {
 it('should redirect to detailpage when clicking on book', async () => {
     const user = userEvent.setup();
 
-    const {getByAltText} = render(
+    const { getByAltText } = render(
         <Provider store={store}>
             <MemoryRouter>
                 <Bookcase />
@@ -55,3 +55,43 @@ it('should redirect to detailpage when clicking on book', async () => {
     const expectedResult = "/book/1";
     expect(navigate).toHaveBeenCalledWith(expectedResult, expect.anything());
 });
+
+it('should render placeholder text with no books', () => {
+    store.dispatch(logUserIn.fulfilled({
+        _id: "testUser",
+        bookcase: [],
+    }, "fulfilled"));
+
+    const { getByText } = render(
+        <Provider store={store}>
+            <MemoryRouter>
+                <Bookcase />
+            </MemoryRouter>
+        </Provider>
+    );
+
+    expect(getByText("No books in the bookcase,")).toBeInTheDocument();
+    expect(getByText("add now!")).toBeInTheDocument();
+});
+
+it('should redirect to /find when clicking on add now', async () => {
+    store.dispatch(logUserIn.fulfilled({
+        _id: "testUser",
+        bookcase: [],
+    }, "fulfilled"));
+
+    const user = userEvent.setup();
+
+    const { getByText } = render(
+        <Provider store={store}>
+            <MemoryRouter>
+                <Bookcase />
+            </MemoryRouter>
+        </Provider>
+    );
+
+    const text = getByText("add now!")
+    await user.click(text);
+
+    expect(navigate).toHaveBeenCalledWith("/find", expect.anything());
+})
