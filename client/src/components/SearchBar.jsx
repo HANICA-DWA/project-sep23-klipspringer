@@ -278,11 +278,12 @@ export default function SearchBar({ onClick, fullSearch, genreChips, deleteChip,
                   backgroundColor: "rgba(0, 0, 0, 0.082)",
                 },
               }}
+              data-testid="input-searchbar"
             />
           </FormControl>
         </form>
         {fullSearch ?
-          <Stack direction="row" spacing={{ xs: 1, sm: 1, md: 1 }}>
+          <Stack direction="row" spacing={{ xs: 1, sm: 1, md: 1 }} data-testid="chip-section">
             {
               searchFilters.map((e) => {
                 return <Chip 
