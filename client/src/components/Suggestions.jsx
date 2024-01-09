@@ -57,6 +57,7 @@ export default function Suggestions() {
                     sx={{ width: "85px", height: "130px !important", cursor: "pointer" }}
                     key={item.isbn[0]}
                     onClick={() => navigate(`/book/${item.isbn[0]}`)}
+                    data-testid={`suggestion-${item.isbn[0]}`}
                   >
                     <Bookcover isbn={item.isbn[0]} cover_image={`https://covers.openlibrary.org/b/id/${item.cover_i}-M.jpg?default=false`} />
                   </ImageListItem>
