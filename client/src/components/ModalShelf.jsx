@@ -45,11 +45,12 @@ export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
             <Typography fontWeight="600" align="center">
               What shelf?
             </Typography>
-            <Close onClick={handleClose} sx={{ position: "absolute", right: "10px", transform: "scale(0.8)" }} />
+            <Close data-testid="close-modal-shelf-button" onClick={handleClose} sx={{ position: "absolute", right: "10px", transform: "scale(0.8)" }} />
           </Stack>
           <Box sx={{ height: "50vh", overflowY: "scroll" }}>
             {profile.loggedIn && shelfInfo.top_three != undefined ? (
               <Stack
+                data-testid="1234-modalshelf-stack"
                 direction="row"
                 justifyContent="space-between"
                 sx={{ padding: "10px", margin: "10px", border: "1px solid black", borderRadius: "5px", cursor: "pointer" }}
@@ -83,7 +84,7 @@ export default function ModalShelf({ shelfInfo, open, handleClose, book }) {
                 </Stack>
               ))}
           </Box>
-          <Stack direction="row" justifyContent="center" sx={{ margin: "20px", cursor: "pointer" }} onClick={newShelf}>
+          <Stack data-testid="add-new-shelf" direction="row" justifyContent="center" sx={{ margin: "20px", cursor: "pointer" }} onClick={newShelf}>
             <Add sx={{ transform: "scale(0.6)" }} />
             <Typography>Create a new shelf</Typography>
           </Stack>
