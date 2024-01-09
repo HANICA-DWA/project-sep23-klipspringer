@@ -16,6 +16,19 @@ it("Should render the SearchResult component", () => {
     />);
 });
 
+it("Should show the right image", () => {
+    const { getByTestId } = render(<SearchResult 
+        book={{
+            title: "test",
+            authors: ["test"],
+            isbn: ["1234567890"]
+        }}
+        fullSearch
+    />);
+
+    expect(getByTestId('search-result-image').src).toBe("https://covers.openlibrary.org/b/isbn/1234567890-M.jpg?default=false");
+});
+
 it("Should link to the book page", () => {
     const user = userEvent.setup();
     const onClickMock = jest.fn();

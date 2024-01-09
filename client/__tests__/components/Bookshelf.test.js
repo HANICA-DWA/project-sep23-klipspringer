@@ -4,8 +4,19 @@ import '@testing-library/jest-dom'
 import Bookshelf from "../../src/components/Bookshelf";
 import { Provider } from "react-redux";
 import store from "../../src/redux/store/store";
-import { BrowserRouter as Router } from "react-router-dom";
+import { MemoryRouter } from "react-router-dom";
 import {logUserIn} from "../../src/redux/reducers/profileReducer.js";
+import * as router from 'react-router';
+
+const navigate = jest.fn()
+
+beforeEach(() => {
+	jest.spyOn(router, 'useNavigate').mockImplementation(() => navigate);
+    store.dispatch(logUserIn.fulfilled({
+        _id: "testUser",
+        loggedIn: true
+    }, "fulfilled"));
+})
 
 afterEach(cleanup);
 
@@ -16,19 +27,19 @@ describe('Bookshelf Component', () => {
         { _id: '3', title: 'Book 3', authors: ['Author 3'], cover_image: 'image3.jpg' },
     ];
 
-    const mockDeleteHandler = jest.fn();
+    const mockDeleteHandler = jest.fn()
 
     it('renders bookshelf with books', () => {
         const { getByText } = render(
             <Provider store={store}>
-                <Router>
+                <MemoryRouter >
                     <Bookshelf
                         id="bookshelf1"
                         title="Test Bookshelf"
                         books={mockBooks}
                         user="testUser"
                     />
-                </Router>
+                </MemoryRouter>
             </Provider>
         );
 
@@ -40,10 +51,10 @@ describe('Bookshelf Component', () => {
 
     });
 
-    it('renders placeholder on empty shelf', () => {
+    it('renders placeholder text on empty shelf', () => {
         const { getByText } = render(
             <Provider store={store}>
-                <Router>
+                <MemoryRouter >
                     <Bookshelf
                         id="emptyshelf"
                         title="Empty Shelf"
@@ -51,7 +62,7 @@ describe('Bookshelf Component', () => {
                         books={[]}
                         hideAdding
                     />
-                </Router>
+                </MemoryRouter>
             </Provider>
         );
 
@@ -60,30 +71,140 @@ describe('Bookshelf Component', () => {
     });
 
     it('opens delete dialog when clicking on delete button', async () => {
-        store.dispatch(logUserIn.fulfilled({
-            _id: "testUser",
-            loggedIn: true
-        }, "fulfilled"));
-
         const user = userEvent.setup();
 
         render(
             <Provider store={store}>
-                <Router>
+                <MemoryRouter >
                     <Bookshelf 
                         id="deleteshelf"
                         name="Delete shelf"
                         user="testUser"
                         books={mockBooks}
-                        onBookDelete={mockDeleteHandler}
                     />
-                </Router>
+                </MemoryRouter>
             </Provider>
         );
 
-        const deleteButton = screen.getByTestId("DeleteIcon")
+        const deleteButton = screen.getByTestId("DeleteIcon");
         await user.click(deleteButton);
 
         expect(screen.getByText('Are you sure that you want to delete this shelf?')).toBeInTheDocument();
+    });
+
+    it('calls onDelete prop when confirming deletion', async () => {
+       
+        const user = userEvent.setup();
+
+        render(
+            <Provider store={store}>
+                <MemoryRouter>
+                    <Bookshelf 
+                        id="deleteshelf"
+                        name="Delete shelf"
+                        user="testUser"
+                        books={mockBooks}
+                        onDelete={mockDeleteHandler}
+                    />
+                </MemoryRouter>
+            </Provider>
+        );
+        
+        const deleteButton = screen.getByTestId("DeleteIcon");
+        await user.click(deleteButton);
+
+        const yesButton = screen.getByText("Yes");
+        await user.click(yesButton);
+
+        expect(mockDeleteHandler).toHaveBeenCalledWith("deleteshelf")
+    });
+
+    it('redirect to the right page when clicking on edit', async () => {
+
+        const user = userEvent.setup();
+
+        render(
+            <Provider store={store}>
+                <MemoryRouter initialEntries={["/testUser/editshelf"]}>
+                    <Bookshelf 
+                        id="editshelf"
+                        name="Edit shelf"
+                        user="testUser"
+                        books={mockBooks}
+                    />
+                </MemoryRouter>
+            </Provider>
+        );
+
+        const editButton = screen.getByTestId("EditIcon");
+        await user.click(editButton);
+
+        const expectedResult = `/testUser/editshelf/edit`
+        expect(navigate).toHaveBeenCalledWith(expectedResult);
+    });
+
+    it("doesn't show edit and delete button when not logged in", () => {
+
+        const {queryByTestId} = render(
+            <Provider store={store}>
+                <MemoryRouter initialEntries={["/testUser/editshelf"]}>
+                    <Bookshelf 
+                        id="notloggedinshelf"
+                        name="Not loggedIn shelf"
+                        user="differentUser"
+                        books={mockBooks}
+                    />
+                </MemoryRouter>
+            </Provider>
+        );
+
+        expect(queryByTestId("DeleteIcon")).toBeNull();
+        expect(queryByTestId("EditIcon")).toBeNull();
+    });
+
+    it('Should redirect to detailpage when clicking on book', async () => {
+        const user = userEvent.setup();
+
+        render(
+            <Provider store={store}>
+                <MemoryRouter initialEntries={["/testUser/bookdetailshelf"]}>
+                    <Bookshelf 
+                        id="bookdetailshelf"
+                        name="Edit shelf"
+                        user="testUser"
+                        books={mockBooks}
+                    />
+                </MemoryRouter>
+            </Provider>
+        );
+
+        const book = screen.getByAltText("1");
+        await user.click(book);
+
+        const expectedResult = '/book/1';
+        expect(navigate).toHaveBeenCalledWith(expectedResult);
+    })
+
+    it('should redirect to /add when clicking on plus sign', async () => {
+        const user = userEvent.setup();
+
+        render(
+            <Provider store={store}>
+                <MemoryRouter initialEntries={["/testUser/addshelf"]}>
+                    <Bookshelf 
+                        id="addshelf"
+                        name="Add shelf"
+                        user="testUser"
+                        books={mockBooks}
+                    />
+                </MemoryRouter>
+            </Provider>
+        );
+
+        const add = screen.getByAltText(/voeg een boek toe/i);
+        await user.click(add);
+
+        const expectedResult = '/testUser/addshelf/add';
+        expect(navigate).toHaveBeenCalledWith(expectedResult);
     })
 });

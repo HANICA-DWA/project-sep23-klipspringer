@@ -45,18 +45,6 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
       return resultArray
     }, [])  
 
-    if (bookshelfBooks.length % nrOfColums === 0 && !hideAdding && profile.loggedIn) {
-      result.push([]);
-      placeholderBooks.push(
-        <Card key="extra" style={{ width: "85px", height: "160px" }}>
-          <Link to={`/${user}/${id}/add`}>
-            <CardMedia shelf={id} height="160" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" />
-          </Link>
-        </Card>
-      );
-    }
-      
-
     setGroupedBooks(result)
   }, [bookshelfBooks])
 
@@ -72,9 +60,9 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
     if (profile.loggedIn && profile._id === user && !hideAdding) {
       placeholderBooks.push(
         <Card key={i} style={{ width: "85px", height: "160px" }}>
-          <Link to={`/${user}/${id}/add`}>
+          <div onClick={() => {navigate(`/${user}/${id}/add`)}}>
             <CardMedia shelf={id} height="160" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" />
-          </Link>
+          </div>
         </Card>
       );
     }
@@ -142,9 +130,9 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
                         />
                         </IconButton>
                       ) : null}
-                      <Link to={unclickable ? null : `/book/${item._id}`} style={{ textDecoration: "none", color: "black" }}>
+                      <div onClick={() => unclickable ? null : navigate(`/book/${item._id}`)}>
                         <Bookcover isbn={item._id} cover_image={item.cover_image} />
-                      </Link>
+                      </div>
                     </Box>
                   </Card>
                 ))}
@@ -152,9 +140,9 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
               placeholderBooks
             ) : profile.loggedIn && profile._id === user && !hideAdding && id !== "top_three" && books.length < 4 ? (
               <Card key={id} style={{ width: "85px", height: "160px" }}>
-                <Link to={`/${user}/${id}/add`}>
+                <div onClick={() => {navigate(`/${user}/${id}/add`)}}>
                   <CardMedia shelf={id} height="160" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" />
-                </Link>
+                </div>
               </Card>
             ) : (
               ""
