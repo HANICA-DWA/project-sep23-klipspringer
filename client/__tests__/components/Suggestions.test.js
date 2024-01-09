@@ -11,7 +11,7 @@ const navigate = jest.fn()
 
 global.fetch = jest.fn(() =>
 	Promise.resolve({
-		json: () => Promise.resolve([{ cover_i: "10832348", isbn: [10832348] }]),
+		json: () => Promise.resolve({docs:[{ cover_i: "10832348", isbn: [10832348] }]}),
 	})
 );
 
@@ -26,7 +26,6 @@ it("Suggestions should render without problems", () => {
 });
 
 it("Suggestions should interact with suggestion without problems", async () => {
-
 	const user = userEvent.setup();
 	const { queryByTestId } = render(
 		<Provider store={store}>
@@ -36,15 +35,17 @@ it("Suggestions should interact with suggestion without problems", async () => {
 		</Provider>
 	);
 
-	const input = queryByTestId(/suggestion-[0-9]*/);
-
 	const expectedResult = /\/book\/[0-9]*/;
 
-	await waitFor(async ()=>{
-		console.log(input);
-		await user.click(input);
-	},queryByTestId(/suggestion-[0-9]*/))
+	act(async ()=>{
+		const input = queryByTestId(/suggestion-[0-9]*/);
 
-	await waitFor(async () => await expect(navigate).toHaveBeenCalledWith(expect.stringMatching(expectedResult)));
+		console.log(input);
+
+		await user.click(input);
+
+		await waitFor(async () => await expect(navigate).toHaveBeenCalledWith(expect.stringMatching(expectedResult)));
+
+	})
 });
 
