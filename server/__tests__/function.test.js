@@ -17,7 +17,6 @@ describe("connection", () => {
     await mongoose.disconnect();
   });
 
-  // TODO createError
   describe("createError function", () => {
     it("should create an error with default message and status", () => {
       const defaultError = createError();
@@ -32,7 +31,6 @@ describe("connection", () => {
     });
   });
 
-  // TODO getUserByUsername
   describe("getUserByUsername function", () => {
     beforeEach(async () => {
       await User.deleteOne({ _id: "henk" });
@@ -57,7 +55,6 @@ describe("connection", () => {
     });
   });
 
-  // TODO getUserBySSOId
   describe("getUserBySSOId function", () => {
     beforeEach(async () => {
       await User.deleteOne({ _id: "henk" });
@@ -87,7 +84,6 @@ describe("connection", () => {
     });
   });
 
-  // TODO getUniqueId
   describe("getUniqueId function", () => {
     beforeEach(async () => {
       await User.deleteOne({ _id: "henk" });
