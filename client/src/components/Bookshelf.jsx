@@ -60,9 +60,9 @@ export default function Bookshelf({ id, title, books = [], hideAdding, user, unc
     if (profile.loggedIn && profile._id === user && !hideAdding) {
       placeholderBooks.push(
         <Card key={i} style={{ width: "85px", height: "160px" }}>
-          <Link to={`/${user}/${id}/add`}>
+          <div onClick={() => {navigate(`/${user}/${id}/add`)}}>
             <CardMedia shelf={id} height="160" component="img" image={"/images/Add-Icon.jpg"} alt="voeg een boek toe" />
-          </Link>
+          </div>
         </Card>
       );
     }
