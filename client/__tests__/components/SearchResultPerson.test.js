@@ -2,7 +2,7 @@ import { cleanup, render } from "@testing-library/react";
 import SearchResultPerson from "../../src/components/SearchResultPerson";
 import userEvent from "@testing-library/user-event";
 
-const person = { _id: 123, profile_picture: "test", name: "testname" };
+const person = { _id: "123", profile_picture: "test", name: "testname" };
 const author = { key: "OA123", _id: "J.K. Rowling", profile_picture: "test", name: "testname" };
 
 const closePopper = jest.fn();

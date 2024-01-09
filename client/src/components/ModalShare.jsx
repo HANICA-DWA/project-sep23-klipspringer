@@ -105,7 +105,6 @@ export default function ModalShare({alert, open, handleClose, profileInfo = {}})
 								elementRef={elementRef} name={profileInfo.name ?? ""}
 								avatar={profileInfo.profile_picture ?? ""} handle={profileInfo._id ?? ""}
 								top_three={profileInfo.top_three}
-								data-testid={"socialCard"}
 							/>
 
 							</Stack>
