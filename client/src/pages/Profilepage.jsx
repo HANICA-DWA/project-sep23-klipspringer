@@ -64,13 +64,13 @@ function Profilepage() {
           <ProfileInfo name={profileInfo.name} avatar={profileInfo.profile_picture} handle={profileInfo._id} />
           <Stack justifyContent="center">
             <Stack direction="row" sx={{ cursor: "pointer" }}>
-              <Stack alignItems="center" margin="5px" onClick={() => handleOpen("followers")}>
+              <Stack alignItems="center" margin="5px" onClick={() => handleOpen("followers")} data-testid="followers-section">
                 <Typography variant="body1" fontWeight={700}>
                   Followers
                 </Typography>
                 <Typography>{profileInfo.followers ? profileInfo.followers.length : null}</Typography>
               </Stack>
-              <Stack alignItems="center" margin="5px" onClick={() => handleOpen("following")}>
+              <Stack alignItems="center" margin="5px" onClick={() => handleOpen("following")} data-testid="following-section">
                 <Typography variant="body1" fontWeight={700}>
                   Following
                 </Typography>
@@ -109,7 +109,7 @@ function Profilepage() {
         ) : null}
         {profileInfo.shelf && profileInfo.shelf.length > 0
           ? profileInfo.shelf.map((shelf) => (
-              <Link key={shelf._id} to={`/${userName}/${shelf._id}`}>
+              <Link key={shelf._id} to={`/${userName}/${shelf._id}`} data-testid="shelf-link">
                 <Button
                   variant="outlined"
                   sx={{
