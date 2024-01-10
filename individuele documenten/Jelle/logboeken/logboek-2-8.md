@@ -34,10 +34,10 @@
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
+| Uren | Taak                      | Met Wie | Resultaten                                    | Emotie | Link |
+|------|---------------------------|---|-----------------------------------------------|---|---|
+| 3    | E2E page testen schrijven |  N.V.T. | jest is nu al wel wat makelijker te gebruiken |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/655d5b06336c102a1b4a9a8394912fd24db78147) |
+|      |                           | |                                               | | |
 
 ## Donderdag 11 januari
 
