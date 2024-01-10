@@ -6,7 +6,7 @@
 
 - Prefer a Rich Domain Model:
 
-  We gebruiken een mongoose schema met de logic en validatie van de data, zodat de data in MongoDB altijd goed opgeslagen wordt en consistent is.
+  We gebruiken een mongoose schema met de logica en validatie van de data, zodat de data in MongoDB altijd goed opgeslagen wordt en consistent is. Er is dus logica opgeslagen in de mongoose schema's.
 
 - Buy Rather Than Build:
 
@@ -26,4 +26,6 @@
 
 - Client-Side Routing:
 
-  we gebruiken React Router voor client-side routing, dit zorgt voor een vloeiende en dynamische ervaring voor de gebruiker. Hierdoor zijn er geen volledige pagina herladingen.
+  We gebruiken React Router voor client-side routing, dit zorgt voor een vloeiende en dynamische ervaring voor de gebruiker. Hierdoor zijn er geen volledige pagina herladingen.
+
+(Boes et al., [c. 2015])
