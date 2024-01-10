@@ -12,10 +12,9 @@
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
+| Uren | Taak              | Met Wie | Resultaten                                    | Emotie  | Link |
+|------|-------------------|---------|-----------------------------------------------|---------|------|
+| 4    | Design verbeteren |         | Veranderingen van design van Rik doorverwerkt | :smile: | https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/276 |
 
 
 ## Dinsdag 21 december
@@ -31,25 +30,24 @@
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
+| Uren | Taak         | Met Wie | Resultaten                       | Emotie   | Link |
+|------|--------------|---------|----------------------------------|----------|------|
+| 3    | Unit testing |         | Unit tests afgemaakt             | :smile:  |      |
+| 1    | Bug fixing   |         | Bugs gefixt na vinden bij testen | :hankey: | https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/289 |
 
 ## Donderdag 23 december
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
+| Uren | Taak                             | Met Wie | Resultaten                               | Emotie  | Link |
+|------|----------------------------------|---------|------------------------------------------|---------|------|
+| 2    | Software guidebook verbeteren    |         | Feedback verwerkt van bart               | :smile: | https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/294 |
+| 3    | Gigantische merge conflict fixen |         | Belangrijke code is niet verloren gegaan | :ghost: | https://github.com/HANICA-DWA/project-sep23-klipspringer/pull/293 |
 
 ## Vrijdag 24 december
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
+| Uren | Taak                               | Met Wie  | Resultaten             | Emotie  | Link |
+|------|------------------------------------|----------|------------------------|---------|------|
+| 3    | Voorbereiden en geven sprintreview | Iedereen | Een mooie sprintreview | :smile: |      |
