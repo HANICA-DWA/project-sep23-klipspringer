@@ -4,6 +4,7 @@ import Suggestions from "../../src/components/Suggestions.jsx";
 import { MemoryRouter } from "react-router-dom";
 import {Provider} from "react-redux";
 import store from "../../src/redux/store/store.js";
+import suggestionsFetch from "../../__mocks__/suggestionsFetch.json";
 
 import * as router from 'react-router';
 
@@ -11,7 +12,7 @@ const navigate = jest.fn()
 
 global.fetch = jest.fn(() =>
 	Promise.resolve({
-		json: () => Promise.resolve({docs:[{ cover_i: "10832348", isbn: [10832348] }]}),
+		json: () => Promise.resolve(suggestionsFetch),
 	})
 );
 
