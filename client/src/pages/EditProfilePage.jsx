@@ -76,7 +76,7 @@ export default function EditProfilePage() {
           <CircularProgress variant="determinate" value={progress} size={70} sx={{ position: "absolute", zIndex: 0, top: -3, left: -3.5 }} />
 
           <ProfileAvatar name={profile.profile_picture} image={edits.imageUrl} />
-          <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" hidden onChange={uploadHandler} />
+          <input data-testid="avatar" type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" hidden onChange={uploadHandler} />
           <label htmlFor="avatar">
             <IconButton
               component="span"
@@ -98,6 +98,7 @@ export default function EditProfilePage() {
         <form>
           <FormControl sx={{ gap: 3 }}>
             <TextField
+              data-testid="handler"
               value={profile._id}
               disabled
               InputProps={{
@@ -109,7 +110,7 @@ export default function EditProfilePage() {
                 ),
               }}
             />
-            <TextField value={edits.nameInput} onChange={nameInputHandler} />
+            <TextField data-testid="name" value={edits.nameInput} onChange={nameInputHandler} />
           </FormControl>
         </form>
         <Button variant="outlined" sx={{ width: "100%" }} onClick={onSave}>
