@@ -119,7 +119,7 @@ export default function Detailpage() {
                   const authorId = url.pathname.split("/").slice(2, 3)[0];
                   return (
                     <React.Fragment key={author.name}>
-                      <Link to={`/author/${authorId}`} style={{ color: "inherit" }}>
+                      <Link data-testid="author-page-link" to={`/author/${authorId}`} style={{ color: "inherit" }}>
                         {author.name}
                       </Link>
                       {index < array.length - 1 && ", "}
