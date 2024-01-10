@@ -1,0 +1,55 @@
+{
+  "ISBN:9789048805839": {
+    "url": "https://openlibrary.org/books/OL32830135M/Het_is_weer_raak_met_Kees_en_Sjaak",
+    "key": "/books/OL32830135M",
+    "title": "Het is weer raak met Kees en Sjaak",
+    "authors": [
+      {
+        "url": "https://openlibrary.org/authors/OL9324879A/Kees_van_Nieuwkerk",
+        "name": "Kees van Nieuwkerk"
+      }
+    ],
+    "number_of_pages": 111,
+    "pagination": "111 p.",
+    "by_statement": "Kees van Nieuwkerk",
+    "identifiers": {
+      "isbn_10": ["904880583X"],
+      "isbn_13": ["9789048805839"],
+      "oclc": ["712093779"],
+      "openlibrary": ["OL32830135M"]
+    },
+    "publishers": [
+      {
+        "name": "Moon"
+      }
+    ],
+    "publish_places": [
+      {
+        "name": "Amsterdam"
+      }
+    ],
+    "publish_date": "2010",
+    "subjects": [
+      {
+        "name": "Jeugdboeken ; verhalen",
+        "url": "https://openlibrary.org/subjects/jeugdboeken_;_verhalen"
+      }
+    ],
+    "ebooks": [
+      {
+        "preview_url": "https://archive.org/details/hetisweerraakmet0000nieu",
+        "availability": "borrow",
+        "formats": {},
+        "borrow_url": "https://openlibrary.org/books/OL32830135M/Het_is_weer_raak_met_Kees_en_Sjaak/borrow",
+        "checkedout": true
+      }
+    ],
+    "cover": {
+      "small": "https://covers.openlibrary.org/b/id/11462163-S.jpg",
+      "medium": "https://covers.openlibrary.org/b/id/11462163-M.jpg",
+      "large": "https://covers.openlibrary.org/b/id/11462163-L.jpg"
+    }
+  },
+  "works": [{ "key": "/works/OL32830135M" }],
+  "description": "Harry Potter is leaving Privet Drive for the last time. But as he climbs into the sidecar of Hagrid’s motorbike and they take to the skies, he knows Lord Voldemort and the Death Eaters will not be far behind. The protective charm that has kept him safe until now is broken. But the Dark Lord is breathing fear into everything he loves. And he knows he can’t keep hiding. To stop Voldemort, Harry knows he must find the remaining Horcruxes and destroy them. He will have to face his enemy in one final battle. ([source][1]) ---------- See also: - [Harry Potter and the Deathly Hallows: 2/2][2] [1]: https://www.jkrowling.com/book/harry-potter-deathly-hallows/ [2]: https://openlibrary.org/works/OL17922343W/Harry_Potter_and_the_Deathly_Hallows_Chapters_20-36"
+}
