@@ -55,7 +55,7 @@ export default function ShelfCreatePage({ edit = false }) {
       if ((shelf === "top_three" && books.length <= 3) || (shelf !== "top_three" && books.length >= 3)) {
         const cb = (error) => {
           setErrMessage(error);
-          if (shelf === "top_three") {
+          if (shelf === "top_three") {  
             getWebSocket().send(JSON.stringify({ type: "edited_top_three", link: `/${profile._id}` }));
             navigate(`/${profile._id}`);
           } else {
@@ -111,7 +111,8 @@ export default function ShelfCreatePage({ edit = false }) {
         editshelf = profile.top_three;
       }
       setBooks(editshelf.books);
-      setTitle(editshelf.name);
+      if (editshelf.name)
+        setTitle(editshelf.name);
     }
   }, [usernameParams, profile.shelf, profile.top_three, shelf]);
 
@@ -162,7 +163,7 @@ export default function ShelfCreatePage({ edit = false }) {
               >
                 <FormControl sx={{ flexDirection: "row", alignItems: "flex-end" }}>
                   <TextField id="input-with-sx" label="Title" variant="standard" value={title} onChange={(e) => setTitle(e.target.value)} />
-                  <Button sx={{ ml: 1, height: "80%" }} variant="contained" type="submit">
+                  <Button sx={{ ml: 1, height: "80%" }} variant="contained" type="submit" data-testid="save-shelf">
                     {edit ? "Save shelf" : "Create shelf"}
                   </Button>
                 </FormControl>
