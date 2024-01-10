@@ -9,7 +9,7 @@ afterEach(cleanup);
 global.fetch = jest.fn().mockImplementation(() =>
   Promise.resolve({
     ok: true,
-    json: () => profileFetch,
+    json: () => [profileFetch],
   })
 );
 
