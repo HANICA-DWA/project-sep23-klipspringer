@@ -10,7 +10,7 @@ export default function AuthorPage() {
   const { author } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const [authorWorks, setAuthorWorks] = useState({ size: 1, works: [] });
-  const [authorInfo, setAuthorInfo] = useState({});
+  const [authorInfo, setAuthorInfo] = useState({name: author});
   const [loading, setLoading] = useState(true);
   const itemsOnPage = 30;
   const theme = useTheme();
