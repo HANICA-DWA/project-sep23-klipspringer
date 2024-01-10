@@ -17,13 +17,13 @@ Ik had ook wel wat meer kunnen overleggen met anderen.
 
 
 ### Ik heb mijn leerdoel wel/niet bereikt omdat, onderbouw aan de hand van concrete voorbeelden/situaties uit praktijk (STARRT):
-Tijdens een overlegmoment waarbij we een sprint voorstel gingen maken heb ik mijn minder inbreng gehad.
+Tijdens een overlegmoment waarbij we een sprint voorstel gingen maken heb ik minder inbreng gehad.
 Ik, Roos, Joris, Yannick en Niels waren betrokken bij dit gesprek op school.
 Over wat we in het sprint voorstel gingen zetten.
 
 We moesten nadenken over wat we in het sprint voorstel gingen zetten.
 Ik als deelnemer moest dus ook nadenken en met voorstellen komen.
-Zodat we een sprintvoorstel hadden om te gebruiken tijdens de sprintplanning. Mijn plan was hiervoor om te luisteren naar wat de ideeën van anderen waren.
+Zodat we een sprint voorstel hadden om te gebruiken tijdens de sprintplanning. Mijn plan was hiervoor om te luisteren naar wat de ideeën van anderen waren.
 
 Ik heb doorgevraagd naar de ideeën van anderen.
 Door eerst te luisteren en uit te laten spreken, en daarna door te vragen vanaf het perspectief van de opdrachtgever, wat de opdrachtgever mogelijk belangrijk zou vinden.

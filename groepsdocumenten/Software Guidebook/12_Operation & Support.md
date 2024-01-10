@@ -10,7 +10,7 @@ _Backend_
 GOOGLE_CLIENT_ID=
 LINKEDIN_APP_SECRET=
 LINKEDIN_APP_ID=
-MONGOO_HOST=
+MONGO_HOST=
 ```
 
 De backend kan gerund worden met `node app` of, voor development, `nodemon app`, als nodemon geïnstalleerd is.

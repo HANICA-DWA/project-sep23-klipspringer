@@ -1,4 +1,4 @@
-### Infrastructure Architecture
+# Infrastructure Architecture
 
 Het doel van een Infrastructure architecture is om een duidelijk beeld te vormen over hoe de applicatie is opgebouwd.
 Hierdoor wordt het makkelijker om de applicatie te onderhouden en uit te breiden.

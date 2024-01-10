@@ -19,7 +19,7 @@ export default function Genres({setChips, selectedChips}){
         <>
             <Typography variant="h6" sx={{ fontWeight: "700" }}>Genres</Typography>
             {
-                genres.map((e) => {
+                Array.isArray(genres) && genres.map((e) => {
                     return (
                         <Fragment key={e._id} >
                             <Typography key={e._id} variant="body1">{e._id}</Typography>

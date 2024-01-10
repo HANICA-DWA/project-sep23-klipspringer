@@ -3,9 +3,15 @@
 ### Architectural layering
 
 In de webapplicatie is een aantal lagen te vinden.
-De presentatielaag is te vinden in de frontend, gemaakt met React. Deze laag bevat de applicatie die voor de gebruiker te zien is.
-De logische laag bestaat uit de API, gemaakt met Node.js en Express. Op deze laag vindt de logica plaats, tussen de presentatielaag en de datalaag.
-De datalaag bestaat uit de MongoDB database. Hierin is alle data die voor de applicatie gebruikt wordt opgeslagen.
+De presentatielaag/tier is te vinden in de frontend, gemaakt met React. Deze laag bevat de applicatie die voor de gebruiker te zien is.
+De logische laag/tier bestaat uit de API, gemaakt met Node.js en Express. Op deze laag vindt de logica plaats, tussen de presentatielaag en de datalaag.
+De datalaag/tier bestaat uit de MongoDB database. Hierin is alle data die voor de applicatie gebruikt wordt opgeslagen.
+
+Tussen de presentatielaag en de logische laag bestaat een applicatielaag. Dit gebruikt de logica van de logische laag om te communiceren met de presentatielaag. De express classes zorgen voor een goede afhandeling van inkomende requests.
+
+Ook bestaat er nog een persistentie laag tussen de logische laag en de datalaag. Deze zorgt voor de communicatie met de database vanuit de logische laag. Mongoose zorgt voor de communicatie met MongoDB.
+
+(Indeed Editorial Team, 2023)
 
 ### JWT Verificatie
 

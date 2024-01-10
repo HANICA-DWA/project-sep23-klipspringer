@@ -1,10 +1,10 @@
-# **Inhoudsopgave**
+# Software Guidebook
 
-- [**Inhoudsopgave**](#inhoudsopgave)
+- [Software Guidebook](#software-guidebook)
 - [Context](#context)
-    - [Domain terms](#domain-terms)
+    - [Domain Terms](#domain-terms)
 - [Functional Overview](#functional-overview)
-    - [Link met meer informatie](#link-met-meer-informatie)
+    - [Links met meer informatie](#links-met-meer-informatie)
 - [Quality Attributes](#quality-attributes)
     - [Responsiveness en Portability](#responsiveness-en-portability)
     - [Performance](#performance)
@@ -41,19 +41,21 @@
     - [Diagnostiek](#diagnostiek)
     - [Monitoring](#monitoring)
 - [Decision Log](#decision-log)
+- [Bronnen](#bronnen)
+
 
 # Context
 
 ![Context Diagram](C4-models/C4-model%20context.png)
 
-BKS wordt een mobile-first webapplicatie van een persoonlijke boekenpagina. Met deze applicatie kun een gebruiker zijn leesvoorkeuren delen, zoals favoriete boeken, top 3 boeken, diverse collecties en je kunt zelfs een aangepaste collectie maken.
+BKS is een mobile-first webapplicatie van een persoonlijke boekenpagina. Met deze applicatie kan een gebruiker zijn leesvoorkeuren delen, zoals favoriete boeken, top 3 boeken, diverse collecties en er kan zelfs een aangepaste collectie maken.
 
 Deze software wordt gebruikt door 2 verschillende soorten gebruikers, anonieme gebruikers en geauthenticeerde gebruikers. De anononieme gebruiker kan profielen van anderen en boeken bekijken. Ook kan een anonieme gebruiker inloggen om een geauthenticeerde gebruiker te worden.
 Een geauthenticeerde gebruiker kan zijn eigen profielpagina bewerken, boekenplanken toevoegen, bewerken en verwijderen. Hij heeft ook inzicht in zijn boekenkast en kan hier ook aanpassingen aan doen.
 
-De software van BKS gebruikt 3 externe systemen, die van Google en LinkedIn voor het authenticeren van gebruikers. En het systeem van OpenLibrary om informatie van boeken op te halen.
+De software van BKS gebruikt 3 externe systemen, die van Google en LinkedIn voor het authenticeren van gebruikers. En het systeem van OpenLibrary om informatie van boeken op te halen. Deze externe systemen worden verder toegelicht in het hoofdstuk "External Interfaces".
 
-### Domain terms
+### Domain Terms
 
 | **Term (NL)**  | **Term (EN)** | **Betekenis**                                                           | **Synoniemen**       |
 | -------------- | ------------- | ----------------------------------------------------------------------- | -------------------- |
@@ -69,14 +71,20 @@ De software van BKS gebruikt 3 externe systemen, die van Google en LinkedIn voor
 
 # Functional Overview
 
-Gebruikers kunnen een account aanmaken via LinkdIn of Google. Zodra een gebruiker een account heeft, komt hij uit op zijn eigen profielpagina.
-Hier staat al een "top 3" plank voor de gebruiker klaar. Ook kan de gebruiker zelf een plank aanmaken. Op deze planken kunnen boeken toegevoegd worden. De gebruiker kan hierbij boeken zoeken en deze vervolgens toevoegen aan de plank. Zijn profiel en de gemaakte planken zijn openbaar, waardoor de gebruiker zijn profiel kan delen met anderen. De gebruiker kan per boek een informatiepagina openen. Via deze pagina kan het boek ook gekocht worden via een webshop.
+- Gebruikers kunnen een account aanmaken via LinkedIn of Google. Zodra een gebruiker een account heeft, komt hij uit op zijn eigen profielpagina.
+- Op zijn profielpagina staat al een "top 3" plank voor de gebruiker klaar. 
+- De gebruiker kan zelf een plank aanmaken. 
+- Op deze planken kunnen boeken toegevoegd worden.
+-  De gebruiker kan boeken zoeken en deze vervolgens toevoegen aan een plank. 
+-  Een profiel en de gemaakte planken zijn openbaar
+-  De gebruiker kan zijn profiel kan delen met anderen. 
+-  De gebruiker kan per boek een informatiepagina openen. 
+-  Via de informatiepagina van een boek kan het boek ook gekocht worden via een webshop.
+- Het kopen van boeken gaat via een affiliate link van bijvoorbeeld bol.com of amazon.com.
 
-Het kopen van boeken moet via een affiliate link gaan van bijvoorbeeld bol.com of amazon.com.
+### Links met meer informatie
 
-### Link met meer informatie
-
-[Link naar userstory's](../Projectplan/Product%20Backlog.md)
+[Link naar userstory's van projectplan](../Projectplan/Product%20Backlog.md)
 
 [Link naar userstory's op projectbord (dit is geüpdatet tijdens het project)](https://github.com/orgs/HANICA-DWA/projects/19/views/1?filterQuery=type%3A%22User+Story%22)
 
@@ -85,17 +93,17 @@ Het kopen van boeken moet via een affiliate link gaan van bijvoorbeeld bol.com o
 # Quality Attributes
 
 ### Responsiveness en Portability
-- De applicatie wordt mobile first gebouwd maar moet responsive zijn voor mobile en desktop. Hierdoor is de applicatie op een breed scala apparaten te gebruiken.
+- De applicatie is mobile first gebouwd maar is responsive voor mobile en desktop. Hierdoor is de applicatie op een breed scala apparaten te gebruiken.
 
 ### Performance
 - API requests naar de backend server duren niet langer dan 500ms.
-- Applicatie moet snel zijn. Pagina's moeten laden binnen 2 seconden.
+- Applicatie is snel. Pagina's laden binnen 2 seconden.
 
 ### Security
 - Inloggen, ofwel authenthicatie, wordt veilig gedaan via Google en LinkedIn SSO zodat we geen wachtwoorden hoeven op te slaan.
 
 ### Stability
-- Testcoverage is minimaal 90%.
+- Testcoverage voor unit tests is minimaal 90%.
 - Voor de boeken wordt de externe (gratis) API gebruikt van OpenLibrary.
 
 ### Robustness
@@ -103,12 +111,12 @@ Het kopen van boeken moet via een affiliate link gaan van bijvoorbeeld bol.com o
 - De applicatie is geschikt om in de toekomst te veranderen van externe API voor de boekinformatie.
 
 ### Accessibility
-- Frontend wordt volgens de designs van Rik gemaakt, een UX expert.
-- Gebruikte kleuren worden getest op voldoende contrast.
+- Frontend is volgens de designs van Rik gemaakt, een UX expert.
+- Gebruikte kleuren zijn getest op voldoende contrast.
 - HTML volgt accessability guidelines.
 
 ### Language Localisation (L10n)
-- De applicatie wordt gelokaliseerd voor de Engelse taal.
+- De applicatie is gelokaliseerd voor de Engelse taal.
 
 # Constraints
 
@@ -143,7 +151,6 @@ De publieke standaarden HTTP, JSON en REST hebben invloed op de architectuur die
 
 Kennis van het software-development team over React, Express.js en MongoDB, heeft invloed op de keuze om deze technologieën te gebruiken.
 
-
 # Principles
 
 - DRY (Don't Repeat Yourself):
@@ -152,7 +159,7 @@ Kennis van het software-development team over React, Express.js en MongoDB, heef
 
 - Prefer a Rich Domain Model:
 
-  We gebruiken een mongoose schema met de logic en validatie van de data, zodat de data in MongoDB altijd goed opgeslagen wordt en consistent is.
+  We gebruiken een mongoose schema met de logica en validatie van de data, zodat de data in MongoDB altijd goed opgeslagen wordt en consistent is. Er is dus logica opgeslagen in de mongoose schema's.
 
 - Buy Rather Than Build:
 
@@ -172,7 +179,9 @@ Kennis van het software-development team over React, Express.js en MongoDB, heef
 
 - Client-Side Routing:
 
-  we gebruiken React Router voor client-side routing, dit zorgt voor een vloeiende en dynamische ervaring voor de gebruiker. Hierdoor zijn er geen volledige pagina herladingen.
+  We gebruiken React Router voor client-side routing, dit zorgt voor een vloeiende en dynamische ervaring voor de gebruiker. Hierdoor zijn er geen volledige pagina herladingen.
+
+(Boes et al., [c. 2015])
 
 # Software Architecture
 
@@ -211,7 +220,13 @@ De frontend "React + Vite" maakt gebruik van de websocket server. De "server set
 
 # External Interfaces
 
-BKS maakt gebruik van drie verschillende externe interfaces, namelijk Openlibrary, Google-authenticatie en LinkedIn-authenticatie. Openlibrary wordt gehost door archive.org als een non-profit om een database te bieden voor alle ooit geschreven boeken. Het stelt zijn database beschikbaar via een API via http en geeft resultaten terug in JSON-formaat. We gebruiken Openlibrary om alle informatie over een specifiek boek op te halen, zoals titel, auteur, coverafbeelding, enz. We maken ook gebruik van de zoekfunctie om door alle bestaande boeken te zoeken. We 'cachen' ook boeken in onze eigen database om het gebruik van Openlibrary te beperken en de rate limit van 100 verzoeken in korte tijd niet te overschrijden.
+BKS maakt gebruik van de volgende drie verschillende externe interfaces: 
+
+- Openlibrary
+- Google-authenticatie
+- LinkedIn-authenticatie
+
+Openlibrary wordt gehost door archive.org als een non-profit om een database te bieden voor alle ooit geschreven boeken. Het stelt zijn database beschikbaar via een API via http en geeft resultaten terug in JSON-formaat. We gebruiken Openlibrary om alle informatie over een specifiek boek op te halen, zoals titel, auteur, coverafbeelding, enz. We maken ook gebruik van de zoekfunctie om door alle bestaande boeken te zoeken. We 'cachen' ook boeken in onze eigen database om het gebruik van Openlibrary te beperken en de rate limit van 100 verzoeken in korte tijd niet te overschrijden.
 
 Enkele voorbeelden van de requests die we gebruiken:
 
@@ -228,9 +243,15 @@ We maken op vergelijkbare wijze gebruik van Google- en LinkedIn-authenticatie. W
 ### Architectural layering
 
 In de webapplicatie is een aantal lagen te vinden.
-De presentatielaag is te vinden in de frontend, gemaakt met React. Deze laag bevat de applicatie die voor de gebruiker te zien is.
-De logische laag bestaat uit de API, gemaakt met Node.js en Express. Op deze laag vindt de logica plaats, tussen de presentatielaag en de datalaag.
-De datalaag bestaat uit de MongoDB database. Hierin is alle data die voor de applicatie gebruikt wordt opgeslagen.
+De presentatielaag/tier is te vinden in de frontend, gemaakt met React. Deze laag bevat de applicatie die voor de gebruiker te zien is.
+De logische laag/tier bestaat uit de API, gemaakt met Node.js en Express. Op deze laag vindt de logica plaats, tussen de presentatielaag en de datalaag.
+De datalaag/tier bestaat uit de MongoDB database. Hierin is alle data die voor de applicatie gebruikt wordt opgeslagen.
+
+Tussen de presentatielaag en de logische laag bestaat een applicatielaag. Dit gebruikt de logica van de logische laag om te communiceren met de presentatielaag. De express classes zorgen voor een goede afhandeling van inkomende requests.
+
+Ook bestaat er nog een persistentie laag tussen de logische laag en de datalaag. Deze zorgt voor de communicatie met de database vanuit de logische laag. Mongoose zorgt voor de communicatie met MongoDB.
+
+(Indeed Editorial Team, 2023)
 
 ### JWT Verificatie
 
@@ -367,11 +388,11 @@ Het onderhouden en beheren of bewaken van de applicatie zal niet door ons worden
 
 We hebben nog niet bepaald hoe we onze applicatie gaan deployen. We hebben we een paar opties:
 
-- Compleet zelf hosten via een VM.
-- Hosten in de cloud via AWS / GCP.
-- Hosten op een deployment helper zoals vercel of netlify, met een externe database hosting provider zoals MongoDB.
+ - Compleet zelf hosten via een VM.
+ - Hosten in de cloud via AWS / GCP.
+ - Hosten op een deployment helper zoals Vercel of Netlify, met een externe database hosting provider zoals MongoDB.
 
-Voor ons gaat de voorkeur naar zelf hosten met een VM. Dit zorgt voor complete controle over het deployen en is het ook het makkelijkst om problemen op te sporen. Het is wel goedkoper om alles via AWS of GCP te deployen. Hier betaal je voor wat je gebruikt dus betaal je niet te veel als er weinig traffic op de website komt. Ook als de applicatie veel traffic krijgt zorgen ze er zelf voor dat er meer servers gaan draaien. Het is wel wat moeilijker om dit op te zetten omdat we 3 containers hebben die dan allemaal met elkaar moeten communiceren.
+Voor ons gaat de voorkeur naar zelf hosten met een VM. Dit zorgt voor complete controle over het deployen en is het ook het makkelijkst om problemen op te sporen (Synopsys, z.d.). Het is wel goedkoper om alles via AWS of GCP te deployen (Hunter, 2022). Hier betaal je voor wat je gebruikt dus betaal je niet te veel als er weinig traffic op de website komt. Ook als de applicatie veel traffic krijgt zorgen ze er zelf voor dat er meer servers gaan draaien. Het is wel wat moeilijker om dit op te zetten omdat we 3 containers hebben die dan allemaal met elkaar moeten communiceren.
 
 # Operatie en support
 
@@ -385,7 +406,7 @@ _Backend_
 GOOGLE_CLIENT_ID=
 LINKEDIN_APP_SECRET=
 LINKEDIN_APP_ID=
-MONGOO_HOST=
+MONGO_HOST=
 ```
 
 De backend kan gerund worden met `node app` of, voor development, `nodemon app`, als nodemon geïnstalleerd is.
@@ -434,3 +455,12 @@ Wij hebben ervoor gekozen om Vite te gebruiken voor het opzetten van het React-p
 
 Kortom gebruiken wij de MERN stack (MongoDB, Express.js, React, Node.js). Wij zijn tevreden met de keuzes die we hebben gemaakt. Dit zijn ook veelgebruikte, populaire technologieën. Hierdoor krijgen deze keuzes meer credibiliteit.
 
+# Bronnen
+
+Boes, M., Thijsma, L., Theunissen, T., Leer, S., Haenen, P., & Holwerda, R. [c. 2015]. Software Guidebook.
+
+Hunter, A. (2022, 9 maart). Cost of Server comparison: On-Premises vs Cloud. Geraadpleegd op 10 januari 2024, van https://www.parallels.com/blogs/ras/cost-of-server/
+
+Indeed Editorial Team. (2023, 11 maart). What Are the 5 Primary Layers in Software Architecture? Geraadpleegd op 10 januari 2024, van https://www.indeed.com/career-advice/career-development/what-are-the-layers-in-software-architecture
+
+Synopsys. (z.d.). On-Premises vs. Cloud Pros and Cons: Which Should You Choose? | Synopsys Cloud. Geraadpleegd op 10 januari 2024, van https://www.synopsys.com/cloud/insights/on-premise-vs-cloud-pros-and-cons.html
