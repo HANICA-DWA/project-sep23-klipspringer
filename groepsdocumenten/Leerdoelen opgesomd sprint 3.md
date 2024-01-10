@@ -1,6 +1,6 @@
 ## Jelle
 "Ik wil meer luisteren naar anderen zodat ik beter kan samenwerken."
-Wilt luisteren naar wat anderen willen en wanneer er naar gevraagt wordt en op de juiste momenten zijn eigen inbreng delen, zodat er meer wordt gecommuniceerd en iedereen meer inzicht hebben van wat anderen voor ogen hebben.
+Wilt luisteren naar wat anderen willen en wanneer er naar gevraagd wordt en op de juiste momenten zijn eigen inbreng delen, zodat er meer wordt gecommuniceerd en iedereen meer inzicht hebben van wat anderen voor ogen hebben.
 
 
 ## Joris
@@ -8,8 +8,8 @@ Wilt luisteren naar wat anderen willen en wanneer er naar gevraagt wordt en op d
 
 
 ## Niels
-"Ik wil meer het iniatief nemen om een leidinggevende rol te nemen tijdens groepmeetings om hier ook beter in te worden."
-Wilt meer het iniatief nemen om een leidinggevende rol te nemen om zo iedereen meer aan het woord te laten en ook anderen meer de kans geven om hun mening te geven.
+"Ik wil meer het initiatief nemen om een leidinggevende rol te nemen tijdens groepsmeetings om hier ook beter in te worden."
+Wilt meer het initiatief nemen om een leidinggevende rol te nemen om zo iedereen meer aan het woord te laten en ook anderen meer de kans geven om hun mening te geven.
 
 
 ## Roos
