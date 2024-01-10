@@ -1,8 +1,8 @@
-# **Inhoudsopgave**
+# Software Guidebook
 
-- [**Inhoudsopgave**](#inhoudsopgave)
+- [Software Guidebook](#software-guidebook)
 - [Context](#context)
-    - [Domain terms](#domain-terms)
+    - [Domain Terms](#domain-terms)
 - [Functional Overview](#functional-overview)
     - [Link met meer informatie](#link-met-meer-informatie)
 - [Quality Attributes](#quality-attributes)
@@ -42,6 +42,7 @@
     - [Monitoring](#monitoring)
 - [Decision Log](#decision-log)
 
+
 # Context
 
 ![Context Diagram](C4-models/C4-model%20context.png)
@@ -53,7 +54,7 @@ Een geauthenticeerde gebruiker kan zijn eigen profielpagina bewerken, boekenplan
 
 De software van BKS gebruikt 3 externe systemen, die van Google en LinkedIn voor het authenticeren van gebruikers. En het systeem van OpenLibrary om informatie van boeken op te halen.
 
-### Domain terms
+### Domain Terms
 
 | **Term (NL)**  | **Term (EN)** | **Betekenis**                                                           | **Synoniemen**       |
 | -------------- | ------------- | ----------------------------------------------------------------------- | -------------------- |
@@ -76,7 +77,7 @@ Het kopen van boeken moet via een affiliate link gaan van bijvoorbeeld bol.com o
 
 ### Link met meer informatie
 
-[Link naar userstory's](../Projectplan/Product%20Backlog.md)
+[Link naar userstory's van projectplan](../Projectplan/Product%20Backlog.md)
 
 [Link naar userstory's op projectbord (dit is geüpdatet tijdens het project)](https://github.com/orgs/HANICA-DWA/projects/19/views/1?filterQuery=type%3A%22User+Story%22)
 
@@ -142,7 +143,6 @@ De publieke standaarden HTTP, JSON en REST hebben invloed op de architectuur die
 ### Kennis van het software-development team
 
 Kennis van het software-development team over React, Express.js en MongoDB, heeft invloed op de keuze om deze technologieën te gebruiken.
-
 
 # Principles
 
@@ -243,7 +243,7 @@ Voor de verificatie van Google JWT's wordt een library van Google gebruikt. De d
 
 ```js
 import { OAuth2Client } from "google-auth-library";
-function googleVerifyIdToken(token) {
+async function googleVerifyIdToken(token) {
   const client = new OAuth2Client();
   const ticket = await client.verifyIdToken({
     idToken: token,
@@ -262,7 +262,7 @@ De verificatie van LinkedIn JWT's is wel geïmplementeerd. De token wordt eerst 
 import jwt from "jsonwebtoken";
 import jwkToPem from "jwk-to-pem";
 import { createError } from "./errorCreation.js";
-function linkedInVerifyIdToken(token) {
+async function linkedInVerifyIdToken(token) {
   const response = await fetch("https://www.linkedin.com/oauth/openid/jwks");
   const jwks = await response.json();
   // Find the correct key in the JWKS based on the key ID (kid) from your JWT header
@@ -366,10 +366,9 @@ Het onderhouden en beheren of bewaken van de applicatie zal niet door ons worden
 # Deployment
 
 We hebben nog niet bepaald hoe we onze applicatie gaan deployen. We hebben we een paar opties:
-
-- Compleet zelf hosten via een VM.
-- Hosten in de cloud via AWS / GCP.
-- Hosten op een deployment helper zoals vercel of netlify, met een externe database hosting provider zoals MongoDB.
+ - Compleet zelf hosten via een VM.
+ - Hosten in de cloud via AWS / GCP.
+ - Hosten op een deployment helper zoals vercel of netlify, met een externe database hosting provider zoals MongoDB.
 
 Voor ons gaat de voorkeur naar zelf hosten met een VM. Dit zorgt voor complete controle over het deployen en is het ook het makkelijkst om problemen op te sporen. Het is wel goedkoper om alles via AWS of GCP te deployen. Hier betaal je voor wat je gebruikt dus betaal je niet te veel als er weinig traffic op de website komt. Ook als de applicatie veel traffic krijgt zorgen ze er zelf voor dat er meer servers gaan draaien. Het is wel wat moeilijker om dit op te zetten omdat we 3 containers hebben die dan allemaal met elkaar moeten communiceren.
 
@@ -433,4 +432,3 @@ Wij hebben ervoor gekozen om ook websockets te gebruiken tussen de backend en fr
 Wij hebben ervoor gekozen om Vite te gebruiken voor het opzetten van het React-project, omdat Vite sneller is dan create_react_app (CRA). Vite gebruikt Hot Module Replacement (HMR), wat zorgt voor snellere updates tijdens het ontwikkelen. Het scherm wordt niet volledig gerefresht, alleen de code die is veranderd wordt geüpdatet tijdens het runnen van de applicatie. Daarnaast gebruikt Vite Rollup als bundling tool in plaats van Webpack. Rollup is beter in het verminderen van bundle groottes en zorgt voor een hogere performance bij het bundelen dan webpack.
 
 Kortom gebruiken wij de MERN stack (MongoDB, Express.js, React, Node.js). Wij zijn tevreden met de keuzes die we hebben gemaakt. Dit zijn ook veelgebruikte, populaire technologieën. Hierdoor krijgen deze keuzes meer credibiliteit.
-

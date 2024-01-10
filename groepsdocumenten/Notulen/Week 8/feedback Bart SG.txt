@@ -1,0 +1,13 @@
+zinsopbouw: het kopen van boeken moet via affiliate links gaan, bks wordt een mobiele applicate..., zullen..., we gaan dit doen... -> tegenwoordige tijd, alsof het er al is
+
+principes -> bronnen (hoeft nu niet per se meer), concreet voorbeelden zou wel naar het pdf verwezen kunnen worden
+
+prefer a rich domain model gebeurt in mongodb (niet afhankelijk van mongoose o.i.d., echt op zichzelf) -> zit niet echt in dwa/klopt niet echt met wat we hebben
+
+hoofdstuk 8 code: architectural layering -> er wordt onderscheid gemaakt tussen tier en layer. Er zijn 3 tiers, lagen die hiertussen communiceren
+
+externe interfaces -> bulletpoints ipv opsomming (bij context vooruitverwijzen naar dit hoofdstuk)
+
+functional overview -> krachtig en kort, maar weinig structuur. bulletlijstje bij een opsomming
+
+deployment -> inhoudelijk veel discussie mogelijk (bronnen, vercel netlify iets over zeggen)
