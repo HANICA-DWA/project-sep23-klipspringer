@@ -1,4 +1,4 @@
-## Deployment
+# Deployment
 
 We hebben nog niet bepaald hoe we onze applicatie gaan deployen. We hebben we een paar opties:
  - Compleet zelf hosten via een VM.

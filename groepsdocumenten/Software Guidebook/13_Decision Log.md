@@ -1,4 +1,4 @@
-### Decision Log
+# Decision Log
 
 We hebben gekozen om de volgende technologieën te gebruiken:
 
