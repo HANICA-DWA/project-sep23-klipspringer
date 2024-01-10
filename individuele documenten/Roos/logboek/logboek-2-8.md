@@ -24,7 +24,8 @@
 
 | Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
 |---|---|---|---|---|---|
-| 3 uur | [link naar taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/299) bookshelf component | Alleen | De rest van de gebruikers interacties kunnen uitwerken | :smiley: | [link naar resultaat](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/dd3cd5d593c2216f31e6287428bf97278d3ffff4) |
+| 3 uur | [link naar taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/299) bookshelf component | Alleen | De rest van de gebruikers interacties kunnen uitwerken | :smiley: | [link naar resultaat](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/dd3cd5d593c2216f31e6287428bf97278d3ffff4) [link naar resultaat](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/7a318d5ee70f755ea77a939d793ea1fc926e11d0) |
+| 1 uur | [link naar taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/299) edit profile page | Alleen | een start gemaakt aan hte maken van de tests | :neutral_face: | zie morgen |
 | 45 min | Meeting met Bart | Iedereen + Bart |  | :neutral_face: | - |
 
 ## Woensdag 10 januari
@@ -33,8 +34,7 @@
 
 | Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
 |---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
+| 3 uur | [link naar taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/299) edit profile page | Alleen | test allemaal afgemaakt, uiteindelijk bleek dat het testen van een foto uploaden haast niet te doen is | :frowning_face: | [link naar resultaat](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/9da0ee42715d03fa2e715093f62eeb7554973308) |
 
 ## Donderdag 11 januari
 
