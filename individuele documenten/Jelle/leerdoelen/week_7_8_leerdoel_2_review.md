@@ -46,6 +46,8 @@ Als ik dit nog een keer zou doen dan zou ik wel iets proactiever de overleggen l
 Ik zou dit bijvoorbeeld ook toe kunnen passen bij het overleggen met de opdrachtgever.
 De volgende keer zal ik proactiever zijn.
 
+Ik heb mijn leerdoel bereikt, omdat ik goed heb geluisterd en ook goed heb doorgevraagd.
+
 
 ### Het effect op mijn eigen ontwikkeling was:
 De sfeer is nu wel flink verbeterd, en ik heb ook meer het gevoel dat ik meer inbreng heb op het project.
