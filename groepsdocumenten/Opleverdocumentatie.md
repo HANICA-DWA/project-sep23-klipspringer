@@ -108,6 +108,8 @@ Om de development client aan te zetten zijn de volgende stappen nodig:
 > 
 > npm run dev
 
+_Om een build versie van de frontend te maken, kan `npm run build` in de terminal worden uitgevoerd._
+
 
 ## Extra realisatie
 
