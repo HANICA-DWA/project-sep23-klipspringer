@@ -5,7 +5,7 @@ Ik wil meer luisteren naar anderen zodat ik beter kan samenwerken.
 
 
 ### Mijn motivatie om aan dit leerdoel te werken is:
-Omdat tijdens het vorige leerdoel heb geluisterd met als rede om meer respect voor anderen te hebben en ze laten uitpraten.
+Omdat ik tijdens het vorige leerdoel heb geluisterd met als rede om meer respect voor anderen te hebben en ze laten uitpraten.
 Wil ik nu meer luisteren om ook beter met ze samen te kunnen werken en zo ook mijn eigen inbreng te kunnen hebben.
 
 
@@ -22,7 +22,7 @@ Door goed te luisteren naar waar mensen om vragen en wat ze willen. Kan ik op de
 
 
 ### Om mijn leerdoel te bereiken ga ik de volgende acties op de volgende momenten uitvoeren:
-Ik ga goed luisteren naar wat mensen zeggen tijdens overleg momenten en ook tijdens vergaderingen. ik wacht tot er om mijn mening wordt gevraagd of er niemand anders inbreng geeft op het project.
+Ik ga goed luisteren naar wat mensen zeggen tijdens spontane overleg momenten en ook tijdens vergaderingen. ik wacht tot er om mijn mening wordt gevraagd of er niemand anders inbreng geeft op het project.
 
 
 ### Om mijn leerdoel te bereiken ga ik hulp vragen aan de volgende personen:
