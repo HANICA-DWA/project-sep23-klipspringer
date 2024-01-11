@@ -8,6 +8,10 @@
     - [Server](#server)
     - [Documentatie](#documentatie)
     - [Test](#test)
+    - [Installatie](#installatie)
+- [Extra realisatie](#extra-realisatie)
+  - [Features](#features)
+  - [Designs](#designs)
 
 # Inleiding
 
@@ -23,18 +27,8 @@ Alle bestanden die gebruikt zijn voor de realisering van de webapplicatie worden
 
 ### Client 
 
-In de map "client" zijn de bestanden te vinden die voor de frontend worden gebruikt. "\_\_mocks\_\_" en "\_\_tests\_\_" zijn mappen waarin de gemaakte frontend tests te vinden zijn. In een terminal zijn deze tests uit te voeren door:
-
-> npm test
-> 
-> npm t
-
 In de map "public" is een aantal afbeeldingen te vinden die in de app worden gebruikt. 
 In de map "src" staat de daadwerkelijke broncode van de frontend webapplicatie. Deze is opgedeeld in een aantal mapjes, behorende bij het type bestand. React Hooks staan in de "hooks" map, componenten in "components" enz.
-
-Om de development server te runnen 
-k edneglov ed ej reo
-
 
 ### Server
 
@@ -51,4 +45,42 @@ Ook is hier het projectplan te vinden, waarin staat beschreven hoe het project i
 
 
 ### Test
+
+In de map "\_\_tests\_\_" van de backend server zijn de unit-testen te vinden.
+Om de tests uit te voeren is Node.js versie 21.0.0 of hoger nodig.
+
+Deze worden uitgevoerd door "npm test" in de terminal van de backend server.
+
+> npm test
+
+Dit zal een coverage rapport teruggeven van alle uitgevoerde tests.
+
+In de map "\_\_tests\_\_" van de frontend server zijn de integratie-testen te vinden. Deze zijn opgedeeld in de map "components" en de map "pages".
+Ook zijn de verschillende mocks die worden gebruikt tijdens de integratie-testen te vinden in de map "\_\_mocks\_\_".
+
+Er worden mocks gemaakt van fetches omdat dit niet mogelijk is om te testen.
+
+Deze worden uitgevoerd door "npm test" in de terminal van de frontend server.
+
+> npm test
+
+Dit zal een coverage rapport teruggeven van alle uitgevoerde tests.
+
+
+### Installatie
+
+Om alles te laten draaien zijn er een paar
+
+
+# Extra realisatie
+In dit hoofdstuk wordt beschreven wat voor extra features/elementen er nog gerealiseerd kunnen worden voor een live-gang van BKS.
+
+## Features
+- Het uitwerken van een Open Graph kaart wanneer een gebruiker zijn link wilt delen.
+- De gebruikersinteractie van het bewerken en verwijderen van een plank veranderen (af te stemmen met UX designer (Rik Schot)).
+- Het toevoegen van affiliate links bij de "buy" knop op de detailpagina van een boek.
+
+## Designs
+Er zijn nog een aantal kleine aanpassingen mogelijk aan het design die de UX designer graag zou willen zien in de applicatie. Deze kunnen afgestemd/besproken worden met de UX designer, zodat de aanpassingen worden gemaakt naar verwachting.   
+
 
