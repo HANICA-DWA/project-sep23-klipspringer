@@ -42,8 +42,8 @@
 
 | Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
 |---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
+| 30 min | [link naar taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/300) | Met iedereen | Ik heb het stukje uitgewerkt over wat er in de toekomst nog kan uitgewerkt worden | :relaxed: | [link naar resultaat](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/07ea2728a7492355561d24b5384d1e3126c9c72d) |
+| 15 min | titel van een boek afbreken onder een plank | Alleen | Het ging vrij gemakkelijk om het te maken aangezien ik dit stuk al had uitgwerkt bij de samenvatting van een boek | :innocent: | [link naar resultaat](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/6a72a3c425a94a871224b5bf1a53e43ad761823a) |
 
 ## Vrijdag 12 januari
 
