@@ -40,7 +40,7 @@ Een aantal functies die hergebruikt worden, zijn te vinden in de "functions" map
 
 ### Documentatie
 
-Documentatie over de webapplicatie is  te vinden in de map "groepsdocumenten". Hierin staat het Software Guidebook, waarin uitgebreid staat beschreven hoe de architectuur van de applicatie is vormgegeven, welke functionaliteiten er zijn en aan welke eisen dit moet voldoen.
+Documentatie over de webapplicatie is te vinden in de map "groepsdocumenten". Hierin staat het Software Guidebook, waarin uitgebreid staat beschreven hoe de architectuur van de applicatie is vormgegeven, welke functionaliteiten er zijn en aan welke eisen dit moet voldoen.
 Ook is hier het projectplan te vinden, waarin staat beschreven hoe het project is aangepakt.
 
 
@@ -70,7 +70,7 @@ Dit zal een coverage rapport teruggeven van alle uitgevoerde tests.
 
 ## Installatie
 
-Om alles te laten draaien zijn er een paar programmas die geinstalleerd moeten worden.
+Om alles te laten draaien zijn er een paar programma's die geïnstalleerd moeten worden.
 
 > [MongoDB Community Edition](https://www.mongodb.com/try/download/community)
 of
@@ -84,7 +84,7 @@ Om de development server aan te zetten zijn de volgende stappen nodig:
 
 2. Kopier de inhoud van .env.example naar .env
 
-3. Maak een google en linkedin account aan en vraag om OAuth2 tokens, vul deze in bij de lege velden in het .env bestand
+3. Maak een Google en LinkedIn account aan en vraag om OAuth2 tokens, vul deze in bij de lege velden in het .env bestand
    1.  [Stappenplan voor Google](https://blog.rebex.net/howto-register-gmail-oauth)
    2.  [Stappenplan voor LinkedIn](https://www.linkedin.com/pulse/how-get-signin-linkedin-work-taric-andrade/)
 
@@ -117,13 +117,11 @@ In dit hoofdstuk wordt beschreven wat voor extra features/elementen er nog gerea
 
 - Het uitwerken van een Open Graph kaart wanneer een gebruiker zijn link wilt delen.
   - Er kan op dit moment wel handmatig een afbeelding van een eigen profiel worden gedownload, het delen van een link met een automatisch gegenereerde afbeelding is een toevoeging die gedaan kan worden.
-- De gebruikersinteractie van het bewerken en verwijderen van een plank veranderen (af te stemmen met UX designer (Rik Schot)).
+- De gebruikersinteractie van het bewerken en verwijderen van een plank veranderen (af te stemmen met UX-designer (Rik Schot)).
 - Het toevoegen van affiliate links bij de "buy" knop op de detailpagina van een boek.
   - Er wordt op dit moment wel doorverwezen naar de Amazon-webshop, dit gebeurt momenteel nog niet via een affiliate link.
-- Om de applicatie wat meer op een social-media platform te laten lijken, zouden er nog features als likes en reacties op boekenplanken geïmplenteerd kunnen worden.
+- Om de applicatie wat meer op een socialmediaplatform te laten lijken, zouden er nog features als likes en reacties op boekenplanken geïmplementeerd kunnen worden.
 
 ### Designs
 
-Er zijn nog een aantal kleine aanpassingen mogelijk aan het design die de UX designer graag zou willen zien in de applicatie. Deze kunnen afgestemd/besproken worden met de UX designer, zodat de aanpassingen worden gemaakt naar verwachting.   
-
-
+Er zijn nog een aantal kleine aanpassingen mogelijk aan het design die de UX-designer graag zou willen zien in de applicatie. Deze kunnen afgestemd/besproken worden met de UX-designer, zodat de aanpassingen worden gemaakt naar verwachting.
