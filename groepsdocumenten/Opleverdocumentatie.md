@@ -8,10 +8,10 @@
     - [Server](#server)
     - [Documentatie](#documentatie)
     - [Test](#test)
-    - [Installatie](#installatie)
-- [Extra realisatie](#extra-realisatie)
-  - [Features](#features)
-  - [Designs](#designs)
+  - [Installatie](#installatie)
+  - [Extra realisatie](#extra-realisatie)
+    - [Features](#features)
+    - [Designs](#designs)
 
 # Inleiding
 
@@ -68,7 +68,7 @@ Deze worden uitgevoerd door "npm test" in de terminal van de frontend server.
 Dit zal een coverage rapport teruggeven van alle uitgevoerde tests.
 
 
-### Installatie
+## Installatie
 
 Om alles te laten draaien zijn er een paar programmas die geinstalleerd moeten worden.
 
@@ -107,11 +107,11 @@ Om de development client aan te zetten zijn de volgende stappen nodig:
 > npm run dev
 
 
-# Extra realisatie
+## Extra realisatie
 
 In dit hoofdstuk wordt beschreven wat voor extra features/elementen er nog gerealiseerd kunnen worden voor een live-gang van BKS.
 
-## Features
+### Features
 
 - Het uitwerken van een Open Graph kaart wanneer een gebruiker zijn link wilt delen.
   - Er kan op dit moment wel handmatig een afbeelding van een eigen profiel worden gedownload, het delen van een link met een automatisch gegenereerde afbeelding is een toevoeging die gedaan kan worden.
@@ -120,7 +120,7 @@ In dit hoofdstuk wordt beschreven wat voor extra features/elementen er nog gerea
   - Er wordt op dit moment wel doorverwezen naar de Amazon-webshop, dit gebeurt momenteel nog niet via een affiliate link.
 - Om de applicatie wat meer op een social-media platform te laten lijken, zouden er nog features als likes en reacties op boekenplanken geïmplenteerd kunnen worden.
 
-## Designs
+### Designs
 
 Er zijn nog een aantal kleine aanpassingen mogelijk aan het design die de UX designer graag zou willen zien in de applicatie. Deze kunnen afgestemd/besproken worden met de UX designer, zodat de aanpassingen worden gemaakt naar verwachting.   
 
