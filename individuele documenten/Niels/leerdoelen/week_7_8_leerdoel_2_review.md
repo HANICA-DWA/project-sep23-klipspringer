@@ -18,7 +18,7 @@ Af en toe is de DSU te snel ten einde gekomen omdat iedereen goed op schema zat 
 
 ### Ik heb mijn leerdoel wel/niet bereikt omdat, onderbouw aan de hand van concrete voorbeelden/situaties uit praktijk (STARRT):
 
-Ik heb mijn leerdoel wel bereikt omdat ik bij bijna elke DSU de leiding heb gegeven en wel het idee had dat iedereen goed zijn eigen woordje kon doen. Ook zijn er geen overlaps geweest in taken en is dus dubbel werk voorkomen. Hierdoor heb ik dus het idee dat iedereen inderdaad zijn taken goed heeft kunnen overbrengen en zal ik in de toekomst ook proberen dit goed te blijven doen.
+Ik heb mijn leerdoel wel bereikt omdat ik bij bijna elke DSU de leiding heb gegeven en wel het idee had dat iedereen goed zijn eigen woordje kon doen. Ook zijn er geen overlaps geweest in taken en is dus dubbel werk voorkomen. Hierdoor heb ik dus het idee dat iedereen inderdaad zijn taken goed heeft kunnen overbrengen en zal ik in de toekomst ook proberen dit goed te blijven doen. Ik heb in mijn team gevraagd om een cijfer te geven gebaseerd op de DSU's in de eerste sprint vergeleken met de DSU's die ik heb gegeven. De DSU's in de eerste sprint werden een 4 gegeven en de DSU's die ik had geleid een 7.
 
 ### Het effect op mijn eigen ontwikkeling was:
 
