@@ -83,8 +83,8 @@ it("Profilepage should display correct number of followers and following", async
   const followersSection = getByTestId("followers-section");
   const followingSection = getByTestId("following-section");
 
-  expect(followersSection.childNodes[1].textContent).toBe("1");
-  expect(followingSection.childNodes[1].textContent).toBe("0");
+  expect(followersSection.childNodes[0].textContent).toBe("1 Followers");
+  expect(followingSection.childNodes[0].textContent).toBe("0 Following");
 });
 
 it("Profilepage click on followers should open modal", async () => {
