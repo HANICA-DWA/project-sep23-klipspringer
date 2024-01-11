@@ -60,21 +60,15 @@ function Profilepage() {
       {followAlert}
       <Stack justifyContent="flex-start" alignItems="center" sx={{ minHeight: "100vh" }} spacing={3} useFlexGap>
         <Header shareButton={true} profileInfo={profileInfo} />
-        <Stack direction="row" justifyContent="space-evenly" width="100%" maxWidth="800px">
+        <Stack direction="column" width="100%" maxWidth="800px">
           <ProfileInfo name={profileInfo.name} avatar={profileInfo.profile_picture} handle={profileInfo._id} />
-          <Stack justifyContent="center">
-            <Stack direction="row" sx={{ cursor: "pointer" }}>
+          <Stack alignItems="center" useFlexGap gap={1}>
+            <Stack direction="row" sx={{ cursor: "pointer" }} useFlexGap gap={5}>
               <Stack alignItems="center" margin="5px" onClick={() => handleOpen("followers")} data-testid="followers-section">
-                <Typography variant="body1" fontWeight={700}>
-                  Followers
-                </Typography>
-                <Typography>{profileInfo.followers ? profileInfo.followers.length : null}</Typography>
+                <Typography variant="body1">{profileInfo.followers ? profileInfo.followers.length : null} Followers</Typography>
               </Stack>
               <Stack alignItems="center" margin="5px" onClick={() => handleOpen("following")} data-testid="following-section">
-                <Typography variant="body1" fontWeight={700}>
-                  Following
-                </Typography>
-                <Typography>{profileInfo.following ? profileInfo.following.length : null}</Typography>
+                <Typography variant="body1">{profileInfo.following ? profileInfo.following.length : null} Following</Typography>
               </Stack>
             </Stack>
             {profile._id !== userName && profile.loggedIn ? (
