@@ -90,6 +90,7 @@ Om de development server aan te zetten zijn de volgende stappen nodig:
 
 5. Voer de volgende terminal commands uit:
 > npm i
+> 
 > node app.js
 
 Om de development client aan te zetten zijn de volgende stappen nodig:
@@ -102,6 +103,7 @@ Om de development client aan te zetten zijn de volgende stappen nodig:
 
 4. Voer de volgende terminal commands uit:
 > npm i
+> 
 > npm run dev
 
 
