@@ -37,7 +37,7 @@
 | Uren | Taak                      | Met Wie | Resultaten                                                                 | Emotie | Link |
 |------|---------------------------|---|----------------------------------------------------------------------------|---|---|
 | 3    | E2E page testen schrijven |  N.V.T. | jest is nu al wel wat makelijker te gebruiken                              |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/655d5b06336c102a1b4a9a8394912fd24db78147) |
-| 1    | Leerdoelen                |  N.V.T. | leerdoelen verbeteren op grammatica en de reflectie van een leerdoel maken |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/0f5dc11c4ff9581dcd379008649b2203f149f841) |
+| 1.5  | Leerdoelen                |  N.V.T. | leerdoelen verbeteren op grammatica en de reflectie van een leerdoel maken |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/0f5dc11c4ff9581dcd379008649b2203f149f841) |
 |      |                           | |                                                                            | | |
 
 ## Donderdag 11 januari

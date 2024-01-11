@@ -24,6 +24,6 @@ In dit project maken wij een mobiele web applicatie voor het delen van boeken op
   - [Periodeplanning](./groepsdocumenten/Projectplan/Periodeplanning.md)
   - [Procesbeschrijving](./groepsdocumenten/Projectplan/Procesbeschrijving.md)
   - [Product Backlog](./groepsdocumenten/Projectplan/Product%20Backlog.md)
-- [SoftwareGuidebook](./groepsdocumenten/Software%20Guidebook/README.md)
+- [Software Guidebook](./groepsdocumenten/Software%20Guidebook/README.md)
 - [Client](./client/)
 - [Server](./server/)

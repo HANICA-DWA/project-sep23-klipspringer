@@ -21,7 +21,6 @@ Ik had ook iets proactiever de overleggen kunnen leiden.
 
 
 ### Ik heb mijn leerdoel wel/niet bereikt omdat, onderbouw aan de hand van concrete voorbeelden/situaties uit praktijk (STARRT):
-// het verhaal over de amazon buy knop, ik had gevraagd dat ik de amazon link niet kon vinden en toen werd er geantwoord dat er soms een amazon id meegegeven wordt, en toen deed ik als suggestie, wat als er dus geen amazon id bij zit, hoe zal de buy button dan werken, en toen werdt er verteld dat ik dan als oplossing ook gewoon een amazon zoekfunctie kon doen op het isbn nummer. Dat heb ik toen gedaan.
 Tijdens een overlegmoment waarbij we het over de amazon buy knop hadden.
 Ik, Roos, Joris, Yannick en Niels waren betrokken bij dit gesprek op school.
 Over hoe we de amazon buy knop gingen implementeren.
@@ -46,6 +45,8 @@ Als beoepsbeoefenaar is dit ook belangrijk, omdat je dan sneller tot een oplossi
 Als ik dit nog een keer zou doen dan zou ik wel iets proactiever de overleggen leiden, maar ik zou wel weer doorvragen en mensen laten uitspreken.
 Ik zou dit bijvoorbeeld ook toe kunnen passen bij het overleggen met de opdrachtgever.
 De volgende keer zal ik proactiever zijn.
+
+Ik heb mijn leerdoel bereikt, omdat ik goed heb geluisterd en ook goed heb doorgevraagd.
 
 
 ### Het effect op mijn eigen ontwikkeling was:
