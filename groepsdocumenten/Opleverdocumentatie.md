@@ -70,7 +70,41 @@ Dit zal een coverage rapport teruggeven van alle uitgevoerde tests.
 
 ### Installatie
 
-Om alles te laten draaien zijn er een paar
+Om alles te laten draaien zijn er een paar programmas die geinstalleerd moeten worden.
+
+> [MongoDB Community Edition](https://www.mongodb.com/try/download/community)
+of
+> [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+
+> [Node v21+ + npm v10+](https://nodejs.org/en)
+
+Om de development server aan te zetten zijn de volgende stappen nodig:
+
+1. Zet MongoDB aan als service met `mongod --service` of zet de docker container aan met `docker compose up`.
+
+2. Kopier de inhoud van .env.example naar .env
+
+3. Maak een google en linkedin account aan en vraag om OAuth2 tokens, vul deze in bij de lege velden in het .env bestand
+
+4. Vul bij `MONGO_HOST`, de waarde `mongodb://127.0.0.1:27017`
+
+5. Voer de volgende terminal commands uit:
+> npm i
+> 
+> node app.js
+
+Om de development client aan te zetten zijn de volgende stappen nodig:
+
+1. Kopier de inhoud van .env.example naar .env
+
+2. Vul bij `NODE_ENV` de waarde `development` en bij `VITE_BACKEND_HOST` de waarde `http://localhost:3001` in.
+
+3. Vul de google en linkedin waardes in die je hebt gekregen bij het aanmaken van google en linkedin OAuth van de server.
+
+4. Voer de volgende terminal commands uit:
+> npm i
+> 
+> npm run dev
 
 
 # Extra realisatie
