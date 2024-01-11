@@ -27,6 +27,7 @@ Alle bestanden die gebruikt zijn voor de realisering van de webapplicatie worden
 
 ### Client 
 
+In de map "client" zijn de bestanden te vinden die voor de frontend worden gebruikt.
 In de map "public" is een aantal afbeeldingen te vinden die in de app worden gebruikt. 
 In de map "src" staat de daadwerkelijke broncode van de frontend webapplicatie. Deze is opgedeeld in een aantal mapjes, behorende bij het type bestand. React Hooks staan in de "hooks" map, componenten in "components" enz.
 
@@ -105,14 +106,20 @@ Om de development client aan te zetten zijn de volgende stappen nodig:
 
 
 # Extra realisatie
+
 In dit hoofdstuk wordt beschreven wat voor extra features/elementen er nog gerealiseerd kunnen worden voor een live-gang van BKS.
 
 ## Features
+
 - Het uitwerken van een Open Graph kaart wanneer een gebruiker zijn link wilt delen.
+  - Er kan op dit moment wel handmatig een afbeelding van een eigen profiel worden gedownload, het delen van een link met een automatisch gegenereerde afbeelding is een toevoeging die gedaan kan worden.
 - De gebruikersinteractie van het bewerken en verwijderen van een plank veranderen (af te stemmen met UX designer (Rik Schot)).
 - Het toevoegen van affiliate links bij de "buy" knop op de detailpagina van een boek.
+  - Er wordt op dit moment wel doorverwezen naar de Amazon-webshop, dit gebeurt momenteel nog niet via een affiliate link.
+- Om de applicatie wat meer op een social-media platform te laten lijken, zouden er nog features als likes en reacties op boekenplanken geïmplenteerd kunnen worden.
 
 ## Designs
+
 Er zijn nog een aantal kleine aanpassingen mogelijk aan het design die de UX designer graag zou willen zien in de applicatie. Deze kunnen afgestemd/besproken worden met de UX designer, zodat de aanpassingen worden gemaakt naar verwachting.   
 
 
