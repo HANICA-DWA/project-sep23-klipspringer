@@ -85,6 +85,8 @@ Om de development server aan te zetten zijn de volgende stappen nodig:
 2. Kopier de inhoud van .env.example naar .env
 
 3. Maak een google en linkedin account aan en vraag om OAuth2 tokens, vul deze in bij de lege velden in het .env bestand
+   1.  [Stappenplan voor Google](https://blog.rebex.net/howto-register-gmail-oauth)
+   2.  [Stappenplan voor LinkedIn](https://www.linkedin.com/pulse/how-get-signin-linkedin-work-taric-andrade/)
 
 4. Vul bij `MONGO_HOST`, de waarde `mongodb://127.0.0.1:27017`
 
