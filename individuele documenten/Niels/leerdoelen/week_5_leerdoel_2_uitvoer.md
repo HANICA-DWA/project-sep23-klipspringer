@@ -4,7 +4,7 @@ _Beschrijf wat je -tot nu toe- hebt gedaan om te werken aan je persoonlijke leer
 
 ### Hoe heb je het aangepakt?
 
-Ik heb bij DSU's en sprint retrospectives de leiding van het gesprek opgepakt.
+Ik heb bij DSU's en sprint retrospectives de leiding van het gesprek opgepakt. Om deze te leiden heb ik eerst voorbereid via theorie. Die zegt dat de drie belangrijke vragen voor elke developer zijn: Wat heb je gedaan, wat ga je doen en wat blokkeert je.
 
 ### Welke acties op welke momenten heb je uitgevoerd? 
 
@@ -21,6 +21,8 @@ Dat ik nog wel verder moet oefenen met het leiden van gesprekken. Af en toe is e
 ### Heb je iets bijgesteld? Waarom?
 
 Ik heb me na een paar DSU's beter gaan voorbereiden door een planning te maken van alle onderdelen die daar onder vallen. Ook ga ik me bij de retrospective beter voorbereiden door een checklist er bij te houden voor de onderdelen die er bij horen.
+
+De checklist van de DSU is niet altijd even handig. Zo heb ik ook resources gevonden die de drie standaard vragen niet nuttig vinden en een ander idee hebben van DSU's. [DZONE](https://dzone.com/articles/optimizing-dsus-for-scrum-teams-following-scaled-a) geeft als hint om bijvoorbeeld meer te focussen op de planning en het scrumbord er ook vooral er bij te houden. Dit heb ik ook gedaan en hiermee beter met het team op het antwoord te komen van of we de sprint planning nog gaan halen of niet.
 
 ### Wat heeft het opgeleverd voor jou?
 

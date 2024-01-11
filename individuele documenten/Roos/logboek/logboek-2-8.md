@@ -42,8 +42,9 @@
 
 | Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
 |---|---|---|---|---|---|
-| 30 min | [link naar taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/300) | Met iedereen | Ik heb het stukje uitgewerkt over wat er in de toekomst nog kan uitgewerkt worden | :relaxed: | [link naar resultaat](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/07ea2728a7492355561d24b5384d1e3126c9c72d) |
+| 1 uur | [link naar taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/300) | Met iedereen | Ik heb het stukje uitgewerkt over wat er in de toekomst nog kan uitgewerkt worden | :relaxed: | [link naar resultaat](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/07ea2728a7492355561d24b5384d1e3126c9c72d) |
 | 15 min | titel van een boek afbreken onder een plank | Alleen | Het ging vrij gemakkelijk om het te maken aangezien ik dit stuk al had uitgwerkt bij de samenvatting van een boek | :innocent: | [link naar resultaat](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/6a72a3c425a94a871224b5bf1a53e43ad761823a) |
+| 1 uur | Meeting met Pim | Met iedereen + Pim | We hebben de leerdoelen besproken | :thinking: | - |
 
 ## Vrijdag 12 januari
 
