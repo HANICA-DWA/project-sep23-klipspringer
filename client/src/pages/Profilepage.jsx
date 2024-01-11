@@ -118,7 +118,7 @@ function Profilepage() {
                     color: "black",
                     justifyContent: "start",
                     fontWeight: "600",
-                    width: "320px",
+                    width: "300px",
                   }}
                 >
                   {shelf.name ? shelf.name : "Nameless shelf"}
