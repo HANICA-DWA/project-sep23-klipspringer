@@ -7,7 +7,7 @@ Ik heb geprobeerd proactiever en geconcentreerder bezig te zijn met het reviewen
 
 ### Welke acties op welke momenten heb je uitgevoerd?
 - Tijdens elke productreview heb ik feedback gegeven op minimaal één specifiek onderdeel, zoals een functie in de code of een subkopje in een documentatiebestand.
--Na het geven van feedback heb ik gecheckt of de andere persoon mijn feedback begreep en het hier mee eens was.
+- Na het geven van feedback heb ik gecheckt of de andere persoon mijn feedback begreep en het hier mee eens was.
 
 ### Wie heb je om hulp gevraagd?
 Ik heb hulp gevraagd aan de groepsgenoten aan wie ik feedback heb gegeven. Ik heb gevraagd of mijn feedback duidelijk en specifiek was.
@@ -29,4 +29,9 @@ Voornamelijk dezelfde acties blijven volhouden:
 - Tijdens elke productreview geef ik feedback op minimaal één specifiek onderdeel (een functie in de code, een subkopje in een documentatiebestand).
 - Na het geven van feedback controleer ik of de andere persoon begrijpt wat ik bedoel en de feedback nuttig vindt.
 
+Als extra leerpunt neem ik mee om tijdens het geven van feedback enkele tips voor het geven van feedback uit te proberen, om te kijken wat voor mij het beste werkt. (Ros, 2022)
+
 Daarnaast kan ik mijzelf nog verbeteren door de feedback die ik geef nog wat meer via de KOET-methode te doen. En om meer mogelijkheden te krijgen om feedback te geven, ga ik vaker initiatief nemen om iemands product te reviewen.
+
+### Bronnen
+Ros, J. (2022, 6 januari). 10 tips voor het geven van feedback. Geraadpleegd op 11 januari 2024, van https://xl10.nl/10-tips-voor-het-geven-van-feedback/
