@@ -123,6 +123,7 @@ In dit hoofdstuk wordt beschreven wat voor extra features/elementen er nog gerea
 - Het toevoegen van affiliate links bij de "buy" knop op de detailpagina van een boek.
   - Er wordt op dit moment wel doorverwezen naar de Amazon-webshop, dit gebeurt momenteel nog niet via een affiliate link.
 - Om de applicatie wat meer op een socialmediaplatform te laten lijken, zouden er nog features als likes en reacties op boekenplanken geïmplementeerd kunnen worden.
+- Gebruikers kunnen hun eigen socials toevoegen, waardoor andere gebruikers direct naar deze profielen kunnen gaan.
 
 ### Designs
 

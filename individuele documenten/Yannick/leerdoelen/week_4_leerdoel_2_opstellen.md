@@ -2,7 +2,7 @@
 
 ### De komende 4 weken ga ik met het volgende leerdoel aan de slag:
 
-Ik wil mijn vaardigheden verbeteren in het geven van effectieve KOET-feedback op producten die door mijn teamgenoten zijn ontwikkeld.
+Ik wil mijn vaardigheden verbeteren in het geven van effectieve KOET-feedback op producten die door mijn teamgenoten zijn ontwikkeld. (HAN-ICA-Professional Skills HBO-ICT, 2019)
 
 ### Mijn motivatie om aan dit leerdoel te werken is:
 
@@ -26,7 +26,7 @@ Proactief vragen om feedback op mijn eigen werk om van anderen te leren.
 
 Tijdens elke productreview geef ik feedback op minimaal één specifiek onderdeel (een functie in de code, een subkopje in een documentatiebestand).
 Wanneer ik feedback geef, noteer ik dit van tevoren en controleer ik dit via de KOET-methode.
-Na het geven van feedback controleer ik of de andere persoon begrijpt wat ik bedoel en de feedback nuttig vindt. Ik vraag ook regelmatig wat er nog verbetert kan worden.
+Na het geven van feedback controleer ik of de andere persoon begrijpt wat ik bedoel en de feedback nuttig vindt. Ik vraag ook regelmatig wat er nog verbeterd kan worden.
 
 ### Om mijn leerdoel te bereiken ga ik hulp vragen aan de volgende personen:
 
@@ -37,3 +37,6 @@ Ik ga hulp vragen aan mijn groepsgenoten, ik ga vragen of zij mijn feedback nutt
 Ik heb bij ten minste drie productreviews specifieke en gedetailleerde feedback gegeven.
 Ik heb bij iedere productreview (pull request op GitHub) commentaar gezet, zowel positieve punten als verbeterpunten.
 Mijn teamleden hebben positief gereageerd op de bruikbaarheid en relevantie van mijn feedback.
+
+### Bronnen 
+HAN-ICA-Professional Skills HBO-ICT. (2019). Reader Feedback geven en ontvangen op gedrag en producten.
