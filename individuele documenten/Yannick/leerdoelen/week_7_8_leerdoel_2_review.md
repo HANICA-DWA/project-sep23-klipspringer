@@ -62,11 +62,11 @@ Doordat ik meer feedback heb gegeven op producten, heeft dit als effect gehad da
 
 ### _Alleen bij leerdoel 2:_ Dit is wat ik me concreet voorneem voor volgend project/stage/minor:
 
-Met betrekking tot het geven van feedback in een volgend project, neem ik me de volgende dingen voor:
+Met betrekking tot het geven van feedback in een volgend project, om hier nog beter in te worden, neem ik me de volgende dingen voor:
 
 - Voor het geven van feedback, wil ik meer tijd nemen om de feedback te noteren. Ik wil hiermee controleren of alle onderdelen van KOET hierin zitten, zodat mijn feedback compleet is.
 - Ik wil bij het geven van feedback verschillende methodes/stijlen gaan proberen, om te kijken welke het beste bij mij past en welke het beste aansluit binnen de groep. Ik ga hiervoor verschillende bronnen met tips opzoeken.
-- Ik wil actiever gaan luisteren naar feedback die anderen op mijn producten geven. 
+- Ik wil actiever gaan luisteren naar feedback die anderen op mijn producten geven. Ik kan hier de LSD techniek voor gebruiken, zodat ik de feedback van anderen ook helemaal begrijp. Hier kan ik weer van leren, door goede onderdelen op te merken en zelf toe te passen.
 
 ### Bronnen
 
