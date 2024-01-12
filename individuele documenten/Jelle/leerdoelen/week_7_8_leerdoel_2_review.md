@@ -16,7 +16,7 @@ Ik heb ook suggesties gegeven en dan geluisterd over hoe anderen erover denken.
 
 
 ### Dit kon beter:
-Doordat je veel doorvraagt, kan het soms zijn dat de discussie wat langer duurt.
+Doordat je veel doorvraagt, kan het soms zijn dat de discussie wat langer duurt. Er zou dus ook op verschillende momenten iets minder zelf met suggesties komen of iets minder vragen naar de meningen van anderen.
 Ik had ook iets proactiever de overleggen kunnen leiden.
 
 
@@ -40,13 +40,18 @@ Daardoor werd de sfeer voor anderen ook prettiger. En kon ik ook sneller aan de 
 Dus had ik eigenlijk wel het resultaat wat ik wilde hebben.
 
 Door mijn meningen te delen en vervolgens te luisteren naar wat anderen erover te zeggen hebben kan je sneller tot een duidelijke oplossing komen.
-Als beoepsbeoefenaar is dit ook belangrijk, omdat je dan sneller tot een oplossing kan komen en ook sneller aan de slag kan.
+Als beroepsbeoefenaar is dit ook belangrijk, omdat je dan sneller tot een oplossing kan komen en ook sneller aan de slag kan.
 
 Als ik dit nog een keer zou doen dan zou ik wel iets proactiever de overleggen leiden, maar ik zou wel weer doorvragen en mensen laten uitspreken.
 Ik zou dit bijvoorbeeld ook toe kunnen passen bij het overleggen met de opdrachtgever.
 De volgende keer zal ik proactiever zijn.
 
-Ik heb mijn leerdoel bereikt, omdat ik goed heb geluisterd en ook goed heb doorgevraagd.
+Ik heb ook gevraagd aan mijn teamgenoten of ze hebben gemerkt dat ik meer naar hun mening vroeg en ook meer naar ze luisterde.
+Zij vonden dat het verschil vergeleken met het begin van het project wel duidelijk te merken is.
+Zij vonden op een schaal van 1 tot 10 dat ik van een 4 naar een 7 ben gegaan. En dat ik meer ging vragen naar hun meningen.
+Dit vond ik zelf ook wel een goed resultaat, omdat ik zelf ook wel het gevoel had dat ik meer naar hun mening vroeg.
+
+Ik heb dus veel in de richting van mijn leerdoel gewerkt, omdat ik goed heb geluisterd en ook goed heb doorgevraagd.
 
 
 ### Het effect op mijn eigen ontwikkeling was:

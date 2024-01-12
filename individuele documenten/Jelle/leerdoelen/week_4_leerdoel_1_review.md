@@ -39,6 +39,8 @@ Dus voor de volgende keer iets meer ook mijn mening geven.
 
 Door meer te luisteren kan je als een beroepsbeoefenaar beter overweg met verschillende mensen, en krijgen mensen ook meer het gevoel van volledige aandacht.
 
+Ik heb dus wel veel in de richting van mijn leerdoel gewerkt, maar ben nog niet helemaal tevreden over het resultaat.
+
 Als ik dit nog een keer zou doen dan zou ik wel iets meer mijn mening geven, maar ik zou wel weer doorvragen en mensen laten uitspreken.
 Ik zou dit bijvoorbeeld ook kunnen toepassen tijdens de uren inschatten van taken.
 Voor de volgende keer zou ik duidelijker mijn mening geven, maar ook luisteren naar anderen en doorvragen.

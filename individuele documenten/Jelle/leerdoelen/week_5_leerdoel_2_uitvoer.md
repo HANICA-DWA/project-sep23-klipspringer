@@ -3,6 +3,8 @@
 _Beschrijf wat je -tot nu toe- hebt gedaan om te werken aan je persoonlijke leerdoel_
 
 ### Hoe heb je het aangepakt?
+Mijn docent in professionele vaardigheden heeft mij gewezen naar de theorie van LSD (Luisteren, Samenvatten, Doorvragen) (Webba, z.d.).
+Zelf heb ik ook nog wat tips opgezocht op het internet over hoe ik beter kan samenwerken met anderen. Hierbij kwam ik bij tips om de inbreng in een project team te verbeteren "Inbreng en initiatief". (Webba, z.d.-a)
 Ik heb geluisterd naar de meningen over mijn inbreng op het project, zodat we zo samen tot een oplossing konden komen, maar ook dat ik mijn inbreng kon geven.
 
 
@@ -27,9 +29,13 @@ We komen nu duidelijker tot een oplossing en ik heb het gevoel dat ik ook echt e
 
 
 ### Wat heeft het opgeleverd voor je team?
-We een betere samenwerking en wordt de sfeer wordt ook beter.
+We hebben een betere samenwerking en de sfeer wordt ook beter.
 
 
 ### Welke acties zijn de komende 2 weken nodig om (nog meer) voortgang te boeken?
 Dezelfde acties als die ik tot nu toe heb gedaan:
 Luisteren naar de meningen van anderen, mijn eigen inbreng geven op de juiste momenten, initiatief nemen om actief te zoeken naar oplossingen en waardeer de inbreng van anderen.
+
+### Bronnen
+- [Webba. (z.d.). LSD: Luisteren, samenvatten en doorvragen: training en coaching. De Steven training | coaching | outplacement. Geraadpleegd op 12 januari 2024, van https://www.desteven.nl/persoonlijke-ontwikkeling/communicatie/luistervaardigheid/lsd](https://www.desteven.nl/persoonlijke-ontwikkeling/communicatie/luistervaardigheid/lsd)
+- [Webba. (z.d.-a). Inbreng en initiatief ontwikkelen binnen teams en organisaties. De Steven training | coaching | outplacement. Geraadpleegd op 12 januari 2024, van https://www.desteven.nl/team-organisatie/teamontwikkeling/initiatief-team](https://www.desteven.nl/team-organisatie/teamontwikkeling/initiatief-team)
