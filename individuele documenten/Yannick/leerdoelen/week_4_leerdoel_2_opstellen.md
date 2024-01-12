@@ -14,7 +14,7 @@ Het verbeteren van mijn feedbackvaardigheden zal mijn vermogen vergroten om spec
 
 ### Dit leerdoel levert het volgende op voor mijn team:
 
-Bij het ontvangen van betere feedback van mij, zullen producten een hogere kwaliteit hebben. Voor de groep is ook duidelijker wat ik als verbeterpunten in een product zie, waardoor we als groep hier ook inhoudelijker over kunnen discussiëren.
+Bij het ontvangen van betere feedback van mij, zullen producten een hogere kwaliteit hebben. Voor de groep is ook duidelijker wat ik als verbeterpunten in een product zie, waardoor we als groep hier ook inhoudelijker over kunnen discussiëren en meer communicatie krijgen.
 
 ### Ik ga op de volgende manier(en) werken aan mijn leerdoel:
 
