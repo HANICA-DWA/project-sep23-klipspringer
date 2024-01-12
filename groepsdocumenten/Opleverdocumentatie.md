@@ -30,6 +30,8 @@ Alle bestanden die gebruikt zijn voor de realisering van de webapplicatie worden
 In de map "client" zijn de bestanden te vinden die voor de frontend worden gebruikt.
 In de map "public" is een aantal afbeeldingen te vinden die in de app worden gebruikt. 
 In de map "src" staat de daadwerkelijke broncode van de frontend webapplicatie. Deze is opgedeeld in een aantal mapjes, behorende bij het type bestand. React Hooks staan in de "hooks" map, componenten in "components" enz.
+De Redux store voor notificaties en het ingelogde profiel zijn te vinden onder "redux".
+De react-router is geconfigureerd in "Router.jsx". Hierin staan de verschillende client-side routes. Vanuit hier worden verschillende pagina's geladen vanuit "pages". Sommige routes zijn "Protected Routes". Dit houdt in dat deze pagina's alleen toegankelijk zijn voor gebruikers die ingelogd zijn als de desbetreffende gebruiker.
 
 ### Server
 
