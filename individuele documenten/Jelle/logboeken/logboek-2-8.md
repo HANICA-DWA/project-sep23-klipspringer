@@ -48,14 +48,14 @@
 |--------------------------------|------------------------------------------------------------------------------------------|-------------------------------|------------------------------------------------------------------------------------------------------|---|---|
 | 1                              | [link naar de taak](https://github.com/HANICA-DWA/project-sep23-klipspringer/issues/300) | Alle Groepsgenoten            | beschrijven van een aantal hoofdstukken van de opleverdocumentatie                                   |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/07ea2728a7492355561d24b5384d1e3126c9c72d) |
 | 1                              | meeting met Pim                                                                          | Alle Groepsgenoten            | meeting met Pim om mijn leerdoelen te verbeteren                                                     |:smiley: |  |
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving                | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc. |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
 |                                |                                                                                          |                               |                                                                                                      | | |
 
 ## Vrijdag 12 januari
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
+| Uren | Taak                     | Met Wie | Resultaten                                            | Emotie | Link |
+|------|--------------------------|---------|-------------------------------------------------------|---|---|
+| 2    | leerdoelen verbeteren    | N.V.T   | met feedback van Pim die het had over onderbouwing    |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/a0bb967da4792f3fb211093026a040055da19cb1) |
+| 1    | presentatie voorbereiden | Alle Groepsgenoten   | inhoud van de presentatie en de demonstratie bedenken |:smiley: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/6e9d06248787f0090dc78c4dac28ef89576c0d20) |
+|      |                          |         |                                                       | | |
