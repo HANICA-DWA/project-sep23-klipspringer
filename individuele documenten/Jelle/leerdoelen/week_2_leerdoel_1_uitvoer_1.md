@@ -10,14 +10,25 @@ Tijdens overlegmomenten heb ik gevraagd aan anderen hoe zij bijvoorbeeld foutmel
 
 ### Wie heb je om hulp gevraagd?
 Om mijn leerdoel te verbeteren heb ik niemand om hulp gevraagd, maar om te luisteren naar wat de teamleden voor ogen hadden, heb ik iedereen in mijn projectteam om hulp gevraagd.
+Ik heb ook online opgezocht naar hoe ik anderen meer ruimte kan geven.
+Hierbij kwam ik bij tips voor luisteren naar anderen "LSD: Luisteren, samenvatten en doorvragen: training en coaching". (Webba, z.d.)
+
 
 
 ### Tot welke inzichten ben je gekomen?
 Dat andere mensen ook veel ideeën kunnen hebben voor de richting van het project.
+Ook heb ik geleerd dat ik niet altijd mijn mening moet geven.
+
+Uit de theorie van LSD (Luisteren, Samenvatten, Doorvragen) (Webba, z.d.) heb ik deze tips gehaald:
+- luisteren naar wat anderen zeggen.
+- samenvatten wat anderen zeggen.
+- toon interesse in wat anderen zeggen.
+- doorvragen als het nog niet een helder antwoord is of nog niet duidelijk is.
+- waardeer de inbreng van anderen.
 
 
 ### Heb je iets bijgesteld? Waarom?
-Nee, dit gaat voorlopig goed.
+Ik heb mijn leerdoel niet bijgesteld, omdat ik het gevoel heb dat ik nu meer naar anderen luister en ook meer naar hun mening vraag.
 
 
 ### Wat heeft het opgeleverd voor jou?

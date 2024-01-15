@@ -43,5 +43,6 @@ Ik ga hulp vragen aan mijn docent in professionele vaardigheden of daar een aant
 
 ### Ik heb mijn leerdoel bereikt als (formuleer meetbare criteria):
 Als ik meer het gevoel heb dat ik meer inbreng heb op dit project en ook een prettigere sfeer heb tijdens het samenwerken met anderen.
+Als ik meer dan 1 keer heb gevraagd naar de meningen van anderen.
 Ook als anderen vinden dat ik meer naar de meningen van anderen ben gaan vragen.
 

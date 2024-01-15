@@ -14,10 +14,25 @@ Ik heb goed doorgevraagd.
 Ik heb ook goed geluisterd naar wanneer ik mijn mening kon geven en wanneer ik beter kon luisteren.
 Ik heb ook suggesties gegeven en dan geluisterd over hoe anderen erover denken.
 
+Volgens de theorie van LSD (Luisteren, Samenvatten, Doorvragen) (Webba, z.d.):
+Heb ik goed geluisterd naar wat anderen zeiden, en heb ik ook doorgevraagd naar wat anderen zeiden.
+Ook heb ik interesse getoond in wat anderen zeiden en geluisterd naar de meningen van anderen.
+
+Volgens de theorie van Inbreng en initiatief (Webba, z.d.-a):
+Heb ik mijn behoeftes gegeven en ook geluisterd naar de meningen en suggesties van anderen. 
+Daarbij heb ik ook hun meningen gewaardeerd en interesse getoond.
+
 
 ### Dit kon beter:
 Doordat je veel doorvraagt, kan het soms zijn dat de discussie wat langer duurt. Er zou dus ook op verschillende momenten iets minder zelf met suggesties komen of iets minder vragen naar de meningen van anderen.
 Ik had ook iets proactiever de overleggen kunnen leiden.
+
+Volgens de theorie van LSD (Luisteren, Samenvatten, Doorvragen) (Webba, z.d.):
+Had ik iets meer kunnen samenvatten wat anderen zeiden, hierbij had ik meer me kunnen verplaatsen in wat anderen zeiden.
+
+Volgens de theorie van Inbreng en initiatief (Webba, z.d.-a):
+Had ik iets meer initiatief kunnen nemen om te zoeken naar oplossingen samen met anderen. Door zelf met een spontaan overlegmoment te beginnen en ook dan de leiding te nemen.
+En had ik ook meer kunnen helpen om de doelen van anderen te realiseren. Door bijvoorbeeld te vragen naar wat anderen willen bereiken met hun leerdoel en hoe ik daarbij kan helpen.
 
 
 ### Ik heb mijn leerdoel wel/niet bereikt omdat, onderbouw aan de hand van concrete voorbeelden/situaties uit praktijk (STARRT):
@@ -51,7 +66,17 @@ Zij vonden dat het verschil vergeleken met het begin van het project wel duideli
 Zij vonden op een schaal van 1 tot 10 dat ik van een 4 naar een 7 ben gegaan. En dat ik meer ging vragen naar hun meningen.
 Dit vond ik zelf ook wel een goed resultaat, omdat ik zelf ook wel het gevoel had dat ik meer naar hun mening vroeg.
 
+Volgens de theorie van LSD (Luisteren, Samenvatten, Doorvragen) (Webba, z.d.):
+Heb ik goed geluisterd naar wat anderen zeiden, heb ik samengevat wat anderen zeiden en heb ik ook doorgevraagd naar wat anderen zeiden.
+Ook heb ik interesse getoond in wat anderen zeiden en geluisterd naar de meningen van anderen.
+
+Volgens de theorie van Inbreng en initiatief (Webba, z.d.-a):
+Heb ik zelf mijn behoeftes gegeven en ook een suggestie om dit op te lossen en heb ik ook geluisterd naar de suggesties van anderen. En dit ook gewaardeerd.
+Ook heb ik initiatief genomen om te zoeken naar oplossingen samen met anderen. Door zelf met een spontaan overlegmoment te beginnen.
+
 Ik heb dus veel in de richting van mijn leerdoel gewerkt, omdat ik goed heb geluisterd en ook goed heb doorgevraagd.
+En ik heb ook meer dan 1 keer naar de mening van anderen gevraagd. En ik heb ook meer mijn eigen inbreng gegeven.
+Ook hebben anderen gemerkt dat ik meer naar hun mening vroeg en ook meer naar ze luisterde.
 
 
 ### Het effect op mijn eigen ontwikkeling was:
@@ -66,3 +91,13 @@ Iedereen kon nu makkelijker zijn mening geven en er werd ook goed naar elkaar ge
 ### _Alleen bij leerdoel 2:_ Dit is wat ik me concreet voorneem voor volgend project/stage/minor: 
 Ik zal proactiever de overleggen leiden.
 Om de communicatie in het vervolg te verbeteren zal ik ook beter leren feedback ontvangen, hierdoor zal het voor anderen ook makkelijker worden om met mij te communiceren.
+
+Zoals de theorie van Inbreng en initiatief (Webba, z.d.-a) zegt:
+Zal ik meer initiatief nemen om te zoeken naar oplossingen samen met anderen.
+En zal ik ook meer helpen om de doelen van anderen te realiseren. Door bijvoorbeeld te vragen naar wat anderen willen bereiken met hun leerdoel en hoe ik daarbij kan helpen.
+En zal ik ook feedback of kritiek ontvangen op een constructieve manier. Omdat ik daar nog niet altijd goed mee om kan gaan, maar er ook niet op heb gefocust tijdens dit project.
+
+
+### Bronnen
+- [Webba. (z.d.). LSD: Luisteren, samenvatten en doorvragen: training en coaching. De Steven training | coaching | outplacement. Geraadpleegd op 12 januari 2024, van https://www.desteven.nl/persoonlijke-ontwikkeling/communicatie/luistervaardigheid/lsd](https://www.desteven.nl/persoonlijke-ontwikkeling/communicatie/luistervaardigheid/lsd)
+- [Webba. (z.d.-a). Inbreng en initiatief ontwikkelen binnen teams en organisaties. De Steven training | coaching | outplacement. Geraadpleegd op 12 januari 2024, van https://www.desteven.nl/team-organisatie/teamontwikkeling/initiatief-team](https://www.desteven.nl/team-organisatie/teamontwikkeling/initiatief-team)
