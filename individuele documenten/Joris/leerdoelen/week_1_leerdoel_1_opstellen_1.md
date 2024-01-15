@@ -22,6 +22,7 @@ code die gereviewed met de DOD en acceptatiecriteria van die userstory/taak, waa
 - tests schrijven voor backend en frontend tests schrijven
 - tests uitvoeren en resultaat gebruiken om kwaliteit te verbeteren.
 
+Ik ga de [theorie](https://han.onderwijsonline.nl/elearning/lessonfile/Rq9bdwLN/eyJpdiI6Ik1ZY0NMQTBmWjEyMmxsRnRnSkFDd1E9PSIsInZhbHVlIjoibnVuZzdQUy9rc09KTy9VQjJ5UENvRFpjdjJBdytjTlQ2WENvOTEySVYvaUtzTC8vSDBCK0NtV3daeThMRDI1S3ViWWd5K0RXNm9nV3RoWm4xN05PdGM3c3F1ZWZKbGdBMmhpd2FkeFhkd1E9IiwibWFjIjoiYWVlY2UyMDZmNTM4NmI2NmI4MjUyZGY5ZTE1ZjhiNDE1ZDAyMmZlZDM2OWUwNzhmNTVhYmQ0YWY3NjgzMjUzMSIsInRhZyI6IiJ9) van KOET en de DOD gebruiken van de PS lessen.
 
 ### Om mijn leerdoel te bereiken ga ik de volgende acties op de volgende momenten uitvoeren:
 - als er code gereviewed moet worden bied ik mij aan (niet te vaak natuurlijk want ander groepsleden moeten ook reviewen). ik zal dit reviewen op basis van de DOD en de acceptatiecriteria van deze taak/userstory

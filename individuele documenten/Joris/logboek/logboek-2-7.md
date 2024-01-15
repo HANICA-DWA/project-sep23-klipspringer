@@ -38,16 +38,16 @@
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
+| **Uren** | **Taak**                         | **Met Wie** | **Resultaten**                                                      | **Emotie** | **Link** |
+|----------|----------------------------------|-------------|---------------------------------------------------------------------|------------|----------|
+| 2       | Workshop frontend testing volgen | Hele team   | We weten nu wat we in de post game qua frontend testing moeten doen | :thinking: |          |
+| 3     | Sprint review voorbereiden       | Hele team   | Een overzicht van wat we op de sprint review willen laten zien.     | :smile:    |          |
+
 
 ## Vrijdag 22 december
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
+| **Uren** | **Taak**               | **Met Wie**                | **Resultaten**                                                                                 | **Emotie**              | **Link**                                                                                                                            |
+|----------|------------------------|----------------------------|------------------------------------------------------------------------------------------------|-------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| 1       | Sprint review gehouden | Hele team, en Fritz en Rik | Feedback van Rik en fritz op het resultaat en de planning | :slightly_smiling_face: | [link naar de resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/14f04c12d3960e4483b4cc2f4c044f28be6ce2bb) |
