@@ -31,18 +31,14 @@
 
 ## Donderdag 11 januari
 
-> Eventueel informatieve algemene opmerkingen over deze dag.
-
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
+| **Uren** | **Taak**                      | **Met Wie**   | **Resultaten**                                                                                                                                 | **Emotie**         | **Link**                                                                                                                                         |
+|----------|-------------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| 3.5h     | Opleverdocumentatie schrijven | De hele groep | Met de groep hebben we de opleverdocumentatie geschreven. Ik heb de mappenstructuur beschreven, waar<br>alle bestanden gevonden kunnen worden. | :grinning:         | [link naar resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/blob/main/groepsdocumenten/Opleverdocumentatie.md)               |
+| 0.5h     | Design dingetjes aanpassen    | Alleen ikzelf | Naar aanleiding van wat puntjes van Rik, heb ik nog een aantal puntjes aangepast in de frontend                                                | :grinning:         | [link naar resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commits/main/?after=c0738cdbd20d98db1edc4f850b0fdfcda19e016e+34) |
+| 2h       | Presentatie voorbereiden      | De hele groep | We zijn met de hele groep begonnen met het voorbereiden van de presentatie, we hebben<br>nu een eerste versie van de powerpoint gemaakt.       | :upside_down_face: | [link naar resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/419a3436be8691dc4d5fa0193e7e7af0e02ef5a5)                 |
 
 ## Vrijdag 12 januari
 
-> Eventueel informatieve algemene opmerkingen over deze dag.
-
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
+| **Uren** | **Taak**                 | **Met Wie**   | **Resultaten**                                                                                                        | **Emotie**       | **Link**                                                                                                                         |
+|----------|--------------------------|---------------|-----------------------------------------------------------------------------------------------------------------------|------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| 3h       | Presentatie voorbereiden | De hele groep | We hebben de voorbereiding van de presentatie afgerond. De powerpoint<br>is af en we hebben presenteertaken verdeeld. | :expressionless: | [link naar resultaten](https://github.com/HANICA-DWA/project-sep23-klipspringer/commit/6e9d06248787f0090dc78c4dac28ef89576c0d20) |

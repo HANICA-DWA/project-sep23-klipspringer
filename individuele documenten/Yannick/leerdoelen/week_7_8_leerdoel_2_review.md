@@ -18,6 +18,7 @@ Daarnaast werkte een aantal tips bij het geven van feedback (Ros, 2022) erg goed
 
 Ik denk dat ik nog wel wat concreter met de tip (T van KOET) had kunnen zijn (HAN-ICA-Professional Skills HBO-ICT, 2019). Ik heb af en toe niet beschreven wat er nou specifiek verbeterd/veranderd zou kunnen worden na aanleiding van mijn feedback. Hierdoor kan het zijn dat feedback "verloren" gaat, doordat niet duidelijk is wat er mee moet gebeuren. Hier kan ik dus nog wel wat meer op letten.
 Ik had over het algemeen dus nog beter kunnen controleren of alle onderdelen van KOET in mijn feedback verwerkt zaten. Hier wordt de feedback nog nuttiger van.
+Ik denk daarnaast dat mijn houding bij het geven van feedback ook nog wel wat verbeterd kan worden. Ik heb daar tijdens de uitvoer van dit leerdoel niet specifiek opgelet, maar ik heb opgemerkt dat ik soms nog wat te afwachtend overkom. Ik denk dat mijn houding wat zelfverzekerder en proactiever kan worden.
 
 ### Ik heb mijn leerdoel wel/niet bereikt omdat, onderbouw aan de hand van concrete voorbeelden/situaties uit praktijk (STARRT):
 
@@ -25,6 +26,7 @@ Ik denk dat ik mijn leerdoel deels behaald heb. Ik ben zeker beter geworden in h
 Als feedback van mijn groepsgenoten kreeg ik te horen dat ik nu duidelijke feedback geef. Ik geef een goede toelichting/uitleg bij mijn feedback en ik geef de feedback op een goede, respectvolle manier.
 Ik denk zelf ook dat mijn feedback nu van betere kwaliteit is en nuttiger is. Ik ben van mening dat de codekwaliteit in dit project beter is dan in het vorige project (I-Project) en dat de code minder rommelig is. Ik denk dat mijn feedback, naast andere factoren natuurlijk, geholpen heeft om de kwaliteit te waarborgen.
 Ik denk echter dat ik soms nog wel wat strakker bij de KOET-methode kan blijven. Ik vergeet soms bij het geven van feedback, zoals ik eerder al aangaf, bijvoorbeeld het expliciet vermelden van de tip of het effect. Door dit ook in mijn feedback te verwerken, denk ik dat het geven van feedback nog sterker kan worden.
+Daarnaast denk ik dat ik mijn houding wel wat kan verbeteren. Als mijn houding wat zelfverzekerder en proactiever wordt, en de feedback tegelijkertijd respectvol blijft, denk ik dat er wat meer kracht achter mijn feedback kan zitten.
 
 Situatiebeschrijving waarin ik het geven van feedback heb toegepast:
 
@@ -66,6 +68,7 @@ Met betrekking tot het geven van feedback in een volgend project, om hier nog be
 
 - Voor het geven van feedback, wil ik meer tijd nemen om de feedback te noteren. Ik wil hiermee controleren of alle onderdelen van KOET hierin zitten, zodat mijn feedback compleet is.
 - Ik wil bij het geven van feedback verschillende methodes/stijlen gaan proberen, om te kijken welke het beste bij mij past en welke het beste aansluit binnen de groep. Ik ga hiervoor verschillende bronnen met tips opzoeken.
+- Ik wil bij het geven van feedback meer op mijn houding letten. Ook hiervoor ga ik bronnen opzoeken, waarin staat beschreven, met tips, welke houding(en) het beste werken bij het geven van feedback. Hier ga ik dan ook mee oefenen.
 - Ik wil actiever gaan luisteren naar feedback die anderen op mijn producten geven. Ik kan hier de LSD techniek voor gebruiken, zodat ik de feedback van anderen ook helemaal begrijp. Hier kan ik weer van leren, door goede onderdelen op te merken en zelf toe te passen.
 
 ### Bronnen
