@@ -8,7 +8,34 @@
 
 > [Hier is een lijstje met alle GitHub emojis](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md)
 
-## Maandag 10 januari
+## Maandag 8 januari
+
+> Eventueel informatieve algemene opmerkingen over deze dag.
+
+| **Uren** | **Taak**                                  | **Met Wie** | **Resultaten** | **Emotie** | **Link** |
+|----------|-------------------------------------------|-------------|----------------|------------|----------|
+| 3        | frontend test voor followerlist component | N.V.T.      |                | :sleeping: |          |
+| 3        | frontend test voor modalshelf component   | N.V.T.      |                | :sleeping: |          |
+
+
+## Dinsdag 9 januari
+
+> Eventueel informatieve algemene opmerkingen over deze dag.
+
+| **Uren** | **Taak**                                | **Met Wie** | **Resultaten** | **Emotie** | **Link** |
+|----------|-----------------------------------------|-------------|----------------|------------|----------|
+| 2        | frontend test voor modalshelf component | N.V.T.      |                | :sleeping: |          |
+| 4        | frontend test voor detailpage           | N.V.T.      |                | :sleeping: |          |
+
+## Woensdag 10 januari
+
+> Eventueel informatieve algemene opmerkingen over deze dag.
+
+| **Uren** | **Taak**                      | **Met Wie** | **Resultaten** | **Emotie** | **Link** |
+|----------|-------------------------------|-------------|----------------|------------|----------|
+| 4        | frontend test voor detailpage | N.V.T.      |                | :sleeping: |          |
+
+## Donderdag 11 januari
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
@@ -17,35 +44,7 @@
 | rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
 | | | | | | |
 
-
-## Dinsdag 11 januari
-
-> Eventueel informatieve algemene opmerkingen over deze dag.
-
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
-
-## Woensdag 12 januari
-
-> Eventueel informatieve algemene opmerkingen over deze dag.
-
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
-
-## Donderdag 13 januari
-
-> Eventueel informatieve algemene opmerkingen over deze dag.
-
-| Uren | Taak  | Met Wie | Resultaten | Emotie | Link |
-|---|---|---|---|---|---|
-| rond af op uren, of halve uren | [link naar de taak](https://github.com/link-naar-de-taak) of beschrijving | Groepsgenoten indien relevant | Geef belangrijke inhoudelijke overwegingen en/of de leerpunten en/of puzzels en/of frustraties, etc.  |bijvoorbeeld <br />:smiley:, :rage:, :scream:, of :satisfied:, <br />maar een andere emoji, en/of opmerking is ook goed | [link naar de resultaten](https://github.com/link-naar-de-commit) |
-| | | | | | |
-
-## Vrijdag 14 januari
+## Vrijdag 12 januari
 
 > Eventueel informatieve algemene opmerkingen over deze dag.
 
