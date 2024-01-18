@@ -28,3 +28,7 @@ In dit project maken wij een mobiele web applicatie voor het delen van boeken op
 - [Opleverdocumentatie](./groepsdocumenten/Opleverdocumentatie.md)
 - [Client](./client/)
 - [Server](./server/)
+
+# License
+
+Deze code heeft een MIT licentie.
